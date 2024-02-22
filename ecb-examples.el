@@ -64,7 +64,7 @@
 
 (eval-when-compile
   ;; to avoid compiler grips
-  (require 'cl))
+  (require 'cl-lib))
 
 ;; ---------------------------------------------------------------------------
 ;; --- Code for the bufferinfo buffer ----------------------------------------

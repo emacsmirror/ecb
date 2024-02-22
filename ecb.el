@@ -42,7 +42,7 @@
 ;;   the Semantic Bovinator, or Imenu, or etags, for getting this list so all
 ;;   languages supported by any of these tools are automatically supported by
 ;;   ECB too)
-;; - a history of recently visited files, 
+;; - a history of recently visited files,
 ;; - the Speedbar and
 ;; - output from compilation (the "*compilation*" window) and other modes like
 ;;   help, grep etc. or whatever a user defines to be displayed in this
@@ -198,10 +198,7 @@
 
 (eval-when-compile
   ;; to avoid compiler grips
-  (require 'cl))
-
-;; XEmacs
-(silentcomp-defun ecb-redraw-modeline)
+  (require 'cl-lib))
 
 ;;====================================================
 ;; Variables
@@ -314,7 +311,7 @@ also be changed during running ECB."
                    (set sym val)
                    (ecb-activate-ecb-autocontrol-function
                     val 'ecb-stealthy-updates))))
-                    
+
 
 
 (defcustom ecb-minor-mode-text " ECB"
@@ -1169,7 +1166,7 @@ VAR has to be a bound symbol for a variable. ACTION is either 'store or
 'restore. The optional arg NEW-VALUE is only used when ACTION is 'store and is
 that value VAR should be set to. After calling with ACTION is 'restore the
 value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
-  (case action
+  (cl-case action
     (store
      (or (ecb-find-assoc var ecb-temporary-changed-emacs-variables-alist)
          (progn
@@ -1189,7 +1186,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
   "See `ecb-activate'.  This is the implementation of ECB activation."
   (when (or (null ecb-frame) (not (frame-live-p ecb-frame)))
     (setq ecb-frame (selected-frame)))
-  
+
   (if ecb-minor-mode
       (when (and (not (equal (selected-frame) ecb-frame))
                  (or (equal ecb-activation-selects-ecb-frame-if-already-active t)
@@ -1210,17 +1207,17 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
         (when (and ecb-running-xemacs
                    (boundp 'progress-feedback-use-echo-area))
           (ecb-modify-emacs-variable 'progress-feedback-use-echo-area 'store t))
-      
+
         ;; checking if there are cedet or semantic-load problems
         (ecb-check-cedet-load)
         (ecb-check-semantic-load)
-              
+
         ;; checking the requirements
         (ecb-check-requirements)
 
         (condition-case err-obj
             (progn
-              
+
               ;; initialize the navigate-library
               (ecb-nav-initialize)
 
@@ -1231,7 +1228,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
 
               ;; we need the custom-all advice here!
               (ecb-enable-advices 'ecb-methods-browser-advices)
-              
+
               ;; maybe we must upgrade some not anymore compatible or even renamed
               ;; options
               (when (and ecb-auto-compatibility-check
@@ -1258,7 +1255,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
 
               ;; enable advices for the compatibility with other packages
               (ecb-enable-advices 'ecb-compatibility-advices)
-            
+
               ;; set the ecb-frame
               (let ((old-ecb-frame ecb-frame))
                 (if ecb-new-ecb-frame
@@ -1277,12 +1274,12 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
               (select-frame ecb-frame)
 
               (ecb-enable-own-temp-buffer-show-function t)
-      
+
               ;; now we can activate ECB
 
               ;; first we run all tree-buffer-creators
               (ecb-tree-buffer-creators-run)
-    
+
               ;; activate the eshell-integration - does not load eshell but
               ;; prepares ECB to run eshell right - if loaded and activated
               (ecb-eshell-activate-integration)
@@ -1293,7 +1290,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
               (add-hook (ecb--semantic-after-toplevel-cache-change-hook)
                         'ecb-rebuild-methods-buffer-with-tagcache t)
 ;;               (add-hook (ecb--semantic--before-fetch-tags-hook)
-;;                         'ecb-prevent-from-parsing-if-exceeding-threshold)              
+;;                         'ecb-prevent-from-parsing-if-exceeding-threshold)
               (ecb-activate-ecb-autocontrol-function ecb-highlight-tag-with-point-delay
                                                      'ecb-tag-sync)
               (ecb-activate-ecb-autocontrol-function ecb-basic-buffer-sync-delay
@@ -1321,17 +1318,17 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
               (ecb-stealthy-function-state-init)
               (ecb-activate-ecb-autocontrol-function ecb-stealthy-tasks-delay
                                                       'ecb-stealthy-updates)
-            
+
               ;; running the compilation-buffer update first time
               (ecb-compilation-buffer-list-init)
-                            
+
               ;; ediff-stuff; we operate here only with symbols to avoid bytecompiler
               ;; warnings
               (ecb-activate-ediff-compatibility)
 
               ;; enabling the VC-support
               (ecb-vc-enable-internals 1)
-              
+
               (add-hook (if ecb-running-xemacs
                             'activate-menubar-hook
                           'menu-bar-update-hook)
@@ -1349,7 +1346,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
            (ecb-clean-up-after-activation-failure
             "Errors during the hooks of ecb-activate-before-layout-draw-hook."
             err-obj)))
-         
+
         (setq ecb-minor-mode t)
 
         ;; now we draw the screen-layout of ECB.
@@ -1364,7 +1361,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
                                           (not (ecb-window-configuration-invalidp
                                                 ecb-last-window-config-before-deactivation)))))
               (ecb-enable-temp-buffer-shrink-to-fit ecb-compile-window-height)
-              (if use-last-win-conf                     
+              (if use-last-win-conf
                   (setq ecb-edit-area-creators
                         (nth 4 ecb-last-window-config-before-deactivation)))
 
@@ -1384,13 +1381,13 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
               (when (member ecb-split-edit-window-after-start
                             '(vertical horizontal nil))
                 (delete-other-windows)
-                (case ecb-split-edit-window-after-start
+                (cl-case ecb-split-edit-window-after-start
                   (horizontal (split-window-horizontally))
                   (vertical (split-window-vertically))))
-            
+
               ;; now we synchronize all ECB-windows
               (ecb-window-sync)
-            
+
               ;; now update all the ECB-buffer-modelines
               (ecb-mode-line-format)
               )
@@ -1398,7 +1395,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
            (ecb-clean-up-after-activation-failure
             "Errors during the layout setup of ECB." err-obj))
           )
-       
+
         (condition-case err-obj
             (let ((edit-window (car (ecb-canonical-edit-windows-list))))
               (when (and ecb-display-default-dir-after-start
@@ -1410,17 +1407,17 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
           (error
            (ecb-clean-up-after-activation-failure
             "Errors during setting the default directory." err-obj)))
-        
+
         (condition-case err-obj
             ;; we run any personal hooks
             (run-hooks 'ecb-activate-hook)
           (error
            (ecb-clean-up-after-activation-failure
             "Errors during the hooks of ecb-activate-hook." err-obj)))
-        
+
         (condition-case err-obj
             ;; enable mouse-tracking for the ecb-tree-buffers; we do this after
-            ;; running the personal hooks because if a user putﾴs activation of
+            ;; running the personal hooks because if a user puts activation of
             ;; follow-mouse.el (`turn-on-follow-mouse') in the
             ;; `ecb-activate-hook' then our own ECB mouse-tracking must be
             ;; activated later. If `turn-on-follow-mouse' would be activated
@@ -1465,7 +1462,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
           (ecb-show-tip-of-the-day))
 
         (ecb-enable-advices 'ecb-layout-basic-adviced-functions)
-        
+
         (condition-case err-obj
             ;;now take a snapshot of the current window configuration
             (setq ecb-activated-window-configuration
@@ -1490,13 +1487,13 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
 
       (setq ecb-last-window-config-before-deactivation
             (ecb-current-window-configuration))
-      
+
       ;; deactivating the adviced functions
       (dolist (adviced-set-elem ecb-adviced-function-sets)
         ;; Note: as permanent defined advices-sets are not disabled here!
         (ecb-disable-advices (car adviced-set-elem)))
 
-      (ecb-enable-own-temp-buffer-show-function nil)      
+      (ecb-enable-own-temp-buffer-show-function nil)
 
       (ecb-enable-temp-buffer-shrink-to-fit nil)
 
@@ -1504,7 +1501,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
       (ignore-errors (ecb-speedbar-deactivate))
 
       ;; deactivates the eshell-integration; this disables also the
-      ;; eshell-advices! 
+      ;; eshell-advices!
       (ecb-eshell-deactivate-integration)
 
       ;; For XEmacs
@@ -1529,7 +1526,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
 
       ;; disabling the VC-support
       (ecb-vc-enable-internals -1)
-      
+
       (remove-hook (if ecb-running-xemacs
                        'activate-menubar-hook
                      'menu-bar-update-hook)
@@ -1538,7 +1535,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
       ;; run any personal hooks
       (unless run-no-hooks
         (run-hooks 'ecb-deactivate-hook))
-    
+
       ;; clear the ecb-frame. Here we try to preserve the split-state after
       ;; deleting the ECB-screen-layout.
       (when (frame-live-p ecb-frame)
@@ -1556,10 +1553,10 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
               (ecb-make-windows-not-dedicated ecb-frame)
 
               ;; deletion of all windows. (All other advices are already
-              ;; disabled!) 
+              ;; disabled!)
               (ecb-with-original-permanent-layout-functions
                (delete-other-windows))
-              
+
               ;; some paranoia....
               (set-window-dedicated-p (selected-window) nil)
 
@@ -1570,7 +1567,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
                   (ecb-with-original-permanent-layout-functions
                    (ecb-restore-edit-area))
                 (ecb-edit-area-creators-init))
-              
+
               (setq edit-win-list-after-redraw (ecb-canonical-edit-windows-list))
 
               ;; a safety-check if we have now at least as many windows as
@@ -1591,7 +1588,7 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
               ;; at the end we always stay in that window as before the
               ;; deactivation.
               (when (integerp window-before-redraw)
-                (ecb-select-edit-window window-before-redraw))       
+                (ecb-select-edit-window window-before-redraw))
               ;; if we were in an edit-window before deactivation let us go to
               ;; the old place
               (when pos-before-redraw
@@ -1603,10 +1600,10 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
                         (car oops) (cdr oops))
            (ignore-errors (ecb-make-windows-not-dedicated ecb-frame))
            (ignore-errors (delete-other-windows))))
-        
+
         (if (get 'ecb-frame 'ecb-new-frame-created)
             (ignore-errors (delete-frame ecb-frame t))))
-        
+
       (ecb-initialize-layout)
 
       ;; we do NOT disable the permanent-advices of
@@ -1617,13 +1614,13 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
         (ecb-edit-area-creators-init))
 
       ;; we can safely do the kills because killing non existing buffers
-      ;; doesnﾴt matter. We kill these buffers because some customize-options
+      ;; doesn't matter. We kill these buffers because some customize-options
       ;; takes only effect when deactivating/reactivating ECB, or to be more
       ;; precise when creating the tree-buffers again.
       (dolist (tb-elem (ecb-ecb-buffer-registry-name-list 'only-tree-buffers))
         (tree-buffer-destroy tb-elem))
       (ecb-ecb-buffer-registry-init)
-      
+
       (setq ecb-activated-window-configuration nil)
 
       (setq ecb-minor-mode nil)
@@ -1634,8 +1631,8 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
       (when (and ecb-running-xemacs
                  (boundp 'progress-feedback-use-echo-area))
         (ecb-modify-emacs-variable 'progress-feedback-use-echo-area 'restore))))
-      
-  
+
+
   (if (null ecb-minor-mode)
       (message "The ECB is now deactivated."))
   ecb-minor-mode)
@@ -1727,7 +1724,7 @@ exist."
         ;; defecb-multicache
         (semantic-elisp-reuse-form-parser defvar defecb-multicache)
         ;; defecb-advice-set
-        (semantic-elisp-reuse-form-parser defvar defecb-advice-set)        
+        (semantic-elisp-reuse-form-parser defvar defecb-advice-set)
         ;; defecb-stealthy and tree-buffer-defpopup-command
         (semantic-elisp-setup-form-parser
             (lambda (read-lobject start end)
@@ -1896,7 +1893,7 @@ exist."
   (error
    (ecb-warning "Not critical error during supporting fontifying the ecb-macros: (error-type: %S, error-data: %S)"
                 (car oops) (cdr oops))))
-  
+
 
 ;; Klaus Berndl <klaus.berndl@sdm.de>: Cause of the magic autostart stuff of
 ;; the advice-package we must disable at load-time all these advices!!

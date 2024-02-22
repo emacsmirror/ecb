@@ -32,7 +32,7 @@
 
 ;;; Code:
 
-;; here a load-file is better because then we donﾴt need adding the html
+;; here a load-file is better because then we don't need adding the html
 ;; subdir to the load-path.
 (load-file "./html-helper.el")
 (require 'ecb)

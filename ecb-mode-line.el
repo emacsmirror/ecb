@@ -106,7 +106,7 @@ prefix\" \(= nil as cdr)."
                                (const :tag "No prefix" :value nil)
                                (string :tag "Prefix-string")
                                (function :tag "Compute prefix with")))))
-  
+
 
 
 (defcustom ecb-mode-line-display-window-number t
@@ -212,7 +212,7 @@ prepended by the window-number, see `ecb-mode-line-display-window-number'."
                                                        nil))
                                                     (t (ecb-error "ecb-mode-line-format: Can not get prefix-elem: %s" p)))))
                                            ecb-mode-line-prefixes))
-                    (prefix-str (typecase prefix-elem
+                    (prefix-str (cl-typecase prefix-elem
                                   (null nil)
                                   (string prefix-elem)
                                   (function (funcall prefix-elem
@@ -281,7 +281,7 @@ contains a text-property 'help-echo."
           (set-extent-property ext 'help-echo help-echo-str)
           (list (cons ext strcp)))
       (list (propertize strcp 'face face)))))
-                 
+
 (defun ecb-mode-line-set (buffer-name frame prefix &optional text no-win-nr)
   "Sets the mode line for a buffer. The mode line has the scheme:
 \"[WIN-NR ][PREFIX[: ]][TEXT]\". WIN-NR is the number of the window which

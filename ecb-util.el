@@ -44,23 +44,10 @@
 (eval-when-compile
   (require 'silentcomp))
 
-(eval-when-compile (require 'cl))
+(eval-when-compile (require 'cl-lib))
 
 ;;; ----- Silentcomp-Defs ----------------------------------
 
-;; XEmacs
-(silentcomp-defun symbol-value-in-buffer)
-(silentcomp-defun button-release-event-p)
-(silentcomp-defun button-press-event-p)
-(silentcomp-defun event-key)
-(silentcomp-defun frame-property)
-(silentcomp-defun point-at-bol)
-(silentcomp-defun point-at-eol)
-(silentcomp-defun frame-parameter)
-(silentcomp-defun line-beginning-position)
-(silentcomp-defun line-end-position)
-(silentcomp-defun window-pixel-edges)
-(silentcomp-defun noninteractive)
 ;; Emacs
 (silentcomp-defun event-basic-type)
 (silentcomp-defun window-edges)
@@ -196,77 +183,10 @@ semantic!. If not use the form \(when ecb-running-gnu-emacs-version-23)."
 ;; I do not want all this compatibitly stuff being parsed by semantic,
 ;; therefore i do not use the macro `when-ecb-running-xemacs'!
 
-(when ecb-running-xemacs
-  (defun ecb-event-to-key (event)
-    (typecase event
-      (button-release-event 'mouse-release)
-      (button-press-event 'mouse-press)
-      (otherwise
-       ;; the ignore-errors is a little hack because i don't know all
-       ;; events of XEmacs so sometimes event-key produces a
-       ;; wrong-type-argument error.
-       (ignore-errors (event-key event)))))
-  (defun ecb-facep (face)
-    (memq face (face-list)))
-  (defun ecb-noninteractive ()
-    "Return non-nil if running non-interactively, i.e. in batch mode."
-    (noninteractive))
-  (defun ecb-subst-char-in-string (fromchar tochar string &optional inplace)
-    "Replace FROMCHAR with TOCHAR in STRING each time it occurs.
-Unless optional argument INPLACE is non-nil, return a new string."
-    (let ((i (length string))
-          (newstr (if inplace string (copy-sequence string))))
-      (while (> i 0)
-        (setq i (1- i))
-        (if (eq (aref newstr i) fromchar)
-            (aset newstr i tochar)))
-      newstr))
-  (defun ecb-substring-no-properties (string &optional start end)
-    (let* ((start (or start 0))
-           (end (or end (length string)))
-           (string (substring string start end)))
-      (set-text-properties start end nil string)
-      string))
-    
-  (defun ecb-derived-mode-p (&rest modes)
-    "Non-nil if the current major mode is derived from one of MODES.
-Uses the `derived-mode-parent' property of the symbol to trace backwards."
-    (let ((parent major-mode))
-      (while (and (not (memq parent modes))
-                  (setq parent (get parent 'derived-mode-parent))))
-      parent))
-  (defsubst ecb-count-screen-lines (&optional beg end)
-    (let ((b (or beg (point-min)))
-          (e (or end (point-max))))
-      (count-lines b e)))
-  (defalias 'ecb-frame-parameter 'frame-property)
-  (defalias 'ecb-line-beginning-pos 'point-at-bol)
-  (defalias 'ecb-bolp 'bolp)
-  (defalias 'ecb-eolp 'eolp)
-  (defalias 'ecb-bobp 'bobp)
-  (defalias 'ecb-eobp 'eobp)
-  (defalias 'ecb-line-end-pos 'point-at-eol)
-  (defalias 'ecb-event-window 'event-window)
-  (defalias 'ecb-event-point 'event-point)
-  (defalias 'ecb-event-buffer 'event-buffer)
-  (defalias 'ecb-window-full-width 'window-full-width)
-  (defalias 'ecb-window-full-height 'window-height)
-  (defalias 'ecb-window-display-height 'window-displayed-height)
-  (defun ecb-frame-char-width (&optional frame)
-    (/ (frame-pixel-width frame) (frame-width frame)))
-  (defun ecb-frame-char-height (&optional frame)
-    (/ (frame-pixel-height frame) (frame-height frame)))
-  (defun ecb-window-edges (&optional window)
-    (let ((pix-edges (window-pixel-edges window)))
-      (list (/ (nth 0 pix-edges) (ecb-frame-char-width))
-            (/ (nth 1 pix-edges) (ecb-frame-char-height))
-            (/ (nth 2 pix-edges) (ecb-frame-char-width))
-            (/ (nth 3 pix-edges) (ecb-frame-char-height))))))
-
 (unless ecb-running-xemacs
   (defun ecb-event-to-key (event)
     (let ((type (event-basic-type event)))
-      (case type
+      (cl-case type
         ((mouse-1 mouse-2 mouse-3) 'mouse-release)
         ((down-mouse-1 down-mouse-2 down-mouse-3) 'mouse-press)
         (otherwise (event-basic-type event)))))
@@ -659,7 +579,7 @@ This is desctructive function. LIST is returned."
   "Replace all occurences of ELEM from LIST. Comparison is done by `equal'.
 This is desctructive function. LIST is returned."
   (delq 'ecb-util-remove-marker
-        (progn          
+        (progn
           (while (ecb-position elem list)
             (setq list (ecb-replace-first-occurence list elem
                                                     'ecb-util-remove-marker)))
@@ -673,7 +593,7 @@ If START or END is negative, it counts from the end."
     (let (len)
       (and end (< end 0) (setq end (+ end (setq len (length seq)))))
       (if (< start 0) (setq start (+ start (or len (setq len (length seq))))))
-      (typecase seq
+      (cl-typecase seq
         (list (if (> start 0) (setq seq (nthcdr start seq)))
               (if end
                   (let ((res nil))
@@ -692,7 +612,7 @@ If START or END is negative, it counts from the end."
 (defun ecb-concatenate (type &rest seqs)
   "Concatenate, into a sequence of type TYPE, the argument SEQUENCES.
 TYPE can be 'string, 'vector or 'list."
-  (case type
+  (cl-case type
     (vector (apply 'vconcat seqs))
     (string (apply 'concat seqs))
     (list (apply 'append (append seqs '(nil))))
@@ -704,7 +624,7 @@ arbitrary sequence. Example: \(ecb-rotate '\(a b c d e f) 'c) results in \(c d
 e f a b). If START-ELEM is not contained in SEQ then nil is returned."
   (let ((start-pos (ecb-position start-elem seq)))
     (when start-pos
-      (ecb-concatenate (typecase seq
+      (ecb-concatenate (cl-typecase seq
                          (list 'list)
                          (string 'string)
                          (vector 'vector))
@@ -726,7 +646,7 @@ e f a b). If START-ELEM is not contained in SEQ then nil is returned."
     (if (> (length seq) 0)
         (aref seq 0)
       nil)))
-  
+
 
 (defun ecb-next-listelem (list elem &optional nth-next)
   "Return that element of LIST which follows directly ELEM when ELEM is an
@@ -1046,7 +966,7 @@ item with KEY is cached or that no value has been put for SUBCACHE."
     (when subcache-conscell
       (setcdr subcache-conscell
               (funcall apply-fcn (cdr subcache-conscell))))))
-        
+
 (defun ecb-multicache-put-value (cache-var key subcache value)
   "Put VALUE as SUBCACHE-value of the cached item with key KEY. If there is
 already a value for this subcache and key then it will be replaced with VALUE.
@@ -1138,7 +1058,7 @@ excluded from the output."
 	(value-str-face (copy-face 'italic
                                    'ecb-multicache-print-value-str-face)))
     (set-face-foreground key-face "blue")
-    (set-face-foreground value-str-face "forest green")    
+    (set-face-foreground value-str-face "forest green")
     (put-text-property 0 (length key-str) 'face 'bold key-str)
     (put-text-property 0 (length value-str) 'face value-str-face value-str)
     (save-selected-window
@@ -1168,7 +1088,7 @@ excluded from the output."
                      value))))
       (switch-to-buffer-other-window (get-buffer-create dump-buffer-name))
       (goto-char (point-min)))))
-  
+
 
 ;;; ----- User-interaction ---------------------------------
 
@@ -1278,7 +1198,7 @@ be made either with the mouse or with the keyboard."
 (defun ecb-read-number (prompt &optional init-value)
   "Ask in the minibuffer for a number with prompt-string PROMPT. Optional
 INIT-VALUE can be either a number or a string-representation of a number."
-  (let ((init (typecase init-value
+  (let ((init (cl-typecase init-value
                 (number (number-to-string init-value))
                 (string
                  (if (ecb-string= init-value "0")
@@ -1414,7 +1334,7 @@ If `window-system' is nil then a simple message is displayed in the echo-area."
 ;;                                (error nil))
 ;;                              (kill-buffer ecb-user-information-msg-buffer)
 ;;                              (setq ecb-user-information-msg-buffer nil))
-                             
+
 ;;                    "OK")
 ;;     (widget-setup)
 ;;     ;; (setq buffer-read-only t)
@@ -1479,12 +1399,12 @@ If always returns TEXT \(if not nil then modified with FACE)."
                                                                    'face
                                                                    text))
                                   (cf
-                                   (typecase current-face
+                                   (cl-typecase current-face
                                      (ecb-face (list current-face))
                                      (list current-face)
                                      (otherwise nil)))
                                   (nf
-                                   (typecase face
+                                   (cl-typecase face
                                      (ecb-face (list face))
                                      (list face)
                                      (otherwise nil))))
@@ -1499,12 +1419,12 @@ If always returns TEXT \(if not nil then modified with FACE)."
       (alter-text-property start end 'face
                            (lambda (current-face)
                              (let ((cf
-                                    (typecase current-face
+                                    (cl-typecase current-face
                                       (ecb-face (list current-face))
                                       (list current-face)
                                       (otherwise nil)))
                                    (nf
-                                    (typecase face
+                                    (cl-typecase face
                                       (ecb-face (list face))
                                       (list face)
                                       (otherwise nil))))
@@ -1667,7 +1587,7 @@ number (which happens to be ignored.).  While coders pass t into
 NUMBER, functions using this should convert NUMBER into a vector
 describing how to render the done message.
 Argument FRAMES are the frames used in the animation."
-  (typecase number
+  (cl-typecase number
     (vector
      (let ((zone (- (length (aref frames 0)) (length (aref number 0))
                     (length (aref number 1)))))
@@ -1696,7 +1616,7 @@ Argument FRAMES are the frames used in the animation."
   "Return a string displaying a celeron as things happen.
 LENGTH is the amount of display that has been used.  NUMBER
 is t to display the done string, or the number to display."
-  (case number
+  (cl-case number
     ((t)
      (ecb-working-frame-animation-display length [ "[" "]" ]
 					  ecb-working-celeron-strings))
@@ -1843,7 +1763,7 @@ or a buffer-object."
 BUFFER-OR-WINDOW can be a buffer-name, a buffer or a window. If a
 window then the name of the buffer curently displayed in this
 window is returned."
-  (typecase buffer-or-window
+  (cl-typecase buffer-or-window
     (string buffer-or-window)
     (buffer (buffer-name buffer-or-window))
     (window (buffer-name (window-buffer buffer-or-window)))
@@ -1853,7 +1773,7 @@ window is returned."
   "Return the buffer-object of BUFFER-OR-WINDOW.
 BUFFER-OR-WINDOW can be a buffer-name, a buffer or a window.
 If a window then the buffer curently displayed in this window is returned."
-  (typecase buffer-or-window
+  (cl-typecase buffer-or-window
     (string (get-buffer buffer-or-window))
     (buffer buffer-or-window)
     (window (window-buffer buffer-or-window))
@@ -1863,14 +1783,7 @@ If a window then the buffer curently displayed in this window is returned."
   "Get the buffer-local value of variable SYM in BUFFER. If there is no
 buffer-local value in BUFFER then the global value of SYM is used."
   (if (fboundp 'buffer-local-value)
-      (buffer-local-value sym buffer)
-    (when ecb-running-xemacs
-      (symbol-value-in-buffer sym buffer))))
-;;     (or (cdr (assoc sym (buffer-local-variables buffer)))
-;;         (save-excursion
-;;           (set-buffer buffer)
-;;           (symbol-value sym)))))
-
+      (buffer-local-value sym buffer)))
 
 (defun ecb-file-content-as-string (file)
   "If FILE exists and is readable returns the contents as a string otherwise
@@ -2008,7 +1921,7 @@ height is that fraction of the frame."
                          (/ (1- (frame-height)) 2)))
              (enlargement (- norm-val (ecb-window-full-height window))))
         (save-selected-window
-          (select-window window)          
+          (select-window window)
           (if (> enlargement 0)
               (enlarge-window enlargement))))
     (error "Window is not alive!")))
@@ -2223,7 +2136,7 @@ floating-point number). If optional arg ROUNDED is not nil the result is a
 rounded integer."
   (funcall (if rounded 'round 'identity)
            (ecb-time-to-seconds (ecb-subtract-time t1 t2))))
-  
+
 ;; (let ((t1 nil)
 ;;       (t2 nil))
 ;;   (setq t1 (current-time))

@@ -41,7 +41,7 @@
 
 (eval-when-compile
   ;; to avoid compiler grips
-  (require 'cl))
+  (require 'cl-lib))
 
 
 (defgroup ecb-analyse nil
@@ -342,7 +342,7 @@ This means in fact display the current analysis for current point."
                                  ecb-analyse-nodetype-completions)))
       (tree-buffer-update)))
   (run-hooks 'ecb-analyse-buffer-sync-hook))
-        
+
 (defun ecb-analyse-show-scope (scope)
   "Show SCOPE information."
   (let ((localvars (when scope
@@ -351,23 +351,23 @@ This means in fact display the current analysis for current point."
       (ecb-analyse-add-nodes "Local Variables" "Local Variables" localvars
                              ecb-analyse-nodetype-localvars))))
 
-(defmethod ecb-analyse-more-nodes ((context semantic-analyze-context))
+(cl-defmethod ecb-analyse-more-nodes ((context semantic-analyze-context))
   "Show a set of ecb-nodes specific to CONTEXT."
   (let ((prefix (oref context prefix)))
     (when prefix
       (ecb-analyse-add-nodes "Prefix" "Prefix" prefix ecb-analyse-nodetype-prefix))))
 
-(defmethod ecb-analyse-more-nodes ((context semantic-analyze-context-assignment))
+(cl-defmethod ecb-analyse-more-nodes ((context semantic-analyze-context-assignment))
   "Show a set of ecb-nodes specific to CONTEXT."
-  (call-next-method)
+  (cl-call-next-method)
   (let ((assignee (oref context assignee)))
     (when assignee
       (ecb-analyse-add-nodes "Assignee" "Assignee" assignee
                              ecb-analyse-nodetype-assignee))))
 
-(defmethod ecb-analyse-more-nodes ((context semantic-analyze-context-functionarg))
+(cl-defmethod ecb-analyse-more-nodes ((context semantic-analyze-context-functionarg))
   "Show a set of ecb-nodes specific to CONTEXT."
-  (call-next-method)
+  (cl-call-next-method)
   (let ((func (oref context function)))
     (when func
       (ecb-analyse-add-nodes "Function" "Function" func ecb-analyse-nodetype-function)
@@ -408,7 +408,7 @@ of LIST."
           (dolist (elem list)
             (ecb-throw-on-input 'ecb-analyse-tree-buffer-build)
             (let* ((fontify-tags (member bucket ecb-analyse-fontified-buckets))
-                   (string-1 (typecase elem
+                   (string-1 (cl-typecase elem
                                (string elem)
                                (ecb--semantic-tag
                                 (if fontify-tags
@@ -420,7 +420,7 @@ of LIST."
                 (ecb-merge-face-into-text string ecb-analyse-bucket-element-face))
               (if (ecb--semantic-tag-p elem)
                   (tree-node-new string nodetype
-                                 (list elem 
+                                 (list elem
                                        (if (ecb--semantic-tag-with-position-p elem)
                                            ecb-analyse-nodedata-tag-with-pos
                                          ecb-analyse-nodedata-tag-without-pos)
@@ -429,7 +429,7 @@ of LIST."
                 (tree-node-new string nodetype
                                (list elem ecb-analyse-nodedata-no-tag nodetype)
                                t bucket-node nil)))))))))
-  
+
 (defun ecb-analyse-compare-node-data (left right)
   "Return not nil when LEFT and RIGHT are identical node-datas."
   (and (equal (nth 2 left) (nth 2 right))
@@ -529,7 +529,7 @@ ECB-analyse-window is not visible in current layout."
   (ecb-goto-ecb-window ecb-analyse-buffer-name))
 
 (defun ecb-analyse-show-tag-info-in-temp-buffer (info-string)
-  "Display INFO-STRING in a temp-buffer in the edit-area." 
+  "Display INFO-STRING in a temp-buffer in the edit-area."
   (with-output-to-temp-buffer "*Tag Information*"
     (with-current-buffer "*Tag Information*"
       (insert info-string)))
@@ -560,7 +560,7 @@ ECB-analyse-window is not visible in current layout."
                   ;; correct buffer, I don't think that is needed.
                   (when (fboundp 'semantic-lex-keyword-p)
                     (let ((type (ecb--semantic-tag-type tag)))
-                      (typecase type
+                      (cl-typecase type
                         (ecb--semantic-tag
                          (setq type (ecb--semantic-tag-name type)))
                         (list
@@ -621,11 +621,11 @@ moved over it."
                                           ecb-analyse-nodetype-completions
                                           ecb-analyse-nodetype-localvars))
                         '(ecb-analyse-complete/insert "Complete/insert"))
-                    (if tag-p 
+                    (if tag-p
                         '(ecb-analyse-show-tag-info "Show tag info"))
                     (if tag-with-pos-p
                         '(ecb-analyse-jump-to-tag "Jump to tag"))))))
-    
+
 (defun ecb-analyse-menu-creator (tree-buffer-name node)
   "Creates the popup-menus for the analyse-buffer."
   (setq ecb-layout-prevent-handle-ecb-window-selection t)

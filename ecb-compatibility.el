@@ -152,7 +152,7 @@ BUFFER is displayed in an edit-window!"
              (condition-case nil
                  (apply (ad-get-arg 0) (ad-get-arg 1))
                (error nil)))
-         (select-window (case (car point-loc)
+         (select-window (cl-case (car point-loc)
                           (ecb
                            (ecb-get-ecb-window-by-number (cdr point-loc)))
                           (edit
@@ -335,6 +335,47 @@ selected afterwards."
      ad-do-it))
 )
 
+;; package advice.el function is obsolete since Emacs 27.3 ------
+
+(defmacro ecb-ad-with-originals (functions &rest body)
+  "Binds FUNCTIONS to their original definitions and execute BODY.
+For any members of FUNCTIONS that are not currently advised the rebinding will
+be a noop.  Any modifications done to the definitions of FUNCTIONS will be
+undone on exit of this macro."
+  (declare (indent 1))
+  (let* ((index -1)
+	 ;; Make let-variables to store current definitions:
+	 (current-bindings
+	  (mapcar (function
+		   (lambda (function)
+                    (setq index (1+ index))
+                    (list (intern (format "ad-oRiGdEf-%d" index))
+                          `(symbol-function ',function))))
+		  functions)))
+    `(let ,current-bindings
+      (unwind-protect
+           (progn
+             ,@(progn
+                ;; Make forms to redefine functions to their
+                ;; original definitions if they are advised:
+                (setq index -1)
+                (mapcar (lambda (function)
+                          (setq index (1+ index))
+                           `(fset ',function
+                            (or (ad-get-orig-definition ',function)
+                                ,(car (nth index current-bindings)))))
+                        functions))
+             ,@body)
+        ,@(progn
+           ;; Make forms to back-define functions to the definitions
+           ;; they had outside this macro call:
+           (setq index -1)
+           (mapcar (lambda (function)
+                     (setq index (1+ index))
+                       `(fset ',function
+                       ,(car (nth index current-bindings))))
+                   functions))))))
+
 
 ;; not yet done ----------------------------------------------------------------
 
@@ -348,9 +389,6 @@ selected afterwards."
 ;; This is new in Emacs 21.4 so maybe we have to make it compatible with ECB!
 ;; But maybe this could be hard because AFAIK gdb-ui.el uses dedicated
 ;; windows!
-
-
-
 
 ;; we disable the advices at load-time
 (ecb-disable-advices 'ecb-compatibility-advices t)

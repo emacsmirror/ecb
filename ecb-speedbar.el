@@ -36,9 +36,9 @@
 ;; 1. Integration the speedbar itself into the ecb-frame:
 ;;
 ;;    This allows you to:
-;;    
+;;
 ;;    - Sync up to the speedbar with the current buffer.
-;;    
+;;
 ;;    - Files opened with the speedbar are displayed in the ecb source window.
 ;;
 ;; 2. Using the speedbar-mechanism for parsing files supported not by semantic
@@ -72,7 +72,7 @@
 
 (eval-when-compile
   ;; to avoid compiler grips
-  (require 'cl))
+  (require 'cl-lib))
 
 
 ;; imenu
@@ -116,7 +116,7 @@ IMPORTANT NOTE: Every time the synchronization is done the hook
                 (const :tag "Never" nil)
                 (repeat :tag "Not with these modes"
                         (symbol :tag "mode"))))
-    
+
 
 (defcustom ecb-speedbar-buffer-sync-delay 'basic
   "*Time Emacs must be idle before the speedbar-buffer of ECB is synchronized.
@@ -138,7 +138,7 @@ If the special value 'basic is set then ECB uses the setting of the option
                        (ecb-activate-ecb-autocontrol-function
                         value 'ecb-analyse-buffer-sync))))
   :initialize 'custom-initialize-default)
-  
+
 (defcustom ecb-speedbar-buffer-sync-hook nil
   "Hook run at the end of `ecb-speedbar-buffer-sync'.
 See documentation of `ecb-speedbar-buffer-sync' for conditions when
@@ -168,7 +168,7 @@ could slow down dramatically!"
   :type 'hook)
 
 
-(defecb-advice-set ecb-speedbar-adviced-functions 
+(defecb-advice-set ecb-speedbar-adviced-functions
   "These functions of speedbar are always adviced if ECB is active.")
 
 (defconst ecb-speedbar-buffer-name " SPEEDBAR"
@@ -288,7 +288,7 @@ future this could break."
 
   ;; enable the advices for speedbar
   (ecb-enable-advices 'ecb-speedbar-adviced-functions)
-  
+
   (run-hooks 'ecb-speedbar-before-activate-hook)
 
   (add-hook 'dframe-after-select-attached-frame-hook
@@ -322,7 +322,7 @@ future this could break."
                       (lambda (event count)
                         (if (/= (event-button event) 1)
                             nil		; Do normal operations.
-                          (case count
+                          (cl-case count
                             (1 (dframe-quick-mouse event))
                             ((2 3) (dframe-click event)))
                           ;; Don't do normal operations.
@@ -344,7 +344,7 @@ future this could break."
   ;;frame.  AKA the frame that ECB is running in.
   (setq speedbar-frame ecb-frame)
   (setq dframe-attached-frame ecb-frame)
-  
+
   ;;this needs to be 0 because we can't have the speedbar too chatty in the
   ;;current frame because this will mean that the minibuffer will be updated too
   ;;much.
@@ -358,7 +358,7 @@ future this could break."
       (setq ecb-speedbar-update-flag-old speedbar-update-flag))
   (setq speedbar-update-flag nil)
 
-  (ecb-activate-ecb-autocontrol-function ecb-speedbar-buffer-sync-delay 
+  (ecb-activate-ecb-autocontrol-function ecb-speedbar-buffer-sync-delay
                                           'ecb-speedbar-buffer-sync)
 
   ;;reset the selection variable
@@ -368,7 +368,7 @@ future this could break."
 (defun ecb-speedbar-deactivate ()
   "Reset things as before activating speedbar by ECB"
   (ecb-disable-advices 'ecb-speedbar-adviced-functions)
-  
+
   (remove-hook 'dframe-after-select-attached-frame-hook
                'ecb-speedbar-dframe-select-attached-window)
 
@@ -376,7 +376,7 @@ future this could break."
   (setq dframe-attached-frame nil)
 
   (speedbar-enable-update)
-  
+
   (if ecb-speedbar-select-frame-method-old
       (setq speedbar-select-frame-method ecb-speedbar-select-frame-method-old))
   (setq ecb-speedbar-select-frame-method-old nil)
@@ -473,7 +473,7 @@ Return NODE."
   (let ((new-node nil)
         (new-tag nil))
     (dolist (tag tag-list)
-      (typecase tag
+      (cl-typecase tag
         (null nil) ;; this would be a separator
         (speedbar-generic-list-tag
          ;; the semantic tag for this tag
@@ -496,7 +496,7 @@ Return NODE."
                                          (make-vector 2 (car (cdr tag))))
          (ecb--semantic--tag-put-property new-tag 'ecb-speedbar-tag t)
          (ecb-apply-user-filter-to-tags (list new-tag))
-         (when (not (ecb-tag-forbidden-display-p new-tag))             
+         (when (not (ecb-tag-forbidden-display-p new-tag))
            (ecb-create-non-semantic-tree
             (setq new-node
                   (tree-node-new (ecb-speedbar-decorate-tag tag ecb-method-non-semantic-face)
@@ -540,7 +540,7 @@ Return NODE."
                                                 (current-buffer)))))
            (tag-list (cdr lst))
            (methods speedbar-tag-hierarchy-method))
-    
+
       ;; removing the imenu-Rescan-item
       (if (ecb-string= (car (car tag-list)) (car imenu--rescan-item))
           (setq tag-list (cdr tag-list)))

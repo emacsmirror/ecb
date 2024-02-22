@@ -48,7 +48,7 @@
 
 (eval-when-compile
   ;; to avoid compiler grips
-  (require 'cl))
+  (require 'cl-lib))
 
 (eval-when-compile
   (require 'silentcomp))
@@ -211,7 +211,7 @@ If set the user can easily jump back."
                   (intern
                    (concat "ecb--" (symbol-name fkt-elem)))))
           ecb--semantic-format-function-list)
-  "Alist containing one element for every member of 
+  "Alist containing one element for every member of
 `ecb--semantic-format-function-list'")
 
 (defcustom ecb-tag-display-function '((default . ecb-format-tag-uml-prototype))
@@ -295,7 +295,7 @@ by semantic!"
     (or (and (fboundp mode-display-fkt) mode-display-fkt)
         (and (fboundp default-fkt) default-fkt)
         'ecb--semantic-format-tag-prototype)))
-  
+
 
 (defcustom ecb-type-tag-display nil
   "*How to display semantic type-tags in the methods buffer.
@@ -456,7 +456,7 @@ by semantic!"
 		   (set symbol value)
 		   (ecb-clear-tag-tree-cache)))
   :initialize 'custom-initialize-default)
-  
+
 (defun ecb-type-tag-expansion (type-specifier)
   "Return the default expansion-state of TYPE-SPECIFIER for current major-mode
 as specified in `ecb-type-tag-expansion'"
@@ -472,7 +472,7 @@ as specified in `ecb-type-tag-expansion'"
   (if (ecb--semantic-tag-faux-p tag)
       "group"
     (ecb--semantic-tag-type tag)))
-  
+
 
 (dolist (elem ecb-tag->text-functions)
   (fset (car elem)
@@ -499,7 +499,7 @@ as specified in `ecb-type-tag-expansion'"
                    ;; correct protection display for function-tags with
                    ;; parent-tag.
                    (when (ecb--semantic-tag-faux-p tag)
-                     (save-match-data 
+                     (save-match-data
                        (if (string-match (concat "^\\(.+"
                                                  (ecb--semantic-uml-colon-string)
                                                  "\\)\\("
@@ -519,7 +519,7 @@ as specified in `ecb-type-tag-expansion'"
                    ;; Now we must maybe add a template-spec in c++-mode and
                    ;; maybe remove the type-specifier string.
                    (let (col-type-name col-type-spec template-text)
-                     (save-match-data 
+                     (save-match-data
                        (if (string-match (concat "^\\(.+\\)\\("
                                                  (ecb--semantic-uml-colon-string)
                                                  type-specifier "\\)")
@@ -538,7 +538,7 @@ as specified in `ecb-type-tag-expansion'"
                        ;; Removing {...} from within the template-text.
                        ;; Normally the semantic-formatters should not add this
                        ;; ugly stuff.
-                       (save-match-data 
+                       (save-match-data
                          (if (string-match "^\\(.+\\){.*}\\(.+\\)$" template-text)
                              (setq template-text
                                    (concat (match-string 1 template-text)
@@ -716,7 +716,7 @@ the filters of this option!"
                                      (sexp :tag "Filter-value")
                                      (boolean :tag "inverse"))))))
 
-  
+
 (defcustom ecb-show-only-positioned-tags nil
   "*Show only nodes in the method-buffer which are \"jump-able\".
 If not nil then ECB displays in the method-buffer only nodes which are
@@ -1577,7 +1577,7 @@ This function MUST be called with the source-buffer as current buffer!"
 
 (defsubst ecb-forbid-tag-display (tag)
   (ecb--semantic--tag-put-property tag 'hide-tag t))
-  
+
 (defsubst ecb-allow-tag-display (tag)
   (ecb--semantic--tag-put-property tag 'hide-tag nil))
 
@@ -1906,7 +1906,7 @@ This function MUST be called with the source-buffer as current buffer!"
 semantic-tag \(but a plain string) then it will be converted to a positionless
 tag of class 'variable."
   (mapcar (function (lambda (c)
-                      (typecase c
+                      (cl-typecase c
                         (ecb--semantic-tag
                          c)
                         (string
@@ -1916,7 +1916,7 @@ tag of class 'variable."
                                     (ecb--semantic-tag-name parent-tag))))))
           (ecb--semantic-tag-children-compatibility
            parent-tag ecb-show-only-positioned-tags)))
-                        
+
 
 (defun ecb-update-tag-node (tag node &optional parent-tag no-bucketize)
   "Updates a node containing a tag.
@@ -2276,7 +2276,7 @@ argument INVERSE is ignored here."
                                   (ecb--semantic-tag-name curr-type-tag)
                                   source-buffer)
       (ecb-error "ECB can not identify the current-type!"))))
-                          
+
 (tree-buffer-defpopup-command ecb-methods-filter-by-current-type-popup
   "Display only the current-type from popup."
   (ecb-methods-filter-by-current-type nil
@@ -2295,7 +2295,7 @@ argument INVERSE is ignored here."
                     (buffer-live-p ecb-last-source-buffer)
                     ecb-last-source-buffer)
                (ecb-error "There is no source-file to filter!")))))
-  
+
 (defun ecb-methods-filter-inverse ()
   "Apply an inverse filter to the Methods-buffer. This is the same as calling
 `ecb-methods-filter' with a prefix arg."
@@ -2381,7 +2381,7 @@ be shown regardless of the filter type here!
 All tags which match the applied filter\(s) will be displayed in the
 Methods-buffer.
 
-If called with a prefix-argument or when optional arg INVERSE is not nil then 
+If called with a prefix-argument or when optional arg INVERSE is not nil then
 an inverse filter is applied to the Methods-buffer, i.e. all tags which
 do NOT match the choosen filter will be displayed in the Methods-buffer!
 
@@ -2431,7 +2431,7 @@ applied default-tag-filters."
                                                 (if semantic-source-p "curr-type")
                                                 "function" "no-filter" "delete-last"))))
                        'no-filter-specified)))
-      (case choice
+      (cl-case choice
         (protection
          (ecb-methods-filter-by-prot inverse source-buffer))
         (tag-class
@@ -2512,8 +2512,8 @@ otherwise nil."
           (message "ECB has not applied this filter because it would filter out all nodes!")
           nil)
       t)))
-        
-  
+
+
 (defun ecb-methods-filter-modeline-prefix (buffer-name sel-dir sel-source)
   "Compute a mode-line prefix for the Methods-buffer so the current filter
 applied to the displayed tags is displayed. This function is only for using by
@@ -2536,7 +2536,7 @@ the option `ecb-mode-line-prefixes'."
          0 (length str) 'help-echo
          (concat "Filter-Stack: "
                  (mapconcat 'identity
-                            (loop for f-elem being the elements of filters using (index f-elem-index)
+                            (cl-loop for f-elem being the elements of filters using (index f-elem-index)
                                   collect (let ((f-type-str (nth 3 f-elem) )
                                                 (f-str (nth 4 f-elem)))
                                             (format "%d. [%s: %s]" (1+ f-elem-index) f-type-str f-str)))
@@ -2566,32 +2566,32 @@ the current file."
     (let ((tag-filter-list (ecb-default-tag-filter-for-current-source)))
       (dolist (filter-spec tag-filter-list)
         (let ((filter-apply-fcn
-               (case (nth 0 filter-spec)
+               (cl-case (nth 0 filter-spec)
                  (protection 'ecb-methods-filter-by-prot)
                  (tag-class  'ecb-methods-filter-by-tag-class)
                  (regexp 'ecb-methods-filter-by-regexp)
                  (function 'ecb-methods-filter-by-function)))
               (filter
-               (case (nth 0 filter-spec)
+               (cl-case (nth 0 filter-spec)
                  (protection
-                  (typecase (nth 1 filter-spec)
+                  (cl-typecase (nth 1 filter-spec)
                     (symbol (symbol-name (nth 1 filter-spec)))
                     (string (nth 1 filter-spec))
                     (otherwise
                      (ecb-error "Not a valid tag-filter: %s" (nth 1 filter-spec)))))
                  (tag-class
-                  (typecase (nth 1 filter-spec)
+                  (cl-typecase (nth 1 filter-spec)
                     (symbol (symbol-name (nth 1 filter-spec)))
                     (string (nth 1 filter-spec))
                     (otherwise
                      (ecb-error "Not a valid tag-filter: %s" (nth 1 filter-spec)))))
                  (regexp
-                  (typecase (nth 1 filter-spec)
+                  (cl-typecase (nth 1 filter-spec)
                     (string (nth 1 filter-spec))
                     (otherwise
                      (ecb-error "Not a valid tag-filter: %s" (nth 1 filter-spec)))))
                  (function
-                  (typecase (nth 1 filter-spec)
+                  (cl-typecase (nth 1 filter-spec)
                     (symbol (symbol-name (nth 1 filter-spec)))
                     (string (nth 1 filter-spec))
                     (otherwise
@@ -2604,7 +2604,7 @@ the current file."
 removes itself from the `post-command-hook'."
   (add-hook 'post-command-hook 'ecb-apply-default-tag-filter))
 
-;; adding tags to the Methods-buffer 
+;; adding tags to the Methods-buffer
 
 (defun ecb-add-tags (node tags &optional parent-tag no-bucketize)
   "Add TAGS to the node NODE.
@@ -2901,7 +2901,7 @@ partial reparse and update-mechanism."
                       (setq full-fetch-needed t)
                       (setq taglist nil) ;; it makes no sense to process further tags
                       )))))))
-      
+
         ;; if we have at least one node updated and no tag has shown that a
         ;; full-fetch is better than a partial update then we updated the
         ;; methods-buffer if it is displayed.
@@ -3030,7 +3030,7 @@ rebuilding a not visible source-buffer."
                                        (widen)
                                        (ecb-fetch-semantic-tags full-semantic))))))
       ;; If the `ecb-fetch-semantic-tags' has done no reparsing but
-      ;; only used itﾴs still valid cache then neither the hooks of
+      ;; only used it's still valid cache then neither the hooks of
       ;; `semantic-after-toplevel-cache-change-hook' nor the hooks in
       ;; `semantic-after-partial-cache-change-hook' are evaluated and
       ;; therefore `ecb-rebuild-methods-buffer-with-tagcache' was not called.
@@ -3116,7 +3116,6 @@ TABLE."
   "Get the value for KEY from the tree-buffer-data-store of the Methods-buffer."
   (with-current-buffer ecb-methods-buffer-name
     (cdr (assoc key (tree-buffer-get-data-store)))))
-  
 
 (defun ecb-rebuild-methods-buffer-with-tagcache (updated-cache
                                                  &optional no-update-semantic
@@ -3236,11 +3235,11 @@ to be rescanned/reparsed and therefore the Method-buffer will be rebuild too."
                                                               (ecb--semantic-symbol->name-assoc-list)))))))))))
            (curr-semantic-symbol->name-assoc-list semantic-symbol->name-assoc-list)
            new-tree non-semantic-handling)
-      
+
       (if ecb-debug-mode
           (dolist (a-tag updated-cache)
             (ecb-semantic-assert-valid-tag a-tag)))
-      
+
       ;; here we process non-semantic buffers if the user wants this. But only
       ;; if either non-semantic-rebuild is true or no cache exists.
       ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: Here we could evaluate an
@@ -3248,7 +3247,7 @@ to be rescanned/reparsed and therefore the Method-buffer will be rebuild too."
       ;; parser (so a user could also parse semantic-enabled-files with
       ;; etags/imenu)
       (when (and ecb-process-non-semantic-files
-                 (null updated-cache)                 
+                 (null updated-cache)
                  (not (ecb--semantic-active-p))
                  (ecb-buffer-file-name (current-buffer))
                  (or non-semantic-rebuild (null cache)))
@@ -3321,19 +3320,19 @@ to be rescanned/reparsed and therefore the Method-buffer will be rebuild too."
         (tree-buffer-set-root (cdr cache))
         (setq ecb-methods-root-node (cdr cache))
         (tree-buffer-update))
-      
+
       (ecb-mode-line-format)
 
       (if tag-sync-necessary
           (ecb-tag-sync 'force))
       )
-    
+
     ;; Klaus Berndl <klaus.berndl@sdm.de>: after a full reparse all overlays
     ;; stored in the dnodes of the navigation-list now are invalid. Therefore
     ;; we have changed the implementation of ecb-navigate.el from storing
     ;; whole tags to storing buffer and start- and end-markers!
     ;; Just for information also remarked here.
-    
+
     ;; signalize that the rebuild has already be done
     (setq ecb-method-buffer-needs-rebuild nil))
 
@@ -3943,7 +3942,7 @@ This function is fully fitting the needs of the option
             ;;   not have an enclosing parent-tag
             ;; - In case of an external tag it's the next upward enclosing tag
             ;;   - we can get this be climbing the node-tree upwards until we
-            ;;     find a node with node-type tag            
+            ;;     find a node with node-type tag
             (let ((tag-to-go (if (ecb--semantic-tag-faux-p node-tag)
                                  (car (ecb--semantic-tag-children-compatibility
                                        node-tag t))
@@ -4410,7 +4409,7 @@ this fails then nil is returned otherwise t."
               (let ((data (tree-node->data node)))
                 (if (and data (/= ecb-methods-nodetype-bucket
                                   (tree-node->type node)))
-                    (typecase data
+                    (cl-typecase data
                       (ecb--semantic-tag (ecb--semantic-tag-name data))
                       (string data)
                       (otherwise (tree-node->name node)))
@@ -4555,7 +4554,7 @@ edit-windows. Otherwise return nil."
                                           tag-menu-class-entries-inverse)))
                           (list '(ecb-methods-filter-by-function-popup-inverse
                                   "By a inverse filter-function")))))))
-    
+
 (defun ecb-methods-menu-creator (tree-buffer-name node)
   "Creates the popup-menus for the methods-buffer."
   (setq ecb-layout-prevent-handle-ecb-window-selection t)
@@ -4711,7 +4710,7 @@ moved over it."
 (defun ecb-dump-semantic-tags-internal (table parent source-buffer indent)
   (dolist (tag table)
     ;; we ca not use format here because XEmacs-format removes all
-    ;; text-properties! 
+    ;; text-properties!
     (insert (concat (make-string indent ? )
                     (with-current-buffer source-buffer
                       (ecb--semantic-format-tag-uml-prototype tag parent t))
@@ -4745,49 +4744,6 @@ Returns always the newly created indirect buffer."
       (ecb--semantic-clear-toplevel-cache)))
   ad-return-value)
 
-(defecb-advice custom-save-all around ecb-methods-browser-advices
-  "Save the customized options completely in the background, i.e. the
-file-buffer where the value is saved \(see option `custom-file') is not parsed
-by semantic and also killed afterwards."
-  (if ecb-minor-mode
-      (let ( ;; XEmacs 21.4 does not set this so we do it here, to ensure that
-            ;; the custom-file is loadede in an emacs-lisp-mode buffer, s.b.
-            (default-major-mode 'emacs-lisp-mode)
-            (ecb-basic-buffer-sync nil)
-            (kill-buffer-hook nil)
-            ;; we prevent parsing the custom-file
-            (semantic--before-fetch-tags-hook (lambda ()
-                                                nil))
-            (semantic-after-toplevel-cache-change-hook nil)
-            (semantic-after-partial-cache-change-hook nil))
-        ;; Klaus Berndl <klaus.berndl@sdm.de>: we must ensure that the
-        ;; current-buffer has a lisp major-mode when the kernel of
-        ;; `custom-save-all' is called because cause of a bug (IMHO) in the
-        ;; `custom-save-delete' of GNU Emacs (which loads the file returned by
-        ;; `custom-file' with `default-major-mode' set to nil which in turn
-        ;; causes that new buffer will get the major-mode of the
-        ;; current-buffer) the file `custom-file' will get the major-mode of
-        ;; the current-buffer. So when the current-buffer has for example
-        ;; major-mode `c++-mode' then the file `custom-file' will be loaded
-        ;; into a buffer with major-mode c++-mode. The function
-        ;; `custom-save-delete' then parses this buffer with (forward-sexp
-        ;; (buffer-size)) which of course fails because forward-sexp tries to
-        ;; parse the custom-file (which is an emacs-lisp-file) as a c++-file
-        ;; with c++-paren-syntax.
-        ;; Solution: Ensure that the buffer *scratch* is current when calling
-        ;; custom-save-all so we have surely a lispy-buffer and therefore we
-        ;; can be sure that custom-file is loaded as lispy-buffer.
-        (save-excursion
-          (set-buffer (get-buffer-create "*scratch*"))
-          ;; now we do the standard task
-          ad-do-it)
-        ;; now we have to kill the custom-file buffer otherwise semantic would
-        ;; parse the buffer of custom-file and the method-buffer would be
-        ;; updated with the contents of custom-file which is definitely not
-        ;; desired.
-        (ignore-errors
-          (kill-buffer (find-file-noselect (ecb-custom-file)))))
-    ad-do-it))
 
 (ecb-disable-advices 'ecb-methods-browser-advices t)
 

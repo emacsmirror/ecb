@@ -59,7 +59,7 @@
 
 (eval-when-compile
   ;; to avoid compiler grips
-  (require 'cl))
+  (require 'cl-lib))
 
 ;; semantic 1.X does not have this
 (silentcomp-defvar semanticdb-search-system-databases)
@@ -190,7 +190,7 @@ function of `semantic-token->text-functions' (rsp. for semantic 2.X
   "Alist where the car is a function of semanticdb 1.X and the cdr is the
 equivalent new function of semanticdb 2.X. This alist should contain every
 function ECB uses from the semanticdb library.")
-  
+
 ;; new let us create the aliase. Each alias has the name "ecb--"<function of
 ;; semantic 2.0>.
 (dolist (f-elem (append ecb--semantic-function-alist
@@ -269,7 +269,7 @@ unloaded buffer representation."
     (ecb--semantic-tag-get-attribute tag (if (> ecb-semantic-2-beta-nr 1)
                                              :constructor-flag
                                            'constructor))))
-    
+
 (if (fboundp 'semantic-tag-function-destructor-p)
     (defalias 'ecb--semantic-tag-function-destructor-p
       'semantic-tag-function-destructor-p)
@@ -277,8 +277,8 @@ unloaded buffer representation."
     (ecb--semantic-tag-get-attribute tag (if (> ecb-semantic-2-beta-nr 1)
                                              :destructor-flag
                                            'destructor))))
-    
-    
+
+
 (defsubst ecb--semantic-fetch-tags (&optional check-cache)
   (if (fboundp 'semantic-fetch-tags)
       (apply 'semantic-fetch-tags nil)
@@ -289,13 +289,13 @@ unloaded buffer representation."
   (defsubst ecb--semantic-fetch-available-tags ()
     (if (boundp 'semantic--buffer-cache)
 	semantic--buffer-cache
-      semantic-toplevel-bovine-cache)))
+      semantic--buffer-cache)))
 
 (if (fboundp 'semantic-tag-components)
     (defalias 'ecb--semantic-tag-components
       'semantic-tag-components)
   (defun ecb--semantic-tag-components (tag)
-    (case (ecb--semantic-tag-class tag)
+    (cl-case (ecb--semantic-tag-class tag)
       (type (ecb--semantic-tag-type-members tag))
       (function (ecb--semantic-tag-function-arguments tag))
       (otherwise nil))))

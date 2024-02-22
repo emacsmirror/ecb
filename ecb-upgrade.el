@@ -124,7 +124,7 @@
 ;; 1. `ecb-check-not-compatible-options'
 ;; 2. `ecb-upgrade-not-compatible-options'
 ;;    `ecb-upgrade-renamed-options' or vice versa.
-;; 
+;;
 ;; There are also two interactive commands:
 ;; - `ecb-display-upgraded-options' displays a temp. buffer with all upgraded
 ;;   or reseted ECB-options with their old and new values.
@@ -160,7 +160,7 @@
   "Current ECB version.")
 
 (eval-when-compile
-  (require 'cl))
+  (require 'cl-lib))
 
 (require 'ecb-util)
 
@@ -358,7 +358,7 @@ The car is the old option symbol and the cdr is a 2-element-list with:
 
 ;; upgrading ecb-compile-window-temporally-enlarge
 (defun ecb-upgrade-compile-window-temporally-enlarge (old-val)
-  (case old-val
+  (cl-case old-val
     ((t after-compilation) 'after-display)
     ((nil) nil)
     ((after-selection both) old-val)
@@ -622,7 +622,7 @@ The car is the old option symbol and the cdr is a 2-element-list with:
     (dolist (elem l)
       (setcdr elem (list (list (cadr elem)) (list (caddr elem)))))
     l))
-    
+
 (defun ecb-upgrade-exclude-parents-regexp (old-val)
   (if old-val (list old-val)))
 
@@ -636,7 +636,7 @@ The car is the old option symbol and the cdr is a 2-element-list with:
 
 (defun ecb-upgrade-sources-perform-read-only-check (old-val)
   (if old-val 'unless-remote nil))
-  
+
 (defun ecb-upgrade-vc-enable-support (old-val)
   (if old-val 'unless-remote nil))
 
@@ -667,7 +667,7 @@ The car is the old option symbol and the cdr is a 2-element-list with:
                       ecb-methods-buffer-name
                       ecb-history-buffer-name
                       ecb-analyse-buffer-name))))
-    
+
 
 ;; ----------------------------------------------------------------------
 ;; internal functions. Don't change anything below this line
@@ -780,7 +780,7 @@ after an ECB-upgrade.")
     (setq ecb-old-ecb-version (ecb-option-get-value 'ecb-options-version
                                                     'saved-value))
     (ecb-customize-save-variable 'ecb-options-version ecb-version)))
-  
+
 
 (defvar ecb-not-compatible-options nil
   "This variable is only set by `ecb-check-not-compatible-options'! It is an
@@ -807,7 +807,7 @@ defined type. If not store it in `ecb-not-compatible-options'."
 
   ;; get all options of ECB
   (ecb-get-all-ecb-options)
-  
+
   ;; check if all current values of ECB options match their types. Add not
   ;; matching options to `ecb-not-compatible-options'.
   (dolist (option ecb-all-options)
@@ -838,7 +838,7 @@ done then the option is reset to the default-value of current ECB-version."
                   ;; the upgrade has been tried but has failed.
                   (equal (car upgrade-result) 'ecb-no-upgrade-conversion))
           (ecb-option-set-default (car option)))))))
-    
+
 
 (defvar ecb-renamed-options nil)
 
@@ -906,7 +906,7 @@ Note: This function upgrades only the renamed but not the incompatible options
         (setq i (1+ i))
         (setq backup-file (format "%s__%d" backup-file-base i)))
       (copy-file file backup-file))))
-      
+
 
 (defun ecb-display-upgraded-options ()
   "Display a information-buffer which options have been upgraded or reset.
@@ -1204,7 +1204,7 @@ the following elements of the version-list:
 Return nil if ver-str has not the required syntax:
 <major>.<minor>\[.|pre|beta|alpha]\[<sub-stable/pre/beta/alpha-version>]"
   (let ((str ver-str))
-    (save-match-data 
+    (save-match-data
       (if (string-match "^\\([0-9]+\\)\\.\\([0-9]+\\)\\(pre\\|beta\\|alpha\\|\\.\\)?\\([0-9]+\\)?$" str)
           (list (string-to-number (match-string 1 str))
                 (string-to-number (match-string 2 str))
@@ -1254,7 +1254,7 @@ Return nil if ver-str has not the required syntax:
   (concat (number-to-string (nth 0 ver))
           "."
           (number-to-string (nth 1 ver))
-          (case (nth 2 ver)
+          (cl-case (nth 2 ver)
             (0 "alpha")
             (1 "beta")
             (2 "pre")

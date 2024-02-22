@@ -95,7 +95,7 @@ available."
                                      (jde-parse-java-variable-at-point)))
                (class-to-open (jde-open-get-class-to-open
                                pair thing-of-interest))
-               (source-path-prefix-list (jde-open-get-path-prefix-list)) 
+               (source-path-prefix-list (jde-open-get-path-prefix-list))
                (java-file-name nil)
                )
           (if (and class-to-open (stringp class-to-open))
@@ -106,20 +106,20 @@ available."
                     (ecb-error "Can not find the sourcecode-file for \"%s\""
                                thing-of-interest)
 
-                  ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: 
+                  ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>:
                   ;; The following two lines of code are the only difference
                   ;; between this function and `jde-open-class-at-point'.
                   ;; Therefore it would be nice if the whole stuff necessary
                   ;; for finding the source-file of `thing-of-interest' would
                   ;; be extracted in an own function of JDE.
-                  
-                  ;; we have found the java-sourcefile. So letﾴs display its
+
+                  ;; we have found the java-sourcefile. So let's display its
                   ;; contents in the method-buffer of ECB - we must select the
                   ;; methods-window before because otherwise our automatically
                   ;; buffer-sync would resync with current java-source-file.
                   (if (ecb-window-select ecb-methods-buffer-name)
                       (ecb-set-selected-source java-file-name nil t))))
-            
+
             (ecb-error "Can not parse the thing at point!")))
       (message "You need JDE >= 2.2.6 and Senator for using this feature!"))))
 
@@ -150,7 +150,7 @@ is not available then `find-file' is called."
 
 (defun ecb-jde-update-ecb-source-paths ()
   (interactive)
-  (case ecb-jde-set-directories-buffer-to-jde-sourcepath
+  (cl-case ecb-jde-set-directories-buffer-to-jde-sourcepath
     (add
      (add-hook 'ecb-source-path-functions
                'ecb-jde-get-source-path))
@@ -168,7 +168,7 @@ is not available then `find-file' is called."
       (add-hook 'efc-dialog-show-before-hook
                 (function (lambda ()
                             (ecb-toggle-compile-window -1)))))
-  
+
   (if (boundp 'efc-dialog-close-after-hook)
       (add-hook 'efc-dialog-close-after-hook
                 (function (lambda ()
