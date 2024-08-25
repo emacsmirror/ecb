@@ -56,27 +56,11 @@
 (silentcomp-defun posn-window)
 (silentcomp-defun event-start)
 (silentcomp-defun set-window-vscroll)
-;; XEmacs
-(silentcomp-defun make-dialog-box)
-(silentcomp-defun display-message)
-(silentcomp-defun clear-message)
-(silentcomp-defun make-event)
+
 ;; Emacs
-(silentcomp-defvar message-log-max)
-(silentcomp-defvar message-truncate-lines)
 (silentcomp-defun x-popup-dialog)
 (silentcomp-defun display-images-p)
-(silentcomp-defvar tar-subfile-mode)
-(silentcomp-defvar archive-subfile-mode)
 (silentcomp-defun count-screen-lines)
-(silentcomp-defvar header-line-format)
-
-;; timer stuff for Xemacs
-(silentcomp-defun delete-itimer)
-(silentcomp-defun start-itimer)
-;; thing stuff for XEmacs
-(silentcomp-defun thing-boundaries)
-(silentcomp-defun thing-symbol)
 
 (silentcomp-defun custom-file)
 
@@ -84,9 +68,7 @@
 
 ;;;###autoload
 (defconst ecb-running-xemacs (featurep 'xemacs))
-
-(defconst ecb-running-gnu-emacs (not ecb-running-xemacs))
-
+(defconst ecb-running-gnu-emacs t)
 (defconst ecb-running-unsupported-emacs (condition-case nil
                                             (<= emacs-major-version 20)
                                           (error t))
@@ -222,80 +204,36 @@ semantic!. If not use the form \(when ecb-running-gnu-emacs-version-23)."
   (defalias 'ecb-window-edges 'window-edges))
 
 ;; thing at point stuff
-
-(if (not ecb-running-xemacs)
-    (progn
-      (require 'thingatpt)
-      (defalias 'ecb-thing-at-point 'thing-at-point)
-      (defalias 'ecb-end-of-thing 'end-of-thing)
-      (defalias 'ecb-beginning-of-thing 'beginning-of-thing))
-  ;; Xemacs
-  (require 'thing)
-  (defun ecb-thing-at-point (thing)
-    (let ((bounds (if (eq 'symbol thing)
-                      (thing-symbol (point))
-                    (thing-boundaries (point)))))
-      (buffer-substring (car bounds) (cdr bounds))))
-  (defun ecb-end-of-thing (thing)
-    (goto-char (cdr (if (eq 'symbol thing)
-                        (thing-symbol (point))
-                      (thing-boundaries (point))))))
-  (defun ecb-beginning-of-thing (thing)
-    (goto-char (car (if (eq 'symbol thing)
-                        (thing-symbol (point))
-                      (thing-boundaries (point)))))))
+  (require 'thingatpt)
+  (defalias 'ecb-thing-at-point 'thing-at-point)
+  (defalias 'ecb-end-of-thing 'end-of-thing)
+  (defalias 'ecb-beginning-of-thing 'beginning-of-thing)
 
 ;; overlay- and extend-stuff
-
-(if (not ecb-running-xemacs)
-    (progn
-      (defalias 'ecb-make-overlay            'make-overlay)
-      (defalias 'ecb-overlay-p               'overlayp)
-      (defalias 'ecb-overlay-put             'overlay-put)
-      (defalias 'ecb-overlay-get             'overlay-get)
-      (defalias 'ecb-overlay-move            'move-overlay)
-      (defalias 'ecb-overlay-delete          'delete-overlay)
-      (defalias 'ecb-overlay-kill            'delete-overlay))
-  ;; XEmacs
-  (defalias 'ecb-make-overlay            'make-extent)
-  (defalias 'ecb-overlay-p               'extentp)
-  (defalias 'ecb-overlay-put             'set-extent-property)
-  (defalias 'ecb-overlay-get             'extent-property)
-  (defalias 'ecb-overlay-move            'set-extent-endpoints)
-  (defalias 'ecb-overlay-delete          'detach-extent)
-  (defalias 'ecb-overlay-kill            'delete-extent))
+  (defalias 'ecb-make-overlay     'make-overlay)
+  (defalias 'ecb-overlay-p        'overlayp)
+  (defalias 'ecb-overlay-put      'overlay-put)
+  (defalias 'ecb-overlay-get      'overlay-get)
+  (defalias 'ecb-overlay-move     'move-overlay)
+  (defalias 'ecb-overlay-delete   'delete-overlay)
+  (defalias 'ecb-overlay-kill     'delete-overlay)
 
 ;; timer stuff
 
-(if (not ecb-running-xemacs)
-    (progn
-      (defalias 'ecb-run-with-timer 'run-with-timer)
-      (defalias 'ecb-run-with-idle-timer 'run-with-idle-timer)
-      (defalias 'ecb-cancel-timer 'cancel-timer))
-  ;; XEmacs
-  (defun ecb-run-with-timer (secs repeat function &rest args)
-    (start-itimer "ecb-timer" function secs repeat
-                  nil (if args t nil) args))
-  (defun ecb-run-with-idle-timer (secs repeat function &rest args)
-    (start-itimer "ecb-idle-timer"
-                  function secs (if repeat secs nil)
-                  t (if args t nil) args))
-  (defun ecb-cancel-timer (timer)
-    (delete-itimer timer))
-  )
+  (defalias 'ecb-run-with-timer 'run-with-timer)
+  (defalias 'ecb-run-with-idle-timer 'run-with-idle-timer)
+  (defalias 'ecb-cancel-timer 'cancel-timer)
 
 
 ;;; ----- Customize stuff ----------------------------------
 
 (defun ecb-custom-file ()
-  "Filename of that file which is used by \(X)Emacs to store the
+  "Filename of that file which is used by Emacs to store the
 customize-options. If no custom-file can be computed or if Emacs reports an
 error \(e.g. GNU Emacs complains when calling `custom-file' and Emacs has been
 started with -q) nil is returned."
-  (if ecb-running-xemacs
-      custom-file
-    (require 'cus-edit)
-    (ignore-errors (custom-file))))
+  (require 'cus-edit)
+  (ignore-errors (custom-file)))
 
 (defun ecb-option-get-value (option &optional type)
   "Return the value of a customizable ECB-option OPTION with TYPE, where TYPE
@@ -1220,9 +1158,8 @@ TITLE-TEXT is not nil - otherwise \"Message-box\" is used as title. The title
 gets always the prefix \"ECB - \". Second optional argument BUTTON-TEXT
 specifies the text of the message-box button; if nil then \"OK\" is used.
 
-Remark: BUTTON-TEXT is currently only used with XEmacs. With GNU Emacs the
-message itself is the button because GNU Emacs currently does not support
-dialog-boxes very well.
+With GNU Emacs the message itself is the button because GNU Emacs currently
+ does not support dialog-boxes very well.
 
 If `window-system' is nil then a simple message is displayed in the echo-area."
   (let ((button (if (stringp button-text)
@@ -1232,113 +1169,8 @@ If `window-system' is nil then a simple message is displayed in the echo-area."
                        (if (stringp title-text)
                            (concat " - " title-text)
                          " Message"))))
-    (if window-system
-        (progn
-          (if ecb-running-xemacs
-              (make-dialog-box 'question
-                               :title title
-                               :modal t
-                               :question message-str
-                               :buttons (list (vector button '(identity nil) t)))
-            (x-popup-dialog t (list title (cons message-str t))))
-          t)
+    (if (not window-system)
       (message (concat title " " message-str)))))
-
-;; some first approaches to display informations in a temp-window
-
-;; (defvar ecb-window-config-before-msg-display nil)
-
-;; (defun ecb-display-temp-message-1 (msg-title msg-content)
-;;   (require 'wid-edit)
-;;   (setq ecb-window-config-before-msg-display
-;;         (ecb-current-window-configuration))
-;;   (with-current-buffer (get-buffer-create msg-title)
-;;     (switch-to-buffer-other-window (current-buffer))
-;;     (kill-all-local-variables)
-;;     (let ((inhibit-read-only t))
-;;       (erase-buffer))
-;;     (widget-insert msg-content)
-;;     (widget-insert "\n\n")
-;;     ;; Insert the Save button
-;;     (widget-create 'push-button
-;;                    :button-keymap ecb-upgrade-button-keymap ; XEmacs
-;;                    :keymap ecb-upgrade-button-keymap ; Emacs
-;;                    :notify (lambda (&rest ignore)
-;;                              (when ecb-window-config-before-msg-display
-;;                                (ignore-errors
-;;                                  (ecb-set-window-configuration
-;;                                   ecb-window-config-before-msg-display))
-;;                                (setq ecb-window-config-before-msg-display nil)))
-;;                    "OK")
-;;     (widget-setup)
-;;     (goto-char (point-min))))
-
-
-;; (defun ecb-display-temp-message-2 (msg-title msg-content)
-;;   (require 'wid-edit)
-;;   (setq ecb-window-config-before-msg-display
-;;         (ecb-current-window-configuration))
-;;   (with-output-to-temp-buffer msg-title
-;;     (widget-insert msg-content)
-;;     (widget-insert "\n\n")
-;;     ;; Insert the Save button
-;;     (widget-create 'push-button
-;;                    :button-keymap ecb-upgrade-button-keymap ; XEmacs
-;;                    :keymap ecb-upgrade-button-keymap ; Emacs
-;;                    :notify (lambda (&rest ignore)
-;;                              (when ecb-window-config-before-msg-display
-;;                                (ignore-errors
-;;                                  (ecb-set-window-configuration
-;;                                   ecb-window-config-before-msg-display))
-;;                                (setq ecb-window-config-before-msg-display nil)))
-;;                    "OK")
-;;     (widget-setup)
-;;     (goto-char (point-min))))
-
-;; (defvar ecb-user-information-msg-buffer nil)
-
-;; (defun ecb-display-temp-message (msg-content)
-;;   (require 'wid-edit)
-;;   (progn
-;;     (setq ecb-user-information-msg-buffer
-;;           (get-buffer-create "*ECB User-Information*"))
-;;     (cond
-;;      ((not (get-buffer-window ecb-user-information-msg-buffer))
-;;       (let ((split-window-keep-point nil)
-;;             (window-min-height 2))
-;;         ;; maybe leave two lines for our window because of the normal
-;;         ;; `raised' modeline in Emacs 21
-;;         ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: adjust this for Xemacs!
-;;         (select-window
-;;          (split-window-vertically
-;;           (if (and (fboundp 'face-attr-construct)
-;;                    (plist-get (face-attr-construct 'modeline) :box))
-;;               -3 -2)))
-;;         (switch-to-buffer ecb-user-information-msg-buffer)))
-;;      ((not (eq (current-buffer) ecb-user-information-msg-buffer))
-;;       (select-window (get-buffer-window ecb-user-information-msg-buffer))))
-;;     ;; insert now the msg-content
-;;     (let ((inhibit-read-only t))
-;;       (erase-buffer))
-;;     (widget-insert msg-content)
-;;     (widget-insert "\n\n")
-;;     ;; Insert the Save button
-;;     (widget-create 'push-button
-;;                    :button-keymap ecb-upgrade-button-keymap ; XEmacs
-;;                    :keymap ecb-upgrade-button-keymap ; Emacs
-;;                    :notify (lambda (&rest ignore)
-;;                              (set-buffer ecb-user-information-msg-buffer)
-;;                              (condition-case nil
-;;                                  (while (get-buffer-window ecb-user-information-msg-buffer)
-;;                                    (delete-window (get-buffer-window ecb-user-information-msg-buffer)))
-;;                                (error nil))
-;;                              (kill-buffer ecb-user-information-msg-buffer)
-;;                              (setq ecb-user-information-msg-buffer nil))
-
-;;                    "OK")
-;;     (widget-setup)
-;;     ;; (setq buffer-read-only t)
-;;     (message "Click [OK] or hit q for restoring previous window-layout.")))
 
 ;; ----- Information-display - errors, warnings, infos ----
 
@@ -1352,17 +1184,6 @@ If `window-system' is nil then a simple message is displayed in the echo-area."
                    (t
                     (apply 'format args)))))
     ;; Now message is either nil or the formated string.
-    (if ecb-running-xemacs
-        ;; XEmacs way of preventing log messages.
-        (if msg
-            (display-message 'no-log msg)
-          (clear-message 'no-log))
-      ;; Emacs way of preventing log messages.
-      (let ((message-log-max nil)
-            (message-truncate-lines nil))
-        (if msg
-            (message "%s" msg)
-          (message nil))))
     msg))
 
 (defun ecb-error (&rest args)
@@ -1392,49 +1213,8 @@ buffer-part or TEXT which are not set by FACE are preserved.
 
 If always returns TEXT \(if not nil then modified with FACE)."
   (if (null face)
-      text
-    (if ecb-running-xemacs
-        (put-text-property start end 'face
-                           (let* ((current-face (get-text-property 0
-                                                                   'face
-                                                                   text))
-                                  (cf
-                                   (cl-typecase current-face
-                                     (ecb-face (list current-face))
-                                     (list current-face)
-                                     (otherwise nil)))
-                                  (nf
-                                   (cl-typecase face
-                                     (ecb-face (list face))
-                                     (list face)
-                                     (otherwise nil))))
-                             ;; we must add the new-face in front of
-                             ;; current-face to get the right merge!
-                             (if (member face cf)
-                                 cf
-                               (append nf cf)
-                               )
-                             )
-                           text)
-      (alter-text-property start end 'face
-                           (lambda (current-face)
-                             (let ((cf
-                                    (cl-typecase current-face
-                                      (ecb-face (list current-face))
-                                      (list current-face)
-                                      (otherwise nil)))
-                                   (nf
-                                    (cl-typecase face
-                                      (ecb-face (list face))
-                                      (list face)
-                                      (otherwise nil))))
-                               ;; we must add the new-face in front of
-                               ;; current-face to get the right merge!
-                               (if (member face cf)
-                                   cf
-                                 (append nf cf))))
-                           text))
-    text))
+    text)
+  text)
 
 (defun ecb-merge-face-into-text (text face)
   "Merge FACE to the already precolored TEXT so the values of all
@@ -2251,34 +2031,6 @@ cons-cell \('test-inner-loop . \"test\")"
 		 (ecb-throw-on-input 'test-inner-loop "test")
                  )
 	       'exit))))
-
-;; Compatibility Functions ---------------------------------
-
-;; A number of functions in Gnu Emacs have been obsoleted in the
-;; last few years.  To ensure compatibility with versions of
-;; emacs that do not track Gnu Emacs the below functions so
-;; ecb is implementing compatibilty functions
-
-;; interactive-p is obsolete as of Gnu Emacs 23.2
-(defmacro ecb-interactive-p (&optional kind)
-  (if (or (> emacs-major-version 23)
-	  (and (>= emacs-major-version 23)
-	       (>= emacs-minor-version 2)))
-      `(called-interactively-p ,kind)
-    `(interactive-p)))
-
-;; labels & flet is obsolete as of Gnu Emacs 24.3, so we use them but provide
-;; compatibility with older versions
-(unless (fboundp 'cl-labels) (fset 'cl-labels 'labels))
-(unless (fboundp 'cl-flet) (fset 'cl-flet 'flet))
-
-;; redraw-modeline is an obsolete function as of Gnu Emacs 24.3
-(defmacro ecb-redraw-modeline (&optional kind)
-  (if (or (> emacs-major-version 24)
-	  (and (>= emacs-major-version 24)
-	       (>= emacs-minor-version 3)))
-      `(force-mode-line-update ,kind)
-    `(redraw-modeline)))
 
 ;;; ----- Provide ------------------------------------------
 

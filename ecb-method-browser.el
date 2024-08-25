@@ -53,6 +53,13 @@
 (eval-when-compile
   (require 'silentcomp))
 
+(semanticdb-enable-gnu-global-databases 'python-mode t)
+(semanticdb-enable-gnu-global-databases 'perl-mode t)
+(semanticdb-enable-gnu-global-databases 'cperl-mode t)
+(semanticdb-enable-gnu-global-databases 'java-mode t)
+(semanticdb-enable-gnu-global-databases 'c-mode t)
+(semanticdb-enable-gnu-global-databases 'c++-mode t)
+
 (silentcomp-defun hs-minor-mode)
 (silentcomp-defun hs-show-block)
 (silentcomp-defun hs-hide-block)
