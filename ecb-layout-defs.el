@@ -315,13 +315,13 @@ little more place."
   "This function creates the following layout:
 
    -------------------------------------------------------
-   |  Sources     |                                      | 
+   |  Sources     |                                      |
    |--------------|                                      |
    |              |                                      |
    |              |                                      |
    |              |                                      |
    |  Methods     |                 Edit                 |
-   |              |                                      | 
+   |              |                                      |
    |              |                                      |
    |              |                                      |
    |--------------|                                      |
