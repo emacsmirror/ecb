@@ -260,10 +260,7 @@ With both ascii-styles the tree-layout can be affected with the options
 ;; additonal images are necessary - but currently i don't think we need
 ;; special images for this analyse-stuff.
 (defcustom ecb-tree-image-icons-directories
-  (let ((base (concat (if ecb-regular-xemacs-package-p
-                          (format "%s" (locate-data-directory "ecb"))
-                        ecb-ecb-dir)
-                      "ecb-images/")))
+  (let ((base (concat ecb-ecb-dir "ecb-images/")))
     (cons (concat base "default/height-17")
           (mapcar (function (lambda (i)
                               (cons (car i) (concat base (cdr i)))))

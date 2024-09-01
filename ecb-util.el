@@ -75,19 +75,6 @@
 
 ;;;###autoload
 (defconst ecb-running-xemacs (featurep 'xemacs))
-(defconst ecb-running-gnu-emacs t)
-(defconst ecb-running-unsupported-emacs (condition-case nil
-                                            (<= emacs-major-version 20)
-                                          (error t))
-  "True if running Gnu Emacs < 21.")
-
-(defconst ecb-running-gnu-emacs-version-22 (and ecb-running-gnu-emacs
-                                                (>= emacs-major-version 22))
-  "True if running Gnu Emacs >= version 22")
-
-(defconst ecb-running-gnu-emacs-version-23 (and ecb-running-gnu-emacs
-                                                (>= emacs-major-version 23))
-  "True if running Gnu Emacs >= version 23")
 
 (defconst ecb-temp-dir
   (file-name-as-directory
@@ -102,14 +89,6 @@
       (expand-file-name (file-name-directory (locate-library "semantic")))))
 
 (defconst ecb-ecb-parent-dir (expand-file-name (concat ecb-ecb-dir "../")))
-
-;; we assume that current loaded ECB is a regular XEmacs-package if and only
-;; if `ecb-ecb-dir' contains the files "_pkg.el" and "auto-autoloads.el" and
-;; we are running XEmacs
-(defconst ecb-regular-xemacs-package-p
-  (and ecb-running-xemacs
-       (file-exists-p (expand-file-name (concat ecb-ecb-dir "_pkg.el")))
-       (file-exists-p (expand-file-name (concat ecb-ecb-dir "auto-autoloads.el")))))
 
 ;; image support possible with current Emacs setup?
 ;; This will first checked at activation-time of ECB because otherwise usage
@@ -148,88 +127,66 @@ want the BODY being parsed by semantic!. If not use the variable
   `(when ecb-running-xemacs
      ,@body))
 
-(defmacro when-ecb-running-emacs (&rest body)
-  "Evaluates BODY when `ecb-running-gnu-emacs' is false. Use this
-macro when you want the BODY being parsed by semantic!. If not
-use the form \(unless ecb-running-xemacs)."
-  `(when ecb-running-gnu-emacs
-     ,@body))
-
-(defmacro when-ecb-running-emacs-22 (&rest body)
-  "Evaluates BODY when `ecb-running-gnu-emacs-version-22' is
-true. Use this macro when you want the BODY being parsed by
-semantic!. If not use the form \(when ecb-running-gnu-emacs-version-22)."
-  `(when ecb-running-gnu-emacs-version-22
-     ,@body))
-
-(defmacro when-ecb-running-emacs-23 (&rest body)
-  "Evaluates BODY when `ecb-running-gnu-emacs-version-23' is
-true. Use this macro when you want the BODY being parsed by
-semantic!. If not use the form \(when ecb-running-gnu-emacs-version-23)."
-  `(when ecb-running-gnu-emacs-version-23
-     ,@body))
-
 ;; I do not want all this compatibitly stuff being parsed by semantic,
 ;; therefore i do not use the macro `when-ecb-running-xemacs'!
 
-(unless ecb-running-xemacs
-  (defun ecb-event-to-key (event)
-    (let ((type (event-basic-type event)))
-      (cl-case type
-        ((mouse-1 mouse-2 mouse-3) 'mouse-release)
-        ((down-mouse-1 down-mouse-2 down-mouse-3) 'mouse-press)
-        (otherwise (event-basic-type event)))))
-  (defalias 'ecb-facep 'facep)
-  (defun ecb-noninteractive ()
-    "Return non-nil if running non-interactively, i.e. in batch mode."
-    noninteractive)
-  (defalias 'ecb-subst-char-in-string 'subst-char-in-string)
-  (defalias 'ecb-substring-no-properties 'substring-no-properties)
-  (defalias 'ecb-derived-mode-p 'derived-mode-p)
-  (defsubst ecb-count-screen-lines (&optional beg end)
-    (count-screen-lines beg end))
-  (defalias 'ecb-frame-parameter 'frame-parameter)
-  (defalias 'ecb-line-beginning-pos 'line-beginning-position)
-  (defalias 'ecb-line-end-pos 'line-end-position)
-  (defalias 'ecb-bolp 'bolp)
-  (defalias 'ecb-eolp 'eolp)
-  (defalias 'ecb-bobp 'bobp)
-  (defalias 'ecb-eobp 'eobp)
-  (defun ecb-event-window (event)
-    (posn-window (event-start event)))
-  (defun ecb-event-point (event)
-    (posn-point (event-start event)))
-  (defun ecb-event-buffer (event)
-    (window-buffer (ecb-event-window event)))
-  (defun ecb-window-full-width (&optional window)
-    (let ((edges (window-edges window)))
-      (- (nth 2 edges) (nth 0 edges))))
-  (defalias 'ecb-window-display-height 'window-text-height)
-  (defalias 'ecb-window-full-height 'window-height)
-  (defalias 'ecb-frame-char-width 'frame-char-width)
-  (defalias 'ecb-frame-char-height 'frame-char-height)
-  (defalias 'ecb-window-edges 'window-edges))
+(defun ecb-event-to-key (event)
+  (let ((type (event-basic-type event)))
+    (cl-case type
+      ((mouse-1 mouse-2 mouse-3) 'mouse-release)
+      ((down-mouse-1 down-mouse-2 down-mouse-3) 'mouse-press)
+      (otherwise (event-basic-type event)))))
+(defalias 'ecb-facep 'facep)
+(defun ecb-noninteractive ()
+  "Return non-nil if running non-interactively, i.e. in batch mode."
+  noninteractive)
+(defalias 'ecb-subst-char-in-string 'subst-char-in-string)
+(defalias 'ecb-substring-no-properties 'substring-no-properties)
+(defalias 'ecb-derived-mode-p 'derived-mode-p)
+(defsubst ecb-count-screen-lines (&optional beg end)
+  (count-screen-lines beg end))
+(defalias 'ecb-frame-parameter 'frame-parameter)
+(defalias 'ecb-line-beginning-pos 'line-beginning-position)
+(defalias 'ecb-line-end-pos 'line-end-position)
+(defalias 'ecb-bolp 'bolp)
+(defalias 'ecb-eolp 'eolp)
+(defalias 'ecb-bobp 'bobp)
+(defalias 'ecb-eobp 'eobp)
+(defun ecb-event-window (event)
+  (posn-window (event-start event)))
+(defun ecb-event-point (event)
+  (posn-point (event-start event)))
+(defun ecb-event-buffer (event)
+  (window-buffer (ecb-event-window event)))
+(defun ecb-window-full-width (&optional window)
+  (let ((edges (window-edges window)))
+    (- (nth 2 edges) (nth 0 edges))))
+(defalias 'ecb-window-display-height 'window-text-height)
+(defalias 'ecb-window-full-height 'window-height)
+(defalias 'ecb-frame-char-width 'frame-char-width)
+(defalias 'ecb-frame-char-height 'frame-char-height)
+(defalias 'ecb-window-edges 'window-edges)
 
 ;; thing at point stuff
-  (require 'thingatpt)
-  (defalias 'ecb-thing-at-point 'thing-at-point)
-  (defalias 'ecb-end-of-thing 'end-of-thing)
-  (defalias 'ecb-beginning-of-thing 'beginning-of-thing)
+(require 'thingatpt)
+(defalias 'ecb-thing-at-point 'thing-at-point)
+(defalias 'ecb-end-of-thing 'end-of-thing)
+(defalias 'ecb-beginning-of-thing 'beginning-of-thing)
 
 ;; overlay- and extend-stuff
-  (defalias 'ecb-make-overlay     'make-overlay)
-  (defalias 'ecb-overlay-p        'overlayp)
-  (defalias 'ecb-overlay-put      'overlay-put)
-  (defalias 'ecb-overlay-get      'overlay-get)
-  (defalias 'ecb-overlay-move     'move-overlay)
-  (defalias 'ecb-overlay-delete   'delete-overlay)
-  (defalias 'ecb-overlay-kill     'delete-overlay)
+(defalias 'ecb-make-overlay     'make-overlay)
+(defalias 'ecb-overlay-p        'overlayp)
+(defalias 'ecb-overlay-put      'overlay-put)
+(defalias 'ecb-overlay-get      'overlay-get)
+(defalias 'ecb-overlay-move     'move-overlay)
+(defalias 'ecb-overlay-delete   'delete-overlay)
+(defalias 'ecb-overlay-kill     'delete-overlay)
 
 ;; timer stuff
 
-  (defalias 'ecb-run-with-timer 'run-with-timer)
-  (defalias 'ecb-run-with-idle-timer 'run-with-idle-timer)
-  (defalias 'ecb-cancel-timer 'cancel-timer)
+(defalias 'ecb-run-with-timer 'run-with-timer)
+(defalias 'ecb-run-with-idle-timer 'run-with-idle-timer)
+(defalias 'ecb-cancel-timer 'cancel-timer)
 
 
 ;;; ----- Customize stuff ----------------------------------

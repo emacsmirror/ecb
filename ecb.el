@@ -1639,10 +1639,6 @@ exist."
                                    "ecb-do-if-buffer-visible-in-ecb-frame"
                                    "ecb-when-point-in-edit-window-ecb-windows-visible"
                                    "ecb-layout-define"
-                                   "when-ecb-running-xemacs"
-                                   "when-ecb-running-emacs"
-                                   "when-ecb-running-emacs-22"
-                                   "when-ecb-running-emacs-23"
                                    "ecb-exit-on-input"
                                    ))
                  (v-regexp (regexp-opt variable-defs t))

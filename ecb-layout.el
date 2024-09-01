@@ -313,9 +313,6 @@ layout with `ecb-redraw-layout'"
   ;; parameter which decides if ecb-window-hidden should be used for
   ;; NO-ECB-WINDOWS or not.
   :set (function (lambda (symbol value)
-                   ;; Emacs < 22 has some bugs concerning `windows-size-fixed'
-                   ;; so we must disable window-fixing.
-                   (and (not ecb-running-gnu-emacs-version-22) (ecb-set-window-size-fixed nil))
                    (set symbol value)
                    ;; we must check this because otherwise the layout would be
                    ;; drawn if we have changed the initial value regardless if
@@ -378,9 +375,6 @@ This option takes only effect if `ecb-compile-window-height' is not nil!"
   :group 'ecb-most-important
   :initialize 'custom-initialize-default
   :set (function (lambda (symbol value)
-                   ;; Emacs < 22 has some bugs concerning `windows-size-fixed'
-                   ;; so we must disable window-fixing.
-                   (and (not ecb-running-gnu-emacs-version-22) (ecb-set-window-size-fixed nil))
                    (set symbol value)
                    ;; we must check this because otherwise the layout would be
                    ;; drawn if we have changed the initial value regardless if
@@ -740,10 +734,7 @@ then set always nil!"
   (let ((l (ecb-canonical-ecb-windows-list)))
     (dolist (w l)
       (with-current-buffer (window-buffer w)
-        (setq window-size-fixed (if (and (not ecb-running-gnu-emacs-version-22)
-                                         ecb-compile-window-height)
-                                    nil
-                                  fix))))))
+        (setq window-size-fixed fix)))))
 
 
 (defmacro ecb-do-with-unfixed-ecb-buffers (&rest body)
@@ -2279,31 +2270,6 @@ some special tasks:
         (setq ecb-layout-prevent-handle-ecb-window-selection nil))
     (when (and ecb-minor-mode
                ecb-maximize-ecb-window-after-selection
-               ;; Klaus Berndl <klaus.berndl@sdm.de>: There is a very
-               ;; mysterious behavior of GNU Emacs 21: When reaching this
-               ;; code-part then after the full-redraw Emacs runs
-               ;; automatically the command bound to the button-release-event
-               ;; of mouse-1 with an event which contains as event-window the
-               ;; top/left-most window which is in left- and top-layouts the
-               ;; first ecb-window - so it seems that Emacs automatically
-               ;; "clicks" into the first ecb-window which then maximizes this
-               ;; window which is definitively very annoying and a bug (with
-               ;; right-layouts there is no problem, because the top/left-most
-               ;; window is not a ecb-tree-window and has therefore no special
-               ;; mouse-1 binding!).
-
-               ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: We should identify
-               ;; the underlying problem and if it is an Emacs-bug we should
-               ;; report it - maybe we have to write a small ECB-independent
-               ;; code-example which reproduces this bug/behavior?!!
-
-               ;; In the meanwhile we allow automatic maximizing only when
-               ;; `ecb-tree-mouse-action-trigger' is 'button-press!
-               (or
-                   ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: rename this so
-                   ;; the name reflects the logic >=22!!!
-                   ecb-running-gnu-emacs-version-22
-                   (equal ecb-tree-mouse-action-trigger 'button-press))
                (equal (selected-frame) ecb-frame)
                (= (minibuffer-depth) 0))
       (cond ((and (not (equal ecb-ecb-buffer-name-selected-before-command
@@ -2582,29 +2548,7 @@ If called for other frames it works like the original version."
                      (pop-up-frames (if (ecb-ignore-pop-up-frames)
                                         nil
                                       pop-up-frames)))
-                 ;; maybe we have to split the edit-area here
-                 (when (and (not ecb-running-gnu-emacs-version-23)
-			    (or pop-up-windows (ad-get-arg 1))
-                            (not pop-up-frames)
-                            (not (ecb-edit-window-splitted edit-win-list))
-                            ;; if the BUFFER is already displayed in an
-                            ;; edit-window and NOT-THIS-WINDOW is nil then
-                            ;; we must not split the edit-window because
-                            ;; display-buffer then just uses this window for
-                            ;; displaying BUFFER.
-                            (not (and (not (ad-get-arg 1))
-                                      (member (get-buffer-window (ad-get-arg 0) ecb-frame)
-                                              edit-win-list)))
-                            ;; if we display a "normal" buffer from outside
-                            ;; the edit-windows then we have per se another
-                            ;; window because the buffer will displayed in
-                            ;; an edit-window ==> we only split if we are
-                            ;; already in an edit-window.
-                            (ecb-point-in-edit-window-number edit-win-list)
-                            (not (ecb-check-for-same-window-buffer (ad-get-arg 0))))
-                   (ecb-layout-debug-error "display-buffer for normal-buffer %s - split edit-window:"
-                                           (ad-get-arg 0))
-                   (split-window (car edit-win-list)))
+
                  (if (ecb-compile-window-live-p)
                      (unwind-protect
                          (progn
@@ -3344,22 +3288,12 @@ macro `ecb-with-ecb-advice' instead if you need this adviced version of
   (if (and ecb-minor-mode
            (equal (selected-frame) ecb-frame)
            (not (ecb-windows-all-hidden)))
-      (if ecb-running-gnu-emacs-version-22
-          ;; Emacs 22 has reimplemented balance-windows so it is not longer based on
-          ;; walk-windows but uses a completely new mechanism based on a
-          ;; c-level-function `window-tree'! Therefore we have to use another
-          ;; mechanism which just restore the size of the ecb-windows as
-          ;; before belance-windows...
-          (let ((ecb-sizes-before (ecb-get-ecb-window-sizes t)))
-            (ecb-do-with-fixed-ecb-buffers ad-do-it)
-            ;; this seems to be necessary - otherwise the reszing seems not to
-            ;; take effect...
-            (sit-for 0)
-            (ignore-errors (ecb-set-ecb-window-sizes ecb-sizes-before)))
-        ;; with Emacs 21 running the adviced version of walk-windows is
-        ;; sufficient
-        (ecb-with-ecb-advice 'walk-windows 'around
-          ad-do-it))
+    (let ((ecb-sizes-before (ecb-get-ecb-window-sizes t)))
+      (ecb-do-with-fixed-ecb-buffers ad-do-it)
+      ;; this seems to be necessary - otherwise the reszing seems not to
+      ;; take effect...
+      (sit-for 0)
+      (ignore-errors (ecb-set-ecb-window-sizes ecb-sizes-before)))
     ad-do-it))
 
 

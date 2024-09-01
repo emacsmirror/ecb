@@ -1159,12 +1159,6 @@ options with their old \(before the upgrade/reset) and new values."
   "Ensure that if all requirements of ECB are fulfilled.
 
 Currently this is a check if the right `cedet-version is loaded."
-  ;; we do not support (X)Emacs 18, 19 or 20!
-  (when ecb-running-unsupported-emacs
-    (ecb-error "Sorry, but ECB requires an (X)Emacs-version >= 21!"))
-
-  (when ecb-regular-xemacs-package-p
-    (ecb-error "Sorry, but ECB is currently not runnable as XEmacs-package. Install \"by hand\"."))
 
   (when ecb-cedet-missing-libraries
     (ecb-error "ECB is missing the libs %s of CEDET - check the CEDET-installation/setup!"
