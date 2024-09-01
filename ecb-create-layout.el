@@ -38,7 +38,6 @@
 
 
 ;;; Code
-
 (eval-when-compile
   (require 'silentcomp))
 
@@ -205,7 +204,7 @@
         (setq ecb-create-layout-old-modeline-map nil))
     (setq ecb-create-layout-old-after-frame-h nil)
     (setq ecb-create-layout-old-before-frame-h nil))
-  
+
   (setq ecb-create-layout-generated-lisp nil)
   (setq ecb-create-layout-gen-counter 0))
 
@@ -228,7 +227,7 @@ other other frame!"
     (ecb-activate))
   (ad-disable-advice 'delete-frame 'after 'ecb-create-layout)
   (ad-activate 'delete-frame))
-  
+
 
 (defun ecb-create-layout-frame-ok ()
   "Return not nil if current frame is the `ecb-create-layout-frame'"
@@ -240,9 +239,9 @@ other other frame!"
   "Cancel layout-creation without saving the layout."
   (interactive)
   (when (ecb-create-layout-frame-ok)
-    (ecb-create-layout-clear-all (ecb-interactive-p))
+    (ecb-create-layout-clear-all (called-interactively-p 'interactive))
     (message "ECB Layout Creation canceled - the layout is not saved!")
-    (and (ecb-interactive-p) (ecb-activate))))
+    (and (called-interactively-p 'interactive) (ecb-activate))))
 
 (defun ecb-create-layout-clear-all (&optional delete-frame)
   "Resets all stuff to state before `ecb-create-new-layout' was called. If
@@ -293,7 +292,7 @@ DELETE-FRAME is not nil then the new created frame will be deleted and the
   (interactive)
   (when (ecb-create-layout-frame-ok)
     (if (ecb-create-layout-ready-for-save-p)
-        (let ((delete-frame (ecb-interactive-p)))
+        (let ((delete-frame (called-interactively-p 'interactive)))
           ;; if an error occurs during `ecb-create-layout-save-layout' or the
           ;; user hits C-q we must clean the layout creation stuff!
           (unwind-protect
@@ -425,7 +424,7 @@ DELETE-FRAME is not nil then the new created frame will be deleted and the
      `(if (fboundp (quote ,func-sym))
           (,func-sym)
         (ecb-set-default-ecb-buffer)))))
-  
+
 
 (defun ecb-create-layout-set-buffer-to-type (&optional type)
   "Give current ECB-buffer a type."
@@ -445,7 +444,7 @@ DELETE-FRAME is not nil then the new created frame will be deleted and the
                          (concat "ECB " new-type) nil t)
       ;; setting the new buffer type in the buffer itself
       (ecb-create-layout-set-buffer-type new-type)
-      (when (ecb-interactive-p)
+      (when (called-interactively-p 'interactive)
         (ecb-create-layout-gen-lisp-for-buffer-type new-type)
         (ecb-create-layout-next-window))
       new-type)))
@@ -590,7 +589,7 @@ never selects the edit-window."
 
   (define-key ecb-create-layout-mode-map "." 'self-insert-command)
   (define-key ecb-create-layout-mode-map "-" 'self-insert-command)
-  
+
   (if ecb-running-xemacs
       (define-key ecb-create-layout-mode-map (kbd "<BS>")
         'delete-backward-char)
@@ -731,7 +730,7 @@ never selects the edit-window."
     (setq after-make-frame-functions nil)
     (setq ecb-create-layout-old-before-frame-h before-make-frame-hook)
     (setq before-make-frame-hook nil))
-    
+
   ;; saving old frame
   (setq ecb-create-layout-old-frame (selected-frame))
 

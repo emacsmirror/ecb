@@ -102,7 +102,6 @@
 
 (silentcomp-defvar escreen-current-screen-number)
 
-
 (defgroup ecb-winman-support nil
   "Settings for supporting several window-managers.
 Currently winring and escreen are supported."
@@ -161,7 +160,7 @@ escreen.el!"
   (when (featurep 'escreen)
     (remove-hook 'escreen-goto-screen-hook
                  'ecb-winman-escreen-goto-escreen-hook)))
-    
+
 
 (defun ecb-winman-escreen-goto-escreen-hook ()
   "Activate ECB if we go to the escreen with number `ecb-escreen-number'."
@@ -247,7 +246,7 @@ ECB if we set the name `ecb-winman-winring-name'."
            ecb-minor-mode)
       (let ((ecb-split-edit-window-after-start 'before-deactivation))
         (ecb-deactivate))))
-  
+
 
 (defecb-advice winring-save-current-configuration before ecb-winman-winring-adviced-functions
   "winring can only handle window-configurations if ECB is deactivated. This
@@ -259,7 +258,7 @@ uses dedicated windows. So we deactivate ECB before running this function."
       (let ((ecb-split-edit-window-after-start 'before-deactivation))
         (ecb-deactivate))))
 
-  
+
 (defecb-advice winring-initialize after ecb-winman-winring-adviced-functions
   "If ECB is active when winring is initialized then this initial
 window-configuration gets always the name `ecb-winman-winring-name'."
@@ -290,23 +289,6 @@ ecb-frame. This advice is a permanent advice set!"
   "Prevents `winner-undo' from being used within the ECB-frame."
   (if (equal (selected-frame) ecb-frame)
       (ecb-error "Can't use winner-mode functions in the ecb-frame.")))
-
-(when-ecb-running-xemacs
-  (defecb-advice push-window-configuration before ecb-winman-not-supported-function-advices
-    (if (and (equal (selected-frame) ecb-frame)
-             (ecb-interactive-p))
-        (ecb-error "Can't use interactive push-window-configuration in the ecb-frame.")))
-
-  (defecb-advice pop-window-configuration before ecb-winman-not-supported-function-advices
-    (if (and (equal (selected-frame) ecb-frame)
-             (ecb-interactive-p))
-        (ecb-error "Can't use interactive pop-window-configuration in the ecb-frame.")))
-  
-  (defecb-advice unpop-window-configuration before ecb-winman-not-supported-function-advices
-    (if (and (equal (selected-frame) ecb-frame)
-             (ecb-interactive-p))
-        (ecb-error "Can't use interactive unpop-window-configuration in the ecb-frame.")))
-  )
 
 ;; we disable all advices per default.
 

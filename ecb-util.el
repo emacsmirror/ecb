@@ -66,13 +66,20 @@
 
 ;;; ----- Some constants -----------------------------------
 
+;; Compatibility Functions ---------------------------------
+
+;; A number of functions in Gnu Emacs have been obsoleted in the
+;; last few years.  To ensure compatibility with versions of
+;; emacs that do not track Gnu Emacs the below functions so
+;; ecb is implementing compatibilty functions
+
 ;;;###autoload
 (defconst ecb-running-xemacs (featurep 'xemacs))
 (defconst ecb-running-gnu-emacs t)
 (defconst ecb-running-unsupported-emacs (condition-case nil
                                             (<= emacs-major-version 20)
                                           (error t))
-  "True if running XEmacs or Gnu Emacs < 21.")
+  "True if running Gnu Emacs < 21.")
 
 (defconst ecb-running-gnu-emacs-version-22 (and ecb-running-gnu-emacs
                                                 (>= emacs-major-version 22))
@@ -2031,6 +2038,7 @@ cons-cell \('test-inner-loop . \"test\")"
 		 (ecb-throw-on-input 'test-inner-loop "test")
                  )
 	       'exit))))
+
 
 ;;; ----- Provide ------------------------------------------
 

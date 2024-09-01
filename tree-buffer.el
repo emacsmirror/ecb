@@ -2389,7 +2389,7 @@ Example for the usage of this macro:
                 "then the current node at point in the currently selected tree-buffer is used.\n"
                 "REST-ARG-LIST is a list of zero or more extra arguments passed to this command.")
        (interactive)
-       (let ((node (if (and (ecb-interactive-p) (null node))
+       (let ((node (if (and (called-interactively-p 'interactive) (null node))
                        (tree-buffer-get-node-at-point)
                      node)))
          (when node
