@@ -1523,7 +1523,7 @@ exactly true when either:
   are true for `ecb-basic-buffer-sync'.
 
 If ECB-INTERACTIVE-P is not nil then FCN will be defined as an interactice
-command, i.e. it will containe the clause \(interactive \"P\").
+command, i.e. it will contain the clause \(interactive \"P\").
 
 The defined function is automatically prepared for tracing its calls when
 `ecb-autotrace-autocontrol/sync-functions' is either set to t or the symbol of FCN

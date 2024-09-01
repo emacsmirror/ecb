@@ -65,8 +65,6 @@
 (silentcomp-defun font-lock-add-keywords)
 (silentcomp-defvar cursor-in-non-selected-windows)
 
-(defconst tree-buffer-running-xemacs (featurep 'xemacs))
-
 ;; miscellaneous differences
 
   ;; GNU Emacs
@@ -713,11 +711,11 @@ Currently highlighted node is stored in `tree-buffer-highlighted-node'."
 
 
 (defvar tree-buffer-highlight-overlay nil
-  "Overlay \(rsp. extent for XEmacs) used for highlighting current node.
+  "Overlay used for highlighting current node.
 The value is buffer-local in current tree-buffer.")
 
 (defvar tree-buffer-general-overlay nil
-  "Overlay \(rsp. extent for XEmacs) used for displaying the whole content.
+  "Overlay used for displaying the whole content.
 The value is buffer-local in current tree-buffer.")
 
 (defvar tree-buffer-spec nil
@@ -931,34 +929,6 @@ get the data.")
   '(:ascent center :mask (heuristic t))
   "Properties of GNU Emacs images.")
 
-(defvar tree-buffer-image-properties-xemacs
-  nil
-  "Properties of XEmacs images.")
-
-(defvar tree-buffer-enable-xemacs-image-bug-hack
-  tree-buffer-running-xemacs
-  "If true then tree-buffer tries to deal best with the XEmacs-bug to display
-adjacent images not correctly. Set this to nil if your XEmacs-version has fixed
-this bug.
-
-This bug can be reproduced with XEmacs without active
-tree-buffers - just copy the following code to the *scratch*
-buffer and evaluate it:
-
-\(progn
-  \(pop-to-buffer \(get-buffer-create \"*test*\"))
-  \(let \(\(str1 \"abc\")
-        \(str2 \"def\")
-        \(glyph1 \(make-glyph \"X\"))
-        \(glyph2 \(make-glyph \"Y\")))
-    \(add-text-properties 0 3 `\(end-glyph ,glyph1 invisible t) str1)
-    \(add-text-properties 0 3 `\(end-glyph ,glyph2 invisible t) str2)
-    \(insert str1) \(insert str2)))
-
-If the bug is still there then there is only a Y being displayed but the correct
-behavior would be displaying XY. Only in the latter case this variable should
-be set to nil!")
-
 (defconst tree-buffer-image-formats
   '((xpm ".xpm") (png ".png") (gif ".gif") (jpeg ".jpg" ".jpeg")
     (xbm ".xbm")))
@@ -1047,17 +1017,10 @@ STR: 'tree-buffer-image-start which holds START as value and
     ;; underlying text.  This means if we leave it tangible, then I
     ;; don't have to change said giant piles of code.
     (when image-icon
-      (if tree-buffer-running-xemacs
-          (add-text-properties (+ start len) start
-                               (list 'end-glyph image-icon
-                                     'rear-nonsticky (list 'display)
-                                     'invisible t
-                                     'detachable t)
-                               str)
-        (add-text-properties start (+ start len)
-                             (list 'display image-icon
-                                   'rear-nonsticky (list 'display))
-                             str))
+      (add-text-properties start (+ start len)
+                           (list 'display image-icon
+                                 'rear-nonsticky (list 'display))
+                           str)
       (add-text-properties 0 (length str)
                            (list 'tree-buffer-image-start start
                                  'tree-buffer-image-length len)
@@ -1085,9 +1048,7 @@ image-object for TREE-IMAGE-NAME."
   (and (equal 'image (tree-buffer-real-style))
        ;; Klaus Berndl <klaus.berndl@sdm.de>: This comes from the XEmacs-bug
        ;; not able to display adjacent images.
-       (or (not tree-buffer-enable-xemacs-image-bug-hack)
-           (not (member tree-image-name
-                        '("handle" "no-handle"))))
+       (not (member tree-image-name '("handle" "no-handle")))
        (or (tree-buffer-image-cache-get tree-image-name)
            (let ((dirs (mapcar 'expand-file-name
                                (if (tree-buffer-spec->additional-images-dir
@@ -1154,8 +1115,7 @@ image-object for TREE-IMAGE-NAME."
                   (member (tree-node->type node)
                           (tree-buffer-spec->maybe-empty-node-types
                            tree-buffer-spec))))
-         (if (or tree-buffer-enable-xemacs-image-bug-hack
-                 (not (equal 'image (tree-buffer-real-style))))
+         (if (not (equal 'image (tree-buffer-real-style)))
              4 3)
        0)
      (if (and (tree-buffer-spec->expand-symbol-before-p
@@ -1163,8 +1123,7 @@ image-object for TREE-IMAGE-NAME."
               (not (tree-node->expandable node))
               (member (tree-node->type node)
                       (tree-buffer-spec->leaf-node-types tree-buffer-spec)))
-         (if (or tree-buffer-enable-xemacs-image-bug-hack
-                 (not (equal 'image (tree-buffer-real-style))))
+         (if (not (equal 'image (tree-buffer-real-style)))
              2 1)
        0)))
 
@@ -1462,12 +1421,7 @@ displayed without empty-lines at the end, means WINDOW is always best filled."
                                     (goto-char (window-start window))
                                     (forward-line (- full-lines-in-window w-height))
                                     (tree-buffer-line-beginning-pos)))))))
-    (unless tree-buffer-running-xemacs
-      (ignore-errors (tree-buffer-hscroll -1000)))
-    ;; KB: testcode
-;;     (if (and (not tree-buffer-running-xemacs)
-;;              (not (tree-buffer-pos-hor-visible-p (cdr node-points) window)))
-;;         (ignore-errors (tree-buffer-hscroll -1000)))
+      (ignore-errors (tree-buffer-hscroll -1000))
     ))
 
 (defun tree-buffer-remove-highlight ()
@@ -1574,7 +1528,7 @@ inserted and the TEXT itself"
       (insert text)
       (if mouse-highlight
           (put-text-property p (point) 'mouse-face 'highlight))
-      (if (and help-echo (not tree-buffer-running-xemacs))
+      (if help-echo
           (put-text-property p (point) 'help-echo
                              'tree-buffer-help-echo-fn))
       (if facer
@@ -1684,8 +1638,7 @@ newline is inserted after the node."
         0 (length ascii-symbol)
         ascii-symbol (tree-buffer-find-image tree-image-name))
        nil nil mouse-highlight)
-      (if (or tree-buffer-enable-xemacs-image-bug-hack
-              (not (equal 'image (tree-buffer-real-style))))
+      (if (not (equal 'image (tree-buffer-real-style)))
           (insert " ")))
     (tree-buffer-insert-text display-name
                              (tree-buffer-get-node-facer node)
@@ -1767,10 +1720,7 @@ end-guide."
     (let* ((number-of-childs (length (tree-node->children node)))
            (counter 0)
            (guide-strings (tree-buffer-gen-guide-strings))
-           (guide-str (if (and (equal 'image (tree-buffer-real-style))
-                               tree-buffer-enable-xemacs-image-bug-hack)
-                          (nth 0 guide-strings)
-                        (nth 1 guide-strings)))
+           (guide-str (nth 1 guide-strings))
            (guide-end-str (nth 2 guide-strings))
            (no-guide-str (nth 3 guide-strings))
            (indent-str-last-seg-copy (copy-sequence indent-str-last-seg))
@@ -2297,9 +2247,7 @@ Example for the definition of such a popupmenu-command:
   \(let \(\(node-data=dir \(tree-node->data node)))
      \(message \"Dir under node: %s\" node-data=dir)))"
   (when menu-items
-    (if tree-buffer-running-xemacs
-        (tree-buffer-create-menu-xemacs menu-items node-commands-p)
-      (tree-buffer-create-menu-emacs menu-items "dummy-name"))))
+    (tree-buffer-create-menu-emacs menu-items "dummy-name")))
 
 
 (defun tree-buffer-create-menus (menus &optional node-commands-p)
@@ -2328,24 +2276,20 @@ ignored with XEmacs."
       (unless (not (equal (selected-frame) tree-buffer-frame))
         (when (tree-buffer-spec->menu-creator tree-buffer-spec)
           (let ((node (tree-buffer-get-node-at-point)))
-            (when (and (not tree-buffer-running-xemacs)
-                       node
-                       (locate-library "tmm"))
+            (when (and node (locate-library "tmm"))
               (let ((menu (cdr (assoc (tree-node->type node)
                                       (tree-buffer-create-menus
                                        (funcall (tree-buffer-spec->menu-creator
                                                  tree-buffer-spec)
                                                 (buffer-name) node))))))
                 (tmm-prompt menu))))))
-    (if tree-buffer-running-xemacs
-        (tree-buffer-show-node-menu (get-buffer-window (current-buffer)
-                                                       tree-buffer-frame))
-      (let ((curr-frame-ypos (* (/ (frame-pixel-height) (frame-height))
-                                (count-lines (window-start) (point))))
-            (curr-frame-xpos (* (/ (frame-pixel-width) (frame-width))
-                                (current-column))))
-        (tree-buffer-show-node-menu (list (list curr-frame-xpos curr-frame-ypos)
-                                          (selected-window)))))))
+
+    (let ((curr-frame-ypos (* (/ (frame-pixel-height) (frame-height))
+                              (count-lines (window-start) (point))))
+          (curr-frame-xpos (* (/ (frame-pixel-width) (frame-width))
+                              (current-column))))
+      (tree-buffer-show-node-menu (list (list curr-frame-xpos curr-frame-ypos)
+                                        (selected-window))))))
 
 (defun tree-buffer-popup-menu (event menu menu-title &optional node)
   "Popup a a context menu.
@@ -2646,29 +2590,20 @@ determines when the command is triggered, values can be 'button-press and
 'control or 'meta. The fourth optional argument KEY-QUALIFIER is only used by
 GUN Emacs and can be an additional key-qualifier symbol like 'mode-line or
 'header-line."
-  (let ((mouse-button (if tree-buffer-running-xemacs
-                          (format "button%d%s"
-                                  button
-                                  (if (equal trigger 'button-press)
-                                      ""
-                                    "up"))
-                        (format "%smouse-%d"
-                                (if (equal trigger 'button-press)
-                                    "down-"
-                                  "")
-                                button)))
-        (modifier-elem (if tree-buffer-running-xemacs
-                           modifier
-                         (cl-case modifier
-                           (shift "S-")
-                           (control "C-")
-                           (meta "M-")
-                           (otherwise "")))))
-    (if tree-buffer-running-xemacs
-        (delete nil (list modifier-elem (intern mouse-button)))
-      (if (and key-qualifier (symbolp key-qualifier))
-          (vector key-qualifier (intern (concat modifier-elem mouse-button)))
-        (vector (intern (concat modifier-elem mouse-button)))))))
+  (let ((mouse-button (format "%smouse-%d"
+                         (if (equal trigger 'button-press)
+                           "down-"
+                           "")
+                          button))
+        (modifier-elem (cl-case modifier
+                         (shift "S-")
+                         (control "C-")
+                         (meta "M-")
+                         (otherwise ""))))
+
+    (if (and key-qualifier (symbolp key-qualifier))
+        (vector key-qualifier (intern (concat modifier-elem mouse-button)))
+      (vector (intern (concat modifier-elem mouse-button))))))
 
 (cl-defun tree-buffer-create (name
                             &key
@@ -3214,7 +3149,7 @@ AFTER-UPDATE-HOOK: A function or a list of functions \(with no arguments)
 		  (interactive "e")
                   (tree-buffer-mouse-set-point e)
                   (tree-buffer-show-node-menu e))))
-    (when (and (not tree-buffer-running-xemacs) sticky-parent-p)
+    (when sticky-parent-p
       (define-key tree-buffer-key-map
         (tree-buffer-create-mouse-key 3 'button-press nil 'header-line)
         (function (lambda(e)
@@ -3249,7 +3184,7 @@ AFTER-UPDATE-HOOK: A function or a list of functions \(with no arguments)
     ;; modeline bindings....here we use hard coded button-press too - s.a.
 
     ;; scrolling horiz.
-    (when (and (not tree-buffer-running-xemacs) hor-scroll-step)
+    (when hor-scroll-step
       ;; This lets the GNU Emacs user scroll as if we had a horiz.
       ;; scrollbar...
       (define-key tree-buffer-key-map
