@@ -75,7 +75,6 @@
 
 ;;;###autoload
 (defconst ecb-running-xemacs (featurep 'xemacs))
-
 (defconst ecb-temp-dir
   (file-name-as-directory
    (or (getenv "TMPDIR") (getenv "TMP") (getenv "TEMP")
@@ -113,22 +112,7 @@
 
 
 ;;; ----- Tracing ------------------------------------------
-
 ;; we use the trace.el library!
-
-;;; ----- Compatibility between GNU Emacs and XEmacs -------
-
-;; miscellaneous differences
-
-(defmacro when-ecb-running-xemacs (&rest body)
-  "Evaluates BODY when `ecb-running-xemacs' is true. Use this macro when you
-want the BODY being parsed by semantic!. If not use the variable
-`ecb-running-xemacs'."
-  `(when ecb-running-xemacs
-     ,@body))
-
-;; I do not want all this compatibitly stuff being parsed by semantic,
-;; therefore i do not use the macro `when-ecb-running-xemacs'!
 
 (defun ecb-event-to-key (event)
   (let ((type (event-basic-type event)))
@@ -1080,9 +1064,7 @@ be made either with the mouse or with the keyboard."
 ;; choices are immediately displayed as if completion does it so a selection can
 ;; be made either with the mouse or with the keyboard."
 ;;   ;; First we create a TAB-event
-;;   (let ((event (if ecb-running-xemacs
-;;                    (make-event 'key-press '(key tab))
-;;                  9)))
+;;   (let ((event 9))
 ;;     ;; With these 3 TAB-events we ensure that
 ;;     ;; 1. The longest possible common substring is display in the minibuffer
 ;;     ;; 2. All possible completions are displayed
@@ -1571,12 +1553,10 @@ See `ecb-current-buffer-archive-extract-p'. FILENAME is either a filename or
 nil whereas in the latter case the current-buffer is assumed."
   (let* ((file (or filename (ecb-buffer-file-name (current-buffer)))))
     (or (and file (file-readable-p file))
-        (and (not ecb-running-xemacs)
-             (if filename
-                 (with-current-buffer (find-file-noselect filename)
-                   (ecb-current-buffer-archive-extract-p))
-               (ecb-current-buffer-archive-extract-p))))))
-
+         (if filename
+             (with-current-buffer (find-file-noselect filename)
+               (ecb-current-buffer-archive-extract-p))
+           (ecb-current-buffer-archive-extract-p)))))
 
 ;;; ----- Windows ------------------------------------------
 
@@ -1600,48 +1580,51 @@ means not to count the minibuffer even if it is active."
   ;; which uses current-window-configuration!
   ;; To avoid this we run the body of this function with deactivated basic
   ;; advices of ecb.
-   (if (not ecb-running-xemacs)
-       ;; Klaus Berndl <klaus.berndl@sdm.de>: There seems to be mysterious
-       ;; behavior when running our own window-list version with GNU Emacs >=
-       ;; 21.3 - especially when running an igrep when the igrep-buffer is
-       ;; already in another window. We can here savely use the function
-       ;; `window-list' because it returns an ordered list
-       (window-list frame minibuf window)
-     ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: the following is needed for
-     ;; XEmacs - but the best would be if we would not need
-     ;; implementing window-list, means the best would be if window-list
-     ;; returns an ordered list!
-     (ecb-with-original-basic-functions
-      (setq window (or window (selected-window))
-            frame (or frame (selected-frame)))
-      (if (not (eq (window-frame window) frame))
-          (error "Window must be on frame."))
-      (let ((current-frame (selected-frame))
-            (current-window (selected-window))
-            (current-buf (current-buffer))
-            (current-point (point))
-            list)
-        (unwind-protect
-            (progn ;;save-window-excursion
-              (select-frame frame)
-              ;; this is needed for correct start-point
-              (select-window window)
-              (walk-windows
-               (function (lambda (cur-window)
-                           (if (not (eq window cur-window))
-                               (setq list (cons cur-window list)))))
-               minibuf
-               'selected)
-              ;; This is needed to get the right canonical windows-order, i.e. the
-              ;; same order of windows than `walk-windows' walks through!
-              (setq list (nreverse list))
-              (setq list (cons window list)))
-          (select-frame current-frame)
-          (select-window current-window)
-          (set-buffer current-buf)
-          ;; we must reset the point of the buffer which was current at call-time
-          ;; of this function
-          (goto-char current-point))))))
+
+  ;; Klaus Berndl <klaus.berndl@sdm.de>: There seems to be mysterious
+  ;; behavior when running our own window-list version with GNU Emacs >=
+  ;; 21.3 - especially when running an igrep when the igrep-buffer is
+  ;; already in another window. We can here savely use the function
+  ;; `window-list' because it returns an ordered list
+
+  (window-list frame minibuf window)
+
+  ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: the following is needed for
+  ;; XEmacs - but the best would be if we would not need
+  ;; implementing window-list, means the best would be if window-list
+  ;; returns an ordered list!
+
+  (ecb-with-original-basic-functions
+   (setq window (or window (selected-window))
+         frame (or frame (selected-frame)))
+   (if (not (eq (window-frame window) frame))
+       (error "Window must be on frame."))
+   (let ((current-frame (selected-frame))
+         (current-window (selected-window))
+         (current-buf (current-buffer))
+         (current-point (point))
+         list)
+     (unwind-protect
+         (progn ;;save-window-excursion
+           (select-frame frame)
+           ;; this is needed for correct start-point
+           (select-window window)
+           (walk-windows
+            (function (lambda (cur-window)
+                        (if (not (eq window cur-window))
+                            (setq list (cons cur-window list)))))
+            minibuf
+            'selected)
+           ;; This is needed to get the right canonical windows-order, i.e. the
+           ;; same order of windows than `walk-windows' walks through!
+           (setq list (nreverse list))
+           (setq list (cons window list)))
+       (select-frame current-frame)
+       (select-window current-window)
+       (set-buffer current-buf)
+       ;; we must reset the point of the buffer which was current at call-time
+       ;; of this function
+       (goto-char current-point)))))
 
 (defun ecb-canonical-windows-list ()
   "Return a list of all current visible windows in the `ecb-frame' \(starting
@@ -1725,9 +1708,7 @@ header-line."
 			mode-line-format)
 		   1 0)
 	       ;; Count the header-line, if any
-               (if ecb-running-xemacs
-                   0
-                 (if header-line-format 1 0)))))
+               (if header-line-format 1 0))))
 	 (delta
 	  ;; Calculate how much the window height has to change to show
 	  ;; desired-height lines, constrained by MIN-HEIGHT and MAX-HEIGHT.
@@ -1768,8 +1749,7 @@ header-line."
 		       ;; the edge of the window.
 		       (forward-line 0))
 		     (point)))))
-        (unless ecb-running-xemacs
-          (set-window-vscroll window 0))
+        (set-window-vscroll window 0)
 	(while (and (< desired-height max-height-norm)
 		    (= desired-height (window-height window))
 		    (not (pos-visible-in-window-p end window)))

@@ -1072,9 +1072,7 @@ always the ECB-frame if called from another frame."
   (let ((ecb-minor-mode t))
     (ecb-deactivate-internal t))
   (setq ecb-minor-mode nil)
-  (if ecb-running-xemacs
-      (ecb-redraw-modeline t)
-    (force-mode-line-update t))
+  (force-mode-line-update t)
   (error "ECB %s: %s (error-type: %S, error-data: %S)" ecb-version msg
          (car err) (cdr err)))
 
@@ -1382,7 +1380,6 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
 (defun ecb-deactivate-internal (&optional run-no-hooks)
   "Deactivates the ECB and kills all ECB buffers and windows."
   (unless (not ecb-minor-mode)
-
     (when (or run-no-hooks
               (run-hook-with-args-until-failure 'ecb-before-deactivate-hook))
 
@@ -1521,10 +1518,8 @@ value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."
       ;; restoring the value of temporary modified vars
       (ecb-modify-emacs-variable 'max-specpdl-size 'restore)
       (ecb-modify-emacs-variable 'max-lisp-eval-depth 'restore)
-      (when (and ecb-running-xemacs
-                 (boundp 'progress-feedback-use-echo-area))
-        (ecb-modify-emacs-variable 'progress-feedback-use-echo-area 'restore))))
-
+    )   ; when (or run-no-hooks
+  )     ; (unless (not ecb-minor-mode)
 
   (if (null ecb-minor-mode)
       (message "The ECB is now deactivated."))
@@ -1545,9 +1540,7 @@ if the minor mode is enabled.
         (ecb-activate-internal)
       (ecb-deactivate-internal)))
 
-  (if ecb-running-xemacs
-      (ecb-redraw-modeline t)
-    (force-mode-line-update t))
+    (force-mode-line-update t)
 
   ecb-minor-mode)
 

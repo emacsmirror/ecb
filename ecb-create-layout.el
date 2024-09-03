@@ -197,14 +197,8 @@
   (setq ecb-create-layout-old-minor-mode-map-alist nil)
   (setq ecb-create-layout-old-hscroll nil)
   (setq ecb-create-layout-old-frame nil)
-
-  (if ecb-running-xemacs
-      (progn
-        (setq ecb-create-layout-old-vertical-div-map nil)
-        (setq ecb-create-layout-old-modeline-map nil))
-    (setq ecb-create-layout-old-after-frame-h nil)
-    (setq ecb-create-layout-old-before-frame-h nil))
-
+  (setq ecb-create-layout-old-after-frame-h nil)
+  (setq ecb-create-layout-old-before-frame-h nil)
   (setq ecb-create-layout-generated-lisp nil)
   (setq ecb-create-layout-gen-counter 0))
 
@@ -263,16 +257,12 @@ DELETE-FRAME is not nil then the new created frame will be deleted and the
       (setq minor-mode-map-alist
             ecb-create-layout-old-minor-mode-map-alist))
   ;; restore horiz. scrolling
-  (unless ecb-running-xemacs
-    (setq auto-hscroll-mode ecb-create-layout-old-hscroll))
-  ;; for XEmacs restore these maps
-  (if ecb-running-xemacs
-      (progn
-        (setq vertical-divider-map ecb-create-layout-old-vertical-div-map)
-        (setq modeline-map ecb-create-layout-old-modeline-map))
-    ;; before and after making frame stuff
-    (setq before-make-frame-hook ecb-create-layout-old-before-frame-h)
-    (setq after-make-frame-functions ecb-create-layout-old-after-frame-h))
+  (setq auto-hscroll-mode ecb-create-layout-old-hscroll)
+
+  ;; before and after making frame stuff
+  (setq before-make-frame-hook ecb-create-layout-old-before-frame-h)
+  (setq after-make-frame-functions ecb-create-layout-old-after-frame-h)
+
   ;; restore old debug-on-error
   (setq debug-on-error ecb-create-layout-old-debug-on-error)
   ;; delete the layout-frame and select the ecb-create-layout-old-frame
@@ -501,10 +491,7 @@ DELETE-FRAME is not nil then the new created frame will be deleted and the
   "Move one character forward."
   (interactive)
   (when (ecb-create-layout-frame-ok)
-    (unless (> (- (point) (ecb-line-beginning-pos)) (- (window-width)
-                                                       (if ecb-running-xemacs
-                                                           3
-                                                         2)))
+    (unless (> (- (point) (ecb-line-beginning-pos)) (- (window-width) 2))
       (call-interactively 'forward-char))))
 
 (defun ecb-create-layout-next-window ()
@@ -589,12 +576,8 @@ never selects the edit-window."
 
   (define-key ecb-create-layout-mode-map "." 'self-insert-command)
   (define-key ecb-create-layout-mode-map "-" 'self-insert-command)
-
-  (if ecb-running-xemacs
-      (define-key ecb-create-layout-mode-map (kbd "<BS>")
-        'delete-backward-char)
-    (define-key ecb-create-layout-mode-map (kbd "<DEL>")
-      'backward-delete-char-untabify))
+  (define-key ecb-create-layout-mode-map (kbd "<DEL>")
+    'backward-delete-char-untabify)
 
   (define-key ecb-create-layout-mode-map (kbd "C-q")
     'ecb-create-layout-save-and-quit)
@@ -625,9 +608,7 @@ never selects the edit-window."
     (dotimes (i (ecb-window-full-height))
       (insert
        (format "%s\n"
-               (make-string (- (window-width)
-                               (if ecb-running-xemacs 3 1))
-                            ?\ )))))
+               (make-string (- (window-width) 1) ?\ )))))
   (goto-char (point-min))
   (ecb-create-layout-mode)
   (set-window-dedicated-p (selected-window) t))
@@ -682,41 +663,20 @@ never selects the edit-window."
 
 (defun ecb-create-layout-make-frame ()
   "Create a new frame for the layout creation process and return it."
-  (if ecb-running-xemacs
-      (make-frame `((name . ,ecb-create-layout-frame-name)
-                    (minibuffer . t)
-                    (user-position . t)
-                    (width . ,ecb-create-layout-frame-width)
-                    (height . ,ecb-create-layout-frame-height)
-                    (default-toolbar-visible-p . nil)
-                    (left-toolbar-visible-p . nil)
-                    (right-toolbar-visible-p . nil)
-                    (top-toolbar-visible-p . nil)
-                    (bottom-toolbar-visible-p . nil)
-                    (default-gutter-visible-p . nil)
-                    (left-gutter-visible-p . nil)
-                    (right-gutter-visible-p . nil)
-                    (top-gutter-visible-p . nil)
-                    (bottom-gutter-visible-p . nil)
-                    (has-modeline-p . t)
-                    (use-left-overflow . nil)
-                    (vertical-scrollbar-visible-p . nil)
-                    (horizontal-scrollbar-visible-p . nil)
-                    (use-right-overflow . nil)
-                    (menubar-visible-p . nil)))
-    (make-frame `((name . ,ecb-create-layout-frame-name)
-                  (minibuffer . t)
-                  (user-position . t)
-                  (width . ,ecb-create-layout-frame-width)
-                  (height . ,ecb-create-layout-frame-height)
-                  (vertical-scroll-bars . nil)
-                  (horizontal-scroll-bars . nil)
-                  (tool-bar-lines . 0)
-                  (menu-bar-lines . 0)))))
+  (make-frame `((name . ,ecb-create-layout-frame-name)
+                (minibuffer . t)
+                (user-position . t)
+                (width . ,ecb-create-layout-frame-width)
+                (height . ,ecb-create-layout-frame-height)
+                (vertical-scroll-bars . nil)
+                (horizontal-scroll-bars . nil)
+                (tool-bar-lines . 0)
+                (menu-bar-lines . 0))))
 
-;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: Wir m￼ssen ev. ECB vorher
-;; deaktivieren, da sonst ein 2. ECB-menu entsteht. Beim C-c oder C-q eben
-;; dann wieder aktivieren.
+;; TODO: Klaus Berndl <klaus.berndl@sdm.de>:
+;; do we need to deactivate ECb before otherwise a second ECB-menue exists.
+;; Activate again with  C-c or C-q
+
 (defun ecb-create-new-layout ()
   "Start interactively layout creating."
   (interactive)
@@ -725,11 +685,10 @@ never selects the edit-window."
   (ecb-create-layout-initilize)
 
   ;; before- and after make frame stuff
-  (when (not ecb-running-xemacs)
-    (setq ecb-create-layout-old-after-frame-h after-make-frame-functions)
-    (setq after-make-frame-functions nil)
-    (setq ecb-create-layout-old-before-frame-h before-make-frame-hook)
-    (setq before-make-frame-hook nil))
+  (setq ecb-create-layout-old-after-frame-h after-make-frame-functions)
+  (setq after-make-frame-functions nil)
+  (setq ecb-create-layout-old-before-frame-h before-make-frame-hook)
+  (setq before-make-frame-hook nil)
 
   ;; saving old frame
   (setq ecb-create-layout-old-frame (selected-frame))
@@ -751,16 +710,8 @@ never selects the edit-window."
   (setq minor-mode-map-alist nil)
 
   ;; horiz. scrolling
-  (unless ecb-running-xemacs
-    (setq ecb-create-layout-old-hscroll auto-hscroll-mode)
-    (setq auto-hscroll-mode nil))
-
-  ;; for XEmacs modeline- and vertical-divider maps
-  (when ecb-running-xemacs
-    (setq ecb-create-layout-old-vertical-div-map vertical-divider-map)
-    (setq vertical-divider-map nil)
-    (setq ecb-create-layout-old-modeline-map modeline-map)
-    (setq modeline-map nil))
+  (setq ecb-create-layout-old-hscroll auto-hscroll-mode)
+  (setq auto-hscroll-mode nil)
 
   ;; debug on error
   (setq ecb-create-layout-old-debug-on-error debug-on-error)

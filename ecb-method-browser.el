@@ -4283,11 +4283,7 @@ Returns current point."
   (widen))
 
 
-(if (not ecb-running-xemacs)
-    ;; Klaus Berndl <klaus.berndl@sdm.de>: This is for silencing the
-    ;; byte-compiler. Normally there should be no warning when
-    ;; silentcomp-defun is used for hs-minor-mode but....argghhh.
-    (require 'hideshow))
+(require 'hideshow)
 
 (defun ecb-methods-menu-activate-hs ()
   "Activates `hs-minor-mode' in the buffer of `ecb-path-selected-source'. If
@@ -4743,9 +4739,7 @@ be ensured that the new clone gets its own tags and do not share it with its
 base-buffer. This is achieved by clearing the toplevel cache of semantic.
 
 Returns always the newly created indirect buffer."
-  (when (and (not ecb-running-xemacs) ;; clone not available with XEmacs
-             ;; clone-flag is not nil
-             (ad-get-arg 2))
+  (when (ad-get-arg 2)
     (with-current-buffer ad-return-value
       (message "ECB: semantic cache for indirect buffer %s cleared!" (current-buffer))
       (ecb--semantic-clear-toplevel-cache)))

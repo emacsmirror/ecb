@@ -3167,9 +3167,7 @@ for compilation-buffers \(if a compile-window is used, see above)."
           ;; Don't let these interfere...
           same-window-buffer-names same-window-regexps)
       (pop-to-buffer (ad-get-arg 0) t
-                     (if ecb-running-xemacs
-                         (selected-frame)
-                       (ad-get-arg 1))))))
+                     (ad-get-arg 1)))))
 
 
 ;; Klaus Berndl <klaus.berndl@sdm.de>: We can not use pop-to-buffer here
@@ -4249,23 +4247,6 @@ ring-cache as add-on to CONFIGURATION."
                              (car oops) (cdr oops))))
   ad-return-value)
 
-(when-ecb-running-xemacs
- (defecb-advice set-window-configuration/mapping after ecb-layout-basic-adviced-functions
-   "If `set-window-configuration' changes the values of `ecb-edit-window',
-`ecb-last-edit-window-with-point' or `ecb-compile-window', this advice reset
-them to the new values to allow ecb to run at all in XEmacs 21.5"
-   (let ((edit-window-changed (assq ecb-edit-window ad-return-value))
-         (last-edit-window-with-point-changed (assq ecb-last-edit-window-with-point ad-return-value))
-         (compile-window-changed (assq ecb-compile-window ad-return-value)))
-     (if edit-window-changed
-         (setq ecb-edit-window (cdr edit-window-changed)))
-     (if last-edit-window-with-point-changed
-         (setq ecb-last-edit-window-with-point (cdr last-edit-window-with-point-changed)))
-     (if compile-window-changed
-         (setq ecb-compile-window (cdr compile-window-changed)))))
- )
-
-
 (defun ecb-current-window-configuration ()
   "Return the current ecb-window-configuration"
   (progn
@@ -5241,55 +5222,8 @@ if no compile-window is visible."
                     (ignore-errors (ecb-restore-window-sizes))
                     ))
 
-; test for removing xemacs code
-
                ;; with GNU Emacs we can use `ecb-fit-window-to-buffer'
               (ecb-fit-window-to-buffer)
-
-;              (if (equal ecb-enlarged-compilation-window-max-height 'best)
-;                  ;; With GNU Emacs we could use `ecb-fit-window-to-buffer' but
-;                  ;; XEmacs doesn't have such a function; Therefore...
-;                  ;; We fit the window to exactly this height:
-;                  ;; The minimum MIN of
-;                  ;; - half of frame-height
-;                  ;; - number of lines +1 in current buffer
-;                  ;; - temp-buffer-max-height or compilation-window-height (in
-;                  ;;   lines) - dependent on the mode of current buffer.
-;                  ;; Then we take the maximum of this MIN and the height of the
-;                  ;; compile-window as defined in `ecb-compile-window-height'
-;                  ;; (in lines).
-;                  (progn
-;                    (setq max-height
-;                          (max (min (floor (/ (1- (frame-height)) 2))
-;                                    (or (if (ecb-derived-mode-p 'compilation-mode)
-;                                            compilation-window-height
-;                                          (if ecb-running-xemacs
-;                                              (ignore-errors ; if temp-buffer-... is nil!
-;                                                (ecb-normalize-number
-;                                                 temp-buffer-max-height
-;                                                 (1- (frame-height))))
-;                                            (if (functionp temp-buffer-max-height)
-;                                                (funcall temp-buffer-max-height
-;                                                         (current-buffer))
-;                                              temp-buffer-max-height)))
-;                                        1000) ; 1000 is surely > then half of the frame
-;                                    number-of-lines)
-;                               ecb-compile-window-height-lines))
-;                    (ecb-layout-debug-error "ecb-toggle-compile-window-height: max-height: %s, curr-win-height: %s"
-;                                            max-height (ecb-window-full-height))
-;                    (enlarge-window (- max-height (ecb-window-full-height))))
-;                (setq max-height
-;                      (cond ((equal ecb-enlarged-compilation-window-max-height
-;                                    'half)
-;                             (floor (/ (1- (frame-height)) 2)))
-;                            ((numberp ecb-enlarged-compilation-window-max-height)
-;                             (ecb-normalize-number
-;                              ecb-enlarged-compilation-window-max-height
-;                              (1- (frame-height))))))
-;                (enlarge-window (- (max max-height ecb-compile-window-height-lines)
-;                                   (ecb-window-full-height))))
-
-; test for removing xemacs code
 
               ;; now we set the window-start
               (set-window-start ecb-compile-window

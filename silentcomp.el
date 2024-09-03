@@ -67,26 +67,13 @@
 ;;                        (t
 ;;                         (apply 'format args)))))
 ;;         ;; Now message is either nil or the formated string.
-;;         (if running-xemacs
-;;             ;; XEmacs way of preventing log messages.
-;;             (if msg
-;;                 (display-message 'no-log msg)
-;;               (clear-message 'no-log))
-;;           ;; Emacs way of preventing log messages.
-;;           (let ((message-log-max nil)
-;;                 (message-truncate-lines nil))
-;;             (if msg
-;;                 (message "%s" msg)
-;;               (message nil))))
+;;         ;; Emacs way of preventing log messages.
+;;         (let ((message-log-max nil)
+;;               (message-truncate-lines nil))
+;;           (if msg
+;;               (message "%s" msg)
+;;             (message nil)))
 ;;         msg))
-;;
-;; foo.el should be work for both of Emacs and XEmacs, so we use the functions
-;; `display-message' and `clear-message' for the XEmacs stuff and the
-;; variables `message-log-max' and `message-truncate-lines' for Emacs. The
-;; XEmacs-symbols are unbound in Emacs and vice versa. Therefore the
-;; bytecompiler throws warnings about undefined symbols. These warnings can
-;; savely be ignored but are nevertheless annoying and ugly especially if you
-;; have a lot of symbols existing in only one version of (X)Emacs.
 ;;
 ;; With silentcomp.el you can silence the bytecompiler for foo.el:
 ;;
@@ -95,11 +82,7 @@
 ;;      |
 ;;      | (eval-when-compile
 ;;      |     (require 'silentcomp))
-;;      | 
-;;      | ;; XEmacs
-;;      | (silentcomp-defun display-message)
-;;      | (silentcomp-defun clear-message)
-;;      | ;; Emacs
+;;      |
 ;;      | (silentcomp-defvar message-log-max)
 ;;      | (silentcomp-defvar message-truncate-lines)
 ;;      |
@@ -107,7 +90,7 @@
 ;;      | (defun nolog-message (&rest args)
 ;;      |    ...
 ;;      | )
-;;      | 
+;;      |
 ;;      | (silentcomp-provide 'foo)
 ;;      | ;; foo.el ends here
 ;;      `----

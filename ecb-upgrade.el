@@ -881,11 +881,7 @@ Note: This function upgrades only the renamed but not the incompatible options
 
 (defvar ecb-upgrade-button-keymap
   (let (parent-keymap mouse-button1 keymap)
-    (if ecb-running-xemacs
-        (setq parent-keymap widget-button-keymap
-              mouse-button1 [button1])
-      (setq parent-keymap widget-keymap
-            mouse-button1 [down-mouse-1]))
+    (setq parent-keymap widget-keymap mouse-button1 [down-mouse-1])
     (setq keymap (copy-keymap parent-keymap))
     (define-key keymap mouse-button1 #'widget-button-click)
     keymap)

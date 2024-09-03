@@ -271,8 +271,7 @@ the point was not set by `mouse-set-point'."
   (ecb-speedbar-activate)
   (set-window-buffer (selected-window)
                      (get-buffer-create ecb-speedbar-buffer-name))
-  (unless ecb-running-xemacs
-    (set (make-local-variable 'auto-hscroll-mode) nil)))
+  (set (make-local-variable 'auto-hscroll-mode) nil))
 
 
 
@@ -310,30 +309,10 @@ future this could break."
       (set-buffer speedbar-buffer)
       (speedbar-mode)
 
-      (if ecb-running-xemacs
-          ;; Hack the XEmacs mouse-motion handler
-          (progn
-            ;; Hack the XEmacs mouse-motion handler
-            (set (make-local-variable 'mouse-motion-handler)
-                 'dframe-track-mouse-xemacs)
-            ;; Hack the double click handler
-            (make-local-variable 'mouse-track-click-hook)
-            (add-hook 'mouse-track-click-hook
-                      (lambda (event count)
-                        (if (/= (event-button event) 1)
-                            nil		; Do normal operations.
-                          (cl-case count
-                            (1 (dframe-quick-mouse event))
-                            ((2 3) (dframe-click event)))
-                          ;; Don't do normal operations.
-                          t))))
-        ;; Enable mouse tracking in emacs
-        (if dframe-track-mouse-function
-            (set (make-local-variable 'track-mouse) t)) ;this could be messy.
-        ;; disable auto-show-mode for Emacs
-        ;; obsolete with beginning of Emacs 21...
-;;         (setq auto-show-mode nil)
-        )))
+      ;; Enable mouse tracking in emacs
+      (if dframe-track-mouse-function
+          (set (make-local-variable 'track-mouse) t)) ;this could be messy.
+    ))
 
   ;;Start up the timer
   (speedbar-reconfigure-keymaps)
@@ -551,7 +530,7 @@ Return NODE."
       (when (dolist (tag tag-list t)
               (if (or (speedbar-generic-list-positioned-group-p tag)
                       (speedbar-generic-list-group-p tag))
-                  (return nil)))
+                  (cl-return nil)))
         (while methods
           (setq tag-list (funcall (car methods) tag-list)
                 methods (cdr methods))))

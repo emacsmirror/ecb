@@ -48,10 +48,10 @@
 ;; - Provides smart window layout of the eshell buffer.  This makes sure that
 ;;   the eshell is taking up the exact amount of space and that nothing is
 ;;   hidden.
-;; 
+;;
 ;; The goal is to make it easy to jump to a command prompt to run OS level
-;; commands.  
-;; 
+;; commands.
+;;
 ;; If you enjoy this software, please consider a donation to the EFF
 ;; (http://www.eff.org)
 
@@ -137,7 +137,7 @@ If the special value 'basic is set then ECB uses the setting of the option
                 (const :tag "Never" nil)
                 (repeat :tag "Not with these modes"
                         (symbol :tag "mode"))))
-    
+
 
 (defcustom ecb-eshell-buffer-sync-delay 'basic
   "*Time Emacs must be idle before the eshell-buffer of ECB is synchronized.
@@ -159,7 +159,7 @@ If the special value 'basic is set then ECB uses the setting of the option
                        (ecb-activate-ecb-autocontrol-function
                         value 'ecb-analyse-buffer-sync))))
   :initialize 'custom-initialize-default)
-  
+
 
 
 (defvar ecb-eshell-pre-command-point nil
@@ -207,7 +207,7 @@ active.")
             (delete new-elem ecb-compilation-buffer-names-internal))
       (setq ecb-compilation-major-modes-internal
             (delete 'eshell-mode ecb-compilation-major-modes-internal))))
-  
+
   ;; maybe we have to auto toggle our compile-window if temporally hidden
   (when (equal 'hidden (ecb-compile-window-state))
     (ecb-layout-debug-error "eshell around-advice: comp-win will be toggled.")
@@ -238,12 +238,12 @@ active.")
   ;;always recenter because if the point is at the top of the eshell buffer
   ;;and we switch to it the user is not going to be able to type a command
   ;;right away.
-  (ecb-eshell-recenter)  
-  
+  (ecb-eshell-recenter)
+
   ;;sync to the current buffer
   (ecb-eshell-buffer-sync))
-  
-  
+
+
 
 (defun ecb-eshell-activate-integration ()
   "Does all necessary to activate the eshell-integration. But this doesn not
@@ -284,17 +284,17 @@ ECB and if either this function is called interactively or
            ;; make sure we have a clean eshell-command-line
            (goto-char (point-max))
            (eshell-bol)
-           (delete-region (point) (point-at-eol))
+           (delete-region (point) (pos-eol))
            ;;change the directory without showing the cd command
            (eshell/cd my-reference-directory))
-           
+
          ;;execute the command
          (save-selected-window
            (select-window ecb-compile-window)
            (eshell-send-input)))
-        
+
         (ecb-eshell-recenter)
-        
+
         ;; we need to make sure that that the eshell buffer isn't at the
         ;; top of the buffer history list just because we implicitly
         ;; changed its directory and switched to it. It might not be a
@@ -361,17 +361,14 @@ enlarge the compile-window over half of the frame-height and also not below
                           ;; we want to see the old command line too and 2
                           ;; must be added because we have a modeline and one
                           ;; empty line cause of the (recenter -2) in
-                          ;; `ecb-eshell-recenter'. For XEmacs it would be
-                          ;; better to check if a horiz. scrollbar is used.
-                          ;; This causes the one line more we need for XEmacs
-                          (+ (if ecb-running-xemacs 4 3)
-                             (count-lines ecb-eshell-pre-command-point
-                                          (point))))
+                          ;; `ecb-eshell-recenter'.
+                          (+ 3 (count-lines ecb-eshell-pre-command-point (point)))
+                          )
                         (/ (1- (frame-height)) 2))
                    compile-window-height-lines)))
         (ecb-toggle-compile-window-height 1)
         (ecb-eshell-recenter))
-        
+
       ;;reset
       (setq ecb-eshell-pre-command-point nil))))
 

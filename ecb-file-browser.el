@@ -1286,7 +1286,6 @@ Emacs) and `vc-cvs-status' \(Xemacs) to the ECB-VC-state-values."
                 (ecb-vc-dir-managed-by-SVN . ecb-vc-state)
                 (ecb-vc-dir-managed-by-GIT . ecb-vc-state)
                 (ecb-vc-dir-managed-by-BZR . ecb-vc-state)
-                (ecb-vc-dir-managed-by-MTN . ecb-vc-state)
                 (ecb-vc-dir-managed-by-HG . ecb-vc-state))
   "*Define how to to identify the VC-backend and how to check the state.
 The value of this option is a list containing cons-cells where the car is a
@@ -1324,8 +1323,7 @@ functions `ecb-vc-dir-managed-by-CVS',
 `ecb-vc-dir-managed-by-RCS' rsp. `ecb-vc-dir-managed-by-SCCS'
 rsp. `ecb-vc-dir-managed-by-SVN' rsp.
 `ecb-vc--dir-managed-by-GIT' rsp. `ecb-vc-dir-managed-by-BZR'
-rsp. `ecb-vc-dir-managed-by-MTN' rsp. `ecb-vc-dir-managed-by-HG'
-are used.
+rsp. `ecb-vc-dir-managed-by-HG' are used.
 
 For all eight backends the function `ecb-vc-state' of the
 VC-package is used by default \(which uses a heuristic and
@@ -1360,8 +1358,6 @@ beginning of this option."
                                       :value ecb-vc-dir-managed-by-GIT)
                                (const :tag "ecb-vc-dir-managed-by-BZR"
                                       :value ecb-vc-dir-managed-by-BZR)
-                               (const :tag "ecb-vc-dir-managed-by-MTN"
-                                      :value ecb-vc-dir-managed-by-MTN)
                                (const :tag "ecb-vc-dir-managed-by-HG"
                                       :value ecb-vc-dir-managed-by-HG)
                                (function :tag "Any function"))
@@ -2554,8 +2550,7 @@ Returns t if the current history filter has been applied otherwise nil."
                                          (ecb-substring-no-properties
                                           (ecb-fix-filename
                                            (ecb-file-name-directory
-                                            (cdr elem)))
-                                          (if ecb-running-xemacs 0)))
+                                            (cdr elem)))))
                                         (mode (symbol-name
                                                (if (ecb-buffer-obj (car elem))
                                                    (with-current-buffer (ecb-buffer-obj (car elem))
@@ -3381,10 +3376,6 @@ the SOURCES-cache."
   "Return 'HG if DIRECTORY is managed by Mercurial. nil if not.
 Because with Mercurial only the top-most directory of a source-tree has a subdir
 .hg this function tries recursively upwards if there is a .hg-subdir."
-  ;; With XEmacs we must first load the vc-hooks which contain the function
-  ;; `vc-find-root'
-  (when ecb-running-xemacs
-    (ignore-errors (vc-load-vc-hooks)))
   (and (locate-library "vc-hg")
        (fboundp 'vc-find-root)
        (vc-find-root directory ".hg")
@@ -3398,44 +3389,12 @@ Because with Mercurial only the top-most directory of a source-tree has a subdir
   "Return 'GIT if DIRECTORY is managed by Git. nil if not.
 Because with Git only the top-most directory of a source-tree has a subdir
 .git this function tries recursively upwards if there is a .git-subdir."
-  ;; With XEmacs we must first load the vc-hooks which contain the function
-  ;; `vc-find-root'
-  (when ecb-running-xemacs
-    (ignore-errors (vc-load-vc-hooks)))
   (and (locate-library "vc-git")
        (fboundp 'vc-find-root)
        (vc-find-root directory ".git")
        (require 'vc)
        (require 'vc-git)
        'GIT))
-
-;; an own implementation for Git...
-;; (defun ecb-vc-dir-managed-by-GIT (directory)
-;;   (let* ((sourcedir (ecb-fix-filename (file-truename directory)))
-;;          (gitdir (concat sourcedir "/.git/")))
-;;     (if (and (ecb-file-exists-p gitdir)
-;;              (locate-library "vc-git"))
-;;         'GIT
-;;       (if (equal sourcedir (ecb-fix-filename "/"))
-;;           nil
-;;         (ecb-vc-dir-managed-by-GIT (concat sourcedir "/../"))))))
-
-;;(ecb-vc-dir-managed-by-GIT default-directory)
-
-;; Monotone support
-
-(defun ecb-vc-dir-managed-by-MTN (directory)
-  "Return 'MTN if DIRECTORY is managed by Monotone. nil if not."
-  ;; With XEmacs we must first load the vc-hooks which contain the function
-  ;; `vc-find-root'
-  (when ecb-running-xemacs
-    (ignore-errors (vc-load-vc-hooks)))
-  (and (locate-library "vc-mtn")
-       (fboundp 'vc-find-root)
-       (vc-find-root directory "_MTN/format")
-       (require 'vc)
-       (require 'vc-mtn)
-       'MTN))
 
 ;; clearcase support
 
@@ -3751,9 +3710,9 @@ display an appropriate icon in front of the file."
   (ecb-stealthy-function-state-init 'ecb-stealthy-vc-check-in-sources-buf)
   (ecb-stealthy-function-state-init 'ecb-stealthy-vc-check-in-directories-buf)
   (ecb-stealthy-function-state-init 'ecb-stealthy-vc-check-in-history-buf)
-  ;; This function is also used in write-file-hooks so we have to return nil
+  ;; This function is also used in write-file-functions so we have to return nil
   ;; because otherwise a file will never be written - see documentation of
-  ;; `write-file-hooks'!
+  ;; `write-file-functions'!
   nil)
 
 ;; we have to add a smart piece of code to `vc-checkin-hook' which is able to
@@ -3810,11 +3769,11 @@ reverted file-buffer is cleared."
   (if (< arg 0)
       (progn
         (remove-hook 'after-revert-hook 'ecb-vc-after-revert-hook)
-        (remove-hook 'write-file-hooks 'ecb-vc-reset-vc-stealthy-checks)
+        (remove-hook 'write-file-functions 'ecb-vc-reset-vc-stealthy-checks)
         (remove-hook 'vc-checkin-hook 'ecb-vc-checkin-hook)
         (ecb-disable-advices 'ecb-vc-advices))
     (add-hook 'after-revert-hook 'ecb-vc-after-revert-hook)
-    (add-hook 'write-file-hooks 'ecb-vc-reset-vc-stealthy-checks)
+    (add-hook 'write-file-functions 'ecb-vc-reset-vc-stealthy-checks)
     (add-hook 'vc-checkin-hook 'ecb-vc-checkin-hook)
     (ecb-enable-advices 'ecb-vc-advices)))
 
