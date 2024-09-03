@@ -1842,17 +1842,17 @@ If the compile-window or the minibuffer is the selected window then
                         (otherwise (ecb-window-in-window-list-number win-list)))))))
 
 
-(defun ecb-point-in-ecb-window-number (&optional ecb-windows-list)
+(defun ecb-point-in-ecb-window-number (&optional windows-list)
   "Return nil if point stays not in an special ecb-window otherwise return 1
 if point is in the left/topmost ecb-window or 2 if in the next ecb-window and
-so on. Return the number of the ecb-window \(if point is in an ecb-window) in
-the order `walk-windows' would go through the ecb-windows. If ECB-WINDOWS-LIST
+so on. Return the number of the ecb-windows \(if point is in an ecb-window) in
+the order `walk-windows' would go through the ecb-windows. If WINDOWS-LIST
 is not nil then it must be a current list of ecb-windows \(got by
-`ecb-canonical-ecb-windows-list'). If ECB-WINDOWS-LIST is nil then a new
+`ecb-canonical-ecb-windows-list'). If WINDOWS-LIST is nil then a new
 ecb-window-list is computed via `ecb-canonical-ecb-windows-list'."
   (when (equal (selected-frame) ecb-frame)
     (ignore-errors (ecb-window-in-window-list-number
-                    (or ecb-windows-list (ecb-canonical-ecb-windows-list))))))
+                    (or windows-list (ecb-canonical-ecb-windows-list))))))
 
 
 (defun ecb-point-in-edit-window-number (&optional edit-windows-list)
@@ -1963,10 +1963,6 @@ current buffer is displayed in the currently selected window."
                                                       ecb-frame)))
     (current-buffer)))
 
-;; This function should not use any call to `ecb-window-list' because XEmacs
-;; has no builtin c-function but only an elisp one for this and therefore
-;; using it within post-command-hook or pre-command-hook would dramatically
-;; slow down XEmacs.
 (defun ecb-point-in-dedicated-special-buffer ()
   "Return not nil if point is in any of the special dedicated buffers which
 are registrated via the macro `defecb-window-dedicator-to-ecb-buffer' \(see
@@ -2183,7 +2179,7 @@ nothing is done."
                          (car edit-win-list))))
       (select-window edit-win))))
 
-(defun ecb-layout-window-sync (&optional ecb-window-list)
+(defun ecb-layout-window-sync (&optional window-list)
   "Synchronizes all special ECB-buffers with current buffer.
 Depending on the contents of current buffer this function performs different
 synchronizing tasks but only if ECB is active and point stays in an
@@ -2193,7 +2189,7 @@ Runs all functions registered in `ecb-autocontrol/sync-fcn-register'.
 Functions registered with a ecb-buffer run only if that buffer is currently
 displayed in an ecb-window.
 
-If ECB-WINDOWS-LIST is not nil then this list of ecb-windows is used otherwise
+If WINDOWS-LIST is not nil then this list of ecb-windows is used otherwise
 it will be computed."
   (when (and ecb-minor-mode
              (not (ecb-windows-all-hidden))
@@ -2202,7 +2198,7 @@ it will be computed."
     ;; buffer-name and all registered with a buffer-name if that buffer is
     ;; contained in the list of buffers returned by
     ;; ecb-get-current-visible-ecb-buffers.
-    (let ((visible-ecb-buffers (ecb-get-current-visible-ecb-buffers ecb-window-list)))
+    (let ((visible-ecb-buffers (ecb-get-current-visible-ecb-buffers window-list)))
       (dolist (elem ecb-autocontrol/sync-fcn-register)
         (when (or (null (cdr elem))
                   (member (ecb-buffer-obj (symbol-value (cdr elem)))
@@ -2210,7 +2206,7 @@ it will be computed."
           (funcall (car elem) t))))))
 
 ;; VERY IMPORTANT: pre-command- and the post-command-hook must NOT use any
-;; function which calls `ecb-window-list' because this would slow-down the
+;; function which calls `window-list' because this would slow-down the
 ;; performance of all Emacs-versions unless GNU Emacs >= 21 because they have no
 ;; builtin `window-list'-function.
 (defecb-autocontrol/sync-function ecb-layout-pre-command-hook nil nil nil
@@ -3351,16 +3347,16 @@ function `ecb-get-current-visible-ecb-buffers'. "
                                      (ecb-buffer-obj (nth 0 e)))))
                     ecb-ecb-buffer-registry)))
 
-(defun ecb-get-current-visible-ecb-buffers (&optional ecb-window-list)
+(defun ecb-get-current-visible-ecb-buffers (&optional window-list)
   "Return a list of all buffer-objects displayed in a currently visible and
 dedicated special ecb-window. The superset of all possible \(because
 registered) special ecb-buffers are available by
 `ecb-dedicated-special-buffers'.
-If ecb-window-list is not nil then this list is used otherwise it will be
+If window-list is not nil then this list is used otherwise it will be
 computed by `ecb-canonical-ecb-windows-list'."
   (mapcar (function (lambda (window)
                       (window-buffer window)))
-          (or ecb-window-list (ecb-canonical-ecb-windows-list))))
+          (or window-list (ecb-canonical-ecb-windows-list))))
 
 (defun ecb-buffer-is-visible-ecb-buffer-p (buffer-or-name)
   "Return not nil if BUFFER-OR-NAME is a member of

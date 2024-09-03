@@ -74,7 +74,7 @@
 ;; ecb is implementing compatibilty functions
 
 ;;;###autoload
-(defconst ecb-running-xemacs (featurep 'xemacs))
+
 (defconst ecb-temp-dir
   (file-name-as-directory
    (or (getenv "TMPDIR") (getenv "TMP") (getenv "TEMP")
@@ -1553,84 +1553,18 @@ See `ecb-current-buffer-archive-extract-p'. FILENAME is either a filename or
 nil whereas in the latter case the current-buffer is assumed."
   (let* ((file (or filename (ecb-buffer-file-name (current-buffer)))))
     (or (and file (file-readable-p file))
-         (if filename
-             (with-current-buffer (find-file-noselect filename)
-               (ecb-current-buffer-archive-extract-p))
+             (if filename
+                 (with-current-buffer (find-file-noselect filename)
+                   (ecb-current-buffer-archive-extract-p))
            (ecb-current-buffer-archive-extract-p)))))
 
 ;;; ----- Windows ------------------------------------------
-
-;; Emacs 20 has no window-list function and the XEmacs and Emacs 21 one has no
-;; specified ordering. The following one is stolen from XEmacs and has fixed
-;; this lack of a well defined order. We preserve also point of current
-;; buffer! IMPORTANT: When the window-ordering is important then currently
-;; these function should only be used with WINDOW = (frame-first-window
-;; ecb-frame)!
-(defun ecb-window-list (&optional frame minibuf window)
-  "Return a list of windows on FRAME, beginning with WINDOW. The
-windows-objects in the result-list are in the same canonical windows-ordering
-of `next-window'. If omitted, WINDOW defaults to the selected window. FRAME and
-WINDOW default to the selected ones. Optional second arg MINIBUF t means count
-the minibuffer window even if not active. If MINIBUF is neither t nor nil it
-means not to count the minibuffer even if it is active."
-  ;; At least under XEmacs 21.5 there's a problem with the advice on
-  ;; current-window-configuration -- that advice calls
-  ;; ecb-window-configuration-data, which in turn involves ecb-windows-list,
-  ;; which uses save-windows-excursion, which in 21.5-b28 is. . . a macro
-  ;; which uses current-window-configuration!
-  ;; To avoid this we run the body of this function with deactivated basic
-  ;; advices of ecb.
-
-  ;; Klaus Berndl <klaus.berndl@sdm.de>: There seems to be mysterious
-  ;; behavior when running our own window-list version with GNU Emacs >=
-  ;; 21.3 - especially when running an igrep when the igrep-buffer is
-  ;; already in another window. We can here savely use the function
-  ;; `window-list' because it returns an ordered list
-
-  (window-list frame minibuf window)
-
-  ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: the following is needed for
-  ;; XEmacs - but the best would be if we would not need
-  ;; implementing window-list, means the best would be if window-list
-  ;; returns an ordered list!
-
-  (ecb-with-original-basic-functions
-   (setq window (or window (selected-window))
-         frame (or frame (selected-frame)))
-   (if (not (eq (window-frame window) frame))
-       (error "Window must be on frame."))
-   (let ((current-frame (selected-frame))
-         (current-window (selected-window))
-         (current-buf (current-buffer))
-         (current-point (point))
-         list)
-     (unwind-protect
-         (progn ;;save-window-excursion
-           (select-frame frame)
-           ;; this is needed for correct start-point
-           (select-window window)
-           (walk-windows
-            (function (lambda (cur-window)
-                        (if (not (eq window cur-window))
-                            (setq list (cons cur-window list)))))
-            minibuf
-            'selected)
-           ;; This is needed to get the right canonical windows-order, i.e. the
-           ;; same order of windows than `walk-windows' walks through!
-           (setq list (nreverse list))
-           (setq list (cons window list)))
-       (select-frame current-frame)
-       (select-window current-window)
-       (set-buffer current-buf)
-       ;; we must reset the point of the buffer which was current at call-time
-       ;; of this function
-       (goto-char current-point)))))
 
 (defun ecb-canonical-windows-list ()
   "Return a list of all current visible windows in the `ecb-frame' \(starting
 from the left-most top-most window) in the order `next-window' would walk
 through these windows."
-  (ecb-window-list ecb-frame 0 (frame-first-window ecb-frame)))
+  (window-list ecb-frame 0 (frame-first-window ecb-frame)))
 
 (defun ecb-window-live-p (buffer-or-name)
   "Return not nil if buffer BUFFER-OR-NAME is displayed in an active window."
@@ -1812,7 +1746,7 @@ returned. Otherwise the return value of BODY is returned. Runs encapsulated in
   "Make all windows of FRAME not dedicated."
   (mapc (function (lambda (w)
                     (set-window-dedicated-p w nil)))
-        (ecb-window-list (or frame (selected-frame)))))
+        (window-list (or frame (selected-frame)))))
 
 (defun ecb-set-windows-dedicated-state (buf-list state)
   "For every buffer in BUF-LIST set its windows dedicated-state to STATE if

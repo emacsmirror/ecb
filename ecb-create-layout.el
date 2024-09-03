@@ -298,7 +298,7 @@ DELETE-FRAME is not nil then the new created frame will be deleted and the
   "Returns only not nil if all windows in current layout have a type."
   (let ((save-p t))
     (save-excursion
-      (dolist (win (ecb-window-list (selected-frame) 0))
+      (dolist (win (window-list (selected-frame) 0))
         (unless (equal win ecb-create-layout-edit-window)
           (set-buffer (window-buffer win))
           (setq save-p (ecb-create-layout-buffer-type)))))
@@ -529,7 +529,7 @@ never selects the edit-window."
   (interactive)
   (when (ecb-create-layout-frame-ok)
     (unless (or (equal (selected-window) ecb-create-layout-edit-window)
-                (= (length (ecb-window-list nil 0))
+                (= (length (window-list nil 0))
                    (if (equal ecb-create-layout-type 'left-right) 3 2)))
       (if (and (member ecb-create-layout-type '(right left-right))
                (equal (previous-window (selected-window) 0)
