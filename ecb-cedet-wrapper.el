@@ -212,9 +212,6 @@ If ECB detects a problem it is reported and then an error is thrown."
           (princ "\n\nPlease fix the reported problem and restart Emacs\n"))
         (ecb-error "Please fix the reported problem and restart Emacs!")))))
 
-(defconst ecb-semantic-2-loaded (ignore-errors
-                                  (string-match "^2" semantic-version)))
-
 ;; -- getter functions for all variables of cedet currently used by ECB ---
 
 (defsubst ecb--semantic-symbol->name-assoc-list ()

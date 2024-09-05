@@ -1545,11 +1545,6 @@ edit-window-list is computed via `ecb-canonical-edit-windows-list'."
              'horizontal))
           (t 'splitted))))
 
-(defvar ecb-temp-buffer-shrink-to-fit nil
-  "Workaround for XEmacs-version which have a `display-buffer' with only 3
-arguments. Do never set this variable; it is only set by
-`show-temp-buffer-in-current-frame'!")
-
  ;; only GNU Emacs basic advices
 (defecb-advice mouse-drag-vertical-line around ecb-layout-basic-adviced-functions
    "Allows manually window-resizing even if `ecb-fix-window-size' is not nil
