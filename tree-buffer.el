@@ -2539,7 +2539,6 @@ Example for the usage of this macro:
 
 (defun tree-buffer-stickynode-header-line-format ()
   "The header line format used by sticky func mode."
-  (message "header-line-format reached")
   (tree-buffer-stickynode-fetch-stickyline))
 
 (defun tree-buffer-goto-sticky-node ()
