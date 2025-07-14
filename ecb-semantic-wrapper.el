@@ -50,6 +50,11 @@
   (require 'silentcomp))
 
 (eval-when-compile
+  ;; For the semantic-find-tags-for-completion macro.
+  (require 'semantic/find))
+(require 'semantic/db-find)          ;For type semanticdb-find-result-with-nil.
+
+(eval-when-compile
   ;; to avoid compiler grips
   (require 'cl-lib))
 

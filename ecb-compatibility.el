@@ -114,19 +114,19 @@ BUFFER is displayed in an edit-window!"
              (ecb-point-in-dedicated-special-buffer))
     (ecb-select-edit-window)))
 
-(defecb-advice electric-buffer-list before ecb-compatibility-advices
-  "Ensures that the electric-* commands work well with ECB."
-  (when (and ecb-minor-mode
-             (equal (selected-frame) ecb-frame)
-             (ecb-point-in-dedicated-special-buffer))
-    (ecb-select-edit-window)))
-
-(defecb-advice electric-buffer-list after ecb-compatibility-advices
-  "Ensures that the electric-* commands work well with ECB."
-  (when (and ecb-minor-mode
-             (equal (selected-frame) ecb-frame))
-    (if (ecb-buffer-obj "*Buffer List*")
-        (bury-buffer (ecb-buffer-obj "*Buffer List*")))))
+;(defecb-advice electric-buffer-list before ecb-compatibility-advices
+;  "Ensures that the electric-* commands work well with ECB."
+;  (when (and ecb-minor-mode
+;             (equal (selected-frame) ecb-frame)
+;             (ecb-point-in-dedicated-special-buffer))
+;    (ecb-select-edit-window)))
+;
+;(defecb-advice electric-buffer-list after ecb-compatibility-advices
+;  "Ensures that the electric-* commands work well with ECB."
+;  (when (and ecb-minor-mode
+;             (equal (selected-frame) ecb-frame))
+;    (if (ecb-buffer-obj "*Buffer List*")
+;        (bury-buffer (ecb-buffer-obj "*Buffer List*")))))
 
 ;; package master.el
 

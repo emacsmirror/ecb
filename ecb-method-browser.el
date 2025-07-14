@@ -1910,7 +1910,7 @@ This function MUST be called with the source-buffer as current buffer!"
 
 (defun ecb-children-tags (parent-tag)
   "Return a list of children-tags of PARENT-TAG. If a child is not a
-semantic-tag \(but a plain string) then it will be converted to a positionless
+semantic-tag (but a plain string) then it will be converted to a positionless
 tag of class 'variable."
   (mapcar (function (lambda (c)
                       (cl-typecase c
@@ -2966,7 +2966,7 @@ not enabled for current source-buffer and the option
 `ecb-force-reparse-when-semantic-idle-scheduler-off' is not nil then use
 `ecb--semantic-fetch-tags' otherwise use `ecb--semantic-fetch-available-tags'.
 The latter always returns just the currently available tags in the
-semantic-cache \(reparsing is done completely by the idle-scheduler of
+semantic-cache (reparsing is done completely by the idle-scheduler of
 semantic if necessary). The former one triggers immediate parsing if
 necessary!"
   (if (or full

@@ -112,17 +112,6 @@ tree-buffer can be very easily changed with face 'ecb-default-general-face'."
   :type 'face
   :group 'ecb-face-options)
 
-(defface ecb-tree-buffer-face (ecb-face-default 1.0 nil nil
-                                                    'ecb-default-general-face
-                                                    "blue" "black")
-  "*Face for the tree-buffers."
-  :group 'ecb-faces)
-
-(defcustom ecb-tree-buffer-face 'ecb-tree-buffer-face
-  "*Face for the tree-buffers."
-  :type 'face
-  :group 'ecb-face-options)
-
 (defface ecb-directories-general-face (ecb-face-default 1.0 nil nil
                                                         'ecb-default-general-face)
   "*Basic face for the ECB directories buffer.

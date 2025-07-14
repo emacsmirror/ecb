@@ -1,72 +1,29 @@
-README for the Emacs Code Browser (ECB) version 2.40.1
+README for the Emacs Code Browser (ECB) version 2.51.0
 
 
 About
 -----
 
 This package contains a code browser for several programming-languages for
-(X)Emacs. For instructions on how to use the browser read the online-help
+Emacs. For instructions on how to use the browser read the online-help
 either with the shipped info-manual (see "Usage" below) or direct from the
-ECB-Homepage at http://ecb.sourceforge.net.
+new github ECB-Homepage at https://github.com/ecb-new-home/ecb
 
-The latest version can be found at: http://ecb.sourceforge.net
+The latest version can be found at: https://github.com/ecb-new-home/ecb
 
 ------------
 Requirements
 ------------
 
-The short story:
+With Emacs >= 29.x there is nothing to do. Older version will not work.
 
-With Emacs >= 23.2 there is nothing to do. With XEmacs or Emacs < 23.2 you
-have to install the CEDET-suite by hand.
-
-The long story:
-
-1. Emacs-version: ECB works only with (X)Emacs >= 21! If you have an older
-   one, please upgrade.
-
-2. CEDET-suite: If Emacs >= 23.2 is used then CEDET is already integrated
-   into Emacs and there is nothing to do.
-
-   For users of any XEmacs-version, any Emacs-version < 23.2 or the latest
-   author CEDET version: Get it from http://cedet.sourceforge.net, read
-   the setup-instructions in http://cedet.sourceforge.net/setup.shtml and
-   read also the shipped file `INSTALL'.
-
-   *Please note*: If ECB detects an author version of CEDET (as available
-   at http://cedet.sourceforge.net) then ECB will ALWAYS try to use that
-   one even if you use Emacs >= 23.2! This is for users who want to use
-   latest Emacs >= 23.2 but still prefer using the latest author version of
-   CEDET instead of the Emacs-integrated one.
-
-   So if you want to use the Emacs-integrated CEDET-suite of Emacs >= 23.2
-   you have to ensure that no author-version of CEDET is in the `load-path'!
-   This means that the library cedet.el of the author-version MUST NOT be
-   loaded into Emacs (as described in the file INSTALL of CEDET)! This is a
-   valid check: (locate-library "semantic-ctxt") must return nil!
-
-3. Only for XEmacs-users: If you use XEmacs you must have installed the
-   package c-support (contains hideshow.el). If you want to read the
-   online-help of ECB in HTML-format you must have the library browse-url
-   (part of the mail-lib XEmacs package) installed; this package is also
-   needed for submitting problem-reports to the ECB-maintainers!
-
-4. Optional for Java-coding: ECB works very well with the JDEE package (
-   http://jdee.sourceforge.net) but JDEE is not required by ECB.
-
-
-Do not install ECB before you have successfully installed the requirements!
-
+*IMPORTANT*: ECB is no longer runnable as XEmacs-package
+Support for XEmacs is gone.
 
 ------------
 Installation
 ------------
 
-*IMPORTANT*: ECB is no longer runnable as XEmacs-package via the
-package-manager of XEmacs. This is because CEDET is not available as
-XEmacs-package. Therefore ECB can also not be run as XEmacs-package. If CEDET
-will later become a XEmacs-package then probably ECB will come back as
-XEmacs-package. But in the meanwhile you have to install ECB "by hand".
 
   1. Fulfill all requirements ECB needs (s.a. Requirements)
 
@@ -130,7 +87,7 @@ XEmacs-package. But in the meanwhile you have to install ECB "by hand".
      CEDET into Emacs must be placed somewhere before the statements needed for
      loading ECB (s.a.)!
 
-  5. Restart (X)Emacs.
+  5. Restart Emacs.
 
 ECB is now ready for use and can be activated by calling `M-x ecb-activate'
 or `ecb-minor-mode'. Now you can either starting using ECB or you can do
@@ -181,6 +138,7 @@ these optional installation steps:
 --------------
 Using Makefile
 --------------
+
 Makefile can be configured using Makefile.conf, for which there is a template in
 Makefile.conf.template. Usually it's enough to set a path to CEDET (if you use
 repo version) and EMACSINFOPATH to local (e.g. ~/.emacs.d/info).
@@ -188,8 +146,8 @@ repo version) and EMACSINFOPATH to local (e.g. ~/.emacs.d/info).
 For Linux, Makefile tries to use reasonable defaults.
 
 You can print configuration used in Makefile using `make printconf'.
-     
------   
+
+-----
 Usage
 -----
 
@@ -205,16 +163,12 @@ using ECB the first time you should read the online help accurately!
 Contacts
 --------
 
-Send comments, bug reports and improvement suggestions to:
+For comments, bug reports and improvement suggestions make an issue in:
 
-ecb-list@lists.sourceforge.net
+https://github.com/ecb-new-home/ecb
 
-*IMPORTANT*: Cause of extra appearance of SPAM in the mailing-lists,
-SourceForge has changed its policy: Now it is only possible to post to the
-mailing-list for users who have subscribed this mailing-list.
+Do not use the "Mailing-list" ecb-list@lists.sourceforge.net
+at the ECB-website at http://ecb.sourceforge.net any more
 
-So please be aware you will not be able to send comments, bug reports and
-improvement suggestions before you have subscribed the ECB-mailing-list. See
-the section "Mailing-list" at the ECB-website at http://ecb.sourceforge.net
-how to do this.
+
 

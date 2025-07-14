@@ -78,9 +78,6 @@
 ;; imenu
 (silentcomp-defvar imenu--rescan-item)
 (silentcomp-defvar imenu--index-alist)
-;; XEmacs
-(silentcomp-defun event-button)
-(silentcomp-defvar mouse-motion-handler)
 
 (defgroup ecb-speedbar nil
   "Settings for the speedbar-integration of ECB."
