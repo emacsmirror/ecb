@@ -156,7 +156,7 @@
 ;; change it here!
 ;; TODO: Makefile frobbing broken
 
-(defconst ecb-version "2.51"
+(defconst ecb-version "2.52"
   "Current ECB version.")
 
 (eval-when-compile
@@ -174,7 +174,7 @@
 
 ;; Each NEWS-string should be a one-liner shorter than 70 chars
 (defconst ecb-upgrade-news
-  '(("2.51" . ("By default ECB now utilizes CEDET distributed as part of Emacs."
+  '(("2.52" . ("By default ECB now utilizes CEDET distributed as part of Emacs."
 	       "ECB now requires Emacs 29.x (though previous versions may work."
                "This release includes numerous fixes related to moving to the latest Emacs"
                ))
