@@ -45,7 +45,7 @@
 
 (eval-when-compile
   ;; to avoid compiler grips
-  (require 'cl))
+  (require 'cl-lib))
 
 (require 'ecb-util)
 
@@ -165,7 +165,7 @@ If ECB detects a problem it is reported and then an error is thrown."
                      "If you use the Makefile check the variables CEDET before compiling!\n"
                      ))
             (t ""))))
-      (unless (= 0 (length err-msg)) 
+      (unless (= 0 (length err-msg))
         (with-output-to-temp-buffer "*ECB semantic-load problems*"
           (princ "Currently ECB can not be activated cause of the following reason:\n\n")
           (princ err-msg)
@@ -205,15 +205,12 @@ If ECB detects a problem it is reported and then an error is thrown."
                      "with the same CEDET-library-version as you load into Emacs.\n"
                      "If you use the Makefile check the variable CEDET before compiling!\n"))
             (t ""))))
-      (unless (= 0 (length err-msg)) 
+      (unless (= 0 (length err-msg))
         (with-output-to-temp-buffer "*ECB cedet-load problems*"
           (princ "Currently ECB can not be activated cause of the following reason:\n\n")
           (princ err-msg)
           (princ "\n\nPlease fix the reported problem and restart Emacs\n"))
         (ecb-error "Please fix the reported problem and restart Emacs!")))))
-
-(defconst ecb-semantic-2-loaded (ignore-errors
-                                  (string-match "^2" semantic-version)))
 
 ;; -- getter functions for all variables of cedet currently used by ECB ---
 

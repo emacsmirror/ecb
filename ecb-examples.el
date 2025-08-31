@@ -32,7 +32,7 @@
 ;; it with the edit-window of ECB.
 ;;
 ;; To test this example just do:
-;; 1. Start ECB 
+;; 1. Start ECB
 ;; 2. Load ecb-examples.el into (X)Emacs: (require 'ecb-examples)
 ;; 3. Call `ecb-show-layout-help' and insert "example-layout1" as layout name
 ;;    to see the outline of the test layout and get information about the
@@ -64,7 +64,7 @@
 
 (eval-when-compile
   ;; to avoid compiler grips
-  (require 'cl))
+  (require 'cl-lib))
 
 ;; ---------------------------------------------------------------------------
 ;; --- Code for the bufferinfo buffer ----------------------------------------
@@ -205,7 +205,7 @@ it will be called autom. by the internal synchronizing mechanism of ECB."
 
   ;; The macro `defecb-autocontrol/sync-function' does a lot for our
   ;; conveniance:
-  
+
   ;; 1) here we can be sure that the buffer with name
   ;; `ecb-examples-bufferinfo-buffer-name' is displayed in a window of
   ;; `ecb-frame' because the macro `defecb-autocontrol/sync-function'
@@ -221,7 +221,7 @@ it will be called autom. by the internal synchronizing mechanism of ECB."
 
   ;; 3) The generated function has one optional argument FORCE which can be used
   ;; in the code below.
-  
+
   ;; 4) The macro `defecb-autocontrol/sync-function' makes this synchronizing
   ;; function interactive
 
@@ -235,7 +235,7 @@ it will be called autom. by the internal synchronizing mechanism of ECB."
     ;; file-buffer), therefore we use `ecb-buffer-file-name' (see the docstring
     ;; of this function)
     (let ((filename (ecb-buffer-file-name (current-buffer))))
-    
+
       (if (and filename (ecb-buffer-or-file-readable-p filename))
 
           ;; synchronizing for real filesource-buffers or indirect buffers of
@@ -250,7 +250,7 @@ it will be called autom. by the internal synchronizing mechanism of ECB."
               (setq ecb-examples-bufferinfo-last-file-buffer (current-buffer))
               ;; we display the file-infos for current source-buffer
               (ecb-examples-print-file-attributes visible-buffer filename))
-        
+
         ;; what should we do for non file buffers like help-buffers etc...
         (setq ecb-examples-bufferinfo-last-file-buffer nil)
         (ecb-examples-print-non-filebuffer visible-buffer
@@ -292,7 +292,7 @@ window dedicated for this buffer. Makes the buffer read-only."
   ;; layout deactivating/activating ECB)
   (ecb-activate-ecb-autocontrol-function ecb-examples-bufferinfo-buffer-sync-delay
                                          'ecb-examples-bufferinfo-buffer-sync)
-  
+
   (switch-to-buffer (get-buffer-create ecb-examples-bufferinfo-buffer-name))
   (setq buffer-read-only t))
 
@@ -328,20 +328,19 @@ contains two buttons \[prior] and \[next] and mouse-2 calls
         (set-buffer (get-buffer-create ecb-examples-action-buffer-name))
 
         ;; we setup a local key-map
-        
+
         (make-local-variable 'ecb-examples-action-buffer-keymap)
         (setq ecb-examples-action-buffer-keymap (make-sparse-keymap))
-        
+
         ;; define mouse-2 with `ecb-examples-action-buffer-clicked'
-        (define-key ecb-examples-action-buffer-keymap
-          (if ecb-running-xemacs '(button2) [down-mouse-2])
-          'ecb-examples-action-buffer-clicked)
+        (define-key ecb-examples-action-buffer-keymap [down-mouse-2]
+                                'ecb-examples-action-buffer-clicked)
 
         ;; nop operations for the other mouse-2 operations with Emacs
         (define-key ecb-examples-action-buffer-keymap [mouse-2] nop)
         (define-key ecb-examples-action-buffer-keymap [double-mouse-2] nop)
         (define-key ecb-examples-action-buffer-keymap [triple-mouse-2] nop)
-        
+
         (use-local-map ecb-examples-action-buffer-keymap)
 
         ;; insert the action buttons [prior] and [next] and make it read-only
@@ -352,7 +351,7 @@ contains two buttons \[prior] and \[next] and mouse-2 calls
          (insert "\n")
          (ecb-examples-insert-text-in-action-buffer "[next]")
          (insert "\n"))
-        
+
         (current-buffer)))))
 
 
@@ -446,10 +445,10 @@ window/buffer of a layout."
 
   ;; dedicating the bufferinfo window to the bufferinfo-buffer
   (ecb-examples-set-bufferinfo-buffer)
-  
+
   ;; creating the action-window
   (ecb-split-hor 0.75)
-  
+
   ;; dedicating the action window to the action-buffer
   (ecb-examples-set-action-buffer)
 
@@ -503,15 +502,15 @@ preactivation-state is saved and will be restored by
 `ecb-examples-deactivate'."
   (interactive)
 
-  (assert (featurep 'ecb) nil
+  (cl-assert (featurep 'ecb) nil
           "ECB must be loaded!")
-  (assert ecb-minor-mode nil
+  (cl-assert ecb-minor-mode nil
           "ECB must be activated!")
-  (assert (equal (selected-frame) ecb-frame) nil
+  (cl-assert (equal (selected-frame) ecb-frame) nil
           "The ECB-frame must be selected!")
-  (assert (not (ecb-string= ecb-layout-name "example-layout1")) nil
+  (cl-assert (not (ecb-string= ecb-layout-name "example-layout1")) nil
           "The examples-layout1 is already active!")
-  
+
   ;; saving the state
   (ecb-examples-preactivation-state 'save)
 
@@ -535,21 +534,21 @@ Stops `ecb-examples-bufferinfo-buffer-sync' and restore the state
 as before activation."
   (interactive)
 
-  (assert (featurep 'ecb) nil
+  (cl-assert (featurep 'ecb) nil
           "ECB must be loaded!")
-  (assert ecb-minor-mode nil
+  (cl-assert ecb-minor-mode nil
           "ECB must be activated!")
-  (assert (equal (selected-frame) ecb-frame) nil
+  (cl-assert (equal (selected-frame) ecb-frame) nil
           "The ECB-frame must be selected!")
-  (assert (ecb-string= ecb-layout-name "example-layout1") nil
+  (cl-assert (ecb-string= ecb-layout-name "example-layout1") nil
           "The example-layout1 is not active!")
-  
+
   (ecb-stop-autocontrol/sync-function 'ecb-examples-bufferinfo-buffer-sync)
-  
+
   (ecb-examples-preactivation-state 'restore)
-  
+
   (ecb-layout-switch ecb-layout-name))
-  
+
 
 ;; ---------------------------------------------------------------------------
 ;; --- Providing the examples ------------------------------------------------

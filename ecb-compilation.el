@@ -51,24 +51,18 @@
 (defcustom ecb-compilation-buffer-names `(("*Calculator*" . nil)
                                           ("*vc*" . nil)
                                           ("*vc-diff*" . nil)
-                                          ,(if ecb-running-xemacs
-                                               '("\\*Apropos.*\\*" . t)
-                                             '("*Apropos*" . nil))
+                                          ("*Apropos*" . nil)
                                           ("*Occur*" . nil)
                                           ("*shell*" . nil)
                                           ("\\*[cC]ompilation.*\\*" . t)
                                           ("\\*i?grep.*\\*" . t)
                                           ("*JDEE Compile Server*" . nil)
-                                          ,(if ecb-running-xemacs
-                                               '("\\*Help.*\\*" . t)
-                                              '("*Help*" . nil))
+                                          ("*Help*" . nil)
                                           ("*Completions*" . nil)
                                           ("*Backtrace*" . nil)
                                           ("*Compile-log*" . nil)
                                           ("*bsh*" . nil)
-                                          (,(if ecb-running-xemacs
-                                               " *Message-Log*"
-                                             "*Messages*") . nil))
+                                          ("*Messages*" . nil))
   "*Additional buffer names that should be displayed in the compile-window.
 Buffer names can either be defined as strings or as regexps. If the
 buffer-name of a buffer matches one of the defined string or regexp then it
@@ -206,7 +200,7 @@ BUFFER-OR-NAME will be treated as compilation-buffer - if:
 Otherwise nil is returned.
 
 Summary for ECB-end-users: A buffer will be treated as compilation-buffer if
-either 
+either
 - `compilation-buffer-p' returns not nil, i.e. if a real compilation-buffer or
 - if at least one of the options `ecb-compilation-buffer-names',
   `ecb-compilation-major-modes' or `ecb-compilation-predicates' define the
@@ -215,22 +209,21 @@ either
   (let ((buffer (ecb-buffer-obj buffer-or-name))
         (ecb-comp-predicates (ecb-compilation-predicates)))
     (when buffer
-
       ;;test if this is a valid buffer by name.
       (if (ecb-compilation-registered-buffer-p (buffer-name buffer))
-          buffer
+        buffer
         ;;else test if this is a valid buffer by mode
         (if (with-current-buffer buffer
               (member major-mode (ecb-compilation-major-modes)))
-            buffer
+          buffer
           ;;else test if this is a regular compilation buffer
           (if (compilation-buffer-p buffer)
-              buffer
+            buffer
             ;; we do not use run-hook-with-args-until-success because we have
             ;; to check if the functions are bound!!
             (if (dolist (p ecb-comp-predicates)
                   (if (and (fboundp p) (funcall p buffer))
-                      (return t)))
+                      t))
                 buffer
               nil)))))))
 
@@ -269,42 +262,36 @@ been created or a buffer has been deleted. If yes then
       (setq ecb-compilation-update-menu-p t))))
 
 
-(defun ecb-compilation-update-menu()
-  "Create an install a menu that allows the user to navigate buffers that are
+(defun ecb-compilation-update-menu ()
+  "Create and install a menu that allows the user to navigate buffers that are
 valid ECB compilation buffers. This is only done if
 `ecb-compilation-update-menu-p' is not nil; see
 `ecb-compilation-buffer-list-changed-p'. For more information about
 compilation buffers see `ecb-compilation-buffer-p'."
 
+  ;; it calls switch-to-buffer-other-window, this is ok for all situations
+  ;; because if there is no compile-window then it uses another edit-window
+  ;; otherwise it uses the compile-window.
+
   (when ecb-compilation-update-menu-p
     (let ((submenu nil)
           (buffers (ecb-compilation-get-buffers)))
       (condition-case nil
-          (progn
-            (setq ecb-compilation-update-menu-p nil)
-            (dolist(buffer buffers)
-              (setq submenu
-                    (append submenu
-                            (list (vector (car buffer)
-                                          ;; switch-to-buffer-other-window is
-                                          ;; ok for all situations because if
-                                          ;; no compile-window it uses another
-                                          ;; edit-window otherwise it uses the
-                                          ;; compile-window. 
-                                          `(funcall 'switch-to-buffer-other-window
-                                                    ,(car buffer))
-                                          :active t)))))
-            
-            ;;Klaus Berndl <klaus.berndl@sdm.de>: Seems not to work with
-            ;;Emacs 20.X, but who cares, 20.x is outdated and not supported
-            ;;anymore by ECB
-            (easy-menu-change (list ecb-menu-name)
-                              "Compilation Buffers"
-                              submenu
-                              "Navigate")
-            t)
-        (error nil)))))
-      
+        (progn
+          (setq ecb-compilation-update-menu-p nil)
+          (dolist ( buffer buffers )
+            (setq submenu
+              (append submenu
+                (list (vector (car buffer)
+                      `(funcall 'switch-to-buffer-other-window ,(car buffer))
+                      :active t)))))
+
+          (easy-menu-change (list ecb-menu-name)
+                            "Compilation Buffers"
+                            submenu
+                            "Navigate")
+          t)
+      (error nil)))))
 
 
 (silentcomp-provide 'ecb-compilation)

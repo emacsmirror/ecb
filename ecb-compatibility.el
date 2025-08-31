@@ -114,57 +114,55 @@ BUFFER is displayed in an edit-window!"
              (ecb-point-in-dedicated-special-buffer))
     (ecb-select-edit-window)))
 
-(defecb-advice electric-buffer-list before ecb-compatibility-advices
-  "Ensures that the electric-* commands work well with ECB."
-  (when (and ecb-minor-mode
-             (equal (selected-frame) ecb-frame)
-             (ecb-point-in-dedicated-special-buffer))
-    (ecb-select-edit-window)))
+;(defecb-advice electric-buffer-list before ecb-compatibility-advices
+;  "Ensures that the electric-* commands work well with ECB."
+;  (when (and ecb-minor-mode
+;             (equal (selected-frame) ecb-frame)
+;             (ecb-point-in-dedicated-special-buffer))
+;    (ecb-select-edit-window)))
+;
+;(defecb-advice electric-buffer-list after ecb-compatibility-advices
+;  "Ensures that the electric-* commands work well with ECB."
+;  (when (and ecb-minor-mode
+;             (equal (selected-frame) ecb-frame))
+;    (if (ecb-buffer-obj "*Buffer List*")
+;        (bury-buffer (ecb-buffer-obj "*Buffer List*")))))
 
-(defecb-advice electric-buffer-list after ecb-compatibility-advices
-  "Ensures that the electric-* commands work well with ECB."
-  (when (and ecb-minor-mode
-             (equal (selected-frame) ecb-frame))
-    (if (ecb-buffer-obj "*Buffer List*")
-        (bury-buffer (ecb-buffer-obj "*Buffer List*")))))
-
-;; package master.el (only Emacs >= 22.X) ------------------------------------
+;; package master.el
 
 ;; The adviced version of switch-to-buffer-other-window can redraw the layout
 ;; (e.g. if the buffer in the compile-window is the slave and the
 ;; compile-window has been made visible), so <window> in the code below can be
 ;; a destroyed window-object! we have to prevent from this (e.g. by selecting
 ;; the window before by number).
-(when-ecb-running-emacs
- (defecb-advice master-says around ecb-compatibility-advices
-   "Makes the function compatible with ECB."
-   (if (or (not ecb-minor-mode)
-           (not (equal (selected-frame) ecb-frame)))
-       (ecb-with-original-basic-functions ad-do-it)
-     (if (null (buffer-live-p (ecb-buffer-obj master-of)))
-         (error "Slave buffer has disappeared")
-       (let ((window  (selected-window))
-             (point-loc (ecb-where-is-point))
-             (p (point)))
-         (if (not (eq (window-buffer window) (ecb-buffer-obj master-of)))
-             (switch-to-buffer-other-window master-of))
-         (if (ad-get-arg 0)
-             (condition-case nil
-                 (apply (ad-get-arg 0) (ad-get-arg 1))
-               (error nil)))
-         (select-window (case (car point-loc)
-                          (ecb
-                           (ecb-get-ecb-window-by-number (cdr point-loc)))
-                          (edit
-                           (ecb-get-edit-window-by-number (cdr point-loc)))
-                          (compile
-                           ecb-compile-window)
-                          (minibuf
-                           (minibuffer-window ecb-frame))
-                          (other-dedicated
-                           (ecb-get-window-by-number (cdr point-loc)))))
-         (goto-char (point))))))
-   )
+(defecb-advice master-says around ecb-compatibility-advices
+ "Makes the function compatible with ECB."
+ (if (or (not ecb-minor-mode)
+         (not (equal (selected-frame) ecb-frame)))
+     (ecb-with-original-basic-functions ad-do-it)
+   (if (null (buffer-live-p (ecb-buffer-obj master-of)))
+       (error "Slave buffer has disappeared")
+     (let ((window  (selected-window))
+           (point-loc (ecb-where-is-point))
+           (p (point)))
+       (if (not (eq (window-buffer window) (ecb-buffer-obj master-of)))
+           (switch-to-buffer-other-window master-of))
+       (if (ad-get-arg 0)
+           (condition-case nil
+               (apply (ad-get-arg 0) (ad-get-arg 1))
+             (error nil)))
+       (select-window (cl-case (car point-loc)
+                        (ecb
+                         (ecb-get-ecb-window-by-number (cdr point-loc)))
+                        (edit
+                         (ecb-get-edit-window-by-number (cdr point-loc)))
+                        (compile
+                         ecb-compile-window)
+                        (minibuf
+                         (minibuffer-window ecb-frame))
+                        (other-dedicated
+                         (ecb-get-window-by-number (cdr point-loc)))))
+       (goto-char (point))))))
 
 ;; package scroll-all.el --------------------------------------------------
 
@@ -190,26 +188,24 @@ BUFFER is displayed in an edit-window!"
 ;; Electric-pop-up-window advice instaed of this advice because otherwise
 ;; some commands of the popup-menus of the ecb-buffers would not work - this
 ;; comes from the save-window-excursion in the the tmm.
-(when-ecb-running-emacs
- (defecb-advice tmm-prompt around ecb-compatibility-advices
-   "Make it compatible with ECB."
-   (if (or (not ecb-minor-mode)
-           (not (equal (selected-frame) ecb-frame)))
-       (ecb-with-original-basic-functions ad-do-it)
-     ;; we set temporally `ecb-other-window-behavior' to a function which
-     ;; always selects the "next" window after the
-     ;; `ecb-last-edit-window-with-point'
-     (let ((ecb-other-window-behavior
-            (lambda (win-list edit-win-list ecb-win-list comp-win
-                              mini-win point-loc nth-win)
-              (ecb-next-listelem edit-win-list
-                                 ecb-last-edit-window-with-point)))
-           ;; we must not handle the tmm-stuff as compilation-buffer
-           (ecb-compilation-buffer-names nil)
-           (ecb-compilation-major-modes nil)
-           (ecb-compilation-predicates nil))
-       ad-do-it)))
- )
+(defecb-advice tmm-prompt around ecb-compatibility-advices
+ "Make it compatible with ECB."
+ (if (or (not ecb-minor-mode)
+         (not (equal (selected-frame) ecb-frame)))
+     (ecb-with-original-basic-functions ad-do-it)
+   ;; we set temporally `ecb-other-window-behavior' to a function which
+   ;; always selects the "next" window after the
+   ;; `ecb-last-edit-window-with-point'
+   (let ((ecb-other-window-behavior
+          (lambda (win-list edit-win-list ecb-win-list comp-win
+                            mini-win point-loc nth-win)
+            (ecb-next-listelem edit-win-list
+                               ecb-last-edit-window-with-point)))
+         ;; we must not handle the tmm-stuff as compilation-buffer
+         (ecb-compilation-buffer-names nil)
+         (ecb-compilation-major-modes nil)
+         (ecb-compilation-predicates nil))
+     ad-do-it)))
 
 ;; ediff-stuff ---------------------------------------------------------------
 
@@ -304,9 +300,8 @@ does all necessary after finishing ediff."
 ;; one will be the deleted one...how to go back to that window we have to go
 ;; back??
 
-(when-ecb-running-emacs
- (defecb-advice view-mode-exit around ecb-compatibility-advices
-   "Makes view-mode compatible with ECB.
+(defecb-advice view-mode-exit around ecb-compatibility-advices
+ "Makes view-mode compatible with ECB.
 
 If there is no compile-window \(i.e. the buffer with view-mode is not
 displayed in the special compile-window of ECB) then nothing special is done
@@ -319,21 +314,56 @@ of view-mode is disabled only `view-no-disable-on-exit' is taken into acount.
 The compile-window will be shrinked down with
 `ecb-toggle-compile-window-height' and the last edit-window with point will be
 selected afterwards."
-   (if (and (boundp 'ecb-minor-mode)
-            ecb-minor-mode
-            (eq (selected-frame) ecb-frame)
-            (eq (selected-window) ecb-compile-window))
-       (when view-mode
-         (or view-no-disable-on-exit
-             (view-mode-disable))
-;;          (when (ad-get-arg 1) ;; = exit-action
-;;            (setq view-exit-action nil)
-;;            (funcall (ad-get-arg 1) (current-buffer)))
-         (force-mode-line-update)
-         (ecb-toggle-compile-window-height -1)
-         (select-window ecb-last-edit-window-with-point))
-     ad-do-it))
-)
+ (if (and (boundp 'ecb-minor-mode)
+          ecb-minor-mode
+          (eq (selected-frame) ecb-frame)
+          (eq (selected-window) ecb-compile-window))
+     (when view-mode
+       (or view-no-disable-on-exit
+           (view-mode-disable))
+       (force-mode-line-update)
+       (ecb-toggle-compile-window-height -1)
+       (select-window ecb-last-edit-window-with-point))
+   ad-do-it))
+
+(defmacro ecb-ad-with-originals (functions &rest body)
+  "Binds FUNCTIONS to their original definitions and execute BODY.
+For any members of FUNCTIONS that are not currently advised the rebinding will
+be a noop.  Any modifications done to the definitions of FUNCTIONS will be
+undone on exit of this macro."
+  (declare (indent 1))
+  (let* ((index -1)
+	 ;; Make let-variables to store current definitions:
+	 (current-bindings
+	  (mapcar (function
+		   (lambda (function)
+                    (setq index (1+ index))
+                    (list (intern (format "ad-oRiGdEf-%d" index))
+                          `(symbol-function ',function))))
+		  functions)))
+    `(let ,current-bindings
+      (unwind-protect
+           (progn
+             ,@(progn
+                ;; Make forms to redefine functions to their
+                ;; original definitions if they are advised:
+                (setq index -1)
+                (mapcar (lambda (function)
+                          (setq index (1+ index))
+                           `(fset ',function
+                            (or (ad-get-orig-definition ',function)
+                                ,(car (nth index current-bindings)))))
+                        functions))
+             ,@body)
+        ,@(progn
+           ;; Make forms to back-define functions to the definitions
+           ;; they had outside this macro call:
+           (setq index -1)
+           (mapcar (lambda (function)
+                     (setq index (1+ index))
+                       `(fset ',function
+                       ,(car (nth index current-bindings))))
+                   functions))))))
 
 
 ;; not yet done ----------------------------------------------------------------
@@ -348,9 +378,6 @@ selected afterwards."
 ;; This is new in Emacs 21.4 so maybe we have to make it compatible with ECB!
 ;; But maybe this could be hard because AFAIK gdb-ui.el uses dedicated
 ;; windows!
-
-
-
 
 ;; we disable the advices at load-time
 (ecb-disable-advices 'ecb-compatibility-advices t)

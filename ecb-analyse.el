@@ -35,13 +35,14 @@
 (require 'ecb-common-browser)
 (require 'ecb-method-browser)
 (require 'ecb-cedet-wrapper)
+(require 'ecb-semantic-wrapper)
 
 (eval-when-compile
   (require 'silentcomp))
 
 (eval-when-compile
   ;; to avoid compiler grips
-  (require 'cl))
+  (require 'cl-lib))
 
 
 (defgroup ecb-analyse nil
@@ -75,7 +76,7 @@ key-bindings only for the analyse-buffer of ECB."
 (defcustom ecb-analyse-show-node-info '(if-too-long . name)
   "*When to display which node-info in the analyse-buffer.
 Define which node info should displayed after moving the mouse over a node
-\(or after a shift click onto the node) in the analyse-buffer.
+(or after a shift click onto the node) in the analyse-buffer.
 
 You can define \"when\" a node-info should be displayed:
 See `ecb-directories-show-node-info' for the possible choices.
@@ -102,7 +103,7 @@ The semantic analyse-modul offers several categories of analysis which are
 called buckets here. These are for example:
 
 Context: The current context, which is the current function/method, variable,
-class etc. \(what exactly depends on the programming language) point is in.
+class etc. (what exactly depends on the programming language) point is in.
 This means not the current function/method/variable/class-name point stand on
 but the current surrounding context. Example: If point stays somewhere within
 a defun-definition in emacs-lisp or within a java-method then this defun rsp.
@@ -123,11 +124,11 @@ Function: Current function-name point stands on.
 Argument #: When point is located within a function-call then this is the
 number of the argument point stands on.
 
-Completions: All possible completions for current prefix \(see above). This is
+Completions: All possible completions for current prefix (see above). This is
 probably the most helpful bucket.
 
 If one of these categories/buckets are not needed per default then add the
-bucket-name \(s.a.) to this option and ECB will per default collapse this
+bucket-name (s.a.) to this option and ECB will per default collapse this
 bucket. So most needed buckets are better visible in the analyse-buffer."
   :group 'ecb-analyse
   :type '(repeat (choice :tag "Bucket" :menu-tag "Bucket"
@@ -174,7 +175,7 @@ fontified see the options `ecb-analyse-bucket-node-face' rsp.
 If nil then the default information about a tag will be displayed. If a
 function then this function gets as argument the tag for which tag-information
 should be displayed. This function has to return a string which will be then
-display as tag-info. This string has to be fully formatted \(e.g. must already
+display as tag-info. This string has to be fully formatted (e.g. must already
 include line-breaks if the tag-info should be displayed in several lines).
 
 See `ecb-analyse-show-tag-info-fn' how the tag-info is displayed."
@@ -190,8 +191,8 @@ must do all things necessary for displaying this info. When this function is
 called the window stored in `ecb-last-edit-window-with-point' is the selected
 window!
 
-ECB offers two builtin ways: Display the info in the echo-area \(via the
-function `message') or in a temp-buffer in the edit-area \(via the function
+ECB offers two builtin ways: Display the info in the echo-area (via the
+function `message') or in a temp-buffer in the edit-area (via the function
 `ecb-analyse-show-tag-info-in-temp-buffer'). Default is echo-area-display.
 
 See also `ecb-analyse-gen-tag-info-fn'."
@@ -258,7 +259,7 @@ Preconditions for such a hook:
 - Current buffer is the buffer of the currently selected
   edit-window.
 - The analyse-buffer is displayed in a visible window of the
-  ecb-frame \(so no check for visibilty of the analyse-buffer in
+  ecb-frame (so no check for visibilty of the analyse-buffer in
   the ecb-frame is necessary in a hook function)
 
 Postcondition for such a hook:
@@ -266,9 +267,9 @@ Point must stay in the same edit-window as before evaluating the hook.
 
 Important note: If the option `ecb-analyse-buffer-sync' is not
 nil the function `ecb-analyse-buffer-sync' is running either
-every time Emacs is idle or even after every command \(see
+every time Emacs is idle or even after every command (see
 `ecb-analyse-buffer-sync-delay'). So if the anaylse-buffer is
-displayed in a window of the ecb-frame \(see preconditions above)
+displayed in a window of the ecb-frame (see preconditions above)
 these hooks can be really called very often! Therefore each
 function of this hook should/must check in an efficient way at
 beginning if its task have to be really performed and then do
@@ -342,7 +343,7 @@ This means in fact display the current analysis for current point."
                                  ecb-analyse-nodetype-completions)))
       (tree-buffer-update)))
   (run-hooks 'ecb-analyse-buffer-sync-hook))
-        
+
 (defun ecb-analyse-show-scope (scope)
   "Show SCOPE information."
   (let ((localvars (when scope
@@ -351,23 +352,23 @@ This means in fact display the current analysis for current point."
       (ecb-analyse-add-nodes "Local Variables" "Local Variables" localvars
                              ecb-analyse-nodetype-localvars))))
 
-(defmethod ecb-analyse-more-nodes ((context semantic-analyze-context))
+(cl-defmethod ecb-analyse-more-nodes ((context semantic-analyze-context))
   "Show a set of ecb-nodes specific to CONTEXT."
   (let ((prefix (oref context prefix)))
     (when prefix
       (ecb-analyse-add-nodes "Prefix" "Prefix" prefix ecb-analyse-nodetype-prefix))))
 
-(defmethod ecb-analyse-more-nodes ((context semantic-analyze-context-assignment))
+(cl-defmethod ecb-analyse-more-nodes ((context semantic-analyze-context-assignment))
   "Show a set of ecb-nodes specific to CONTEXT."
-  (call-next-method)
+  (cl-call-next-method)
   (let ((assignee (oref context assignee)))
     (when assignee
       (ecb-analyse-add-nodes "Assignee" "Assignee" assignee
                              ecb-analyse-nodetype-assignee))))
 
-(defmethod ecb-analyse-more-nodes ((context semantic-analyze-context-functionarg))
+(cl-defmethod ecb-analyse-more-nodes ((context semantic-analyze-context-functionarg))
   "Show a set of ecb-nodes specific to CONTEXT."
-  (call-next-method)
+  (cl-call-next-method)
   (let ((func (oref context function)))
     (when func
       (ecb-analyse-add-nodes "Function" "Function" func ecb-analyse-nodetype-function)
@@ -408,7 +409,7 @@ of LIST."
           (dolist (elem list)
             (ecb-throw-on-input 'ecb-analyse-tree-buffer-build)
             (let* ((fontify-tags (member bucket ecb-analyse-fontified-buckets))
-                   (string-1 (typecase elem
+                   (string-1 (cl-typecase elem
                                (string elem)
                                (ecb--semantic-tag
                                 (if fontify-tags
@@ -420,7 +421,7 @@ of LIST."
                 (ecb-merge-face-into-text string ecb-analyse-bucket-element-face))
               (if (ecb--semantic-tag-p elem)
                   (tree-node-new string nodetype
-                                 (list elem 
+                                 (list elem
                                        (if (ecb--semantic-tag-with-position-p elem)
                                            ecb-analyse-nodedata-tag-with-pos
                                          ecb-analyse-nodedata-tag-without-pos)
@@ -429,7 +430,7 @@ of LIST."
                 (tree-node-new string nodetype
                                (list elem ecb-analyse-nodedata-no-tag nodetype)
                                t bucket-node nil)))))))))
-  
+
 (defun ecb-analyse-compare-node-data (left right)
   "Return not nil when LEFT and RIGHT are identical node-datas."
   (and (equal (nth 2 left) (nth 2 right))
@@ -518,7 +519,7 @@ used as window."
 (defun ecb-maximize-window-analyse ()
   "Maximize the ECB-analyse-window.
 I.e. delete all other ECB-windows, so only one ECB-window and the
-edit-window\(s) are visible \(and maybe a compile-window). Works also if the
+edit-window(s) are visible (and maybe a compile-window). Works also if the
 ECB-analyse-window is not visible in current layout."
   (interactive)
   (ecb-maximize-ecb-buffer ecb-analyse-buffer-name t))
@@ -529,7 +530,7 @@ ECB-analyse-window is not visible in current layout."
   (ecb-goto-ecb-window ecb-analyse-buffer-name))
 
 (defun ecb-analyse-show-tag-info-in-temp-buffer (info-string)
-  "Display INFO-STRING in a temp-buffer in the edit-area." 
+  "Display INFO-STRING in a temp-buffer in the edit-area."
   (with-output-to-temp-buffer "*Tag Information*"
     (with-current-buffer "*Tag Information*"
       (insert info-string)))
@@ -560,7 +561,7 @@ ECB-analyse-window is not visible in current layout."
                   ;; correct buffer, I don't think that is needed.
                   (when (fboundp 'semantic-lex-keyword-p)
                     (let ((type (ecb--semantic-tag-type tag)))
-                      (typecase type
+                      (cl-typecase type
                         (ecb--semantic-tag
                          (setq type (ecb--semantic-tag-name type)))
                         (list
@@ -621,11 +622,11 @@ moved over it."
                                           ecb-analyse-nodetype-completions
                                           ecb-analyse-nodetype-localvars))
                         '(ecb-analyse-complete/insert "Complete/insert"))
-                    (if tag-p 
+                    (if tag-p
                         '(ecb-analyse-show-tag-info "Show tag info"))
                     (if tag-with-pos-p
                         '(ecb-analyse-jump-to-tag "Jump to tag"))))))
-    
+
 (defun ecb-analyse-menu-creator (tree-buffer-name node)
   "Creates the popup-menus for the analyse-buffer."
   (setq ecb-layout-prevent-handle-ecb-window-selection t)

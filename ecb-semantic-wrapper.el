@@ -46,20 +46,17 @@
     (require 'semantic/ctxt)
     (require 'semantic/analyze)))
 
-(defconst ecb-semantic-2-loaded (string-match "^2" semantic-version))
-(defconst ecb-semantic-2-beta-nr (if (and ecb-semantic-2-loaded
-                                          (string-match "\\(beta\\|pre\\)\\([1-9]\\).*"
-                                                        semantic-version))
-                                     (string-to-number
-                                      (match-string 2 semantic-version))
-                                   -1))
-
 (eval-when-compile
   (require 'silentcomp))
 
 (eval-when-compile
+  ;; For the semantic-find-tags-for-completion macro.
+  (require 'semantic/find))
+(require 'semantic/db-find)          ;For type semanticdb-find-result-with-nil.
+
+(eval-when-compile
   ;; to avoid compiler grips
-  (require 'cl))
+  (require 'cl-lib))
 
 ;; semantic 1.X does not have this
 (silentcomp-defvar semanticdb-search-system-databases)
@@ -190,7 +187,7 @@ function of `semantic-token->text-functions' (rsp. for semantic 2.X
   "Alist where the car is a function of semanticdb 1.X and the cdr is the
 equivalent new function of semanticdb 2.X. This alist should contain every
 function ECB uses from the semanticdb library.")
-  
+
 ;; new let us create the aliase. Each alias has the name "ecb--"<function of
 ;; semantic 2.0>.
 (dolist (f-elem (append ecb--semantic-function-alist
@@ -251,51 +248,41 @@ unloaded buffer representation."
 (if (fboundp 'semantic-tag-prototype-p)
     (defalias 'ecb--semantic-tag-prototype-p 'semantic-tag-prototype-p)
   (defsubst ecb--semantic-tag-prototype-p (tag)
-    (ecb--semantic-tag-get-attribute tag (if (> ecb-semantic-2-beta-nr 1)
-                                             :prototype-flag
-                                           'prototype))))
+    (ecb--semantic-tag-get-attribute tag 'prototype)))
 
 (if (fboundp 'semantic-tag-faux-p)
     (defalias 'ecb--semantic-tag-faux-p 'semantic-tag-faux-p)
   (defsubst ecb--semantic-tag-faux-p (tag)
-    (ecb--semantic-tag-get-attribute tag (if (> ecb-semantic-2-beta-nr 1)
-                                             :faux-flag
-                                           'faux))))
+    (ecb--semantic-tag-get-attribute tag 'faux)))
 
 (if (fboundp 'semantic-tag-function-constructor-p)
     (defalias 'ecb--semantic-tag-function-constructor-p
       'semantic-tag-function-constructor-p)
   (defsubst ecb--semantic-tag-function-constructor-p (tag)
-    (ecb--semantic-tag-get-attribute tag (if (> ecb-semantic-2-beta-nr 1)
-                                             :constructor-flag
-                                           'constructor))))
-    
+    (ecb--semantic-tag-get-attribute tag 'constructor)))
+
 (if (fboundp 'semantic-tag-function-destructor-p)
     (defalias 'ecb--semantic-tag-function-destructor-p
       'semantic-tag-function-destructor-p)
   (defsubst ecb--semantic-tag-function-destructor-p (tag)
-    (ecb--semantic-tag-get-attribute tag (if (> ecb-semantic-2-beta-nr 1)
-                                             :destructor-flag
-                                           'destructor))))
-    
-    
+    (ecb--semantic-tag-get-attribute tag 'destructor)))
+
+
 (defsubst ecb--semantic-fetch-tags (&optional check-cache)
-  (if (fboundp 'semantic-fetch-tags)
-      (apply 'semantic-fetch-tags nil)
-    (apply 'semantic-bovinate-toplevel (list check-cache))))
+    (apply 'semantic-fetch-tags nil))
 
 (if (fboundp 'semantic-fetch-available-tags)
     (defalias 'ecb--semantic-fetch-available-tags 'semantic-fetch-available-tags)
   (defsubst ecb--semantic-fetch-available-tags ()
     (if (boundp 'semantic--buffer-cache)
 	semantic--buffer-cache
-      semantic-toplevel-bovine-cache)))
+      semantic--buffer-cache)))
 
 (if (fboundp 'semantic-tag-components)
     (defalias 'ecb--semantic-tag-components
       'semantic-tag-components)
   (defun ecb--semantic-tag-components (tag)
-    (case (ecb--semantic-tag-class tag)
+    (cl-case (ecb--semantic-tag-class tag)
       (type (ecb--semantic-tag-type-members tag))
       (function (ecb--semantic-tag-function-arguments tag))
       (otherwise nil))))
@@ -344,16 +331,8 @@ unmodified as components of their parent tags."
       'semanticdb-find-tags-by-name)
   (defun ecb--semanticdb-find-tags-by-name (name &optional path find-file-match)
     "Runs `semanticdb-find-nonterminal-by-name' with SEARCH-PARTS is nil."
-    (apply 'semanticdb-find-nonterminal-by-name
-           (list name path nil nil nil find-file-match))))
-
-(if (fboundp 'semanticdb-deep-find-tags-by-name)
-    (defalias 'ecb--semanticdb-deep-find-tags-by-name
-      'semanticdb-deep-find-tags-by-name)
-  (defun ecb--semanticdb-deep-find-tags-by-name (name &optional path find-file-match)
-    "Runs `semanticdb-find-nonterminal-by-name' with SEARCH-PARTS is t."
-    (apply 'semanticdb-find-nonterminal-by-name
-           (list name path t nil nil find-file-match))))
+    (apply 'semanticdb-find-tags-by-name
+           (list name path find-file-match))))
 
 (if (fboundp 'semanticdb-brute-deep-find-tags-by-name)
     (defalias 'ecb--semanticdb-brute-deep-find-tags-by-name
@@ -363,7 +342,6 @@ unmodified as components of their parent tags."
     "In semantic 1.4 all searches are brutish, so it runs just
     `semanticdb-find-nonterminal-by-name' with SEARCH-PARTS is t."
     (ecb--semanticdb-deep-find-tags-by-name name path find-file-match)))
-
 
 (if (fboundp 'semanticdb-strip-find-results)
     (defalias 'ecb--semanticdb-strip-find-results

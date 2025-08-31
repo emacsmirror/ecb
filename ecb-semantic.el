@@ -33,6 +33,12 @@
 (require 'ecb-util)
 
 (eval-when-compile
+  ;; For the semantic-find-tags-for-completion macro.
+  (require 'semantic/find))
+
+(require 'semantic/db-find)          ;For type semanticdb-find-result-with-nil.
+
+(eval-when-compile
   (require 'silentcomp))
 
 (defun ecb-semanticdb-find-result-nth-with-file (result n)

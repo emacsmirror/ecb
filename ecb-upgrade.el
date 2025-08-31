@@ -124,7 +124,7 @@
 ;; 1. `ecb-check-not-compatible-options'
 ;; 2. `ecb-upgrade-not-compatible-options'
 ;;    `ecb-upgrade-renamed-options' or vice versa.
-;; 
+;;
 ;; There are also two interactive commands:
 ;; - `ecb-display-upgraded-options' displays a temp. buffer with all upgraded
 ;;   or reseted ECB-options with their old and new values.
@@ -156,11 +156,11 @@
 ;; change it here!
 ;; TODO: Makefile frobbing broken
 
-(defconst ecb-version "2.50"
+(defconst ecb-version "2.51"
   "Current ECB version.")
 
 (eval-when-compile
-  (require 'cl))
+  (require 'cl-lib))
 
 (require 'ecb-util)
 
@@ -174,7 +174,11 @@
 
 ;; Each NEWS-string should be a one-liner shorter than 70 chars
 (defconst ecb-upgrade-news
-  '(("2.50" . ("ECB now requires full CEDET being installed (at least 2.0)."
+  '(("2.51" . ("By default ECB now utilizes CEDET distributed as part of Emacs."
+	       "ECB now requires Emacs 29.x (though previous versions may work."
+               "This release includes numerous fixes related to moving to the latest Emacs"
+               ))
+    ("2.50" . ("ECB now requires full CEDET being installed (at least 2.0)."
 	       "By default ECB now utilizes CEDET distributed as part of Emacs."
 	       "ECB now requires Emacs 24.4 (though previous versions may work."
                "This release includes numerous fixes related to moving to the latest Emacs"
@@ -358,7 +362,7 @@ The car is the old option symbol and the cdr is a 2-element-list with:
 
 ;; upgrading ecb-compile-window-temporally-enlarge
 (defun ecb-upgrade-compile-window-temporally-enlarge (old-val)
-  (case old-val
+  (cl-case old-val
     ((t after-compilation) 'after-display)
     ((nil) nil)
     ((after-selection both) old-val)
@@ -622,7 +626,7 @@ The car is the old option symbol and the cdr is a 2-element-list with:
     (dolist (elem l)
       (setcdr elem (list (list (cadr elem)) (list (caddr elem)))))
     l))
-    
+
 (defun ecb-upgrade-exclude-parents-regexp (old-val)
   (if old-val (list old-val)))
 
@@ -636,7 +640,7 @@ The car is the old option symbol and the cdr is a 2-element-list with:
 
 (defun ecb-upgrade-sources-perform-read-only-check (old-val)
   (if old-val 'unless-remote nil))
-  
+
 (defun ecb-upgrade-vc-enable-support (old-val)
   (if old-val 'unless-remote nil))
 
@@ -667,7 +671,7 @@ The car is the old option symbol and the cdr is a 2-element-list with:
                       ecb-methods-buffer-name
                       ecb-history-buffer-name
                       ecb-analyse-buffer-name))))
-    
+
 
 ;; ----------------------------------------------------------------------
 ;; internal functions. Don't change anything below this line
@@ -780,7 +784,7 @@ after an ECB-upgrade.")
     (setq ecb-old-ecb-version (ecb-option-get-value 'ecb-options-version
                                                     'saved-value))
     (ecb-customize-save-variable 'ecb-options-version ecb-version)))
-  
+
 
 (defvar ecb-not-compatible-options nil
   "This variable is only set by `ecb-check-not-compatible-options'! It is an
@@ -807,7 +811,7 @@ defined type. If not store it in `ecb-not-compatible-options'."
 
   ;; get all options of ECB
   (ecb-get-all-ecb-options)
-  
+
   ;; check if all current values of ECB options match their types. Add not
   ;; matching options to `ecb-not-compatible-options'.
   (dolist (option ecb-all-options)
@@ -838,7 +842,7 @@ done then the option is reset to the default-value of current ECB-version."
                   ;; the upgrade has been tried but has failed.
                   (equal (car upgrade-result) 'ecb-no-upgrade-conversion))
           (ecb-option-set-default (car option)))))))
-    
+
 
 (defvar ecb-renamed-options nil)
 
@@ -881,11 +885,7 @@ Note: This function upgrades only the renamed but not the incompatible options
 
 (defvar ecb-upgrade-button-keymap
   (let (parent-keymap mouse-button1 keymap)
-    (if ecb-running-xemacs
-        (setq parent-keymap widget-button-keymap
-              mouse-button1 [button1])
-      (setq parent-keymap widget-keymap
-            mouse-button1 [down-mouse-1]))
+    (setq parent-keymap widget-keymap mouse-button1 [down-mouse-1])
     (setq keymap (copy-keymap parent-keymap))
     (define-key keymap mouse-button1 #'widget-button-click)
     keymap)
@@ -906,7 +906,7 @@ Note: This function upgrades only the renamed but not the incompatible options
         (setq i (1+ i))
         (setq backup-file (format "%s__%d" backup-file-base i)))
       (copy-file file backup-file))))
-      
+
 
 (defun ecb-display-upgraded-options ()
   "Display a information-buffer which options have been upgraded or reset.
@@ -1052,7 +1052,7 @@ your customization-file!"
     ;; now we display only the choice to save the ecb-options-version but only
     ;; if ecb-options-version != ecb-version and (either the command is called
     ;; interactively or first-time called by program)
-    (when (and (or (ecb-interactive-p)
+    (when (and (or (called-interactively-p 'interactive)
                    (not (get 'ecb-display-upgraded-options
                          'ecb-options-version-save-displayed)))
                (not (ecb-options-version=ecb-version-p)))
@@ -1115,7 +1115,7 @@ If FULL-NEWS is not nil then the NEWS-file is displayed in another window."
     (if (and ecb-old-ecb-version
              (or (not (get 'ecb-display-news-for-upgrade
                            'ecb-news-for-upgrade-displayed))
-                 (ecb-interactive-p)))
+                 (called-interactively-p 'interactive)))
         (progn
           (with-output-to-temp-buffer "*News for the new ECB-version*"
             (princ (format "You have upgraded ECB from version %s to %s.\n\n"
@@ -1132,8 +1132,8 @@ If FULL-NEWS is not nil then the NEWS-file is displayed in another window."
           ;; We want this being displayed only once
           (put 'ecb-display-news-for-upgrade 'ecb-news-for-upgrade-displayed t))
       (message "There are no NEWS to display."))))
-    
-  
+
+
 (defun ecb-upgrade-options ()
   "Check for all ECB-options if the current value is compatible to the type.
 If not upgrade it to the new type or reset it to the default-value of current
@@ -1159,12 +1159,6 @@ options with their old \(before the upgrade/reset) and new values."
   "Ensure that if all requirements of ECB are fulfilled.
 
 Currently this is a check if the right `cedet-version is loaded."
-  ;; we do not support (X)Emacs 18, 19 or 20!
-  (when ecb-running-unsupported-emacs
-    (ecb-error "Sorry, but ECB requires an (X)Emacs-version >= 21!"))
-
-  (when ecb-regular-xemacs-package-p
-    (ecb-error "Sorry, but ECB is currently not runnable as XEmacs-package. Install \"by hand\"."))
 
   (when ecb-cedet-missing-libraries
     (ecb-error "ECB is missing the libs %s of CEDET - check the CEDET-installation/setup!"
@@ -1179,7 +1173,7 @@ Currently this is a check if the right `cedet-version is loaded."
       ;; And no longer check against a Maximum version
       (when (or (not (boundp 'cedet-version))
                 (ecb-package-version-list<
-                 (ecb-package-version-str2list cedet-version)
+                 (ecb-package-version-str2list emacs-version)
                  ecb-cedet-required-version-min))
         (setq version-error (concat "cedet ["
                                     cedet-required-version-str-min
@@ -1204,7 +1198,7 @@ the following elements of the version-list:
 Return nil if ver-str has not the required syntax:
 <major>.<minor>\[.|pre|beta|alpha]\[<sub-stable/pre/beta/alpha-version>]"
   (let ((str ver-str))
-    (save-match-data 
+    (save-match-data
       (if (string-match "^\\([0-9]+\\)\\.\\([0-9]+\\)\\(pre\\|beta\\|alpha\\|\\.\\)?\\([0-9]+\\)?$" str)
           (list (string-to-number (match-string 1 str))
                 (string-to-number (match-string 2 str))
@@ -1254,7 +1248,7 @@ Return nil if ver-str has not the required syntax:
   (concat (number-to-string (nth 0 ver))
           "."
           (number-to-string (nth 1 ver))
-          (case (nth 2 ver)
+          (cl-case (nth 2 ver)
             (0 "alpha")
             (1 "beta")
             (2 "pre")

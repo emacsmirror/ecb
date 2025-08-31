@@ -1,7 +1,15 @@
+- decide if ecb should use lexical binding
+
+- a lot of warning must be solved
+
+- remove some obsolete functions or macros like defadvice
+
+- check if semantic and cedet wrapper functions are necessary
+
 - Distinction of include-tags by "" or <>. This can be done via
   (semantic-tag-include-system-p TAG). Thanks to Markus grietsch.
   But probably it would be the best if semantic itself does this special
-  formating! 
+  formating!
 
 - Prevent layout-engine from splitting windows when smaller than
   window-min-height/width.
