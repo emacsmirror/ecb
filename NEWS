@@ -1,3 +1,17 @@
+* Changes for ECB version 2.52
+
+** NOTE: The current home for ecb is now https://github.com/ecb-org/ecb.
+
+Unfortunatley, in my absence from ecb-home, ecb hasn't approved a single pull request.
+Also unfortunately, I no longer have owner rights to ecb-home.  Hence being reborn at
+ecb-org.
+
+** This is a minor bump to fix some small issues
+
+There have been a number of issues preventing ecb from (mostly) working correctly on modern
+Emacs releases.  This update fixes most of them though some linger.  However, this update
+makes ecb functional for people.  I want to thank @tec-leo for these fixes.
+
 * Changes for ECB version 2.50
 
 ** By default now uses integrated CEDET in Emacs
