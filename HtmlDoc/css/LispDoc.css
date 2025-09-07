@@ -1,0 +1,215 @@
+
+html
+{
+  color: rgb(0, 0, 0);
+  background: snow none repeat scroll 0% 0%;
+}
+
+
+html, body
+{
+  font-family: "Tahoma";
+  font-size: 1.1em;
+  line-height: 1.2;
+}
+
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+h1, h2, h3, h4, h5, h6 { color: black; }
+
+h1 { font-size: 1.6em }
+h2 { font-size: 1.4em }
+
+body
+{
+  background-color: snow;
+}
+
+/* Navigation bar on top */
+
+.navbar-top ul
+{
+  list-style-type: none;
+  margin: 3px;
+  padding: 2px 5px;
+  overflow: hidden;
+  color: white;
+  background-color: darkslategray;
+}
+
+.navbar-top ul li
+{
+  display: inline;
+  padding: 6px 10px;
+  font-size: 1.2em;
+  color: white;
+  background-color: darkslategray;
+}
+
+.navbar-top ul li:hover
+{
+  background-color: lightgray;
+  color: white;
+}
+
+.navbar-top ul li:active
+{
+  color: white;
+  background-color: mediumseagreen;
+}
+
+.selected
+{
+  color: white;
+  background-color: mediumseagreen;
+}
+
+
+/* Main details info on right side */
+.details
+{
+  background-color: ghostwhite;
+  color: blue;
+  font: 0.9em Tahoma;
+}
+
+#id-doc { color: green; }
+
+.detail-span
+{
+  background-color: ghostwhite;
+  color: black;
+  font: 0.9em Tahoma;
+}
+
+#id-lisp
+{
+  color: green;
+  font: 0.95em Tahoma;
+}
+
+/* Navigation file menu on left side */
+
+#id-file-label
+{
+  color: blue;
+  font: 1.0em Tahoma;
+}
+
+.file-menu ul
+{
+  list-style-type: none;
+  margin: 5px;
+  padding: 5px;
+  background-color: gainsboro;
+  color: black;
+  font: 0.8em Georgia;
+  overflow: auto;
+}
+
+.file-menu ul li
+{
+  display: block;
+  padding: 3px 3px;
+  background-color: gainsboro;
+  color: black;
+  text-decoration: none;
+}
+
+.file-menu ul li:hover
+{
+  background-color: darkgray;
+  color: black;
+}
+
+.file-menu ul li:active
+{
+  background-color: mediumseagreen;
+  color: white;
+}
+
+/* Navigation defines menu on left side */
+
+#id-def-label
+{
+  color: green;
+  font: 1.0em Tahoma;
+}
+
+
+.def-menu ul
+{
+  list-style-type: none;
+  margin: 5px;
+  padding: 5px;
+  background-color: gainsboro;
+  color: black;
+  font: 0.8em Georgia;
+  overflow: auto;
+}
+
+.def-menu ul li
+{
+  display: block;
+  padding: 3px 3px;
+  background-color: gainsboro;
+  color: black;
+  text-decoration: none;
+}
+
+.def-menu ul li:hover
+{
+  background-color: darkgray;
+  color: black;
+}
+
+.def-menu ul li:active
+{
+  background-color: mediumseagreen;
+  color: white;
+}
+
+
+.container
+{
+  display: grid;
+
+  grid-template-columns: 1fr 3fr;
+  background-color: gainsboro;
+  gap: 5px 5px;
+  padding: 5px 5px;
+ }
+
+.container > div
+{
+  border: 1px black solid;
+  background-color: gainsboro;
+  text-align: left;
+  gap: 5px 5px;
+  padding: 5px 5px;
+}
+
+.container > div.file-menu
+{
+  grid-column: 1;
+  grid-row: 1;
+  text-align: left;
+}
+
+.container > div.def-menu
+{
+  grid-column: 1;
+  grid-row: 2;
+  text-align: left;
+}
+
+.container > div.details
+{
+  background-color: white;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  padding: 5px;
+}
+
+/* hide lisp code, shown by javascript */
+
+#id-lisp { display: none; }
