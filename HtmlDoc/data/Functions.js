@@ -830,7 +830,7 @@ const functions =
       [
         {
           function : 'ecb-access-order',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Map ACCESS to a integer-value.<br>"public     --> 0<br>"protected  --> 1<br>"private    --> 3<br><all other> --> 2"',
           prototype : '(defun ecb-access-order (access)',
           parameter : 'access',
@@ -838,7 +838,7 @@ const functions =
         },
         {
           function : 'ecb-activate',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Activates ECB and creates the special buffers for the choosen layout.<br>For the layout see `ecb-layout-name". This function raises always the<br>ECB-frame if called from another frame. This is the same as calling<br>`ecb-minor-mode" with a positive argument."',
           prototype : '(defun ecb-activate ()',
           parameter : '',
@@ -846,7 +846,7 @@ const functions =
         },
         {
           function : 'ecb-activate--impl',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "See `ecb-activate".  This is the implementation of ECB activation."',
           prototype : '(defun ecb-activate--impl ()',
           parameter : '',
@@ -854,7 +854,7 @@ const functions =
         },
         {
           function : 'ecb-activate-ecb-autocontrol-function',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Adds function FUNC to `ecb-idle-timer-alist" and activates an idle-timer<br>with idle-time VALUE if VALUE is a number. If nil or "post the<br>FUNC is added to `post-command-hook" and `ecb-post-command-hooks"<br>and removed from the idle-list (if it has been contained). If<br>"pre the FUNC is added to `pre-command-hook" and<br>`ecb-pre-command-hooks" and removed from the idle-list (if it<br>has been contained)."',
           prototype : '(defun ecb-activate-ecb-autocontrol-function (value func)',
           parameter : 'value func',
@@ -862,13 +862,13 @@ const functions =
         },
         {
           function : 'ecb-activate-ediff-compatibility',
-          filename : 'ecb/ecb-compatibility.el',
+          filename : 'ecb-compatibility.el',
           parameter : '',
           lispcode : '(defun ecb-activate-ediff-compatibility ()<br>  (if (boundp <tick>ediff-quit-hook)<br>      (put <tick>ediff-quit-hook <tick>ecb-ediff-quit-hook-value<br>           ediff-quit-hook))<br>  (add-hook <tick>ediff-quit-hook <tick>ediff-cleanup-mess)<br>  (add-hook <tick>ediff-quit-hook <tick>ecb-ediff-quit-hook t)<br>  ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: suspending ediff and<br>  ;; especially reactivating does currently not really work well...'
         },
         {
           function : 'ecb-activate-internal',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Activates the ECB and creates all the buffers and draws the ECB-screen<br>with the actually chosen layout (see `ecb-layout-name"). This function raises<br>always the ECB-frame if called from another frame."',
           prototype : '(defun ecb-activate-internal ()',
           parameter : '',
@@ -876,7 +876,7 @@ const functions =
         },
         {
           function : 'ecb-add-all-buffers-to-history',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Add all current file-buffers to the history-buffer of ECB.<br>Dependend on the values of `ecb-history-make-buckets" and<br>`ecb-history-sort-method" afterwards the history is bucketized or<br>not and sorted either by name or by extension (if bucketized<br>then the sorting is only within each bucket). If<br>`ecb-history-sort-method" is nil the most recently used buffers<br>are on the top of the history and the seldom used buffers at the<br>bottom (again: when bucketized then this holds only within each<br>bucket)."',
           prototype : '(defun ecb-add-all-buffers-to-history ()',
           parameter : '',
@@ -884,13 +884,13 @@ const functions =
         },
         {
           function : 'ecb-add-assoc',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           parameter : 'key-value list',
           lispcode : '(defun ecb-add-assoc (key-value list)<br>  (cons key-value list))'
         },
         {
           function : 'ecb-add-buffers-to-history-new',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Update contents of the history-buffer.<br>This means a history-item is added to the history-buffer if an existing buffer:<br>- is a file-buffer or is based on a file-buffer (e.g. indirect-file-buffers)<br>- is not excluded by `ecb-check-filename-for-history-exclude"<br>- is not filtered out by the current history-filter<br>In addition dead-buffer items of the history-content before are added again<br>unless optional argument NO-DEAD-BUFFERS is not nil.<br><br>If second optional argument IGNORE-BUFFERNAME-LIST is not nil, then it must be a<br>list of buffer-names which should be ignored for the history-rebuild.<br><br>It takes into account the values of the options `ecb-history-make-buckets" and<br>`ecb-history-stick-indirect-buffers-to-basebuffer".<br><br>It calls at the end `ecb-mode-line-format".<br><br>If the current history-filter leads to an empty history-buffer it will not be<br>applied but an unfiltered history will be build.<br><br>Returns t if the current history filter has been applied otherwise nil."',
           prototype : '(defun ecb-add-buffers-to-history-new (&optional no-dead-buffers ignore-buffername-list)',
           parameter : '&optional no-dead-buffers ignore-buffername-list',
@@ -898,7 +898,7 @@ const functions =
         },
         {
           function : 'ecb-add-source-path',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Add a directory to the `ecb-source-path"."',
           prototype : '(defun ecb-add-source-path (&optional dir alias no-prompt-for-future-session)',
           parameter : '&optional dir alias no-prompt-for-future-session',
@@ -906,7 +906,7 @@ const functions =
         },
         {
           function : 'ecb-add-tag-bucket',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Adds a tag bucket to a node unless DISPLAY equals "hidden.<br>This function MUST be called with the source-buffer as current buffer!"',
           prototype : '(defun ecb-add-tag-bucket (node bucket display sort-method                                &optional parent-tag no-bucketize)',
           parameter : 'node bucket display sort-method &optional parent-tag no-bucketize',
@@ -914,7 +914,7 @@ const functions =
         },
         {
           function : 'ecb-add-tag-buckets',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Creates and adds tag nodes to the given node.<br>The PARENT-TAG is propagated to the functions `ecb-add-tag-bucket" and<br>`ecb-find-add-tag-bucket".<br>This function MUST be called with the source-buffer as current buffer!"',
           prototype : '(defun ecb-add-tag-buckets (node parent-tag buckets &optional no-bucketize)',
           parameter : 'node parent-tag buckets &optional no-bucketize',
@@ -922,7 +922,7 @@ const functions =
         },
         {
           function : 'ecb-add-tags',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Add TAGS to the node NODE.<br>If NO-BUCKETIZE is not nil then TAGS will not bucketized by<br>`ecb--semantic-bucketize" but must already been bucketized! If not nil<br>PARENT-TAG is the parent of TAGS.<br>This function MUST be called with the source-buffer as current buffer!"',
           prototype : '(defun ecb-add-tags (node tags &optional parent-tag no-bucketize)',
           parameter : 'node tags &optional parent-tag no-bucketize',
@@ -930,7 +930,7 @@ const functions =
         },
         {
           function : 'ecb-add-to-minor-modes',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Does all necessary to add ECB as a minor mode with current values of<br>`ecb-mode-map" and `ecb-minor-mode-text"."',
           prototype : '(defun ecb-add-to-minor-modes ()',
           parameter : '',
@@ -938,31 +938,31 @@ const functions =
         },
         {
           function : 'ecb-advice-test-defun-1',
-          filename : 'ecb/ecb-advice-test.el',
+          filename : 'ecb-advice-test.el',
           parameter : '',
           lispcode : '(defun ecb-advice-test-defun-1 ()<br>  (message <apo>I<tick>m the ORIGINAL function ecb-advice-test-defun-1<apo>))'
         },
         {
           function : 'ecb-advice-test-defun-2',
-          filename : 'ecb/ecb-advice-test.el',
+          filename : 'ecb-advice-test.el',
           parameter : '',
           lispcode : '(defun ecb-advice-test-defun-2 ()<br>  (message <apo>I<tick>m the ORIGINAL function ecb-advice-test-defun-2<apo>))'
         },
         {
           function : 'ecb-advice-test-defun-3',
-          filename : 'ecb/ecb-advice-test.el',
+          filename : 'ecb-advice-test.el',
           parameter : '',
           lispcode : '(defun ecb-advice-test-defun-3 ()<br>  (message <apo>I<tick>m the ORIGINAL function ecb-advice-test-defun-3<apo>))'
         },
         {
           function : 'ecb-advice-test-defun-4',
-          filename : 'ecb/ecb-advice-test.el',
+          filename : 'ecb-advice-test.el',
           parameter : '',
           lispcode : '(defun ecb-advice-test-defun-4 ()<br>  (message <apo>I<tick>m the ORIGINAL function ecb-advice-test-defun-4<apo>))'
         },
         {
           function : 'ecb-advices-debug-error',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Run ARGS through `format" and write it to the *Messages*-buffer.<br>ADVICE is the adviced-function-symbol, CLASS is the advice-class (after,<br>around or before) and ACTION is one of the symbols "calling, "enabling,<br>"disabling or "reporting.<br><br>This will build up a message string like:<br>ECB <version>: debug <ACTION> of "<CLASS>" advice ADVICE: ARGS.<br>If ARGS is nil then only the message above is reported."',
           prototype : '(defun ecb-advices-debug-error (advice class action &rest args)',
           parameter : 'advice class action &rest args',
@@ -970,7 +970,7 @@ const functions =
         },
         {
           function : 'ecb-aggregate-alist',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return ALIST as a sorted, aggregated alist.<br><br>In the result all items with the same car element (according to<br>SAME-PREDICATE) are aggregated together.  The alist is first sorted by<br>SORT-PREDICATE which is called with two items of the alist and has to return<br>not nil if item1 should be precede item2.<br><br>Please note: SAME-PREDICATE gets the car of an item as argument, whereas<br>SORT-PREDICATE gets two complete items as arguments!<br><br>Example:<br>(ecb-aggregate-alist<br> "((a . a1) (a . a2) (b . b1) (c . c3) (a . a4) (a . a3) (b . b3) (b . b2))<br> (function string=)<br> (lambda (item1 item2)<br>   (string< (symbol-name (car item1)) (symbol-name (car item2)))))<br>results in<br>((a a1 a2 a4 a3) (b b1 b3 b2) (c c3))"',
           prototype : '(defun ecb-aggregate-alist (alist same-predicate sort-predicate)',
           parameter : 'alist same-predicate sort-predicate',
@@ -978,7 +978,7 @@ const functions =
         },
         {
           function : 'ecb-analyse-add-nodes',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Create ecb-nodes from LIST. BUCKET is one of the categories/buckets<br>mentioned in `ecb-analyse-collapsed-buckets". BUCKET-NAME is the name a bucket<br>should be displayed with. LIST is a list of tags for this bucket. NODETYPE is<br>an integer which will be added as type to the nodes created for the elements<br>of LIST."',
           prototype : '(defun ecb-analyse-add-nodes (bucket bucket-name list nodetype)',
           parameter : 'bucket bucket-name list nodetype',
@@ -986,7 +986,7 @@ const functions =
         },
         {
           function : 'ecb-analyse-compare-node-data',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Return not nil when LEFT and RIGHT are identical node-datas."',
           prototype : '(defun ecb-analyse-compare-node-data (left right)',
           parameter : 'left right',
@@ -994,7 +994,7 @@ const functions =
         },
         {
           function : 'ecb-analyse-create-menu',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Return a popup-menu suitable for NODE."',
           prototype : '(defun ecb-analyse-create-menu (node)',
           parameter : 'node',
@@ -1002,7 +1002,7 @@ const functions =
         },
         {
           function : 'ecb-analyse-gen-menu-title-creator',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Returns a menu-title-create-function for the nodetypes of the<br>analyse-buffer."',
           prototype : '(defun ecb-analyse-gen-menu-title-creator ()',
           parameter : '',
@@ -1010,7 +1010,7 @@ const functions =
         },
         {
           function : 'ecb-analyse-gen-tag-info',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Return the info-string for TAG."',
           prototype : '(defun ecb-analyse-gen-tag-info (tag)',
           parameter : 'tag',
@@ -1018,7 +1018,7 @@ const functions =
         },
         {
           function : 'ecb-analyse-menu-creator',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Creates the popup-menus for the analyse-buffer."',
           prototype : '(defun ecb-analyse-menu-creator (tree-buffer-name node)',
           parameter : 'tree-buffer-name node',
@@ -1026,7 +1026,7 @@ const functions =
         },
         {
           function : 'ecb-analyse-node-mouse-highlighted-p',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Return not nil when NODE has a positioned tag as data or belongs to the<br>completions. This means that this node should be highlighted when mouse is<br>moved over it."',
           prototype : '(defun ecb-analyse-node-mouse-highlighted-p (node)',
           parameter : 'node',
@@ -1034,7 +1034,7 @@ const functions =
         },
         {
           function : 'ecb-analyse-show-scope',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Show SCOPE information."',
           prototype : '(defun ecb-analyse-show-scope (scope)',
           parameter : 'scope',
@@ -1042,7 +1042,7 @@ const functions =
         },
         {
           function : 'ecb-analyse-show-tag-info-in-temp-buffer',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Display INFO-STRING in a temp-buffer in the edit-area."',
           prototype : '(defun ecb-analyse-show-tag-info-in-temp-buffer (info-string)',
           parameter : 'info-string',
@@ -1050,7 +1050,7 @@ const functions =
         },
         {
           function : 'ecb-apply-default-tag-filter',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Applies all default-tag-filters specified in `ecb-default-tag-filter" for<br>the current file."',
           prototype : '(defun ecb-apply-default-tag-filter ()',
           parameter : '',
@@ -1058,7 +1058,7 @@ const functions =
         },
         {
           function : 'ecb-apply-filter-to-sources-buffer',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Apply the regular expression FILTER-REGEXP to the files of<br>`ecb-path-selected-directory" and display only the filtered files in the<br>Sources-buffer. If FILTER-REGEXP is nil then any applied filter is removed and<br>all files are displayed. Returns t if the filter has been applied otherwise<br>nil. Returns "window-not-visible if the ECB-sources-buffer is not visible."',
           prototype : '(defun ecb-apply-filter-to-sources-buffer (filter-regexp &optional filter-display)',
           parameter : 'filter-regexp &optional filter-display',
@@ -1066,7 +1066,7 @@ const functions =
         },
         {
           function : 'ecb-apply-tag-table-filters',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Perform all tag-filters which must be applied to the whole tag-table."',
           prototype : '(defun ecb-apply-tag-table-filters (taglist)',
           parameter : 'taglist',
@@ -1074,7 +1074,7 @@ const functions =
         },
         {
           function : 'ecb-apply-user-filter-to-tags',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Applies to the tags of TAGLIST the related filter of<br>`ecb-methods-user-filter-alist" - if there is any."',
           prototype : '(defun ecb-apply-user-filter-to-tags (taglist)',
           parameter : 'taglist',
@@ -1082,7 +1082,7 @@ const functions =
         },
         {
           function : 'ecb-auto-activate-hook',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "If necessary, run `ecb-activate" when Emacs is started."',
           prototype : '(defun ecb-auto-activate-hook()',
           parameter : '',
@@ -1090,7 +1090,7 @@ const functions =
         },
         {
           function : 'ecb-autogen-update-header',
-          filename : 'ecb/ecb-autogen.el',
+          filename : 'ecb-autogen.el',
           docstring : '  "Update header of the auto-generated autoloads file.<br>Run as `write-contents-hooks"."',
           prototype : '(defun ecb-autogen-update-header ()',
           parameter : '',
@@ -1098,7 +1098,7 @@ const functions =
         },
         {
           function : 'ecb-autotrace-autocontrol/sync-fcn-error',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Run ARGS through `format" and write it to the *Messages*-buffer.<br>Do not use this function for own traces, but use the function<br>`ecb-bodytrace-autocontrol/sync-fcn-error"!<br>Entry and exit-traces are already buildin in functions defined with<br>`defecb-autocontrol/sync-function" and can be switched on/off by<br>`ecb-autotrace-autocontrol/sync-functions"."',
           prototype : '(defun ecb-autotrace-autocontrol/sync-fcn-error (autocontrol-fcn &rest args)',
           parameter : 'autocontrol-fcn &rest args',
@@ -1106,7 +1106,7 @@ const functions =
         },
         {
           function : 'ecb-available-layouts-add',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Add layout with NAME and TYPE to `ecb-available-layouts". NAME is a string<br>and TYPE must be an element of `ecb-layout-types"."',
           prototype : '(defun ecb-available-layouts-add (name type)',
           parameter : 'name type',
@@ -1114,7 +1114,7 @@ const functions =
         },
         {
           function : 'ecb-available-layouts-member-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return a non nil value iff LAYOUT-NAME is the name of a layout of<br>`ecb-available-layouts"."',
           prototype : '(defun ecb-available-layouts-member-p (layout-name)',
           parameter : 'layout-name',
@@ -1122,7 +1122,7 @@ const functions =
         },
         {
           function : 'ecb-available-layouts-of-type',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return a list of all layout-names for given type TYPE. Type must be an<br>element of `ecb-layout-types" or nil (then return all layout-names<br>regardless of the type)."',
           prototype : '(defun ecb-available-layouts-of-type (type)',
           parameter : 'type',
@@ -1130,7 +1130,7 @@ const functions =
         },
         {
           function : 'ecb-available-layouts-remove',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Remove layout with NAME from `ecb-available-layouts"."',
           prototype : '(defun ecb-available-layouts-remove (name)',
           parameter : 'name',
@@ -1138,13 +1138,13 @@ const functions =
         },
         {
           function : 'ecb-batch-update-autoloads',
-          filename : 'ecb/ecb-autogen.el',
+          filename : 'ecb-autogen.el',
           parameter : '',
           lispcode : '(defun ecb-batch-update-autoloads ()<br>  (let ((old-val (symbol-value (if (boundp <tick>write-contents-functions)<br>                                   <tick>write-contents-functions<br>                                 <tick>write-contents-hooks))))<br>    (unwind-protect<br>        (progn<br>          (set (if (boundp <tick>write-contents-functions)<br>                   <tick>write-contents-functions<br>                 <tick>write-contents-hooks)<br>               <tick>(ecb-autogen-update-header))<br>          (loaddefs-generate-batch)<br>          ; (batch-update-autoloads)<br>          ; (update-autoloads-from-directories my-lisp-dir)<br>          )<br>      (set (if (boundp <tick>write-contents-functions)<br>               <tick>write-contents-functions'
         },
         {
           function : 'ecb-bodytrace-autocontrol/sync-fcn-error',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Run ARGS through `format" and write it to the *Messages*-buffer.<br><br>Use this function only for traces used within the BODY of a function defined<br>with `defecb-autocontrol/sync-function" and not for entry and exit-traces<br>because these ones are already buildin in functions defined with<br>`defecb-autocontrol/sync-function" and can be switched on/off by<br>`ecb-autotrace-autocontrol/sync-functions".<br><br>Body-tracing can be switched on/off with<br>`ecb-bodytrace-autocontrol/sync-function"."',
           prototype : '(defun ecb-bodytrace-autocontrol/sync-fcn-error (autocontrol-fcn &rest args)',
           parameter : 'autocontrol-fcn &rest args',
@@ -1152,7 +1152,7 @@ const functions =
         },
         {
           function : 'ecb-browse-html-file',
-          filename : 'ecb/ecb-help.el',
+          filename : 'ecb-help.el',
           docstring : '  "Opens HTML-FILE in the standard-webbrowser with `browse-url". If INFO-FILE<br>does not exists then nil is returned otherwise true. If NO-FILE-NOT-EXIST-ERR<br>is not nil then just nil is returned if HTML-FILE does not exist otherwise an<br>error is reported."',
           prototype : '(defun ecb-browse-html-file (html-file &optional no-file-not-exist-err)',
           parameter : 'html-file &optional no-file-not-exist-err',
@@ -1160,7 +1160,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-file-name',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return filename of file represented by BUFFER.<br>BUFFER can also be an indirect buffer - if its base buffer points to a file<br>then this filename is returned.<br>BUFFER can be a buffer-object or a buffer-name.<br>If BUFFER is nil then current buffer is used.<br>If NO-INDIRECT-BUFFERS is not nil then for indirect buffers always nil is<br>returned."',
           prototype : '(defun ecb-buffer-file-name (&optional buffer no-indirect-buffers)',
           parameter : '&optional buffer no-indirect-buffers',
@@ -1168,7 +1168,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-is-dedicated-special-buffer-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if BUFFER-OR-NAME is a member of<br>`ecb-dedicated-special-buffers". BUFFER-OR-NAME ca be either a<br>buffer-object or a buffer-name."',
           prototype : '(defun ecb-buffer-is-dedicated-special-buffer-p (buffer-or-name)',
           parameter : 'buffer-or-name',
@@ -1176,7 +1176,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-is-ecb-buffer-of-current-layout-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if BUFFER-OR-NAME is a member of<br>`ecb-special-ecb-buffers-of-current-layout", means BUFFER-OR-NAME is one of<br>that buffers which build up the current-layout as it is defined.<br>BUFFER-OR-NAME ca be either a buffer-object or a buffer-name."',
           prototype : '(defun ecb-buffer-is-ecb-buffer-of-current-layout-p (buffer-or-name)',
           parameter : 'buffer-or-name',
@@ -1184,7 +1184,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-is-maximized-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Not nil if ECB-BUFFER-NAME is currently maximized.<br>If ECB-BUFFER-NAME is not nil and not part of the current layout then nil is<br>returned. If ECB-BUFFER-NAME is nil then not nil is returned if any special<br>buffer of current layout is maximized otherwise nil."',
           prototype : '(defun ecb-buffer-is-maximized-p (&optional ecb-buffer-name)',
           parameter : '&optional ecb-buffer-name',
@@ -1192,7 +1192,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-is-the-only-visible-ecb-buffer-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if BUFFER-OR-NAME is currently the only visible ecb-buffer."',
           prototype : '(defun ecb-buffer-is-the-only-visible-ecb-buffer-p (buffer-or-name)',
           parameter : 'buffer-or-name',
@@ -1200,7 +1200,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-is-visible-ecb-buffer-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if BUFFER-OR-NAME is a member of<br>`ecb-get-current-visible-ecb-buffers". BUFFER-OR-NAME ca be either a<br>buffer-object or a buffer-name."',
           prototype : '(defun ecb-buffer-is-visible-ecb-buffer-p (buffer-or-name)',
           parameter : 'buffer-or-name',
@@ -1208,7 +1208,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-local-value',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Get the buffer-local value of variable SYM in BUFFER. If there is no<br>buffer-local value in BUFFER then the global value of SYM is used."',
           prototype : '(defun ecb-buffer-local-value (sym buffer)',
           parameter : 'sym buffer',
@@ -1216,7 +1216,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-name',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the buffer-name of BUFFER-OR-WINDOW.<br>BUFFER-OR-WINDOW can be a buffer-name, a buffer or a window. If a<br>window then the name of the buffer curently displayed in this<br>window is returned."',
           prototype : '(defun ecb-buffer-name (buffer-or-window)',
           parameter : 'buffer-or-window',
@@ -1224,7 +1224,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-obj',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the buffer-object of BUFFER-OR-WINDOW.<br>BUFFER-OR-WINDOW can be a buffer-name, a buffer or a window.<br>If a window then the buffer curently displayed in this window is returned."',
           prototype : '(defun ecb-buffer-obj (buffer-or-window)',
           parameter : 'buffer-or-window',
@@ -1232,7 +1232,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-or-file-readable-p',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Checks if a buffer or a file is a readable file in the sense of ECB which<br>means either a real physical file or an auto-extracted file from an archive.<br>See `ecb-current-buffer-archive-extract-p". FILENAME is either a filename or<br>nil whereas in the latter case the current-buffer is assumed."',
           prototype : '(defun ecb-buffer-or-file-readable-p (&optional filename)',
           parameter : '&optional filename',
@@ -1240,7 +1240,7 @@ const functions =
         },
         {
           function : 'ecb-buffer-substring',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the contents of part of BUFFER as a string.<br>If BUFFER is nil then the current-buffer is used. BUFFER can be a buffer-name<br>or a buffer-object."',
           prototype : '(defun ecb-buffer-substring (minpoint maxpoint &optional buffer)',
           parameter : 'minpoint maxpoint &optional buffer',
@@ -1248,7 +1248,7 @@ const functions =
         },
         {
           function : 'ecb-buffertab-make-menuname',
-          filename : 'ecb/ecb-buffertab.el',
+          filename : 'ecb-buffertab.el',
           docstring : '  "Make a menu for use on the buffertab."',
           prototype : '(defun ecb-buffertab-make-menu(name)',
           parameter : '',
@@ -1256,7 +1256,7 @@ const functions =
         },
         {
           function : 'ecb-buffertab-popup-menu',
-          filename : 'ecb/ecb-buffertab.el',
+          filename : 'ecb-buffertab.el',
           docstring : '  "Popup a menu for selecting an ECB buffer."',
           prototype : '(defun ecb-buffertab-popup-menu()',
           parameter : '',
@@ -1264,7 +1264,7 @@ const functions =
         },
         {
           function : 'ecb-buffertab-setup-header',
-          filename : 'ecb/ecb-buffertab.el',
+          filename : 'ecb-buffertab.el',
           docstring : '  ""',
           prototype : '(defun ecb-buffertab-setup-header()',
           parameter : '',
@@ -1272,7 +1272,7 @@ const functions =
         },
         {
           function : 'ecb-byte-compile',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Byte-compiles the ECB package.<br>This is done for all lisp-files of ECB if FORCE-ALL is not nil or for each<br>lisp-file FILE.el which is either newer than FILE.elc or if FILE.elc doesn"t<br>exist."',
           prototype : '(defun ecb-byte-compile (&optional force-all)',
           parameter : '&optional force-all',
@@ -1280,7 +1280,7 @@ const functions =
         },
         {
           function : 'ecb-call-tag-visit-function',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Call FCN with TAG as argument and check if the resulting point is between<br>the tag-boundaries of TAG. If yes, then go to this point if no point stays at<br>the location before calling FCN."',
           prototype : '(defun ecb-call-tag-visit-function (tag fcn)',
           parameter : 'tag fcn',
@@ -1288,7 +1288,7 @@ const functions =
         },
         {
           function : 'ecb-canonical-ecb-windows-list',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return a list of all visible ECB-windows.<br><br>Such a window must be dedicated to its ecb-buffer and defined for<br>the related buffer with `defecb-window-dedicator-to-ecb-buffer". The list<br>starts from the left-most top-most window in the order<br>`other-window" would walk through these windows."',
           prototype : '(defun ecb-canonical-ecb-windows-list (&optional winlist)',
           parameter : '&optional winlist',
@@ -1296,7 +1296,7 @@ const functions =
         },
         {
           function : 'ecb-canonical-edit-windows-list',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return a list of all current edit-windows (starting from the left-most<br>top-most window) in the order `other-window" would walk through these windows.<br>These are all windows in the `ecb-frame" which are not identical to the<br>compile-window and not identical to one of the visible ECB-windows and which<br>are not dedicated."',
           prototype : '(defun ecb-canonical-edit-windows-list (&optional winlist)',
           parameter : '&optional winlist',
@@ -1304,7 +1304,7 @@ const functions =
         },
         {
           function : 'ecb-canonical-residual-windows-list',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return a list of all current residual windows (starting from the left-most<br>top-most window) in the order `other-window" would walk through these windows.<br>These are all windows in the `ecb-frame" which are not identical to the<br>compile-window and not identical to one of the visible ECB-windows.<br><br>Note the difference to `ecb-canonical-edit-windows-list": That function checks<br>additionaly if a window is not dedicated."',
           prototype : '(defun ecb-canonical-residual-windows-list (&optional winlist)',
           parameter : '&optional winlist',
@@ -1312,7 +1312,7 @@ const functions =
         },
         {
           function : 'ecb-canonical-windows-list',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return a list of all current visible windows in the `ecb-frame" (starting<br>from the left-most top-most window) in the order `next-window" would walk<br>through these windows."',
           prototype : '(defun ecb-canonical-windows-list ()',
           parameter : '',
@@ -1320,7 +1320,7 @@ const functions =
         },
         {
           function : 'ecb-cedet-missing-libs',
-          filename : 'ecb/ecb-cedet-wrapper.el',
+          filename : 'ecb-cedet-wrapper.el',
           docstring : '  "Return a list of names of missing cedet-libs.<br>If no cedet libs are missing nil is returned."',
           prototype : '(defun ecb-cedet-missing-libs ()',
           parameter : '',
@@ -1328,7 +1328,7 @@ const functions =
         },
         {
           function : 'ecb-cedet-require',
-          filename : 'ecb/ecb-cedet-wrapper.el',
+          filename : 'ecb-cedet-wrapper.el',
           docstring : '  "Loads a cedet-library CVS-LIB into Emacs.<br>OLD-STYLE-LIB is the symbol-name of the cedet-library as in the cvs-version of<br>cedet in feb 2010 (ie. there is a lib semantic-ctxt instead of semantic/ctxt).<br>All cedet libaryies needed by ECB must be loaded with this function! Do not<br>use `require" for looading a cedet-library into Emacs!"',
           prototype : '(defun ecb-cedet-require (old-style-lib)',
           parameter : 'old-style-lib',
@@ -1336,7 +1336,7 @@ const functions =
         },
         {
           function : 'ecb-change-layout',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Change to one of current available layouts.<br>For this TAB-completion is offered. If optional argument PRESELECT-TYPE is not<br>nil then you can preselect a layout-type (TAB-completion is offered too) and<br>then will be asked only for layouts of that preselected type.<br><br>Note: Do not use this function from within elisp-programs; use<br>`ecb-layout-switch"!"',
           prototype : '(defun ecb-change-layout (&optional preselect-type)',
           parameter : '&optional preselect-type',
@@ -1344,7 +1344,7 @@ const functions =
         },
         {
           function : 'ecb-check-cedet-load',
-          filename : 'ecb/ecb-cedet-wrapper.el',
+          filename : 'ecb-cedet-wrapper.el',
           docstring : '  "Checks if cedet is correctly loaded if semantic 2.X is used and if the same<br>semantic-version has been used for byte-compiling ECB and loading into Emacs.<br>If ECB detects a problem it is reported and then an error is thrown."',
           prototype : '(defun ecb-check-cedet-load ()',
           parameter : '',
@@ -1352,7 +1352,7 @@ const functions =
         },
         {
           function : 'ecb-check-directory-for-caching',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return not nil if DIR matches not any regexp of the option<br>`ecb-cache-directory-contents-not" but matches at least one regexp in<br>`ecb-cache-directory-contents" and NUMBER-OF-CONTENTS is greater then the<br>related threshold."',
           prototype : '(defun ecb-check-directory-for-caching (dir number-of-contents)',
           parameter : 'dir number-of-contents',
@@ -1360,7 +1360,7 @@ const functions =
         },
         {
           function : 'ecb-check-directory-for-cvsignore-exclude',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return not nil if DIR matches a regexp in `ecb-sources-exclude-cvsignore"."',
           prototype : '(defun ecb-check-directory-for-cvsignore-exclude (dir)',
           parameter : 'dir',
@@ -1368,7 +1368,7 @@ const functions =
         },
         {
           function : 'ecb-check-directory-for-source-regexps',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return the related source-exclude-include-regexps of<br>`ecb-source-file-regexps" if DIR matches any directory-regexp in<br>`ecb-source-file-regexps"."',
           prototype : '(defun ecb-check-directory-for-source-regexps (dir)',
           parameter : 'dir',
@@ -1376,7 +1376,7 @@ const functions =
         },
         {
           function : 'ecb-check-emptyness-of-dir',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Checks if DIR is an empty directory. If empty return not nil otherwise nil."',
           prototype : '(defun ecb-check-emptyness-of-dir (dir)',
           parameter : 'dir',
@@ -1384,7 +1384,7 @@ const functions =
         },
         {
           function : 'ecb-check-for-same-window-buffer',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if BUFFER-OR-NAME is contained or matches<br>`same-window-buffer-names" or `same-window-regexps"."',
           prototype : '(defun ecb-check-for-same-window-buffer (buffer-or-name)',
           parameter : 'buffer-or-name',
@@ -1392,7 +1392,7 @@ const functions =
         },
         {
           function : 'ecb-check-for-special-buffer',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return  not nil if and only if `display-buffer-alist" is not nil and<br>BUFFER-OR-NAME is contained or matches `display-buffer-alist" or<br>`display-buffer-alist"."',
           prototype : '(defun ecb-check-for-special-buffer (buffer-or-name)',
           parameter : 'buffer-or-name',
@@ -1400,7 +1400,7 @@ const functions =
         },
         {
           function : 'ecb-check-not-compatible-options',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Check for all ECB-options if their current value is compatible to the<br>defined type. If not store it in `ecb-not-compatible-options"."',
           prototype : '(defun ecb-check-not-compatible-options ()',
           parameter : '',
@@ -1408,7 +1408,7 @@ const functions =
         },
         {
           function : 'ecb-check-requirements',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Ensure that if all requirements of ECB are fulfilled.<br><br>Currently this is a check if the right `cedet-version is loaded."',
           prototype : '(defun ecb-check-requirements ()',
           parameter : '',
@@ -1416,7 +1416,7 @@ const functions =
         },
         {
           function : 'ecb-check-semantic-load',
-          filename : 'ecb/ecb-cedet-wrapper.el',
+          filename : 'ecb-cedet-wrapper.el',
           docstring : '  "Checks if cedet is correctly loaded if semantic 2.X is used and if the same<br>semantic-version has been used for byte-compiling ECB and loading into Emacs.<br>If ECB detects a problem it is reported and then an error is thrown."',
           prototype : '(defun ecb-check-semantic-load ()',
           parameter : '',
@@ -1424,7 +1424,7 @@ const functions =
         },
         {
           function : 'ecb-children-tags',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return a list of children-tags of PARENT-TAG. If a child is not a<br>semantic-tag (but a plain string) then it will be converted to a positionless<br>tag of class "variable."',
           prototype : '(defun ecb-children-tags (parent-tag)',
           parameter : 'parent-tag',
@@ -1432,7 +1432,7 @@ const functions =
         },
         {
           function : 'ecb-choose-layout-name',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Calls `completing-read" for LAYOUT-LIST which is a list of layout-names.<br>For REQUIRE-MATCH see documentation of `completing-read". For a null input the<br>first element of LAYOUT-LIST is returned."',
           prototype : '(defun ecb-choose-layout-name (layout-list require-match)',
           parameter : 'layout-list require-match',
@@ -1440,7 +1440,7 @@ const functions =
         },
         {
           function : 'ecb-clean-up-after-activation-failure',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Complete cleanup of all ECB-setups and report an error with message MSG."',
           prototype : '(defun ecb-clean-up-after-activation-failure (msg err)',
           parameter : 'msg err',
@@ -1448,7 +1448,7 @@ const functions =
         },
         {
           function : 'ecb-clear-tag-tree-cache',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Clears either the whole tag-tree-cache (SOURCE-NAME is nil) or<br>removes only the tag-tree for SOURCE-NAME from the cache."',
           prototype : '(defun ecb-clear-tag-tree-cache (&optional source-name)',
           parameter : '&optional source-name',
@@ -1456,7 +1456,7 @@ const functions =
         },
         {
           function : 'ecb-combine-ecb-button/edit-win-nr',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Depending on ECB-BUTTON and EDIT-WINDOW-NR return one value:<br>- nil if ECB-BUTTON is 1.<br>- t if ECB-BUTTON is 2 and the edit-area of ECB is splitted.<br>- EDIT-WINDOW-NR if ECB-BUTTON is 3."',
           prototype : '(defun ecb-combine-ecb-button/edit-win-nr (ecb-button edit-window-nr)',
           parameter : 'ecb-button edit-window-nr',
@@ -1464,7 +1464,7 @@ const functions =
         },
         {
           function : 'ecb-common-after-tree-buffer-create-actions',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Things which should be performed after creating a tree-buffer.<br>The tree-buffer is the current buffer."',
           prototype : '(defun ecb-common-after-tree-buffer-create-actions ()',
           parameter : '',
@@ -1472,7 +1472,7 @@ const functions =
         },
         {
           function : 'ecb-common-tree-buffer-modeline-menu-creator',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Return a menu for the modeline of all ECB-tree-buffers."',
           prototype : '(defun ecb-common-tree-buffer-modeline-menu-creator (buf-name)',
           parameter : 'buf-name',
@@ -1480,13 +1480,13 @@ const functions =
         },
         {
           function : 'ecb-compare-methods-buffer-node-data',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'l r',
           lispcode : '(defun ecb-compare-methods-buffer-node-data (l r)<br>  (cond ((or (stringp l) (stringp r))<br>         (equal l r))<br>        ((or (equal <tick>ecb-bucket-node (car l))<br>             (equal <tick>ecb-bucket-node (car r)))<br>         (equal l r))<br>        (t ;; tags<br>         (condition-case nil<br>             (ecb--semantic-equivalent-tag-p l r)<br>           (error (eq l r))))))'
         },
         {
           function : 'ecb-compilation-buffer-list-init',
-          filename : 'ecb/ecb-compilation.el',
+          filename : 'ecb-compilation.el',
           docstring : '  "Initialize the compilation buffer list cache."',
           prototype : '(defun ecb-compilation-buffer-list-init ()',
           parameter : '',
@@ -1494,7 +1494,7 @@ const functions =
         },
         {
           function : 'ecb-compilation-buffer-names',
-          filename : 'ecb/ecb-compilation.el',
+          filename : 'ecb-compilation.el',
           docstring : '  "Return the set of buffer names which should be displayed in the<br>compile-window of ECB. This is a list combined of<br>`ecb-compilation-buffer-names" and `ecb-compilation-buffer-names-internal"."',
           prototype : '(defun ecb-compilation-buffer-names ()',
           parameter : '',
@@ -1502,7 +1502,7 @@ const functions =
         },
         {
           function : 'ecb-compilation-get-buffers',
-          filename : 'ecb/ecb-compilation.el',
+          filename : 'ecb-compilation.el',
           docstring : '  "Get all known compilation buffer names.  See `ecb-compilation-buffer-p"."',
           prototype : '(defun ecb-compilation-get-buffers()',
           parameter : '',
@@ -1510,7 +1510,7 @@ const functions =
         },
         {
           function : 'ecb-compilation-major-modes',
-          filename : 'ecb/ecb-compilation.el',
+          filename : 'ecb-compilation.el',
           docstring : '  "Return all major-mode symbols which should be displayed in the<br>compile-window. This is a list combined of `ecb-compilation-major-modes" and<br>`ecb-compilation-major-modes-internal"."',
           prototype : '(defun ecb-compilation-major-modes ()',
           parameter : '',
@@ -1518,7 +1518,7 @@ const functions =
         },
         {
           function : 'ecb-compilation-predicates',
-          filename : 'ecb/ecb-compilation.el',
+          filename : 'ecb-compilation.el',
           docstring : '  "Return all predicates which should be used to test if a buffer should be<br>displayed in the compile-window. This is a list combined of<br>`ecb-compilation-predicates" and `ecb-compilation-predicates-internal"."',
           prototype : '(defun ecb-compilation-predicates ()',
           parameter : '',
@@ -1526,7 +1526,7 @@ const functions =
         },
         {
           function : 'ecb-compilation-registered-buffer-p',
-          filename : 'ecb/ecb-compilation.el',
+          filename : 'ecb-compilation.el',
           docstring : '  "Check if name belongs to the set of buffers returned by<br>`ecb-compilation-buffer-names". If yes returns NAME."',
           prototype : '(defun ecb-compilation-registered-buffer-p (name)',
           parameter : 'name',
@@ -1534,7 +1534,7 @@ const functions =
         },
         {
           function : 'ecb-compilation-update-menu',
-          filename : 'ecb/ecb-compilation.el',
+          filename : 'ecb-compilation.el',
           docstring : '  "Create and install a menu that allows the user to navigate buffers that are<br>valid ECB compilation buffers. This is only done if<br>`ecb-compilation-update-menu-p" is not nil; see<br>`ecb-compilation-buffer-list-changed-p". For more information about<br>compilation buffers see `ecb-compilation-buffer-p"."',
           prototype : '(defun ecb-compilation-update-menu ()',
           parameter : '',
@@ -1542,7 +1542,7 @@ const functions =
         },
         {
           function : 'ecb-compile-file-if-necessary',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Compile the ECB-file FILE if necessary. This is done if FORCE is not nil or<br>FILE.el is newer than FILE.elc or if FILE.elc doesn"t exist."',
           prototype : '(defun ecb-compile-file-if-necessary (file &optional force)',
           parameter : 'file &optional force',
@@ -1550,7 +1550,7 @@ const functions =
         },
         {
           function : 'ecb-compile-window-live-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil when a compile-window is live and visible.<br>If optional arg DISPLAY-MSG is not nil then an informational message for the<br>user is displayed in the echo-area if no compile-window is visible."',
           prototype : '(defun ecb-compile-window-live-p (&optional display-msg)',
           parameter : '&optional display-msg',
@@ -1558,7 +1558,7 @@ const functions =
         },
         {
           function : 'ecb-compile-window-state',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Returns the state of the compile-window:<br>- "no: No persistent compile-window, i.e. `ecb-compile-window-height" is nil.<br>- "visible: The compile-window is visible.<br>- "hidden: A persistent compile-window is set but it is currently hidden."',
           prototype : '(defun ecb-compile-window-state ()',
           parameter : '',
@@ -1566,7 +1566,7 @@ const functions =
         },
         {
           function : 'ecb-concatenate',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Concatenate, into a sequence of type TYPE, the argument SEQUENCES.<br>TYPE can be "string, "vector or "list."',
           prototype : '(defun ecb-concatenate (type &rest seqs)',
           parameter : 'type &rest seqs',
@@ -1574,13 +1574,13 @@ const functions =
         },
         {
           function : 'ecb-confirm',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           parameter : 'text',
           lispcode : '(defun ecb-confirm (text)<br>  (yes-or-no-p text))'
         },
         {
           function : 'ecb-copy-list',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return a copy of a LIST, which may be a dotted list.<br>The elements of the list are not copied, just the list structure itself."',
           prototype : '(defun ecb-copy-list (list)',
           parameter : 'list',
@@ -1588,31 +1588,31 @@ const functions =
         },
         {
           function : 'ecb-create-directory',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : 'parent-node',
           lispcode : '(defun ecb-create-directory (parent-node)<br>  (make-directory (concat (tree-node->data parent-node) <apo>/<apo><br>                          (read-from-minibuffer <apo>Directory name: <apo>)))<br>  (ecb-update-directory-node parent-node)<br>  (tree-buffer-update))<br>'
         },
         {
           function : 'ecb-create-layout-add-to-buf-types',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : 'type',
           lispcode : '(defun ecb-create-layout-add-to-buf-types (type)<br>  (when (and (stringp type)<br>             (member type ecb-create-layout-all-buf-types))<br>    (add-to-list <tick>ecb-create-layout-buf-types type)<br>    (setq ecb-create-layout-buf-types<br>          (sort ecb-create-layout-buf-types <tick>ecb-string<))))'
         },
         {
           function : 'ecb-create-layout-buffer-factor',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : '',
           lispcode : '(defun ecb-create-layout-buffer-factor ()<br>  (get-text-property (point-min) <tick>ecb-create-layout-factor))'
         },
         {
           function : 'ecb-create-layout-buffer-type',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : '',
           lispcode : '(defun ecb-create-layout-buffer-type ()<br>  (get-text-property (point-min) <tick>ecb-create-layout-type))'
         },
         {
           function : 'ecb-create-layout-cancel',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Cancel layout-creation without saving the layout."',
           prototype : '(defun ecb-create-layout-cancel (&rest ignore)',
           parameter : '&rest ignore',
@@ -1620,7 +1620,7 @@ const functions =
         },
         {
           function : 'ecb-create-layout-clear-all',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Resets all stuff to state before `ecb-create-new-layout" was called. If<br>DELETE-FRAME is not nil then the new created frame will be deleted and the<br>`ecb-create-layout-old-frame" will be selected."',
           prototype : '(defun ecb-create-layout-clear-all (&optional delete-frame)',
           parameter : '&optional delete-frame',
@@ -1628,7 +1628,7 @@ const functions =
         },
         {
           function : 'ecb-create-layout-debug',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Debugging command for the ECB-developers."',
           prototype : '(defun ecb-create-layout-debug ()',
           parameter : '',
@@ -1636,7 +1636,7 @@ const functions =
         },
         {
           function : 'ecb-create-layout-delete-window',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Delete current window."',
           prototype : '(defun ecb-create-layout-delete-window ()',
           parameter : '',
@@ -1644,7 +1644,7 @@ const functions =
         },
         {
           function : 'ecb-create-layout-forward-char',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Move one character forward."',
           prototype : '(defun ecb-create-layout-forward-char ()',
           parameter : '',
@@ -1652,7 +1652,7 @@ const functions =
         },
         {
           function : 'ecb-create-layout-frame-ok',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Return not nil if current frame is the `ecb-create-layout-frame""',
           prototype : '(defun ecb-create-layout-frame-ok ()',
           parameter : '',
@@ -1660,19 +1660,19 @@ const functions =
         },
         {
           function : 'ecb-create-layout-gen-lisp',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : 'lisp-statement',
           lispcode : '(defun ecb-create-layout-gen-lisp (lisp-statement)<br>  (setq ecb-create-layout-generated-lisp<br>        (cons lisp-statement ecb-create-layout-generated-lisp)))'
         },
         {
           function : 'ecb-create-layout-gen-lisp-for-buffer-type',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : 'type',
           lispcode : '(defun ecb-create-layout-gen-lisp-for-buffer-type (type)<br>  (let ((func-sym (intern (format <apo>ecb-set-%s-buffer<apo> type))))<br>    (ecb-create-layout-gen-lisp<br>     <backtick>(if (fboundp (quote ,func-sym))<br>          (,func-sym)<br>        (ecb-set-default-ecb-buffer)))))<br>'
         },
         {
           function : 'ecb-create-layout-init-layout',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '                                          "Location of the the ECB-tree-windows:"',
           prototype : '(defun ecb-create-layout-init-layout (&optional new)  (delete-other-windows)  (ecb-create-layout-new-buffer)  (when new    (setq ecb-create-layout-type (intern (ecb-query-string',
           parameter : '&optional new',
@@ -1680,19 +1680,19 @@ const functions =
         },
         {
           function : 'ecb-create-layout-initilize',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : '',
           lispcode : '(defun ecb-create-layout-initilize ()<br>  (setq ecb-create-layout-buf-types<br>        (ecb-copy-list ecb-create-layout-all-buf-types))<br>  (setq ecb-create-layout-frame nil)<br>  (setq ecb-create-layout-edit-window nil)<br>  (setq ecb-create-layout-old-global-map nil)<br>  (setq ecb-create-layout-old-minor-mode-map-alist nil)<br>  (setq ecb-create-layout-old-hscroll nil)<br>  (setq ecb-create-layout-old-frame nil)<br>  (setq ecb-create-layout-old-after-frame-h nil)<br>  (setq ecb-create-layout-old-before-frame-h nil)<br>  (setq ecb-create-layout-generated-lisp nil)<br>  (setq ecb-create-layout-gen-counter 0))'
         },
         {
           function : 'ecb-create-layout-insert-file-header',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : '',
           lispcode : '(defun ecb-create-layout-insert-file-header ()<br>  (insert (format <apo>;;; %s --- user defined ECB-layouts<apo> ;;<br>                  (ecb-file-name-nondirectory ecb-create-layout-file)))<br>  (insert ecb-create-layout-file-header))'
         },
         {
           function : 'ecb-create-layout-make-frame',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Create a new frame for the layout creation process and return it."',
           prototype : '(defun ecb-create-layout-make-frame ()',
           parameter : '',
@@ -1700,7 +1700,7 @@ const functions =
         },
         {
           function : 'ecb-create-layout-mode',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Major mode for creating new ECB-layouts."',
           prototype : '(defun ecb-create-layout-mode ()',
           parameter : '',
@@ -1708,13 +1708,13 @@ const functions =
         },
         {
           function : 'ecb-create-layout-new-buffer',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : '&optional do-not-fill',
           lispcode : '(defun ecb-create-layout-new-buffer (&optional do-not-fill)<br>  (set-window-dedicated-p (selected-window) nil)<br>  (switch-to-buffer (generate-new-buffer ecb-create-layout-buf-prefix))<br>  (erase-buffer)<br>  (unless do-not-fill<br>    (dotimes (i (ecb-window-full-height))<br>      (insert<br>       (format <apo>%s\n<apo><br>               (make-string (- (window-width) 1) ?\ )))))<br>  (goto-char (point-min))<br>  (ecb-create-layout-mode)<br>  (set-window-dedicated-p (selected-window) t))'
         },
         {
           function : 'ecb-create-layout-next-window',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Go to the next window.<br>This command always goes to the next special ECB-window, i.e. it never selects<br>the edit-window."',
           prototype : '(defun ecb-create-layout-next-window ()',
           parameter : '',
@@ -1722,7 +1722,7 @@ const functions =
         },
         {
           function : 'ecb-create-layout-previous-window',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Go to the previous window.<br>This command always goes to the ECB-window preceding current window, i.e. it<br>never selects the edit-window."',
           prototype : '(defun ecb-create-layout-previous-window ()',
           parameter : '',
@@ -1730,7 +1730,7 @@ const functions =
         },
         {
           function : 'ecb-create-layout-ready-for-save-p',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Returns only not nil if all windows in current layout have a type."',
           prototype : '(defun ecb-create-layout-ready-for-save-p ()',
           parameter : '',
@@ -1738,13 +1738,13 @@ const functions =
         },
         {
           function : 'ecb-create-layout-remove-from-buf-type',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : 'type',
           lispcode : '(defun ecb-create-layout-remove-from-buf-type (type)<br>  (when (stringp type)<br>    (setq ecb-create-layout-buf-types<br>          (sort (delete type ecb-create-layout-buf-types) <tick>ecb-string<))))'
         },
         {
           function : 'ecb-create-layout-save-and-quit',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Quit the ECB Layout creation and save the defined layout."',
           prototype : '(defun ecb-create-layout-save-and-quit (&rest ignore)',
           parameter : '&rest ignore',
@@ -1752,7 +1752,7 @@ const functions =
         },
         {
           function : 'ecb-create-layout-save-layout',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Saves current layout in `ecb-create-layout-file"."',
           prototype : '(defun ecb-create-layout-save-layout ()',
           parameter : '',
@@ -1760,19 +1760,19 @@ const functions =
         },
         {
           function : 'ecb-create-layout-select-edit-window',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : '',
           lispcode : '(defun ecb-create-layout-select-edit-window ()<br>  (let ((counter 0))<br>    (while (not (equal (selected-window) ecb-create-layout-edit-window))<br>      (other-window 1)<br>      (setq counter (1+ counter)))<br>    (ecb-create-layout-gen-lisp <backtick>(dotimes (i ,counter)<br>                                   (other-window 1)<br>                                   (if (equal (selected-window)<br>                                              ecb-compile-window)<br>                                       (other-window 1))))))'
         },
         {
           function : 'ecb-create-layout-set-buffer-factor',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : 'factor',
           lispcode : '(defun ecb-create-layout-set-buffer-factor (factor)<br>  (let ((buffer-read-only nil))<br>    (put-text-property (point-min) (1+ (point-min)) <tick>ecb-create-layout-factor<br>                       factor)))<br>'
         },
         {
           function : 'ecb-create-layout-set-buffer-to-type',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Give current ECB-buffer a type."',
           prototype : '(defun ecb-create-layout-set-buffer-to-type (&optional type)',
           parameter : '&optional type',
@@ -1780,13 +1780,13 @@ const functions =
         },
         {
           function : 'ecb-create-layout-set-buffer-type',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : 'type',
           lispcode : '(defun ecb-create-layout-set-buffer-type (type)<br>  (let ((buffer-read-only nil))<br>    (put-text-property (point-min) (1+ (point-min)) <tick>ecb-create-layout-type<br>                       type)))'
         },
         {
           function : 'ecb-create-layout-split',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Split current window."',
           prototype : '(defun ecb-create-layout-split ()',
           parameter : '',
@@ -1794,19 +1794,19 @@ const functions =
         },
         {
           function : 'ecb-create-layout-split-hor',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : '&optional fraction',
           lispcode : '(defun ecb-create-layout-split-hor (&optional fraction)<br>  (let ((factor (or fraction<br>                    (/ (float (- (point) (ecb-line-beginning-pos)))<br>                       (float (- (window-width) 3))))))<br>    (ecb-split-hor factor t)<br>    (ecb-create-layout-gen-lisp <backtick>(ecb-split-hor ,factor t))<br>    (beginning-of-line)<br>    factor))'
         },
         {
           function : 'ecb-create-layout-split-ver',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           parameter : '&optional fraction',
           lispcode : '(defun ecb-create-layout-split-ver (&optional fraction)<br>  (let ((factor (or fraction<br>                    (/ (float (count-lines (window-start) (point)))<br>                       (float (- (ecb-window-full-height) 2))))))<br>    (ecb-split-ver factor t)<br>    (ecb-create-layout-gen-lisp <backtick>(ecb-split-ver ,factor t))<br>    factor))'
         },
         {
           function : 'ecb-create-menu-user-ext-type',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Creates the :type-definition for the *-menu-user-extension options.<br>This allows nested submenus for the popup-menus of the tree-buffers up to a<br>maximum level of MAX-LEVEL. CURR-LEVEL must be 1 when used in a<br>defcustom-clause and has to be <= MAX-LEVEL."',
           prototype : '(defun ecb-create-menu-user-ext-type (curr-level max-level)',
           parameter : 'curr-level max-level',
@@ -1814,7 +1814,7 @@ const functions =
         },
         {
           function : 'ecb-create-new-layout',
-          filename : 'ecb/ecb-create-layout.el',
+          filename : 'ecb-create-layout.el',
           docstring : '  "Start interactively layout creating."',
           prototype : '(defun ecb-create-new-layout ()',
           parameter : '',
@@ -1822,13 +1822,13 @@ const functions =
         },
         {
           function : 'ecb-create-node',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'parent-node display name data type',
           lispcode : '(defun ecb-create-node (parent-node display name data type)<br>  (if (eq <tick>hidden display)<br>      nil<br>    (if (eq <tick>flattened display)<br>	parent-node<br>      (let ((node (tree-node-new name type data nil parent-node<br>				 (if ecb-truncate-long-names <tick>end))))<br>	(when (eq <tick>expanded display)<br>	  (setf (tree-node->expanded node) t))<br>        node))))<br>'
         },
         {
           function : 'ecb-create-non-semantic-tree',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           docstring : '  "Add all tags of TAG-LIST with side-effects as children to NODE. TAG-LIST is<br>a list generated by `ecb-get-tags-for-non-semantic-files". TAG-LIST is of the<br>form:<br>( ("name" . marker-or-number) <-- one tag at this level<br>  ("name" ("name" . mon) ("name" . mon) )  <-- one group of tags<br>  ("name" mon ("name" . mon) )             <-- group w/ a pos. and tags<br><br>Groups can contain tags which are groups again...therefore this function is<br>called recursive for the elements of a group.<br><br>Return NODE."',
           prototype : '(defun ecb-create-non-semantic-tree (node tag-list)',
           parameter : 'node tag-list',
@@ -1836,7 +1836,7 @@ const functions =
         },
         {
           function : 'ecb-current-buffer-archive-extract-p',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return not nil if current buffer was extracted of an archive which is in<br>`tar-mode" or `archive-mode". For this the current buffer has either to be in<br>minor-mode `tar-subfile-mode" or `archive-subfile-mode"."',
           prototype : '(defun ecb-current-buffer-archive-extract-p ()',
           parameter : '',
@@ -1844,7 +1844,7 @@ const functions =
         },
         {
           function : 'ecb-current-window-configuration',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return the current ecb-window-configuration"',
           prototype : '(defun ecb-current-window-configuration ()',
           parameter : '',
@@ -1852,7 +1852,7 @@ const functions =
         },
         {
           function : 'ecb-custom-file',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Filename of that file which is used by Emacs to store the<br>customize-options. If no custom-file can be computed or if Emacs reports an<br>error (e.g. GNU Emacs complains when calling `custom-file" and Emacs has been<br>started with -q) nil is returned."',
           prototype : '(defun ecb-custom-file ()',
           parameter : '',
@@ -1860,7 +1860,7 @@ const functions =
         },
         {
           function : 'ecb-custom-file-writeable-p',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Returns not nil if and only if the custom-file is writable for ECB, which<br>means it is neither a bytecompiled-file nor a read-only-file."',
           prototype : '(defun ecb-custom-file-writeable-p ()',
           parameter : '',
@@ -1868,7 +1868,7 @@ const functions =
         },
         {
           function : 'ecb-customize',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Open a customize-buffer for all customize-groups of ECB."',
           prototype : '(defun ecb-customize ()',
           parameter : '',
@@ -1876,7 +1876,7 @@ const functions =
         },
         {
           function : 'ecb-customize-most-important',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Open a customize-buffer for the most important options of ECB."',
           prototype : '(defun ecb-customize-most-important ()',
           parameter : '',
@@ -1884,19 +1884,19 @@ const functions =
         },
         {
           function : 'ecb-customize-save-variable',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'option value',
           lispcode : '(defun ecb-customize-save-variable (option value)<br>  ;; because the adviced version of <backtick>custom-save-all<tick> do only all the special<br>  ;; needed things if <backtick>ecb-minor-mode<tick> is on we must temporally set here this<br>  ;; variable to not nil because at that time this function is called this<br>  ;; variable is maybe still nil.'
         },
         {
           function : 'ecb-customize-set-variable',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'option value',
           lispcode : '(defun ecb-customize-set-variable (option value)<br>  (customize-set-variable option value))'
         },
         {
           function : 'ecb-cycle-maximized-ecb-buffers',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Cycles through all ecb-buffers by maximizing one at each step."',
           prototype : '(defun ecb-cycle-maximized-ecb-buffers ()',
           parameter : '',
@@ -1904,7 +1904,7 @@ const functions =
         },
         {
           function : 'ecb-cycle-set-compilation-bufferindex',
-          filename : 'ecb/ecb-cycle.el',
+          filename : 'ecb-cycle.el',
           docstring : '  "Set the buffer in the compilation window."',
           prototype : '(defun ecb-cycle-set-compilation-buffer(index compilation-buffers)',
           parameter : 'compilation-buffers',
@@ -1912,7 +1912,7 @@ const functions =
         },
         {
           function : 'ecb-cycle-through-compilation-buffers&optional',
-          filename : 'ecb/ecb-cycle.el',
+          filename : 'ecb-cycle.el',
           docstring : '  "Cycle through all compilation buffers currently open.<br>The choosen compilation buffer is displayed within the compilation window<br>`ecb-compile-window" (if this window doesn"t exist then an error is<br>displayed). If the currently opened buffer within the compilation window is<br>not a compilation buffer, we jump to the first compilation buffer. If not we<br>try to loop through all compilation buffers. If we hit the end we go back to<br>the beginning.<br><br>If CHOOSE-BUFFER is not nil then the user will be prompted for the<br>compilation-buffer to switch to.<br><br>Afterwards always the compile-window of ECB is selected."',
           prototype : '(defun ecb-cycle-through-compilation-buffers(&optional choose-buffer)',
           parameter : 'choose-buffer',
@@ -1920,7 +1920,7 @@ const functions =
         },
         {
           function : 'ecb-deactivate',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Deactivates the ECB and kills all ECB buffers and windows."',
           prototype : '(defun ecb-deactivate ()',
           parameter : '',
@@ -1928,13 +1928,13 @@ const functions =
         },
         {
           function : 'ecb-deactivate-ediff-compatibility',
-          filename : 'ecb/ecb-compatibility.el',
+          filename : 'ecb-compatibility.el',
           parameter : '',
           lispcode : '(defun ecb-deactivate-ediff-compatibility ()<br>  (if (get <tick>ediff-quit-hook <tick>ecb-ediff-quit-hook-value)<br>      (setq ediff-quit-hook (get <tick>ediff-quit-hook<br>                                 <tick>ecb-ediff-quit-hook-value))<br>    (remove-hook <tick>ediff-quit-hook <tick>ecb-ediff-quit-hook))<br>  (remove-hook <tick>ediff-before-setup-hook<br>               <tick>ecb-ediff-before-setup-hook))<br><br><br>;; view-stuff --------------------------------------------------------------------<br>'
         },
         {
           function : 'ecb-deactivate-internal',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Deactivates the ECB and kills all ECB buffers and windows."',
           prototype : '(defun ecb-deactivate-internal (&optional run-no-hooks)',
           parameter : '&optional run-no-hooks',
@@ -1942,7 +1942,7 @@ const functions =
         },
         {
           function : 'ecb-dedicated-special-buffers',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return a list of all registered ecb-buffers.<br><br>This are all buffers which are registrated via the macro<br>`defecb-window-dedicator-to-ecb-buffer" (these are mainly the<br>standard tree-buffers of ECB plus the integrated speedbar-buffer<br>and the symboldef-buffer, but in general it can be more if there<br>are additional buffers registrated, e.g. by other applications).<br>The value returned is independend from the currently *visible*<br>special ecb-buffers and therefore also from the current layout.<br>If the currently visible ECB-buffers are needed then use the<br>function `ecb-get-current-visible-ecb-buffers". "',
           prototype : '(defun ecb-dedicated-special-buffers ()',
           parameter : '',
@@ -1950,7 +1950,7 @@ const functions =
         },
         {
           function : 'ecb-default-tag-filter-for-current-source',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Check if for the file of the current buffer a default-tag-filter should be<br>applied. If yes, then the filters-list of `ecb-default-tag-filter" is returned<br>otherwise nil."',
           prototype : '(defun ecb-default-tag-filter-for-current-source ()',
           parameter : '',
@@ -1958,7 +1958,7 @@ const functions =
         },
         {
           function : 'ecb-delete-all-occurences-from-list',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Replace all occurences of ELEM from LIST. Comparison is done by `equal".<br>This is desctructive function. LIST is returned."',
           prototype : '(defun ecb-delete-all-occurences-from-list (list elem)',
           parameter : 'list elem',
@@ -1966,7 +1966,7 @@ const functions =
         },
         {
           function : 'ecb-delete-duplicates',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Deletes duplicate elements from CL-SEQ.<br>Comparison is done with `equal" unless CL-TEST-FCN is not nil: In<br>this case TEST-FCN will be used to compare CL-ITEM with the<br>elements of CL-SEQ. Specifically, if two elements from the<br>sequence match according to the test-function (s.a.) only the<br>rightmost one is retained. If CL-FROM-END is true, the leftmost<br>one is retained instead. If CL-START or CL-END is specified, only<br>elements within that subsequence are examined or removed. If<br>CL-COPY is nil then it destructively modifies CL-SEQ otherwise a<br>copy of CL-SEQ with removed duplicates is returned."',
           prototype : '(defun ecb-delete-duplicates (cl-seq &optional                                     cl-test-fcn cl-start cl-end cl-from-end cl-copy)',
           parameter : 'cl-seq &optional cl-test-fcn cl-start cl-end cl-from-end cl-copy',
@@ -1974,7 +1974,7 @@ const functions =
         },
         {
           function : 'ecb-delete-ecb-windows',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Delete all ecb-windows of SIDE.<br>SIDE must be one of "left-side, "right-side or "top-side and must<br>not conflict with the current layout-type (e.g. left-side<br>conflicts with a top-layout) otherwise an error is reported.<br><br>If except-ecb-window-or-buffer is nil all ecb-windows on SIDE will be deleted.<br>This argument can be either an ecb-window, an ecb-buffer object or the<br>buffer-name of an ecb-buffer: In this case all ecb-windows except this window<br>will be deleted on SIDE or with other words: In this case this window will be<br>maximized.<br><br>If RESIDUAL-WINDOW is not nil it must be one of the windows<br>`ecb-canonical-residual-windows-list" would compute. If nil then<br>it will be computed."',
           prototype : '(defun ecb-delete-ecb-windows (side &optional residual-window except-ecb-window-or-buffer)',
           parameter : 'side &optional residual-window except-ecb-window-or-buffer',
@@ -1982,7 +1982,7 @@ const functions =
         },
         {
           function : 'ecb-delete-file',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Delete FILE if it eexists."',
           prototype : '(defun ecb-delete-file (file)',
           parameter : 'file',
@@ -1990,7 +1990,7 @@ const functions =
         },
         {
           function : 'ecb-delete-first-occurence-from-list',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Replace first occurence of ELEM from LIST. Comparison is done by `equal".<br>This is desctructive function. LIST is returned."',
           prototype : '(defun ecb-delete-first-occurence-from-list (list elem)',
           parameter : 'list elem',
@@ -1998,37 +1998,37 @@ const functions =
         },
         {
           function : 'ecb-delete-s',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : 'child children sources',
           lispcode : '(defun ecb-delete-s (child children sources)<br>  (when children<br>    (if (eq child (car children))<br>	(cdr sources)<br>      (cons (car sources) (ecb-delete-s child (cdr children) (cdr sources))))))<br>'
         },
         {
           function : 'ecb-delete-window-ecb-windows-left',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : 'window edit-win-list',
           lispcode : '(defun ecb-delete-window-ecb-windows-left (window edit-win-list)<br>  (let ((ecb-win-width-before (window-width (frame-first-window ecb-frame)))<br>        (curr-edit-win-width (ecb-window-full-width window)))<br>    (delete-window window)<br>    (when (/= (window-width (frame-first-window ecb-frame))<br>              ecb-win-width-before)<br>      ;; We have to select here the <apo>next<apo> edit-window explicitly because if<br>      ;; WINDOW is not the selected-window <backtick>delete-window<tick> does not select the<br>      ;; next window!'
         },
         {
           function : 'ecb-delete-window-ecb-windows-right',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : 'window edit-win-list',
           lispcode : '(defun ecb-delete-window-ecb-windows-right (window edit-win-list)<br>  (delete-window window))<br>'
         },
         {
           function : 'ecb-delete-window-ecb-windows-top',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : 'window edit-win-list',
           lispcode : '(defun ecb-delete-window-ecb-windows-top (window edit-win-list)<br>  (let ((ecb-win-height-before (ecb-window-full-height (frame-first-window ecb-frame)))<br>        (curr-edit-win-height (ecb-window-full-height window)))<br>    (delete-window window)<br>    (when (/= (ecb-window-full-height (frame-first-window ecb-frame))<br>              ecb-win-height-before)<br>      (save-selected-window<br>        (select-window (ecb-next-listelem edit-win-list window))<br>        (enlarge-window curr-edit-win-height)))))<br>'
         },
         {
           function : 'ecb-dir-run-cvs-op',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : 'node op op-arg-list',
           lispcode : '(defun ecb-dir-run-cvs-op (node op op-arg-list)<br>  (let ((dir (tree-node->data node)))<br>    (funcall op dir op-arg-list)))<br>'
         },
         {
           function : 'ecb-dir/source/hist-menu-editwin-entries',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Generate popup-menu-entries for each edit-window if there are at least 2<br>edit-windows. Otherwise return nil."',
           prototype : '(defun ecb-dir/source/hist-menu-editwin-entries ()',
           parameter : '',
@@ -2036,7 +2036,7 @@ const functions =
         },
         {
           function : 'ecb-directories-menu-creator',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Creates the popup-menus for the directories-buffer."',
           prototype : '(defun ecb-directories-menu-creator (tree-buffer-name node)',
           parameter : 'tree-buffer-name node',
@@ -2044,7 +2044,7 @@ const functions =
         },
         {
           function : 'ecb-directory-empty-cache-add',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Add information if DIR is empty or not to the cache."',
           prototype : '(defun ecb-directory-empty-cache-add (dir cached-value)',
           parameter : 'dir cached-value',
@@ -2052,7 +2052,7 @@ const functions =
         },
         {
           function : 'ecb-directory-empty-cache-clear',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Clear the whole EMPTY-DIR-P-cache."',
           prototype : '(defun ecb-directory-empty-cache-clear ()',
           parameter : '',
@@ -2060,7 +2060,7 @@ const functions =
         },
         {
           function : 'ecb-directory-empty-cache-dump',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Dump the whole EMPTY-DIR-P-cache. If NO-NIL-VALUE is not nil then these<br>cache-entries are not dumped. This command is not intended for end-users of<br>ECB."',
           prototype : '(defun ecb-directory-empty-cache-dump (&optional no-nil-value)',
           parameter : '&optional no-nil-value',
@@ -2068,7 +2068,7 @@ const functions =
         },
         {
           function : 'ecb-directory-empty-cache-get',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "get information if DIR is empty or not from the cache."',
           prototype : '(defun ecb-directory-empty-cache-get (dir)',
           parameter : 'dir',
@@ -2076,7 +2076,7 @@ const functions =
         },
         {
           function : 'ecb-directory-empty-cache-remove',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Remove DIR from the EMPTY-DIR-P-cache."',
           prototype : '(defun ecb-directory-empty-cache-remove (dir)',
           parameter : 'dir',
@@ -2084,7 +2084,7 @@ const functions =
         },
         {
           function : 'ecb-directory-empty-cache-remove-all',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Remove DIR and all its suddirs from the EMPTY-DIR-P-cache."',
           prototype : '(defun ecb-directory-empty-cache-remove-all (dir)',
           parameter : 'dir',
@@ -2092,7 +2092,7 @@ const functions =
         },
         {
           function : 'ecb-directory-files',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Wrapper for directory-files that fixes the file name & catch file errors"',
           prototype : '(defun ecb-directory-files (dir &rest args)',
           parameter : 'dir &rest args',
@@ -2100,7 +2100,7 @@ const functions =
         },
         {
           function : 'ecb-directory-update-speedbar',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Update the integrated speedbar if necessary."',
           prototype : '(defun ecb-directory-update-speedbar (dir)',
           parameter : 'dir',
@@ -2108,13 +2108,13 @@ const functions =
         },
         {
           function : 'ecb-dired-directory-internal',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : 'node &optional other',
           lispcode : '(defun ecb-dired-directory-internal (node &optional other)<br>  (ecb-select-edit-window)<br>  (let* ((node-data-file (ecb-source-get-filename (tree-node->data node)))<br>         (dir (ecb-fix-filename<br>               (funcall (if (ecb-file-directory-p node-data-file)<br>                            <tick>identity<br>                          <tick>ecb-file-name-directory)<br>                        node-data-file))))<br>    (funcall (if other<br>                 <tick>dired-other-window<br>               <tick>dired)<br>             dir)))<br>'
         },
         {
           function : 'ecb-disable-advices',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Disable all advices of ADVICED-FUNCTION-SET-VAR, which must be defined by<br>`defecb-advice-set"<br><br>This function tests if ADVICED-FUNCTION-SET-VAR has been defined as permanent<br>by `defecb-advice-set".<br><br>Calling `ecb-disable-advices" for an advice set defined with<br>permanent t will take no effect unless the optional argument<br>FORCE-PERMANENT is set to not nil. If the advice set is defined as permanent<br>with a permanent-disable-function then this function is called with<br>ADVICED-FUNCTION-SET-VAR as argument; if this function returns not nil then<br>the adviced will be treated as permanent and will not being disabled.<br><br>If optional FORCE-PERMANENT is not nil then ADVICED-FUNCTION-SET-VAR will<br>be disabled regardless if permanent or not."',
           prototype : '(defun ecb-disable-advices (adviced-function-set-var &optional force-permanent)',
           parameter : 'adviced-function-set-var &optional force-permanent',
@@ -2122,7 +2122,7 @@ const functions =
         },
         {
           function : 'ecb-display-news-for-upgrade',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Display the most important NEWS after an ECB-upgrade.<br>If you call this function but no ECB-upgrade has been performed before<br>starting ECB then nothing is display unless FULL-NEWS is not nil.<br><br>If FULL-NEWS is not nil then the NEWS-file is displayed in another window."',
           prototype : '(defun ecb-display-news-for-upgrade (&optional full-news)',
           parameter : '&optional full-news',
@@ -2130,7 +2130,7 @@ const functions =
         },
         {
           function : 'ecb-display-source',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Display SOURCE in the correct edit-window.<br>What the correct window is depends on the setting in<br>`ecb-mouse-click-destination" and the value of OTHER-EDIT-WINDOW<br>(for this see `ecb-combine-ecb-button/edit-win-nr").<br><br>SOURCE is either a string, then it is a filename or a cons, then the car is<br>the filename and the cdr is the buffer-name, whereas the latter one can be the<br>name of an indirect-buffer."',
           prototype : '(defun ecb-display-source (source other-edit-window)',
           parameter : 'source other-edit-window',
@@ -2138,7 +2138,7 @@ const functions =
         },
         {
           function : 'ecb-display-tag',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Display SOURCE and go to TAG.<br>SOURCE is a source in the sense of `ecb-source-make". TAG is either nil (then<br>just the SOURCE is displayed) or a semantic-tag. If it is a positioned tag<br>then this function goes to this TAG in SOURCE.<br>If optional arg WINDOW is nil then the current window is used otherwise the<br>window-object WINDOW contains.<br><br>If NO-TAG-VISIT-POST-ACTIONS is not nil then the functions of<br>`ecb-tag-visit-post-actions" are not performed. If<br>ADDITIONAL-POST-ACTION-LIST is a list of function-symbols then these functions<br>are performed after these ones of `ecb-tag-visit-post-actions". So if<br>NO-TAG-VISIT-POST-ACTIONS is not nil then only the functions of<br>ADDITIONAL-POST-ACTION-LIST are performed. If ADDITIONAL-POST-ACTION-LIST is<br>nil too then no post-actions are performed."',
           prototype : '(defun ecb-display-tag (source tag &optional window                               no-tag-visit-post-actions                               additional-post-action-list)',
           parameter : 'source tag &optional window no-tag-visit-post-actions additional-post-action-list',
@@ -2146,7 +2146,7 @@ const functions =
         },
         {
           function : 'ecb-display-upgraded-options',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Display a information-buffer which options have been upgraded or reset.<br>Offers two buttons where the user can decide if the upgraded options should<br>also being saved by ECB for future settings or if the buffer should be<br>killed.<br><br>If saving is possible this command display where the options would be saved.<br>It is that file Emacs uses to save customize-settings. This file is<br>"computed" from the settings in `custom-file" and `user-init-file" (see the<br>documentation of these variables).<br><br>ECB automatically makes a backup-file of that file which will be modified by<br>storing the upgraded rsp. renamed ECB-options. This backup file gets a unique<br>name by adding a suffix ".before_ecb_<version>" to the name of the modified<br>file. If such a file already exists ECB adds a unique number to the end of the<br>filename to make the filename unique. This is a safety mechanism if something<br>fails during storing the upgraded options, so you never lose the contents of<br>your customization-file!"',
           prototype : '(defun ecb-display-upgraded-options ()',
           parameter : '',
@@ -2154,7 +2154,7 @@ const functions =
         },
         {
           function : 'ecb-displayed-tag-name',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return the tag-name of TAG as it will be displayed in the methods-buffer.<br>This function MUST be called with the source-buffer as current buffer!"',
           prototype : '(defun ecb-displayed-tag-name (tag &optional parent-tag)',
           parameter : 'tag &optional parent-tag',
@@ -2162,13 +2162,13 @@ const functions =
         },
         {
           function : 'ecb-dlist-node-new',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : 'data',
           lispcode : '(defun ecb-dlist-node-new (data)<br>  (ecb-dlist-node :data data))'
         },
         {
           function : 'ecb-draw-compile-window',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Draws the compile-window during `ecb-redraw-layout-full". This function<br>does not change the selected window! It sets `ecb-compile-window" and<br>`ecb-compile-window-height-lines". If HEIGHT is not nil then the<br>compile-window will drawn with height HEIGHT otherwise<br>`ecb-compile-window-height" is used."',
           prototype : '(defun ecb-draw-compile-window (&optional height)',
           parameter : '&optional height',
@@ -2176,7 +2176,7 @@ const functions =
         },
         {
           function : 'ecb-dump-semantic-tags-internal',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '                    ", tag-class: "',
           prototype : '(defun ecb-dump-semantic-tags-internal (table parent source-buffer indent)  (dolist (tag table)    ;; we ca not use format here because XEmacs-format removes all    ;; text-properties!    (insert (concat (make-string indent ? )                    (with-current-buffer source-buffer                      (ecb--semantic-format-tag-uml-prototype tag parent t))',
           parameter : 'table parent source-buffer indent',
@@ -2184,7 +2184,7 @@ const functions =
         },
         {
           function : 'ecb-dump-semantic-toplevel',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Dump the current semantic-tags in special buffer and display them."',
           prototype : '(defun ecb-dump-semantic-toplevel ()',
           parameter : '',
@@ -2192,19 +2192,19 @@ const functions =
         },
         {
           function : 'ecb-ecb-buffer-registry-add',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           parameter : 'name name-symbol tree-buffer-p &optional set-fcn-symbol',
           lispcode : '(defun ecb-ecb-buffer-registry-add (name name-symbol tree-buffer-p &optional set-fcn-symbol)<br>  (if (assoc name ecb-ecb-buffer-registry)<br>      (ecb-set-elt (assoc name ecb-ecb-buffer-registry) 3 set-fcn-symbol)<br>    (setq ecb-ecb-buffer-registry<br>          (cons (list name name-symbol tree-buffer-p set-fcn-symbol)<br>                ecb-ecb-buffer-registry))))'
         },
         {
           function : 'ecb-ecb-buffer-registry-init',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           parameter : '',
           lispcode : '(defun ecb-ecb-buffer-registry-init ()<br>  (setq ecb-ecb-buffer-registry nil))'
         },
         {
           function : 'ecb-ediff-before-setup-hook',
-          filename : 'ecb/ecb-compatibility.el',
+          filename : 'ecb-compatibility.el',
           docstring : '  "Special ecb-setup before starting ediff."',
           prototype : '(defun ecb-ediff-before-setup-hook ()',
           parameter : '',
@@ -2212,7 +2212,7 @@ const functions =
         },
         {
           function : 'ecb-ediff-quit-hook',
-          filename : 'ecb/ecb-compatibility.el',
+          filename : 'ecb-compatibility.el',
           docstring : '  "Added to the end of `ediff-quit-hook" during ECB is activated. It<br>does all necessary after finishing ediff."',
           prototype : '(defun ecb-ediff-quit-hook ()',
           parameter : '',
@@ -2220,13 +2220,13 @@ const functions =
         },
         {
           function : 'ecb-edit-area-creators-number-of-edit-windows',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : '',
           lispcode : '(defun ecb-edit-area-creators-number-of-edit-windows ()<br>  (let ((dels (length (delq nil (mapcar (function (lambda (e)<br>                                                    (if (equal (cdr e)<br>                                                               <tick>delete-window)<br>                                                        e<br>                                                      nil)))<br>                                        ecb-edit-area-creators)))))<br>    (- (1+ (- (length ecb-edit-area-creators) dels))<br>       dels)))<br>'
         },
         {
           function : 'ecb-edit-window-live-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "At least one edit-window is always alive."',
           prototype : '(defun ecb-edit-window-live-p ()',
           parameter : '',
@@ -2234,7 +2234,7 @@ const functions =
         },
         {
           function : 'ecb-edit-window-splitted',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Returns either nil if the ECB edit-window is not splitted or "vertical or<br>"horizontal when splitted in two windows (depending on the splitting) or<br>"splitted if splitted in more than two windows. If EDIT-WINDOWS-LIST is not<br>nil then it must be a current list of edit-windows (got by<br>`ecb-canonical-edit-windows-list"). If EDIT-WINDOWS-LIST is nil then a new<br>edit-window-list is computed via `ecb-canonical-edit-windows-list"."',
           prototype : '(defun ecb-edit-window-splitted (&optional edit-windows-list)',
           parameter : '&optional edit-windows-list',
@@ -2242,7 +2242,7 @@ const functions =
         },
         {
           function : 'ecb-enable-advices',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Enable all advices of ADVICED-FUNCTION-SET-VAR, which must be defined by<br>`defecb-advice-set"."',
           prototype : '(defun ecb-enable-advices (adviced-function-set-var)',
           parameter : 'adviced-function-set-var',
@@ -2250,7 +2250,7 @@ const functions =
         },
         {
           function : 'ecb-enable-ecb-advice',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "If ARG is greater or equal zero then enable the adviced version of<br>FUNCTION-SYMBOL. Otherwise disable the adviced version. The advice must be<br>defined with class ADVICE-CLASS by `defecb-advice".<br><br>IMPORTANT: Do not use the function directly. Always use `ecb-enable-advices",<br>`ecb-disable-advices" or `ecb-with-original-adviced-function-set"!."',
           prototype : '(defun ecb-enable-ecb-advice (function-symbol advice-class arg)',
           parameter : 'function-symbol advice-class arg',
@@ -2258,7 +2258,7 @@ const functions =
         },
         {
           function : 'ecb-enable-temp-buffer-shrink-to-fit',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Enables `temp-buffer-resize-mode" (GNU Emacs) when a comile-window is used.<br>When the compile-window is disabled or when ECB is deactivated then the old<br>state of these modes/variables is restored."',
           prototype : '(defun ecb-enable-temp-buffer-shrink-to-fit (arg)',
           parameter : 'arg',
@@ -2266,7 +2266,7 @@ const functions =
         },
         {
           function : 'ecb-enlarge-window',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Enlarge the given window.<br>If VAL is nil then WINDOW is enlarged so that it is 1/2 of the current frame.<br>If VAL is a positive integer then WINDOW is enlarged so that its new height is<br>VAL lines. If VAL is > 0 and < 1 then WINDOW is enlarged so that its new<br>height is that fraction of the frame."',
           prototype : '(defun ecb-enlarge-window (window &optional val)',
           parameter : 'window &optional val',
@@ -2274,7 +2274,7 @@ const functions =
         },
         {
           function : 'ecb-enter-debugger',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "If `ecb-debug-mode" is not nil then enter the Emacs-debugger and signal an<br>error with ERROR-ARGS."',
           prototype : '(defun ecb-enter-debugger (&rest error-args)',
           parameter : '&rest error-args',
@@ -2282,7 +2282,7 @@ const functions =
         },
         {
           function : 'ecb-error',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Signals an error but prevents it from entering the debugger. This is<br>useful if an error-message should be signaled to the user and evaluating<br>should stopped but no debugging is senseful."',
           prototype : '(defun ecb-error (&rest args)',
           parameter : '&rest args',
@@ -2290,7 +2290,7 @@ const functions =
         },
         {
           function : 'ecb-eshell-activate-integration',
-          filename : 'ecb/ecb-eshell.el',
+          filename : 'ecb-eshell.el',
           docstring : '  "Does all necessary to activate the eshell-integration. But this doesn not<br>load or activate eshell - it just prepares ECB to work perfectly with eshell."',
           prototype : '(defun ecb-eshell-activate-integration ()',
           parameter : '',
@@ -2298,7 +2298,7 @@ const functions =
         },
         {
           function : 'ecb-eshell-auto-activate-hook',
-          filename : 'ecb/ecb-eshell.el',
+          filename : 'ecb-eshell.el',
           docstring : '  "Activate the eshell when ECB is activated. See `ecb-eshell-auto-activate"."',
           prototype : '(defun ecb-eshell-auto-activate-hook()',
           parameter : '',
@@ -2306,13 +2306,13 @@ const functions =
         },
         {
           function : 'ecb-eshell-deactivate-integration',
-          filename : 'ecb/ecb-eshell.el',
+          filename : 'ecb-eshell.el',
           parameter : '',
           lispcode : '(defun ecb-eshell-deactivate-integration ()<br>  (ecb-disable-advices <tick>ecb-eshell-adviced-functions)<br>  (ecb-stop-autocontrol/sync-function <tick>ecb-eshell-buffer-sync)<br>  (remove-hook <tick>eshell-post-command-hook <tick>ecb-eshell-recenter)<br>  (remove-hook <tick>eshell-post-command-hook <tick>ecb-eshell-fit-window-to-output)<br>  (remove-hook <tick>eshell-pre-command-hook <tick>ecb-eshell-precommand-hook)<br>  (remove-hook <tick>window-size-change-functions <tick>ecb-eshell-window-size-change))'
         },
         {
           function : 'ecb-eshell-fit-window-to-output',
-          filename : 'ecb/ecb-eshell.el',
+          filename : 'ecb-eshell.el',
           docstring : '  "Fit window of eshell to the output of last command. This function is added<br>to `eshell-post-command-hook" and only called there. This function tries to<br>fit the height of the compile-window best to the last command-output. The<br>algorithm fit the window to the height of the last command-output but do not<br>enlarge the compile-window over half of the frame-height and also not below<br>`ecb-compile-window-height" (in lines)."',
           prototype : '(defun ecb-eshell-fit-window-to-output()',
           parameter : '',
@@ -2320,13 +2320,13 @@ const functions =
         },
         {
           function : 'ecb-eshell-precommand-hook',
-          filename : 'ecb/ecb-eshell.el',
+          filename : 'ecb-eshell.el',
           parameter : '',
           lispcode : '(defun ecb-eshell-precommand-hook ()<br>  ;;use the eshell-pre-command-hook to set the point.<br>  (setq ecb-eshell-pre-command-point (point)))'
         },
         {
           function : 'ecb-eshell-recenter&optional',
-          filename : 'ecb/ecb-eshell.el',
+          filename : 'ecb-eshell.el',
           docstring : '  "Recenter the eshell window so that the prompt is at the buffer-end."',
           prototype : '(defun ecb-eshell-recenter(&optional display-errors)',
           parameter : 'display-errors',
@@ -2334,7 +2334,7 @@ const functions =
         },
         {
           function : 'ecb-eshell-window-size-changeframe',
-          filename : 'ecb/ecb-eshell.el',
+          filename : 'ecb-eshell.el',
           docstring : '  "Called when we change window sizes so that the eshell can resize."',
           prototype : '(defun ecb-eshell-window-size-change(frame)',
           parameter : '',
@@ -2342,7 +2342,7 @@ const functions =
         },
         {
           function : 'ecb-event-to-key',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return non-nil if running non-interactively, i.e. in batch mode."',
           prototype : '(defun ecb-event-to-key (event)  (let ((type (event-basic-type event)))    (cl-case type      ((mouse-1 mouse-2 mouse-3) "mouse-release)      ((down-mouse-1 down-mouse-2 down-mouse-3) "mouse-press)      (otherwise (event-basic-type event)))))(defalias "ecb-facep "facep)(defun ecb-noninteractive ()',
           parameter : 'event',
@@ -2350,7 +2350,7 @@ const functions =
         },
         {
           function : 'ecb-examples-action-buffer-create',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           docstring : '  "Return the action-buffer with name `ecb-examples-action-buffer-name" If<br>the buffer does not exist it will be created. The buffer is read only,<br>contains two buttons [prior] and [next] and mouse-2 calls<br>`ecb-examples-action-buffer-clicked"."',
           prototype : '(defun ecb-examples-action-buffer-create ()',
           parameter : '',
@@ -2358,7 +2358,7 @@ const functions =
         },
         {
           function : 'ecb-examples-activate',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           docstring : '  "Activate the new layout "example-layout1".<br>Set `ecb-compile-window-height" to 5 and `ecb-windows-height" to 6. The<br>preactivation-state is saved and will be restored by<br>`ecb-examples-deactivate"."',
           prototype : '(defun ecb-examples-activate ()',
           parameter : '',
@@ -2366,7 +2366,7 @@ const functions =
         },
         {
           function : 'ecb-examples-deactivate',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           docstring : '  "Deactivate the new layout "example-layout1".<br>Stops `ecb-examples-bufferinfo-buffer-sync" and restore the state<br>as before activation."',
           prototype : '(defun ecb-examples-deactivate ()',
           parameter : '',
@@ -2374,7 +2374,7 @@ const functions =
         },
         {
           function : 'ecb-examples-insert-text-in-action-buffer',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           docstring : '  "Insert TEXT at point and make it highlight-able for mouse-movement over the<br>text."',
           prototype : '(defun ecb-examples-insert-text-in-action-buffer (text)',
           parameter : 'text',
@@ -2382,13 +2382,13 @@ const functions =
         },
         {
           function : 'ecb-examples-preactivation-stateaction',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           parameter : '',
           lispcode : '(defun ecb-examples-preactivation-state(action)<br>  (cond ((equal action <tick>save)<br>         (setq ecb-examples-preact-layout<br>               ecb-layout-name<br>               ecb-examples-preact-windows-height<br>               ecb-windows-height<br>               ecb-examples-preact-compile-window-height<br>               ecb-compile-window-height))<br>        ((equal action <tick>restore)<br>         (setq ecb-layout-name<br>               ecb-examples-preact-layout<br>               ecb-windows-height<br>               ecb-examples-preact-windows-height<br>               ecb-compile-window-height<br>               ecb-examples-preact-compile-window-height))))<br><br><br>'
         },
         {
           function : 'ecb-examples-print-file-attributes',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           docstring : '  "Insert in buffer BUFFER some file-information about FILENAME."',
           prototype : '(defun ecb-examples-print-file-attributes (buffer filename)',
           parameter : 'buffer filename',
@@ -2396,7 +2396,7 @@ const functions =
         },
         {
           function : 'ecb-examples-print-non-filebuffer',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           docstring : '  "Insert in buffer BUFFER a small message for buffer with name BUFFER-NAME."',
           prototype : '(defun ecb-examples-print-non-filebuffer (buffer buffer-name)',
           parameter : 'buffer buffer-name',
@@ -2404,7 +2404,7 @@ const functions =
         },
         {
           function : 'ecb-excessive-trim',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return a string where all double-and-more whitespaces in STR are replaced<br>with a single space-character."',
           prototype : '(defun ecb-excessive-trim (str)',
           parameter : 'str',
@@ -2412,7 +2412,7 @@ const functions =
         },
         {
           function : 'ecb-expand-directory-nodes',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Set the expand level of the nodes in the ECB-directories-buffer.<br>For argument LEVEL see `ecb-expand-methods-nodes".<br><br>Be aware that for deep structured paths and a lot of source-paths this command<br>can last a long time - depending of machine- and disk-performance."',
           prototype : '(defun ecb-expand-directory-nodes (level)',
           parameter : 'level',
@@ -2420,7 +2420,7 @@ const functions =
         },
         {
           function : 'ecb-expand-directory-tree',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Expands the directory part so the node representing PATH is visible.<br>Start with the childrens of NODE. Return not nil when an expansion has been<br>done (so normally the tree-buffer must be rebuild). Return nil if the<br>expansion-state of the tree can show without any further expansion the node<br>representing PATH."',
           prototype : '(defun ecb-expand-directory-tree (path node)',
           parameter : 'path node',
@@ -2428,7 +2428,7 @@ const functions =
         },
         {
           function : 'ecb-expand-file-name',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Delegate all args to `expand-file-name""',
           prototype : '(defun ecb-expand-file-name (name &optional default-dir)',
           parameter : 'name &optional default-dir',
@@ -2436,7 +2436,7 @@ const functions =
         },
         {
           function : 'ecb-expand-methods-node-internal',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Set the expand level of NODE and its subnodes in the ECB-methods-buffer.<br><br>If NODE is equal to the root-node of the methods-tree-buffer then this<br>function will be called for each of the root-children. Otherwise it will only<br>expand/collaps NODE.<br><br>For a description of LEVEL see `tree-buffer-expand-node" and for a description<br>of FORCE-ALL see `ecb-expand-methods-nodes".<br><br>If RESYNC-TAG is not nil then after expanding/collapsing the methods-buffer<br>is resynced to the current tag of the edit-window.<br><br>If UPDATE-TREE-BUFFER is not nil then the methods-tree-buffer will be updated<br>after the expansion.<br><br>Note: All this is only valid for file-types parsed by semantic. For other file<br>types which are parsed by imenu or etags (see<br>`ecb-process-non-semantic-files") FORCE-ALL is always true!"',
           prototype : '(defun ecb-expand-methods-node-internal (node level                                               &optional force-all                                               resync-tag update-tree-buffer)',
           parameter : 'node level &optional force-all resync-tag update-tree-buffer',
@@ -2444,7 +2444,7 @@ const functions =
         },
         {
           function : 'ecb-expand-methods-nodes',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Set the expand level of the nodes in the ECB-methods-buffer.<br>This command asks in the minibuffer for an indentation level LEVEL. With this<br>LEVEL you can precisely specify which level of nodes should be expanded. LEVEL<br>means the indentation-level of the nodes.<br><br>A LEVEL value X means that all nodes with an indentation-level <= X are<br>expanded and all other are collapsed. A negative LEVEL value means all visible<br>nodes are collapsed.<br><br>Nodes which are not indented have indentation-level 0!<br><br>Which node-types are expanded (rsp. collapsed) by this command depends on<br>the options `ecb-methods-nodes-expand-spec" and<br>`ecb-methods-nodes-collapse-spec"! With optional argument FORCE-ALL all tags<br>will be expanded/collapsed regardless of the values of these options.<br><br>Examples:<br>- LEVEL = 0 expands only nodes which have no indentation itself.<br>- LEVEL = 2 expands nodes which are either not indented or indented once or<br>  twice<br>- LEVEL ~ 10 should normally expand all nodes unless there are nodes which<br>  are indented deeper than 10.<br><br>Note 1: This command switches off auto. expanding of the method-buffer if<br>`ecb-expand-methods-switch-off-auto-expand" is not nil. But it can be switched<br>on again quickly with `ecb-toggle-auto-expand-tag-tree" or [C-c . a].<br><br>Note 2: All this is only valid for file-types parsed by semantic. For other<br>file types which are parsed by imenu or etags (see<br>`ecb-process-non-semantic-files") FORCE-ALL is always true!"',
           prototype : '(defun ecb-expand-methods-nodes (&optional force-all)',
           parameter : '&optional force-all',
@@ -2452,7 +2452,7 @@ const functions =
         },
         {
           function : 'ecb-fetch-semantic-tags',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Get a taglist for current buffer.<br>If optional arg FULL is not nil or if the `semantic-idle-scheduler-mode" is<br>not enabled for current source-buffer and the option<br>`ecb-force-reparse-when-semantic-idle-scheduler-off" is not nil then use<br>`ecb--semantic-fetch-tags" otherwise use `ecb--semantic-fetch-available-tags".<br>The latter always returns just the currently available tags in the<br>semantic-cache (reparsing is done completely by the idle-scheduler of<br>semantic if necessary). The former one triggers immediate parsing if<br>necessary!"',
           prototype : '(defun ecb-fetch-semantic-tags (&optional full)',
           parameter : '&optional full',
@@ -2460,7 +2460,7 @@ const functions =
         },
         {
           function : 'ecb-file-browser-initialize',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Initialize the file-browser of ECB. If optional arg NO-CACHES is not nil<br>then the caches used by the file-browser will not be initialized."',
           prototype : '(defun ecb-file-browser-initialize (&optional no-caches)',
           parameter : '&optional no-caches',
@@ -2468,7 +2468,7 @@ const functions =
         },
         {
           function : 'ecb-file-browser-initialize-caches',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Initialize the caches of the file-browser of ECB."',
           prototype : '(defun ecb-file-browser-initialize-caches ()',
           parameter : '',
@@ -2476,7 +2476,7 @@ const functions =
         },
         {
           function : 'ecb-file-content-as-string',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "If FILE exists and is readable returns the contents as a string otherwise<br>return nil.<br>Note: No major/minor-mode is activated and no local variables are evaluated<br>for FILE, but proper EOL-conversion and character interpretation is done!"',
           prototype : '(defun ecb-file-content-as-string (file)',
           parameter : 'file',
@@ -2484,7 +2484,7 @@ const functions =
         },
         {
           function : 'ecb-filename-cache-init',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Initialize the whole cache for file- and directory-names"',
           prototype : '(defun ecb-filename-cache-init ()',
           parameter : '',
@@ -2492,7 +2492,7 @@ const functions =
         },
         {
           function : 'ecb-files-and-subdirs-cache-add',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Add the files and subdirs of DIR to the cache."',
           prototype : '(defun ecb-files-and-subdirs-cache-add (dir cached-value)',
           parameter : 'dir cached-value',
@@ -2500,7 +2500,7 @@ const functions =
         },
         {
           function : 'ecb-files-and-subdirs-cache-clear',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Clear the whole FILES-AND-SUBDIRS-cache."',
           prototype : '(defun ecb-files-and-subdirs-cache-clear ()',
           parameter : '',
@@ -2508,7 +2508,7 @@ const functions =
         },
         {
           function : 'ecb-files-and-subdirs-cache-dump',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Dump the whole FILES-AND-SUBDIRS-cache in another window. If NO-NIL-VALUE<br>is not nil then these cache-entries are not dumped. This command is not<br>intended for end-users of ECB."',
           prototype : '(defun ecb-files-and-subdirs-cache-dump (&optional no-nil-value)',
           parameter : '&optional no-nil-value',
@@ -2516,7 +2516,7 @@ const functions =
         },
         {
           function : 'ecb-files-and-subdirs-cache-get',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Get the files and subdirs of DIR from the cache. Nil if not cached."',
           prototype : '(defun ecb-files-and-subdirs-cache-get (dir)',
           parameter : 'dir',
@@ -2524,7 +2524,7 @@ const functions =
         },
         {
           function : 'ecb-files-and-subdirs-cache-remove',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Remove DIR from the cache."',
           prototype : '(defun ecb-files-and-subdirs-cache-remove (dir)',
           parameter : 'dir',
@@ -2532,7 +2532,7 @@ const functions =
         },
         {
           function : 'ecb-files-from-cvsignore',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return an expanded list of filenames which are excluded by the .cvsignore<br>file in current directory."',
           prototype : '(defun ecb-files-from-cvsignore (dir)',
           parameter : 'dir',
@@ -2540,7 +2540,7 @@ const functions =
         },
         {
           function : 'ecb-filter',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Filter out those elements of SEQUENCE for which PREDICATE returns nil."',
           prototype : '(defun ecb-filter (seq pred)',
           parameter : 'seq pred',
@@ -2548,7 +2548,7 @@ const functions =
         },
         {
           function : 'ecb-filter-c-prototype-tags',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Filter out all prototypes.<br>Beginning with version 2.24 of ECB this function does nothing when<br>`ecb-methods-separate-prototypes" is set to not nil (default).<br><br>For example this is useful for editing C files which have the function<br>prototypes defined at the top of the file and the implementations at the<br>bottom. This means that everything appears twice in the methods buffer, but<br>probably nobody wants to jump to the prototypes, they are only wasting space<br>in the methods buffer.<br>For C-header-files prototypes are never filtered out!"',
           prototype : '(defun ecb-filter-c-prototype-tags (taglist)',
           parameter : 'taglist',
@@ -2556,7 +2556,7 @@ const functions =
         },
         {
           function : 'ecb-find-add-tag-bucket',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Finds a bucket containing tags of the given TYPE, creates nodes for them<br>and adds them to the given NODE. The bucket is removed from the BUCKETS list.<br>PARENT-TAG is only propagated to `ecb-add-tag-bucket".<br>This function MUST be called with the source-buffer as current buffer!"',
           prototype : '(defun ecb-find-add-tag-bucket (node type display sort-method buckets                                       &optional parent-tag no-bucketize)',
           parameter : 'node type display sort-method buckets &optional parent-tag no-bucketize',
@@ -2564,19 +2564,19 @@ const functions =
         },
         {
           function : 'ecb-find-assoc',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           parameter : 'key list',
           lispcode : '(defun ecb-find-assoc (key list)<br>  (assoc key list))<br><br>;;; ----- Some function from cl ----------------------------'
         },
         {
           function : 'ecb-find-assoc-value',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           parameter : 'key list',
           lispcode : '(defun ecb-find-assoc-value (key list)<br>  (cdr (assoc key list)))'
         },
         {
           function : 'ecb-find-file-hook',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Adds `ecb-apply-default-tag-filter" to `post-command-hook". This function<br>removes itself from the `post-command-hook"."',
           prototype : '(defun ecb-find-file-hook ()',
           parameter : '',
@@ -2584,7 +2584,7 @@ const functions =
         },
         {
           function : 'ecb-first',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the first elem of the sequence SEQ."',
           prototype : '(defun ecb-first (seq)',
           parameter : 'seq',
@@ -2592,7 +2592,7 @@ const functions =
         },
         {
           function : 'ecb-fit-str-to-width',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "If STR is longer than WIDTH then fit it to WIDTH by stripping from left or<br>right (depends on FROM which can be "left or "right) and prepend (rsp.<br>append) "..." to signalize that the string is stripped. If WIDTH >= length<br>of STR the always STR is returned. If either WIDTH or length of STR is < 5<br>then an empty string is returned because stripping makes no sense here."',
           prototype : '(defun ecb-fit-str-to-width (str width from)',
           parameter : 'str width from',
@@ -2600,7 +2600,7 @@ const functions =
         },
         {
           function : 'ecb-fit-window-to-buffer',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Make WINDOW the right height to display its contents exactly.<br>If WINDOW is omitted or nil, it defaults to the selected window.<br>If the optional argument MAX-HEIGHT is supplied, it is the maximum height<br>  the window is allowed to be, defaulting to the frame height.<br>If the optional argument MIN-HEIGHT is supplied, it is the minimum<br>  height the window is allowed to be, defaulting to `window-min-height".<br><br>MAX-HEIGHT and MIN-HEIGHT can be also afraction between 0 and 1: then this is<br>interpreted as that fraction of the frame-height of WINDOW (or the selected<br>window if WINDOW is nil).<br><br>The heights in MAX-HEIGHT and MIN-HEIGHT include the mode-line and/or<br>header-line."',
           prototype : '(defun ecb-fit-window-to-buffer (&optional window max-height min-height)',
           parameter : '&optional window max-height min-height',
@@ -2608,7 +2608,7 @@ const functions =
         },
         {
           function : 'ecb-fix-filename',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Normalizes path- and filenames for ECB. If FILENAME is not nil its pure<br>filename (i.e. without directory part) will be concatenated to PATH. The<br>result will never end with the directory-separator! If SUBSTITUTE-ENV-VARS is<br>not nil then in both PATH and FILENAME env-var substitution is done. If the<br>`system-type" is "cygwin32 then the path is converted to win32-path-style!"',
           prototype : '(defun ecb-fix-filename (path &optional filename substitute-env-vars)',
           parameter : 'path &optional filename substitute-env-vars',
@@ -2616,7 +2616,7 @@ const functions =
         },
         {
           function : 'ecb-fixed-filename-cache-dump',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Dump the whole FIXED-FILENAMES-cache. If NO-NIL-VALUE is not nil then these<br>cache-entries are not dumped. This command is not intended for end-users of ECB."',
           prototype : '(defun ecb-fixed-filename-cache-dump (&optional no-nil-value)',
           parameter : '&optional no-nil-value',
@@ -2624,7 +2624,7 @@ const functions =
         },
         {
           function : 'ecb-format-bucket-name',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Format NAME as a bucket-name according to `ecb-bucket-node-display".<br>If optional arg IGNORE-PREFIX-SUFFIX is not nil then<br>these settings of `ecb-bucket-node-display" are ignored. If IGNORE-BUCKET-FACE<br>it t then the face of `ecb-bucket-node-display" is completely ignored, if it<br>is "only-name then the face of `ecb-bucket-node-display" is only ignored for<br>NAME but not for a prefix or suffix of `ecb-bucket-node-display" (if any)."',
           prototype : '(defun ecb-format-bucket-name (name &optional ignore-prefix-suffix ignore-bucket-face)',
           parameter : 'name &optional ignore-prefix-suffix ignore-bucket-face',
@@ -2632,7 +2632,7 @@ const functions =
         },
         {
           function : 'ecb-full-trim',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Applies `ecb-trim" and `ecb-middle-trim" to STR."',
           prototype : '(defun ecb-full-trim (str)',
           parameter : 'str',
@@ -2640,7 +2640,7 @@ const functions =
         },
         {
           function : 'ecb-function-at-point',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Return the function whose name is around point.<br>If that gives no function, return the function which is called by the<br>list containing point.  If that doesn"t give a function, return nil."',
           prototype : '(defun ecb-function-at-point ()',
           parameter : '',
@@ -2648,7 +2648,7 @@ const functions =
         },
         {
           function : 'ecb-generate-node-name',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Generate a new name from TEXT-NAME by adding an appropriate image according<br>to ICON-NAME to the first FIRST-CHARS of TEXT-NAME. If FIRST-CHARS is < 0 then<br>a string with length abs(FIRST-CHARS) is created, the image is applied to<br>this new string and this "image"-string is added to the front of TEXT-NAME.<br>If no image can be found for ICON-NAME then the original TEXT-NAME is<br>returned. NAME-OF-BUFFER is the name of the tree-buffer where the resulting<br>node-name will be displayed.<br><br>If an image is added then two text-properties are added to the FIRST-CHARS of<br>the returned string: "tree-buffer-image-start which holds 0 as value and<br>"tree-buffer-image-length which holds the absolute value of FIRST-CHARS<br>value."',
           prototype : '(defun ecb-generate-node-name (text-name first-chars icon-name name-of-buffer)',
           parameter : 'text-name first-chars icon-name name-of-buffer',
@@ -2656,13 +2656,13 @@ const functions =
         },
         {
           function : 'ecb-get-all-ecb-options',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : '',
           lispcode : '(defun ecb-get-all-ecb-options ()<br>  (or ecb-all-options<br>      (mapatoms<br>       (lambda (symbol)<br>         (when (and (save-match-data (string-match <apo>ecb-<apo> (symbol-name symbol)))<br>                    (get symbol <tick>custom-type))<br>           (setq ecb-all-options (cons symbol ecb-all-options)))))))'
         },
         {
           function : 'ecb-get-best-matching-source-path',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return the best-matching source-path for PATH.<br>It"s either nil if no source-path matches or a cons in the sense of<br>`ecb-normed-source-paths"."',
           prototype : '(defun ecb-get-best-matching-source-path (path)',
           parameter : 'path',
@@ -2670,7 +2670,7 @@ const functions =
         },
         {
           function : 'ecb-get-compile-window-buffer',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return the buffer currently displayed in the compile-window or nil if there<br>is no compile-window displayed."',
           prototype : '(defun ecb-get-compile-window-buffer ()',
           parameter : '',
@@ -2678,7 +2678,7 @@ const functions =
         },
         {
           function : 'ecb-get-current-tag-table',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return the current tag-table of the current source-buffer returned by<br>`ecb-post-process-taglist". Use always this function if you just need the<br>current post-processed tag-table of the current buffer and you do not need or<br>want rebuilding the Methods-buffer."',
           prototype : '(defun ecb-get-current-tag-table ()',
           parameter : '',
@@ -2686,7 +2686,7 @@ const functions =
         },
         {
           function : 'ecb-get-current-visible-ecb-buffers',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return a list of all buffer-objects displayed in a currently visible and<br>dedicated special ecb-window. The superset of all possible (because<br>registered) special ecb-buffers are available by<br>`ecb-dedicated-special-buffers".<br>If window-list is not nil then this list is used otherwise it will be<br>computed by `ecb-canonical-ecb-windows-list"."',
           prototype : '(defun ecb-get-current-visible-ecb-buffers (&optional window-list)',
           parameter : '&optional window-list',
@@ -2694,7 +2694,7 @@ const functions =
         },
         {
           function : 'ecb-get-definition-list-by-semanticdb',
-          filename : 'ecb/ecb-semantic.el',
+          filename : 'ecb-semantic.el',
           docstring : '  "Search for the definitions of the tag with TAG-NAME and TAG-CLASS.<br>The search is performed via semanticdb.<br>`semanticdb-search-system-databases" is taken into account.<br>Return-value is either nil (if no positioned tag can be found<br>for TAG-NAME and TAG-CLASS) or a positioned semantic-tag for the<br>type-definition of TAG-NAME.<br><br>If TAG-CLASS is nil then tags regardless of their class are returned as long<br>as they match with TAG-NAME."',
           prototype : '(defun ecb-get-definition-list-by-semanticdb (tag-name &optional tag-class)',
           parameter : 'tag-name &optional tag-class',
@@ -2702,7 +2702,7 @@ const functions =
         },
         {
           function : 'ecb-get-ecb-window-by-number',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return that ecb-window with number ECB-WIN-NR. If ECB-WIN-LIST is set<br>then get it from that list otherwise from `ecb-canonical-ecb-windows-list".<br>ECB-WIN-NR must be an integer between 1 and length of ECB-WIN-LIST (rsp.<br>`ecb-canonical-ecb-windows-list")."',
           prototype : '(defun ecb-get-ecb-window-by-number (ecb-win-nr &optional ecb-win-list)',
           parameter : 'ecb-win-nr &optional ecb-win-list',
@@ -2710,7 +2710,7 @@ const functions =
         },
         {
           function : 'ecb-get-ecb-window-location',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return the location an ecb-window reside in the ecb-frame.<br>The location is one of "left-side, "right-side or "top-side, depending on the<br>current layout-type only a subset is possible.<br>If ECB-WINDOW is nil then the location of the selected window is returned<br>otherwise the location of ECB-WINDOW. If RESIDUAL-WINDOW is not nil it must be<br>one of the windows `ecb-canonical-residual-windows-list" would compute. If nil<br>then it will be computed.<br><br>Caution: This function does not check if ECB-WINDOW (rsp. the selected<br>window) is an ecb-window! But only in this case the returned value is reliable!"',
           prototype : '(defun ecb-get-ecb-window-location (&optional ecb-window residual-window)',
           parameter : '&optional ecb-window residual-window',
@@ -2718,7 +2718,7 @@ const functions =
         },
         {
           function : 'ecb-get-ecb-window-sizes',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Get all window-sizes of current visible ecb-windows. If FIX is not nil then<br>fixed sizes are used otherwise fractions of current frame-width rsp. -height.<br>If a permanent compile-window is visible then window-heights will be computed<br>as fractions of current (frame-height minus current visible<br>compile-window-height)!<br>Uses ECB-WIN-LIST or - if nil - computes it with the function<br>`ecb-canonical-ecb-windows-list".<br><br>Result is a list with an element for each visible ecb-window whereas each<br>element is a cons where the car is the variable-symbol which holds the<br>buffer-name a window displays currently. The cdr is a cons where car is the<br>width and the cdr is the height of the window."',
           prototype : '(defun ecb-get-ecb-window-sizes (&optional fix ecb-win-list)',
           parameter : '&optional fix ecb-win-list',
@@ -2726,13 +2726,13 @@ const functions =
         },
         {
           function : 'ecb-get-edit-area-size',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : '&optional win-list',
           lispcode : '(defun ecb-get-edit-area-size (&optional win-list)<br>  (let ((layout-type (ecb-get-layout-type ecb-layout-name))<br>        (ecb-win-list (ecb-canonical-ecb-windows-list win-list))<br>        (comp-win-height (if (equal (ecb-compile-window-state) <tick>visible)<br>                             (ecb-window-full-height ecb-compile-window)<br>                           0)))<br>    (if (null ecb-win-list)<br>        (cons (frame-width ecb-frame)<br>              (- (frame-height ecb-frame) comp-win-height))<br>      (cl-case layout-type<br>        (top<br>         (cons (frame-width ecb-frame)<br>               (- (frame-height ecb-frame)<br>                  (ecb-window-full-height (ecb-first ecb-win-list))<br>                  comp-win-height)))<br>        (left-right<br>         (cons (- (frame-width ecb-frame)<br>                  (ecb-window-full-width (ecb-first ecb-win-list))<br>                  (ecb-window-full-width (ecb-last ecb-win-list)))<br>               (- (frame-height ecb-frame)<br>                  comp-win-height)))<br>        (otherwise<br>         (cons (- (frame-width ecb-frame)<br>                  (ecb-window-full-width (ecb-first ecb-win-list)))<br>               (- (frame-height ecb-frame)<br>                  comp-win-height)))))))<br><br>'
         },
         {
           function : 'ecb-get-edit-window',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Get the correct edit-window. Which one is the correct one depends on the<br>value of OTHER-EDIT-WINDOW (which is a value returned by<br>`ecb-combine-ecb-button/edit-win-nr") and `ecb-mouse-click-destination".<br>- OTHER-EDIT-WINDOW is nil: Get the edit-window according to the option<br>  `ecb-mouse-click-destination".<br>- OTHER-EDIT-WINDOW is t: Get the next edit-window in the cyclic list of<br>  current edit-windows starting either from the left-top-most one or from the<br>  last edit-window with point (depends on<br>  `ecb-mouse-click-destination").<br>- OTHER-EDIT-WINDOW is an integer: Get exactly the edit-window with that<br>  number > 0."',
           prototype : '(defun ecb-get-edit-window (other-edit-window)',
           parameter : 'other-edit-window',
@@ -2740,7 +2740,7 @@ const functions =
         },
         {
           function : 'ecb-get-edit-window-by-number',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return that edit-window with number EDIT-WIN-NR. If EDIT-WIN-LIST is set<br>then get it from that list otherwise from `ecb-canonical-edit-windows-list".<br>EDIT-WIN-NR must be an integer between 1 and length of EDIT-WIN-LIST (rsp.<br>`ecb-canonical-edit-windows-list")."',
           prototype : '(defun ecb-get-edit-window-by-number (edit-win-nr &optional edit-win-list)',
           parameter : 'edit-win-nr &optional edit-win-list',
@@ -2748,7 +2748,7 @@ const functions =
         },
         {
           function : 'ecb-get-face-for-type-tag',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return the face set in `ecb-type-tag-display" for current major-mode and<br>TYPE-SPECIFIER or nil."',
           prototype : '(defun ecb-get-face-for-type-tag (type-specifier)',
           parameter : 'type-specifier',
@@ -2756,7 +2756,7 @@ const functions =
         },
         {
           function : 'ecb-get-file-info-text',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return a file-info string for a file in the ECB sources buffer"',
           prototype : '(defun ecb-get-file-info-text (file)',
           parameter : 'file',
@@ -2764,7 +2764,7 @@ const functions =
         },
         {
           function : 'ecb-get-files-and-subdirs',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return a cons cell where car is a list of all files to display in DIR and<br>cdr is a list of all subdirs to display in DIR. Both lists are sorted<br>according to `ecb-sources-sort-method"."',
           prototype : '(defun ecb-get-files-and-subdirs (dir)',
           parameter : 'dir',
@@ -2772,7 +2772,7 @@ const functions =
         },
         {
           function : 'ecb-get-layout-type',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return the type of current layout or of layout NAME."',
           prototype : '(defun ecb-get-layout-type (&optional name)',
           parameter : '&optional name',
@@ -2780,7 +2780,7 @@ const functions =
         },
         {
           function : 'ecb-get-other-window',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return the "other window" according to `ecb-other-window-behavior".<br>Returns the window NTH-WINDOW steps away from the current window. If<br>NTH-WINDOW is nil then it is treated as 1."',
           prototype : '(defun ecb-get-other-window (nth-window)',
           parameter : 'nth-window',
@@ -2788,7 +2788,7 @@ const functions =
         },
         {
           function : 'ecb-get-other-window-minibuf-active',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Implements the situation of an active minibuffer, see<br>`ecb-other-window-behavior"."',
           prototype : '(defun ecb-get-other-window-minibuf-active (win-list                                            edit-win-list                                            ecb-win-list                                            comp-win                                            minibuf-win                                            point-loc                                            nth-window)',
           parameter : 'win-list edit-win-list ecb-win-list comp-win minibuf-win point-loc nth-window',
@@ -2796,7 +2796,7 @@ const functions =
         },
         {
           function : 'ecb-get-other-window-smart',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Implements the smart-setting of `ecb-other-window-behavior"."',
           prototype : '(defun ecb-get-other-window-smart (win-list                                   edit-win-list                                   ecb-win-list                                   comp-win                                   minibuf-win                                   point-loc                                   nth-window)',
           parameter : 'win-list edit-win-list ecb-win-list comp-win minibuf-win point-loc nth-window',
@@ -2804,7 +2804,7 @@ const functions =
         },
         {
           function : 'ecb-get-real-curr-tag',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Get the "real" current tag. This will be in most cases the tag returned<br>by `ecb--semantic-current-tag" but there are exceptions:<br><br>- If the current-tag is an argument-tag of a function-tag then we are not<br>  interested in this argument-tag but in its parent-tag which is the<br>  function-tag the argument belongs.<br>- If the current-tag is a label-tag then we are interested in the type-tag<br>  which contains this label (e.g. usefull in c++ and the labels public,<br>  protected and private)."',
           prototype : '(defun ecb-get-real-curr-tag ()',
           parameter : '',
@@ -2812,7 +2812,7 @@ const functions =
         },
         {
           function : 'ecb-get-remove-specifier-flag-for-type-tag',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return the remove-specifier-flag set in `ecb-type-tag-display" for<br>current major-mode and TYPE-SPECIFIER or nil."',
           prototype : '(defun ecb-get-remove-specifier-flag-for-type-tag (type-specifier)',
           parameter : 'type-specifier',
@@ -2820,7 +2820,7 @@ const functions =
         },
         {
           function : 'ecb-get-show-tags-list',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return the show-tags-list of `ecb-show-tags" for current major-mode."',
           prototype : '(defun ecb-get-show-tags-list ()',
           parameter : '',
@@ -2828,7 +2828,7 @@ const functions =
         },
         {
           function : 'ecb-get-source-buffer-for-tag-filter',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return the source-buffer of the tag-list which should be filtered."',
           prototype : '(defun ecb-get-source-buffer-for-tag-filter ()',
           parameter : '',
@@ -2836,7 +2836,7 @@ const functions =
         },
         {
           function : 'ecb-get-source-name',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Returns the source name of a file."',
           prototype : '(defun ecb-get-source-name (filename)',
           parameter : 'filename',
@@ -2844,7 +2844,7 @@ const functions =
         },
         {
           function : 'ecb-get-source-paths-from-functions',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return a list of paths found by querying `ecb-source-path-functions"."',
           prototype : '(defun ecb-get-source-paths-from-functions ()',
           parameter : '',
@@ -2852,7 +2852,7 @@ const functions =
         },
         {
           function : 'ecb-get-sourcename-of-nodename',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Extract the name of the source from the node-name NODENAME.<br>This is for nodenames generated by `ecb-vc-generate-node-name" or<br>`ecb-generate-node-name" and it return exactly this part of NODENAME without<br>all the preceding stuff added by one of these functions."',
           prototype : '(defun ecb-get-sourcename-of-nodename (nodename)',
           parameter : 'nodename',
@@ -2860,7 +2860,7 @@ const functions =
         },
         {
           function : 'ecb-get-sources-sort-function',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "According to SORT-METHOD (which can either be "name, "extension or nil)<br>and IGNORE-CASE return a function which can be used as argument for `sort"."',
           prototype : '(defun ecb-get-sources-sort-function (sort-method &optional ignore-case)',
           parameter : 'sort-method &optional ignore-case',
@@ -2868,13 +2868,13 @@ const functions =
         },
         {
           function : 'ecb-get-tag-display-function',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : '',
           lispcode : '(defun ecb-get-tag-display-function ()<br>  (let ((mode-display-fkt (cdr (assoc major-mode ecb-tag-display-function)))<br>        (default-fkt (cdr (assoc <tick>default ecb-tag-display-function))))<br>    (or (and (fboundp mode-display-fkt) mode-display-fkt)<br>        (and (fboundp default-fkt) default-fkt)<br>        <tick>ecb--semantic-format-tag-prototype)))<br>'
         },
         {
           function : 'ecb-get-tag-name',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Get the name of TAG with the appropriate fcn from<br>`ecb-tag-display-function".<br>This function MUST be called with the source-buffer as current buffer!"',
           prototype : '(defun ecb-get-tag-name (tag &optional parent-tag)',
           parameter : 'tag &optional parent-tag',
@@ -2882,13 +2882,13 @@ const functions =
         },
         {
           function : 'ecb-get-tag-parent-names',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'parents',
           lispcode : '(defun ecb-get-tag-parent-names (parents)<br>  (when parents<br>    (let* ((parent (car parents))<br>	   (name (cond<br>		  ((ecb--semantic-tag-p parent)<br>		   (ecb--semantic-format-tag-name parent nil (ecb-font-lock-tags)))<br>		  ((stringp parent)<br>		   (ecb--semantic--format-colorize-text parent <tick>type)))))<br>      (if name<br>	  (if (ecb-check-parent-for-exclude name)<br>	      (ecb-get-tag-parent-names (cdr parents))<br>	    (cons name (ecb-get-tag-parent-names (cdr parents))))<br>	(if (listp parent)<br>	    (append (ecb-get-tag-parent-names parent)<br>		    (ecb-get-tag-parent-names (cdr parents))))))))'
         },
         {
           function : 'ecb-get-tag-parents',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return a list of parent-names already colorized by semantic. Currently<br>there is no distinction between superclasses and interfaces."',
           prototype : '(defun ecb-get-tag-parents (tag)',
           parameter : 'tag',
@@ -2896,13 +2896,13 @@ const functions =
         },
         {
           function : 'ecb-get-tag-type-display',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'tag-type',
           lispcode : '(defun ecb-get-tag-type-display (tag-type)<br>  (let* ((show-tags-list (ecb-get-show-tags-list))<br>         (display (ecb-find-assoc tag-type show-tags-list)))<br>    (if display<br>	display<br>      (setq display (ecb-find-assoc t show-tags-list))<br>      (if display<br>	  display<br>	<tick>(t hidden nil)))))<br>'
         },
         {
           function : 'ecb-get-tags-for-non-semantic-files',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           docstring : '  "Get a tag-list for current source-file. This is done via the<br>`speedbar-fetch-dynamic-tags" mechanism which supports imenu and etags."',
           prototype : '(defun ecb-get-tags-for-non-semantic-files ()',
           parameter : '',
@@ -2910,7 +2910,7 @@ const functions =
         },
         {
           function : 'ecb-get-type-name-hierarchy-of-current-node',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return the type-name-hierarchy of current node in form of a list whereas the<br>first element is the name of the tag of the current node itself, the second<br>element is the name of the type the current node belongs to, the third element<br>is the name of the parent-type of that type and so on. The last element in<br>this list is the topmost type-parent of the tag of the current node. If the<br>current node has no tag as data then nil is returned. If the tag of the<br>current node does not belong to a type-tag (e.g. a toplevel function) then<br>the returned list contains just the name of the tag of the current node."',
           prototype : '(defun ecb-get-type-name-hierarchy-of-current-node ()',
           parameter : '',
@@ -2918,7 +2918,7 @@ const functions =
         },
         {
           function : 'ecb-get-type-name-hierarchy-of-current-tag',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return the type-name-hierarchy of TAG in form of a list whereas the<br>first element is the name of the TAG itself, the second element is the name of<br>the type the TAG belongs to, the third element is the name of the parent-type<br>of that type and so on. The last element in this list is the topmost<br>type-parent of the TAG. If the TAG does not belong to a type-tag (e.g. a<br>toplevel function) then the returned list contains just the name of the<br>TAG. If TAG is nil then the current tag returned by `ecb-get-real-curr-tag" is<br>used; if point does not stay on a tag then nil is returned."',
           prototype : '(defun ecb-get-type-name-hierarchy-of-current-tag (&optional tag)',
           parameter : '&optional tag',
@@ -2926,7 +2926,7 @@ const functions =
         },
         {
           function : 'ecb-get-type-node-of-node',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Returns that node which data-tag is of class "type the tag of the node NODE<br>of the Methods-buffer belongs to. If the tag of NODE do not belong to a type<br>then nil is returned."',
           prototype : '(defun ecb-get-type-node-of-node (node)',
           parameter : 'node',
@@ -2934,7 +2934,7 @@ const functions =
         },
         {
           function : 'ecb-get-type-specifier',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '      "group"',
           prototype : '(defun ecb-get-type-specifier (tag)  (if (ecb--semantic-tag-faux-p tag)',
           parameter : 'tag',
@@ -2942,7 +2942,7 @@ const functions =
         },
         {
           function : 'ecb-get-type-tag-of-tag',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Returns that tag of class "type the tag TAG belongs to. If TAG does not<br>belong to a type then nil is returned. If TAG is already of class "type then<br>the behavior depends on the optional argument ALWAYS-PARENT-TYPE: If nil then<br>the current tag is returned otherwise the next parent-tag of class "type is<br>returned.<br><br>If TAG is nil the tag returned by `ecb-get-real-curr-tag" is used. If TABLE is<br>nil then the tag-table of the current buffer is used; otherwise the tag-table<br>TABLE is used."',
           prototype : '(defun ecb-get-type-tag-of-tag (&optional tag table always-parent-type)',
           parameter : '&optional tag table always-parent-type',
@@ -2950,7 +2950,7 @@ const functions =
         },
         {
           function : 'ecb-get-window-by-number',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return that window with number WIN-NR. If WIN-LIST is set<br>then get it from that list otherwise from `ecb-canonical-windows-list".<br>WIN-NR must be an integer between 1 and length of WIN-LIST (rsp.<br>`ecb-canonical-windows-list")."',
           prototype : '(defun ecb-get-window-by-number (win-nr &optional win-list)',
           parameter : 'win-nr &optional win-list',
@@ -2958,7 +2958,7 @@ const functions =
         },
         {
           function : 'ecb-get-window-fix-type',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Determine which value of `window-size-fixed" we must set in all ecb-buffers<br>of layout LAYOUT-NAME."',
           prototype : '(defun ecb-get-window-fix-type (layout-name)',
           parameter : 'layout-name',
@@ -2966,7 +2966,7 @@ const functions =
         },
         {
           function : 'ecb-get-window-size',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return the sizes of WINDOW as a cons where the car is the width and the cdr<br>is the height. Per default both values are fractions of the frame-width (rsp.<br>height) of the `ecb-frame" unless FIX is not nil. Optional third argument<br>REF-SIZE is a cons where car is the referencial width and the cdr is the<br>referencial height when the sizes should be computed as fractionals of the<br>REF-SIZE; then the resulting sizes are floating-point-numbers) (if FIX is<br>nil). Default referencial width rsp. height are `frame-width" rsp.<br>`frame-height" of the `ecb-frame"."',
           prototype : '(defun ecb-get-window-size (window &optional fix ref-size)',
           parameter : 'window &optional fix ref-size',
@@ -2974,7 +2974,7 @@ const functions =
         },
         {
           function : 'ecb-goto-action-window',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           docstring : '  "Make the action-window the current window."',
           prototype : '(defun ecb-goto-action-window ()',
           parameter : '',
@@ -2982,7 +2982,7 @@ const functions =
         },
         {
           function : 'ecb-goto-bufferinfo-window',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           docstring : '  "Make the bufferinfo-window the current window."',
           prototype : '(defun ecb-goto-bufferinfo-window ()',
           parameter : '',
@@ -2990,7 +2990,7 @@ const functions =
         },
         {
           function : 'ecb-goto-ecb-window',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Select that ecb-window displaying the special ecb-buffer ECB-BUFFER-NAME.<br>Only buffer-names defined for the current layout (see function<br>`ecb-buffer-is-ecb-buffer-of-current-layout-p") or the buffer-name of the<br>integrated speedbar are accepted. If such a window can not be selected then<br>probably because another ecb-window of current layout is currently maximized;<br>therefore in such a case the layout has been redrawn and then tried to select<br>the window again. This function does nothing if NAME fulfills not the<br>described conditions or if the ecb-windows are hidden or ECB is not active. If<br>necessary the `ecb-frame" will be first raised."',
           prototype : '(defun ecb-goto-ecb-window (ecb-buffer-name)',
           parameter : 'ecb-buffer-name',
@@ -2998,7 +2998,7 @@ const functions =
         },
         {
           function : 'ecb-goto-line',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Goto LINE, counting from line 1 at beginning of buffer.<br><br>This function doesn"t set the mark."',
           prototype : '(defun ecb-goto-line (line)',
           parameter : 'line',
@@ -3006,7 +3006,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-analyse',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Make the ECB-analyse window the current window."',
           prototype : '(defun ecb-goto-window-analyse ()',
           parameter : '',
@@ -3014,7 +3014,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-by-smart-selection--internal',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Perform smart window-selection depending on WIN-LIST.<br>Possible window-destinations are offered by the buffer-name displayed in a<br>window. Selecting the buffer-name will make the displaying window the<br>selected-window. Which windows are offered depends on the currently selected<br>window at call-time: If not a window contained in WIN-LIST is currently the<br>selected-window then all windows of WIN-LIST are offered in canonical order<br>(means from top-left to button-right). If a window contained in WIN-LIST is<br>currently the selected-window then all other(!) windows of WIN-LIST are<br>offered, beginning with the next edit-window to the currently selected window<br>(the following windows also in canonical order). If there is only one<br>senseful destination-window then this window is immediately selected, without<br>confirmation (e.g. if WIN-LIST is the list of all edit-windows: There are two<br>edit-windows and point stays in one of them. Or there is only one edit-window<br>and point stays either in one of the special ecb-windows or in the<br>compile-window).<br><br>If optional argument USE-IMMEDIATE-COMPLETION is nil then all possible<br>destination-windows are displayed in the message-area and only hitting TAB<br>offers completion. If USE-IMMEDIATE-COMPLETION is not nil then all<br>possible destinations are immediately shown in a completion-buffer."',
           prototype : '(defun ecb-goto-window-by-smart-selection--internal (win-list &optional use-immediate-completion)',
           parameter : 'win-list &optional use-immediate-completion',
@@ -3022,7 +3022,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-compilation',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Goto the ecb compilation window `ecb-compile-window"."',
           prototype : '(defun ecb-goto-window-compilation ()',
           parameter : '',
@@ -3030,7 +3030,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-directories',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Make the ECB-directories window the current window.<br>If `ecb-use-speedbar-instead-native-tree-buffer" is "dir then goto to the<br>speedbar-window."',
           prototype : '(defun ecb-goto-window-directories ()',
           parameter : '',
@@ -3038,7 +3038,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-ecb-by-smart-selection',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Selects a special ecb-browsing-window by smart selection.<br>The command offers a list of all special ecb-windows by buffer-name. Selecting<br>the buffer-name will select the displaying window. Which special ecb-windows<br>are offered depends on the currently selected window: If not a special<br>ecb-window is the currently selected-window then all edit-windows are offered<br>in canonical order (means from top-left to button-right). If an ecb-window is<br>the currently selected-window then all other(!) special ecb-windows are<br>offered, beginning with the next special ecb-window to the current ecb-window<br>(the following special ecb-windows also in canonical order). If there is only<br>one senseful destination-ecb-window then this window is immediately selected,<br>without confirmation (e.g.: There are two special ecb-windows and point stays<br>in one of them. Or there is only one ecb-window and point stays either in one<br>of the edit-windows or in the compile-window).<br><br>If optional argument USE-IMMEDIATE-COMPLETION is nil then all possible<br>destination-windows are displayed in the message-area and only hitting TAB<br>offers completion. If USE-IMMEDIATE-COMPLETION is not nil then all possible<br>destinations are immediately shown in a completion-buffer."',
           prototype : '(defun ecb-goto-window-ecb-by-smart-selection (&optional use-immediate-completion)',
           parameter : '&optional use-immediate-completion',
@@ -3046,7 +3046,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-edit-by-smart-selection',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Selects an edit-window by smart selection.<br>The command offers a list of all edit-windows by buffer-name. Selecting the<br>buffer-name will select the displaying window. Which edit-windows are offered<br>depends on the currently selected window: If not an edit-window is the<br>currently selected-window then all edit-windows are offered in canonical order<br>(means from top-left to button-right). If an edit-window is the currently<br>selected-window then all other(!) edit-windows are offered, beginning with<br>the next edit-window to the current edit-window (the following edit-windows<br>also in canonical order). If there is only one senseful<br>destination-edit-window then this window is immediately selected, without<br>confirmation (e.g.: There are two edit-windows and point stays in one of<br>them. Or there is only one edit-window and point stays either in one of the<br>special ecb-windows or in the compile-window).<br><br>If optional argument USE-IMMEDIATE-COMPLETION is nil then all possible<br>destination-windows are displayed in the message-area and only hitting TAB<br>offers completion. If USE-IMMEDIATE-COMPLETION is not nil then all possible<br>destinations are immediately shown in a completion-buffer."',
           prototype : '(defun ecb-goto-window-edit-by-smart-selection (&optional use-immediate-completion)',
           parameter : '&optional use-immediate-completion',
@@ -3054,7 +3054,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-edit-last',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Make the last selected edit-window window the current window. This is the<br>same as if `ecb-mouse-click-destination" is set to "last-point."',
           prototype : '(defun ecb-goto-window-edit-last ()',
           parameter : '',
@@ -3062,7 +3062,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-edit1',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Make the (first) edit-window window the current window."',
           prototype : '(defun ecb-goto-window-edit1 ()',
           parameter : '',
@@ -3070,7 +3070,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-edit2',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Make the second edit-window (if available) window the current window."',
           prototype : '(defun ecb-goto-window-edit2 ()',
           parameter : '',
@@ -3078,7 +3078,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-history',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Make the ECB-history window the current window."',
           prototype : '(defun ecb-goto-window-history ()',
           parameter : '',
@@ -3086,7 +3086,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-methods',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Make the ECB-methods window the current window.<br>If `ecb-use-speedbar-instead-native-tree-buffer" is "method then goto to the<br>speedbar-window."',
           prototype : '(defun ecb-goto-window-methods ()',
           parameter : '',
@@ -3094,7 +3094,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-sources',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Make the ECB-sources window the current window.<br>If `ecb-use-speedbar-instead-native-tree-buffer" is "source then goto to the<br>speedbar-window."',
           prototype : '(defun ecb-goto-window-sources ()',
           parameter : '',
@@ -3102,7 +3102,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-speedbar',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           docstring : '  "Make the ECB-speedbar window the current window.<br>This command does nothing if no integrated speedbar is visible in the<br>ECB-frame."',
           prototype : '(defun ecb-goto-window-speedbar ()',
           parameter : '',
@@ -3110,7 +3110,7 @@ const functions =
         },
         {
           function : 'ecb-goto-window-symboldef',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Make the ECB-symbol-definition window the current window."',
           prototype : '(defun ecb-goto-window-symboldef ()',
           parameter : '',
@@ -3118,13 +3118,13 @@ const functions =
         },
         {
           function : 'ecb-grep-directory-internal',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : 'node find',
           lispcode : '(defun ecb-grep-directory-internal (node find)<br>  (ecb-select-edit-window)<br>  (let* ((node-data-file (ecb-source-get-filename (tree-node->data node)))<br>         (default-directory (concat (ecb-fix-filename<br>                                     (if (ecb-file-directory-p node-data-file)<br>                                         node-data-file<br>                                       (ecb-file-name-directory node-data-file)))<br>                                    (ecb-directory-sep-string node-data-file))))<br>    (call-interactively (if find<br>                            (or (and (fboundp ecb-grep-recursive-function)<br>                                     ecb-grep-recursive-function)<br>                                <tick>grep-find)<br>                          (or (and (fboundp ecb-grep-function)<br>                                   ecb-grep-function)<br>                              <tick>grep)))))<br>'
         },
         {
           function : 'ecb-group-function-tags-with-parents',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return a new taglist based on TAGLIST where all function-tags in<br>TAGLIST having a parent tag are grouped together under a new faux tag<br>for this parent-tag. The new taglist contains first all parent-less tags<br>and then all grouped tags.<br><br>This is useful for oo-programming languages where the methods of a class can<br>be defined outside the class-definition, e.g. C++, Eieio."',
           prototype : '(defun ecb-group-function-tags-with-parents (taglist)',
           parameter : 'taglist',
@@ -3132,7 +3132,7 @@ const functions =
         },
         {
           function : 'ecb-hide-ecb-windows',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Hide the ECB windows if not already hidden."',
           prototype : '(defun ecb-hide-ecb-windows ()',
           parameter : '',
@@ -3140,7 +3140,7 @@ const functions =
         },
         {
           function : 'ecb-hide-ecb-windows-internal',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Make ECB-windows visible or invisible.<br>NEW-STATE must be one of the symbols none, all, left-side or right-side."',
           prototype : '(defun ecb-hide-ecb-windows-internal (new-state)',
           parameter : 'new-state',
@@ -3148,7 +3148,7 @@ const functions =
         },
         {
           function : 'ecb-history-content-all-dead-buffers-alist',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return alist with items (<buffer-name> . <file-name>) for dead buffers<br>entries of the history-buffer."',
           prototype : '(defun ecb-history-content-all-dead-buffers-alist ()',
           parameter : '',
@@ -3156,7 +3156,7 @@ const functions =
         },
         {
           function : 'ecb-history-filter',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Apply a filter to the history-buffer to reduce the number of entries.<br>So you get a better overlooking. There are three choices:<br>- Filter by extension: Just insert the extension you want the History-buffer<br>  being filtered. Insert the extension without leading dot!<br>- Filter by regexp: Insert the filter as regular expression.<br>- No filter: This means to display an entry for all currently living<br>  file-buffers."',
           prototype : '(defun ecb-history-filter ()',
           parameter : '',
@@ -3164,7 +3164,7 @@ const functions =
         },
         {
           function : 'ecb-history-filter-by-ext',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Filter history entries by extension. Returns t if the filter has been<br>applied otherwise nil."',
           prototype : '(defun ecb-history-filter-by-ext (ext-str)',
           parameter : 'ext-str',
@@ -3172,7 +3172,7 @@ const functions =
         },
         {
           function : 'ecb-history-filter-by-regexp',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Filter history entries by REGEXP. If the first optional argument REGEXP is<br>nil then it asks for a regexp. If second argument FILTER-DISPLAY is not nil<br>then it is displayed in the modeline of the history-buffer for current<br>regexp-filter. Otherwise the regexp itself. Returns t if the filter has been<br>applied otherwise nil."',
           prototype : '(defun ecb-history-filter-by-regexp (&optional regexp filter-display)',
           parameter : '&optional regexp filter-display',
@@ -3180,7 +3180,7 @@ const functions =
         },
         {
           function : 'ecb-history-filter-modeline-prefix',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Compute a mode-line prefix for the History-buffer so the current filter<br>applied to the history-entries is displayed. This function is only for using<br>by the option `ecb-mode-line-prefixes"."',
           prototype : '(defun ecb-history-filter-modeline-prefix (buffer-name sel-dir sel-source)',
           parameter : 'buffer-name sel-dir sel-source',
@@ -3188,13 +3188,13 @@ const functions =
         },
         {
           function : 'ecb-history-filter-reset-p',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : '',
           lispcode : '(defun ecb-history-filter-reset-p ()<br>  (null (cdr ecb-history-filter)))'
         },
         {
           function : 'ecb-history-kill-buffer-clear',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Does all necessary clearence when CURR-BUF is killed."',
           prototype : '(defun ecb-history-kill-buffer-clear (curr-buf)',
           parameter : 'curr-buf',
@@ -3202,7 +3202,7 @@ const functions =
         },
         {
           function : 'ecb-history-menu-creator',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Creates the popup-menus for the history-buffer."',
           prototype : '(defun ecb-history-menu-creator (tree-buffer-name node)',
           parameter : 'tree-buffer-name node',
@@ -3210,7 +3210,7 @@ const functions =
         },
         {
           function : 'ecb-host-accessible-cache-add',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Add the value of ACCESSIBLE-P to the HOST-ACCESSIBLE-cache with key HOST."',
           prototype : '(defun ecb-host-accessible-cache-add (host accessible-p)',
           parameter : 'host accessible-p',
@@ -3218,7 +3218,7 @@ const functions =
         },
         {
           function : 'ecb-host-accessible-cache-dump',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Dump the whole HOST-ACCESSIBLE-cache. If NO-NIL-VALUE is not nil then these<br>cache-entries are not dumped. This command is not intended for end-users of<br>ECB."',
           prototype : '(defun ecb-host-accessible-cache-dump (&optional no-nil-value)',
           parameter : '&optional no-nil-value',
@@ -3226,7 +3226,7 @@ const functions =
         },
         {
           function : 'ecb-host-accessible-cache-get',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Get the accessible-p value from the HOST-ACCESSIBLE-cache. If the cache<br>entry is older then VALID-TIME (in seconds) then it is discarded."',
           prototype : '(defun ecb-host-accessible-cache-get (host valid-time)',
           parameter : 'host valid-time',
@@ -3234,7 +3234,7 @@ const functions =
         },
         {
           function : 'ecb-host-accessible-p',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return not nil if HOST is accessible."',
           prototype : '(defun ecb-host-accessible-p (host)',
           parameter : 'host',
@@ -3242,7 +3242,7 @@ const functions =
         },
         {
           function : 'ecb-images-can-be-used',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Not nil if images can be used with current Emacs setup."',
           prototype : '(defun ecb-images-can-be-used ()',
           parameter : '',
@@ -3250,13 +3250,13 @@ const functions =
         },
         {
           function : 'ecb-indirect-buffers-of-buffer',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : '&optional buffer-or-name',
           lispcode : '(defun ecb-indirect-buffers-of-buffer (&optional buffer-or-name)<br>  (let ((buffer (if (null buffer-or-name)<br>                    (current-buffer)<br>                  (if (and (bufferp buffer-or-name)<br>                           (buffer-live-p buffer-or-name))<br>                      buffer-or-name<br>                    (if (stringp buffer-or-name)<br>                        (get-buffer buffer-or-name))))))<br>    (delq nil (mapcar (function<br>                       (lambda (buf)<br>                         (if (equal buffer (buffer-base-buffer buf))<br>                             buf)))<br>                      (buffer-list)))))'
         },
         {
           function : 'ecb-info',
-          filename : 'ecb/ecb-help.el',
+          filename : 'ecb-help.el',
           docstring : '  "Starts `info" with INFO-FILE. If INFO-FILE does not exists then nil is<br>returned otherwise true. If NO-FILE-NOT-EXIST-ERR is not nil then just nil is<br>returned if INFO-FILE does not exist otherwise an error is reported."',
           prototype : '(defun ecb-info (info-file &optional no-file-not-exist-err)',
           parameter : 'info-file &optional no-file-not-exist-err',
@@ -3264,7 +3264,7 @@ const functions =
         },
         {
           function : 'ecb-info-message',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Displays an information."',
           prototype : '(defun ecb-info-message (&rest args)',
           parameter : '&rest args',
@@ -3272,19 +3272,19 @@ const functions =
         },
         {
           function : 'ecb-initialize-all-internals',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           parameter : '&optional no-caches',
           lispcode : '(defun ecb-initialize-all-internals (&optional no-caches)<br>  (ecb-ecb-buffer-registry-init)<br>  (setq ecb-major-mode-selected-source nil<br>        ecb-item-in-tree-buffer-selected nil)<br>  (ecb-file-browser-initialize no-caches)<br>  (ecb-method-browser-initialize no-caches))'
         },
         {
           function : 'ecb-initialize-layout',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : '',
           lispcode : '(defun ecb-initialize-layout ()<br>  ;; We do not initialize the <backtick>ecb-frame<tick>!<br>  (setq ecb-edit-window nil<br>        ecb-last-edit-window-with-point nil<br>        ecb-last-source-buffer nil<br>        ecb-last-compile-buffer-in-compile-window nil<br>        ecb-current-maximized-ecb-buffer-name nil<br>        ecb-cycle-ecb-buffer-state nil<br>        ecb-special-ecb-buffers-of-current-layout nil<br>        ecb-windows-hidden-state ecb-windows-hidden-none-value<br>        ecb-compile-window nil<br>        ecb-layout-prevent-handle-compile-window-selection nil<br>        ecb-layout-prevent-handle-ecb-window-selection nil<br>        ecb-ecb-buffer-name-selected-before-command nil<br>        ecb-compile-window-was-selected-before-command nil<br>        ecb-compile-window-height-lines nil)'
         },
         {
           function : 'ecb-interpret-mouse-click',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Converts the physically pressed MOUSE-BUTTON (1 = mouse-1, 2 = mouse-2, 0 =<br>no mouse-button but the keys RET or TAB) to ECB-mouse-buttons: either primary<br>or secondary mouse-button depending on the value of CONTROL-PRESSED and the<br>setting in `ecb-primary-secondary-mouse-buttons". Returns a list<br>"(<ECB-button> <shift-mode> <meta-mode> <device>) where <ECB-button> is<br>either 1 (= primary) or 2 (= secondary) and <shift-mode> and <meta-mode> are<br>non nil if SHIFT-PRESSED rsp. META-PRESSED is non nil. <device> is either<br>"mouse or "keyboard dependent if the uses has used the mouse rsp. the keyboard<br>in the tree-buffer. For an invalid and not accepted click combination nil is<br>returned.<br><br>Note: If MOUSE-BUTTON is 0 (means no mouse-button but a key like RET or TAB<br>was hitted) then CONTROL-PRESSED is interpreted as ECB-button 2.<br><br>Currently the fourth argument TREE-BUFFER-NAME is not used here."',
           prototype : '(defun ecb-interpret-mouse-click (mouse-button                                  shift-pressed                                  control-pressed                                  meta-pressed                                  tree-buffer-name)',
           parameter : 'mouse-button shift-pressed control-pressed meta-pressed tree-buffer-name',
@@ -3292,7 +3292,7 @@ const functions =
         },
         {
           function : 'ecb-is-byte-compiling',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return non-nil if eval"ed during compilation.  Don"t use outside<br>`eval-when-compile"."',
           prototype : '(defun ecb-is-byte-compiling ()',
           parameter : '',
@@ -3300,7 +3300,7 @@ const functions =
         },
         {
           function : 'ecb-jde-display-class-at-point',
-          filename : 'ecb/ecb-jde.el',
+          filename : 'ecb-jde.el',
           docstring : '  "Displays in the ECB-methods-buffer contents of class under point.<br>This means displays the contents (methods, attributes etc...) of the class<br>which contains the definition of the "thing" under point (this can be a<br>variablename, classname, methodname, attributename). This function needs the<br>same requirements to work as the method-completion feature of JDE (see<br>`jde-complete-at-point")!. The source-file is searched first in<br>`jde-sourcepath", then in `jde-global-classpath", then in $CLASSPATH, then in<br>current-directory.<br><br>Works only for classes where the source-code (i.e. the *.java-file) is<br>available."',
           prototype : '(defun ecb-jde-display-class-at-point ()',
           parameter : '',
@@ -3308,7 +3308,7 @@ const functions =
         },
         {
           function : 'ecb-jde-gen-class-buffer',
-          filename : 'ecb/ecb-jde.el',
+          filename : 'ecb-jde.el',
           docstring : '  "Calls `jde-gen-class-buffer" for the file FILENAME in DIR. If this function<br>is not available then `find-file" is called."',
           prototype : '(defun ecb-jde-gen-class-buffer (dir filename)',
           parameter : 'dir filename',
@@ -3316,13 +3316,13 @@ const functions =
         },
         {
           function : 'ecb-jde-get-source-path',
-          filename : 'ecb/ecb-jde.el',
+          filename : 'ecb-jde.el',
           parameter : '',
           lispcode : '(defun ecb-jde-get-source-path ()<br>  (mapcar <tick>jde-normalize-path jde-sourcepath))'
         },
         {
           function : 'ecb-jde-show-class-source',
-          filename : 'ecb/ecb-jde.el',
+          filename : 'ecb-jde.el',
           docstring : '  "Calls `jde-show-class-source" for th tag-name of EXTERNAL-TAG.<br>Returns t if the tag is found and no error occurs otherwise nil.<br><br>This function is for usage with `ecb-find-external-tag-functions"."',
           prototype : '(defun ecb-jde-show-class-source (external-tag)',
           parameter : 'external-tag',
@@ -3330,13 +3330,13 @@ const functions =
         },
         {
           function : 'ecb-jde-update-ecb-source-paths',
-          filename : 'ecb/ecb-jde.el',
+          filename : 'ecb-jde.el',
           parameter : '',
           lispcode : '(defun ecb-jde-update-ecb-source-paths ()<br>  (interactive)<br>  (cl-case ecb-jde-set-directories-buffer-to-jde-sourcepath<br>    (add<br>     (add-hook <tick>ecb-source-path-functions<br>               <tick>ecb-jde-get-source-path))<br>    (replace<br>     (setq ecb-source-path (ecb-jde-get-source-path)))<br>    (otherwise<br>     (remove-hook <tick>ecb-source-path-functions<br>                  <tick>ecb-jde-get-source-path)))<br>  (ecb-update-directories-buffer))<br>'
         },
         {
           function : 'ecb-kill-buffer-hook',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Function added to the `kill-buffer-hook" during ECB activation.<br>  It does several tasks:<br>- Depending on the value in `ecb-kill-buffer-clears-history" the corresponding<br>  entry in the history-buffer is removed.<br>- Clearing the method buffer if a file-buffer has been killed.<br>- The entry of the removed file-buffer is removed from `ecb-tag-tree-cache"."',
           prototype : '(defun ecb-kill-buffer-hook ()',
           parameter : '',
@@ -3344,7 +3344,7 @@ const functions =
         },
         {
           function : 'ecb-last',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the last elem of the sequence SEQ."',
           prototype : '(defun ecb-last (seq)',
           parameter : 'seq',
@@ -3352,7 +3352,7 @@ const functions =
         },
         {
           function : 'ecb-layout-debug-error',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Run ARGS through `format" and write it to the *Messages*-buffer."',
           prototype : '(defun ecb-layout-debug-error (&rest args)',
           parameter : '&rest args',
@@ -3360,7 +3360,7 @@ const functions =
         },
         {
           function : 'ecb-layout-left-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if current layout or layout NAME is of type left."',
           prototype : '(defun ecb-layout-left-p (&optional name)',
           parameter : '&optional name',
@@ -3368,7 +3368,7 @@ const functions =
         },
         {
           function : 'ecb-layout-leftright-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if current layout or layout NAME is of type left-right."',
           prototype : '(defun ecb-layout-leftright-p (&optional name)',
           parameter : '&optional name',
@@ -3376,7 +3376,7 @@ const functions =
         },
         {
           function : 'ecb-layout-right-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if current layout or layout NAME is of type right."',
           prototype : '(defun ecb-layout-right-p (&optional name)',
           parameter : '&optional name',
@@ -3384,7 +3384,7 @@ const functions =
         },
         {
           function : 'ecb-layout-switch',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Switch to layout with layout-name NAME."',
           prototype : '(defun ecb-layout-switch (name)',
           parameter : 'name',
@@ -3392,7 +3392,7 @@ const functions =
         },
         {
           function : 'ecb-layout-top-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if current layout or layout NAME is of type top."',
           prototype : '(defun ecb-layout-top-p (&optional name)',
           parameter : '&optional name',
@@ -3400,13 +3400,13 @@ const functions =
         },
         {
           function : 'ecb-layout-type-p',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : 'type &optional err',
           lispcode : '(defun ecb-layout-type-p (type &optional err)<br>  (if (not (member type ecb-layout-types))<br>      (if err<br>          (error <apo>Only left, right, top and left-right are allowed as types!<apo>)<br>        nil)<br>    t))'
         },
         {
           function : 'ecb-layout-undefine',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Unbind ecb-layout-function-<NAME>, ecb-delete-window-ecb-windows-<NAME>,<br>ecb-delete-other-windows-ecb-windows-<NAME> and remove NAME from<br>`ecb-available-layouts"."',
           prototype : '(defun ecb-layout-undefine (name)',
           parameter : 'name',
@@ -3414,7 +3414,7 @@ const functions =
         },
         {
           function : 'ecb-layout-window-sync',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Synchronizes all special ECB-buffers with current buffer.<br>Depending on the contents of current buffer this function performs different<br>synchronizing tasks but only if ECB is active and point stays in an<br>edit-window.<br><br>Runs all functions registered in `ecb-autocontrol/sync-fcn-register".<br>Functions registered with a ecb-buffer run only if that buffer is currently<br>displayed in an ecb-window.<br><br>If WINDOWS-LIST is not nil then this list of ecb-windows is used otherwise<br>it will be computed."',
           prototype : '(defun ecb-layout-window-sync (&optional window-list)',
           parameter : '&optional window-list',
@@ -3422,7 +3422,7 @@ const functions =
         },
         {
           function : 'ecb-left-trim',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return a string stripped of all leading whitespaces of STR."',
           prototype : '(defun ecb-left-trim (str)',
           parameter : 'str',
@@ -3430,13 +3430,13 @@ const functions =
         },
         {
           function : 'ecb-load-in-progress-p',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           parameter : '',
           lispcode : '(defun ecb-load-in-progress-p ()<br>  load-in-progress)<br><br>;;; ----- User Interrupt handling -------------------------'
         },
         {
           function : 'ecb-load-layouts',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Load all defined layouts"',
           prototype : '(defun ecb-load-layouts ()',
           parameter : '',
@@ -3444,7 +3444,7 @@ const functions =
         },
         {
           function : 'ecb-make-windows-not-dedicated',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Make all windows of FRAME not dedicated."',
           prototype : '(defun ecb-make-windows-not-dedicated (&optional frame)',
           parameter : '&optional frame',
@@ -3452,7 +3452,7 @@ const functions =
         },
         {
           function : 'ecb-matching-source-paths',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return all source-paths of `ecb-source-path" which match PATH-TO-MATCH. If<br>SORTED is not nil then the paths are sorted by descending length, means the<br>longest path (which is the best matching) is the first elem and the shortest<br>path the last elem. Otherwise the matching paths are returned in that sequence<br>they occur in `ecb-source-path".<br>Each matching path is a cons in the sense of `ecb-normed-source-paths"."',
           prototype : '(defun ecb-matching-source-paths (path-to-match &optional sorted)',
           parameter : 'path-to-match &optional sorted',
@@ -3460,7 +3460,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-action-window',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           docstring : '  "Maximize the action-window.<br>I.e. delete all other ECB-windows, so only one ECB-window and the<br>edit-window(s) are visible (and maybe a compile-window). Works<br>also if the ECB-analyse-window is not visible in current layout."',
           prototype : '(defun ecb-maximize-action-window ()',
           parameter : '',
@@ -3468,7 +3468,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-bufferinfo-window',
-          filename : 'ecb/ecb-examples.el',
+          filename : 'ecb-examples.el',
           docstring : '  "Maximize the bufferinfo-window.<br>I.e. delete all other ECB-windows, so only one ECB-window and the<br>edit-window(s) are visible (and maybe a compile-window). Works<br>also if the ECB-analyse-window is not visible in current layout."',
           prototype : '(defun ecb-maximize-bufferinfo-window ()',
           parameter : '',
@@ -3476,7 +3476,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-ecb-buffer',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Maximize that window which displays the special ECB-buffer ECB-BUFFER-NAME.<br>Afterwards ECB-BUFFER-NAME is the only visible special ECB-buffer. If optional<br>arg PRESERVE-SELECTED-WINDOW is nil then after maximizing always the current<br>edit-window is selected and if not nil then the currently selected window-type<br>does not change which means: If any ecb-window was selected before maximizing<br>then after maximizing the maximized ecb-window is selected (regardless if its<br>the same as before the maximizing). If the compile window was selected before<br>then it will be selected also after. If an edit-window was selected before it<br>will be selected also after."',
           prototype : '(defun ecb-maximize-ecb-buffer (ecb-buffer-name &optional preserve-selected-window)',
           parameter : 'ecb-buffer-name &optional preserve-selected-window',
@@ -3484,7 +3484,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-ecb-buffer-new',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Maximize that window which displays the special ECB-buffer ECB-BUFFER-NAME.<br>Afterwards ECB-BUFFER-NAME is the only visible special ECB-buffer. If optional<br>arg PRESERVE-SELECTED-WINDOW is nil then after maximizing always the current<br>edit-window is selected and if not nil then the currently selected window-type<br>does not change which means: If any ecb-window was selected before maximizing<br>then after maximizing the maximized ecb-window is selected (regardless if its<br>the same as before the maximizing). If the compile window was selected before<br>then it will be selected also after. If an edit-window was selected before it<br>will be selected also after."',
           prototype : '(defun ecb-maximize-ecb-buffer-new (ecb-buffer-name &optional preserve-selected-window)',
           parameter : 'ecb-buffer-name &optional preserve-selected-window',
@@ -3492,7 +3492,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-window-analyse',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Maximize the ECB-analyse-window.<br>I.e. delete all other ECB-windows, so only one ECB-window and the<br>edit-window(s) are visible (and maybe a compile-window). Works also if the<br>ECB-analyse-window is not visible in current layout."',
           prototype : '(defun ecb-maximize-window-analyse ()',
           parameter : '',
@@ -3500,7 +3500,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-window-directories',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Maximize the ECB-directories-window.<br>I.e. delete all other ECB-windows, so only one ECB-window and the<br>edit-window(s) are visible (and maybe a compile-window). Works also if the<br>ECB-directories-window is not visible in current layout."',
           prototype : '(defun ecb-maximize-window-directories ()',
           parameter : '',
@@ -3508,7 +3508,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-window-history',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Maximize the ECB-history-window.<br>I.e. delete all other ECB-windows, so only one ECB-window and the<br>edit-window(s) are visible (and maybe a compile-window). Works also if the<br>ECB-history-window is not visible in current layout."',
           prototype : '(defun ecb-maximize-window-history ()',
           parameter : '',
@@ -3516,7 +3516,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-window-methods',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Maximize the ECB-methods-window.<br>I.e. delete all other ECB-windows, so only one ECB-window and the<br>edit-window(s) are visible (and maybe a compile-window). Works also if the<br>ECB-methods-window is not visible in current layout."',
           prototype : '(defun ecb-maximize-window-methods ()',
           parameter : '',
@@ -3524,7 +3524,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-window-sources',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Maximize the ECB-sources-window.<br>I.e. delete all other ECB-windows, so only one ECB-window and the<br>edit-window(s) are visible (and maybe a compile-window). Works also if the<br>ECB-sources-window is not visible in current layout."',
           prototype : '(defun ecb-maximize-window-sources ()',
           parameter : '',
@@ -3532,7 +3532,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-window-speedbar',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           docstring : '  "Maximize the ECB-speedbar-window.<br>I.e. delete all other ECB-windows, so only one ECB-window and the<br>edit-window(s) are visible (and maybe a compile-window). Does nothing if the<br>speedbar-window is not visible within the ECB-frame."',
           prototype : '(defun ecb-maximize-window-speedbar ()',
           parameter : '',
@@ -3540,7 +3540,7 @@ const functions =
         },
         {
           function : 'ecb-maximize-window-symboldef',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Maximize the ECB-symbol-defnition window.<br>I.e. delete all other ECB-windows, so only one ECB-window and the<br>edit-window(s) are visible (and maybe a compile-window). Works also if the<br>ECB-symboldefinition-window is not visible in current layout."',
           prototype : '(defun ecb-maximize-window-symboldef ()',
           parameter : '',
@@ -3548,7 +3548,7 @@ const functions =
         },
         {
           function : 'ecb-maximized-ecb-buffer-name',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return the currently maximized special ecb-buffer-name or nil if there is none."',
           prototype : '(defun ecb-maximized-ecb-buffer-name ()',
           parameter : '',
@@ -3556,7 +3556,7 @@ const functions =
         },
         {
           function : 'ecb-member',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Find the first occurrence of ITEM in LIST.<br>Return the sublist of LIST whose car is ITEM. Comparison is done via `equal"<br>unless TEST-FCN is not nil: In this case TEST-FCN will be used to compare ITEM<br>with the elements of LIST. If TEST-FCN is `eq" then `memq" is called for<br>optimization."',
           prototype : '(defun ecb-member (item list &optional test-fcn)',
           parameter : 'item list &optional test-fcn',
@@ -3564,7 +3564,7 @@ const functions =
         },
         {
           function : 'ecb-member-of-symbol/value-list',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Returns not nil when VALUE is a member of that list which is build from<br>LIST by using the symbol-value if a list-member is a symbol and otherwise the<br>list-member itself. If a member then the matching elem of LIST is returned.<br><br>Per default comparison between VALUE and such a list-elem is done by `equal"<br>unless third optional argument COMPARE-FCN is not nil: Then this function is<br>used.<br><br>If ELEM-ACCESSOR is a function then it is used to get that part of an elem<br>of LIST for which the rule above should be applied. If RETURN-ACCESSOR is a<br>function then it is used to get that part of that list-elem which is equal<br>according to the rules above."',
           prototype : '(defun ecb-member-of-symbol/value-list (value list &optional elem-accessor                                              return-accessor compare-fcn)',
           parameter : 'value list &optional elem-accessor return-accessor compare-fcn',
@@ -3572,7 +3572,7 @@ const functions =
         },
         {
           function : 'ecb-menu-item',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Removed XEmacs compatible menu item"',
           prototype : '(defun ecb-menu-item (item)',
           parameter : 'item',
@@ -3580,7 +3580,7 @@ const functions =
         },
         {
           function : 'ecb-merge-face',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Merge FACE either to a buffer-part or to TEXT.<br>In both cases START and END define the region which should be<br>faced. The FACE is merged, i.e. the values of all face-attributes<br>of FACE take effect and the values of all face-attributes of the<br>buffer-part or TEXT which are not set by FACE are preserved.<br><br>If always returns TEXT (if not nil then modified with FACE)."',
           prototype : '(defun ecb-merge-face (face start end &optional text)',
           parameter : 'face start end &optional text',
@@ -3588,7 +3588,7 @@ const functions =
         },
         {
           function : 'ecb-merge-face-into-text',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Merge FACE to the already precolored TEXT so the values of all<br>face-attributes of FACE take effect and but the values of all face-attributes<br>of TEXT which are not set by FACE are preserved.<br>If FACE or TEXT is nil then simply original TEXT is returned."',
           prototype : '(defun ecb-merge-face-into-text (text face)',
           parameter : 'text face',
@@ -3596,7 +3596,7 @@ const functions =
         },
         {
           function : 'ecb-message-box',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Display a message-box with message MESSAGE-STR and title TITLE-TEXT if<br>TITLE-TEXT is not nil - otherwise "Message-box" is used as title. The title<br>gets always the prefix "ECB - ". Second optional argument BUTTON-TEXT<br>specifies the text of the message-box button; if nil then "OK" is used.<br><br>With GNU Emacs the message itself is the button because GNU Emacs currently<br> does not support dialog-boxes very well.<br><br>If `window-system" is nil then a simple message is displayed in the echo-area."',
           prototype : '(defun ecb-message-box (message-str &optional title-text button-text)',
           parameter : 'message-str &optional title-text button-text',
@@ -3604,7 +3604,7 @@ const functions =
         },
         {
           function : 'ecb-method-browser-initialize',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Initialize the method-browser of ECB. If optional arg NO-CACHES is not nil<br>then the caches used by the method-browser will not be initialized."',
           prototype : '(defun ecb-method-browser-initialize (&optional no-caches)',
           parameter : '&optional no-caches',
@@ -3612,7 +3612,7 @@ const functions =
         },
         {
           function : 'ecb-method-browser-initialize-caches',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Initialize the caches of the method-browser of ECB."',
           prototype : '(defun ecb-method-browser-initialize-caches ()',
           parameter : '',
@@ -3620,7 +3620,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Apply a filter to the Methods-buffer to reduce the number of entries.<br>So you get a better overlooking. There are six choices:<br>- Filter by protection: Just insert the protection you want the Methods-buffer<br>  being filtered: private, protected or public!<br>- Filter by regexp: Insert the filter as regular expression.<br>- Filter by tag-class: You can filter by the tag-classes of current<br>  major-mode. The available tag-classes come from the variable<br>  `semantic--symbol->name-assoc-list". The are normally methods, variables<br>  etc.<br>- Filter by current type: In languages which have types like Java or C++ this<br>  filter displays only the current type and all its members (e.g. attributes<br>  and methods). If ECB can not identify the current type in the source-buffer<br>  or in the methods-window then nothing will be done.<br>- Filter by a filter-function: Such a function gets two arguments: a tag and<br>  the source-buffer of this tag. If the tag should be displayed (i.e. not<br>  being filtered out) then the function has to return not nil otherwise nil.<br>- No special filter: This means to display all tags specified with the option<br>  `ecb-show-tokens". If currently some of the above filters are applied they<br>  will be all removed.<br>- Delete the last added: This removes only the topmost filter-layer, means<br>  that filter added last.<br><br>The protection-, the current-type and the tag-class-filter are only available<br>for semantic-supported sources.<br><br>Be aware that the tag-list specified by the option `ecb-show-tags" is the<br>basis of all filters, i.e. tags which are excluded by that option will never<br>be shown regardless of the filter type here!<br><br>All tags which match the applied filter(s) will be displayed in the<br>Methods-buffer.<br><br>If called with a prefix-argument or when optional arg INVERSE is not nil then<br>an inverse filter is applied to the Methods-buffer, i.e. all tags which<br>do NOT match the choosen filter will be displayed in the Methods-buffer!<br><br>Per default the choosen filter will be applied on top of already existing<br>filters. This means that filters applied before are combined with the new<br>filter. This behavior can changed via the option<br>`ecb-methods-filter-replace-existing". But regardless of the setting in<br>`ecb-methods-filter-replace-existing" applying one of the not-inverse filters<br>protection, tag-class or current-type always replaces exactly already existing<br>filters of that type. On the other hand applying more than one inverse<br>tag-class- or protection-filter can make sense.<br><br>Such a filter is only applied to the current source-buffer, i.e. each<br>source-buffer can have its own tag-filters.<br><br>The current active filter will be displayed in the modeline of the<br>Methods-buffer [regexp, prot (= protection), tag-class, function (=<br>filter-function)]. If an inverse filter has been applied then this is<br>signalized by a preceding caret ^. If currently more than 1 filter is applied<br>then always the top-most filter is displayed in the modeline but the fact of<br>more than 1 filter is visualized by the number of the filters - included in<br>parens. You can see all currently applied filters by moving the mouse over the<br>filter-string in modeline of the Methods-buffer: They will displayed as<br>help-echo.<br><br>See the option `ecb-default-tag-filter" if you search for automatically<br>applied default-tag-filters."',
           prototype : '(defun ecb-methods-filter (&optional inverse)',
           parameter : '&optional inverse',
@@ -3628,7 +3628,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-apply',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Apply the FILTER of type FILTERTYPE to the buffer SOURCEBUFFER. If INVERSE<br>is not nil then this filter will be applied inverse. FILTER-TYPE-DISPLAY and<br>FILTER-DISPLAY are strings and specify how the FILTER of type FILTERTYPE<br>should be displayed in the modeline of the methods-buffer. If REMOVE-LAST is<br>not nil then the topmost filter will be removed and all other arguments unless<br>SOURCE-BUFFER arguments are ignored. Returns t if the filter has been applied<br>otherwise nil."',
           prototype : '(defun ecb-methods-filter-apply (filtertype filter inverse filter-type-display                                            filter-display                                            source-buffer &optional remove-last)',
           parameter : 'filtertype filter inverse filter-type-display filter-display source-buffer &optional remove-last',
@@ -3636,7 +3636,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-by-current-type',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Display only the current-type and its contents in the methods-buffer. The<br>argument INVERSE is ignored here."',
           prototype : '(defun ecb-methods-filter-by-current-type (inverse source-buffer &optional                                                   tag)',
           parameter : 'inverse source-buffer &optional tag',
@@ -3644,7 +3644,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-by-function',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Filter the Methods-buffer by a filter-function."',
           prototype : '(defun ecb-methods-filter-by-function (inverse source-buffer &optional fcn-name)',
           parameter : 'inverse source-buffer &optional fcn-name',
@@ -3652,7 +3652,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-by-prot',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Filter the Methods-buffer by protection."',
           prototype : '(defun ecb-methods-filter-by-prot (inverse source-buffer &optional prot)',
           parameter : 'inverse source-buffer &optional prot',
@@ -3660,7 +3660,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-by-regexp',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Filter the Methods-buffer by a regular expression."',
           prototype : '(defun ecb-methods-filter-by-regexp (inverse source-buffer &optional regexp)',
           parameter : 'inverse source-buffer &optional regexp',
@@ -3668,7 +3668,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-by-tag-class',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Filter the Methods-buffer by a tag-class."',
           prototype : '(defun ecb-methods-filter-by-tag-class (inverse source-buffer                                                &optional tag-class)',
           parameter : 'inverse source-buffer &optional tag-class',
@@ -3676,7 +3676,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-current-type',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Display in the Methods-buffer only the current type and its members. For<br>further details see `ecb-methods-filter"."',
           prototype : '(defun ecb-methods-filter-current-type ()',
           parameter : '',
@@ -3684,7 +3684,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-delete-last',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Remove the most recent filter from the Methods-buffer. For further details see<br>`ecb-methods-filter"."',
           prototype : '(defun ecb-methods-filter-delete-last ()',
           parameter : '',
@@ -3692,7 +3692,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-function',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Filter the methods-buffer by a function. If INVERSE is not nil (called<br>with a prefix arg) then an inverse filter is applied. For further details see<br>`ecb-methods-filter"."',
           prototype : '(defun ecb-methods-filter-function (&optional inverse)',
           parameter : '&optional inverse',
@@ -3700,7 +3700,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-internal',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "FILTER-TYPE has to be one of the symbols "regexp, "protection,<br>"tag-class, "curr-type, "function, "no-filter or "delete-last."',
           prototype : '(defun ecb-methods-filter-internal (inverse &optional filter-type)',
           parameter : 'inverse &optional filter-type',
@@ -3708,7 +3708,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-inverse',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Apply an inverse filter to the Methods-buffer. This is the same as calling<br>`ecb-methods-filter" with a prefix arg."',
           prototype : '(defun ecb-methods-filter-inverse ()',
           parameter : '',
@@ -3716,7 +3716,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-modeline-prefix',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Compute a mode-line prefix for the Methods-buffer so the current filter<br>applied to the displayed tags is displayed. This function is only for using by<br>the option `ecb-mode-line-prefixes"."',
           prototype : '(defun ecb-methods-filter-modeline-prefix (buffer-name sel-dir sel-source)',
           parameter : 'buffer-name sel-dir sel-source',
@@ -3724,7 +3724,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-nofilter',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Remove any filter from the Methods-buffer. For further details see<br>`ecb-methods-filter"."',
           prototype : '(defun ecb-methods-filter-nofilter ()',
           parameter : '',
@@ -3732,7 +3732,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-perform-current-type',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Perform a current-type filter on TAGLIST. FILTER is a type-name-hierarchy<br>for a certain type. If this hierarchy can be found in TAGLIST a new tag-list<br>is returned which contains only the leaf-type in the hierarchy."',
           prototype : '(defun ecb-methods-filter-perform-current-type (filter taglist)',
           parameter : 'filter taglist',
@@ -3740,7 +3740,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-protection',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Filter the methods-buffer by protection. If INVERSE is not nil (called<br>with a prefix arg) then an inverse filter is applied. For further details see<br>`ecb-methods-filter"."',
           prototype : '(defun ecb-methods-filter-protection (&optional inverse)',
           parameter : '&optional inverse',
@@ -3748,7 +3748,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-regexp',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Filter the methods-buffer by a regexp. If INVERSE is not nil (called<br>with a prefix arg) then an inverse filter is applied. For further details see<br>`ecb-methods-filter"."',
           prototype : '(defun ecb-methods-filter-regexp (&optional inverse)',
           parameter : '&optional inverse',
@@ -3756,7 +3756,7 @@ const functions =
         },
         {
           function : 'ecb-methods-filter-tagclass',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Filter the methods-buffer by tag-class. If INVERSE is not nil (called<br>with a prefix arg) then an inverse filter is applied. For further details see<br>`ecb-methods-filter"."',
           prototype : '(defun ecb-methods-filter-tagclass (&optional inverse)',
           parameter : '&optional inverse',
@@ -3764,7 +3764,7 @@ const functions =
         },
         {
           function : 'ecb-methods-get-data-store',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Get the value for KEY from the tree-buffer-data-store of the Methods-buffer."',
           prototype : '(defun ecb-methods-get-data-store (key)',
           parameter : 'key',
@@ -3772,7 +3772,7 @@ const functions =
         },
         {
           function : 'ecb-methods-menu-activate-hs',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Activates `hs-minor-mode" in the buffer of `ecb-path-selected-source". If<br>this fails then nil is returned otherwise t."',
           prototype : '(defun ecb-methods-menu-activate-hs ()',
           parameter : '',
@@ -3780,7 +3780,7 @@ const functions =
         },
         {
           function : 'ecb-methods-menu-creator',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Creates the popup-menus for the methods-buffer."',
           prototype : '(defun ecb-methods-menu-creator (tree-buffer-name node)',
           parameter : 'tree-buffer-name node',
@@ -3788,7 +3788,7 @@ const functions =
         },
         {
           function : 'ecb-methods-menu-editwin-entries',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Generate popup-menu-entries for each edit-window if there are at least 2<br>edit-windows. Otherwise return nil."',
           prototype : '(defun ecb-methods-menu-editwin-entries ()',
           parameter : '',
@@ -3796,7 +3796,7 @@ const functions =
         },
         {
           function : 'ecb-methods-menu-tagfilter-entries',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Generate popup-menu-entries for the tag-filtering"',
           prototype : '(defun ecb-methods-menu-tagfilter-entries ()',
           parameter : '',
@@ -3804,13 +3804,13 @@ const functions =
         },
         {
           function : 'ecb-methods-node-get-semantic-type',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'node',
           lispcode : '(defun ecb-methods-node-get-semantic-type (node)<br>  (cond ((= ecb-methods-nodetype-bucket (tree-node->type node))<br>         (nth 2 (tree-node->data node)))<br>        ((= ecb-methods-nodetype-tag (tree-node->type node))<br>         (ignore-errors (ecb--semantic-tag-class (tree-node->data node))))<br>        (t nil)))<br>'
         },
         {
           function : 'ecb-methods-node-mouse-highlighted-p',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return not nil when NODE has a positioned tag as data or belongs to the<br>completions. This means that this node should be highlighted when mouse is<br>moved over it."',
           prototype : '(defun ecb-methods-node-mouse-highlighted-p (node)',
           parameter : 'node',
@@ -3818,7 +3818,7 @@ const functions =
         },
         {
           function : 'ecb-minor-mode',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Toggle ECB minor mode.<br>With prefix argument ARG, turn on if positive, otherwise off. Return non-nil<br>if the minor mode is enabled.<br><br>{ecb-mode-map}"',
           prototype : '(defun ecb-minor-mode (&optional arg)',
           parameter : '&optional arg',
@@ -3826,7 +3826,7 @@ const functions =
         },
         {
           function : 'ecb-mode-line-format',
-          filename : 'ecb/ecb-mode-line.el',
+          filename : 'ecb-mode-line.el',
           docstring : '  "Update all of the modelines of each ecb buffer."',
           prototype : '(defun ecb-mode-line-format ()',
           parameter : '',
@@ -3834,7 +3834,7 @@ const functions =
         },
         {
           function : 'ecb-mode-line-make-modeline-str',
-          filename : 'ecb/ecb-mode-line.el',
+          filename : 'ecb-mode-line.el',
           docstring : '  "Applies FACE to the STR. In additon it applies a help-echo to STR if STR<br>contains a text-property "help-echo."',
           prototype : '(defun ecb-mode-line-make-modeline-str (str face)',
           parameter : 'str face',
@@ -3842,7 +3842,7 @@ const functions =
         },
         {
           function : 'ecb-mode-line-set',
-          filename : 'ecb/ecb-mode-line.el',
+          filename : 'ecb-mode-line.el',
           docstring : '  "Sets the mode line for a buffer. The mode line has the scheme:<br>"[WIN-NR ][PREFIX[: ]][TEXT]". WIN-NR is the number of the window which<br>displays BUFFER-NAME and is only displayed if the option<br>`ecb-mode-line-display-window-number" is not nil and if NO-WIN-NR is nil. See<br>this option for a description of the window-number. WIN-NR will be displayed<br>as "W-<number>"."',
           prototype : '(defun ecb-mode-line-set (buffer-name frame prefix &optional text no-win-nr)',
           parameter : 'buffer-name frame prefix &optional text no-win-nr',
@@ -3850,7 +3850,7 @@ const functions =
         },
         {
           function : 'ecb-mode-line-update-buffer',
-          filename : 'ecb/ecb-mode-line.el',
+          filename : 'ecb-mode-line.el',
           docstring : '  "Update the given buffer...."',
           prototype : '(defun ecb-mode-line-update-buffer (buffer-name new-mode-line-format)',
           parameter : 'buffer-name new-mode-line-format',
@@ -3858,7 +3858,7 @@ const functions =
         },
         {
           function : 'ecb-modify-emacs-variable',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Stores or restores the old value of the Emacs-variable symbol VAR.<br>VAR has to be a bound symbol for a variable. ACTION is either "store or<br>"restore. The optional arg NEW-VALUE is only used when ACTION is "store and is<br>that value VAR should be set to. After calling with ACTION is "restore the<br>value of VAR is as before storing a NEW-VALUE for variable-symbol VAR."',
           prototype : '(defun ecb-modify-emacs-variable (var action &optional new-value)',
           parameter : 'var action &optional new-value',
@@ -3866,7 +3866,7 @@ const functions =
         },
         {
           function : 'ecb-mouse-over-analyse-node',
-          filename : 'ecb/ecb-analyse.el',
+          filename : 'ecb-analyse.el',
           docstring : '  "Displays help text if mouse moves over a node in the analyse buffer or if<br>CLICK-FORCE is not nil and always with regards to the settings in<br>`ecb-analyse-show-node-info". NODE is the node for which help text should be<br>displayed, WINDOW is the related window, NO-MESSAGE defines if the help-text<br>should be printed here."',
           prototype : '(defun ecb-mouse-over-analyse-node (node &optional window no-message click-force)',
           parameter : 'node &optional window no-message click-force',
@@ -3874,7 +3874,7 @@ const functions =
         },
         {
           function : 'ecb-mouse-over-directory-node',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Displays help text if mouse moves over a node in the directory buffer or if<br>CLICK-FORCE is not nil and always with regards to the settings in<br>`ecb-directories-show-node-info". NODE is the node for which help text should<br>be displayed, WINDOW is the related window, NO-MESSAGE defines if the<br>help-text should be printed here."',
           prototype : '(defun ecb-mouse-over-directory-node (node &optional window no-message click-force)',
           parameter : 'node &optional window no-message click-force',
@@ -3882,7 +3882,7 @@ const functions =
         },
         {
           function : 'ecb-mouse-over-history-node',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Displays help text if mouse moves over a node in the history buffer or if<br>CLICK-FORCE is not nil and always with regards to the settings in<br>`ecb-history-show-node-info". NODE is the node for which help<br>text should be displayed, WINDOW is the related window, NO-MESSAGE defines if<br>the help-text should be printed here."',
           prototype : '(defun ecb-mouse-over-history-node (node &optional window no-message click-force)',
           parameter : 'node &optional window no-message click-force',
@@ -3890,7 +3890,7 @@ const functions =
         },
         {
           function : 'ecb-mouse-over-method-node',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Displays help text if mouse moves over a node in the method buffer or if<br>CLICK-FORCE is not nil and always with regards to the settings in<br>`ecb-methods-show-node-info". NODE is the node for which help text should be<br>displayed, WINDOW is the related window, NO-MESSAGE defines if the help-text<br>should be printed here."',
           prototype : '(defun ecb-mouse-over-method-node (node &optional window no-message click-force)',
           parameter : 'node &optional window no-message click-force',
@@ -3898,7 +3898,7 @@ const functions =
         },
         {
           function : 'ecb-mouse-over-source-node',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Displays help text if mouse moves over a node in the sources buffer or if<br>CLICK-FORCE is not nil and always with regards to the settings in<br>`ecb-sources-show-node-info". NODE is the node for which help<br>text should be displayed, WINDOW is the related window, NO-MESSAGE defines if<br>the help-text should be printed here."',
           prototype : '(defun ecb-mouse-over-source-node (node &optional window no-message click-force)',
           parameter : 'node &optional window no-message click-force',
@@ -3906,7 +3906,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-add-empty-key',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Checks if KEY is already cached in the cache of CACHE-VAR. If yes nothing<br>is done otherwise a new cache-element with empty subcaches is added to the<br>cache. All subcaches defined via `defecb-multicache" are created with a<br>value nil. CACHE-VAR has to be a symbol for which an assoc cache has been<br>defined with `defecb-multicache"!"',
           prototype : '(defun ecb-multicache-add-empty-key (cache-var key)',
           parameter : 'cache-var key',
@@ -3914,7 +3914,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-apply-to-value',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Apply the function APPLY-FCN to the old SUBCACHE-value of the cached item<br>with key KEY. APPLY-FCN is called with the old SUBCACHE-value as argument and<br>should return the new value which is then set as new SUBCACHE-value of the<br>cached-item. If optional argument ONLY-IF-KEY-EXIST is not nil then nothing<br>will be done if no cached item with key KEY exists. Otherwise a new item with<br>KEY will be added to the cache and APPLY-FCN will be called with nil.<br>CACHE-VAR has to be a symbol for which an assoc cache has been defined with<br>`defecb-multicache"!<br><br>With this function an already cached SUBCACHE-value for KEY can be evaluated<br>and then modified with only one cache-lookup because APPLY-FCN gets the<br>old-value as argument and has to return the new value which is then set as new<br>SUBCACHE-value of the cached item. This is more efficient than a call-sequence<br>of `ecb-multicache-get-value" (to get the old-value) and then<br>`ecb-multicache-put-value" to set a new value.<br><br>It is recommended that APPLY-FCN doesn"t return nil (unless the SUBCACHE for<br>KEY should be cleared within APPLY-FCN) because then this will be set as new<br>value and then the returned value of next call to `ecb-multicache-get-value"<br>can have an ambiguous semantic - see documentation of<br>`ecb-multicache-get-value". nil should be reserved to indicate that either no<br>item with KEY is cached or that no value has been put for SUBCACHE."',
           prototype : '(defun ecb-multicache-apply-to-value (cache-var key subcache apply-fcn                                                &optional only-if-key-exist)',
           parameter : 'cache-var key subcache apply-fcn &optional only-if-key-exist',
@@ -3922,7 +3922,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-clear',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Clears the whole cache of CACHE-VAR, i.e. remove all items. CACHE-VAR has<br>to be a symbol for which an assoc cache has been defined with<br>`defecb-multicache"!"',
           prototype : '(defun ecb-multicache-clear (cache-var)',
           parameter : 'cache-var',
@@ -3930,7 +3930,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-clear-subcache',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Put nil as SUBCACHE-value for each cached item. This clears in fact the<br>whole SUBCACHE. CACHE-VAR has to be a symbol for which an assoc cache has been<br>defined with `defecb-multicache"!"',
           prototype : '(defun ecb-multicache-clear-subcache (cache-var subcache)',
           parameter : 'cache-var subcache',
@@ -3938,7 +3938,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-clear-value',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Put nil as value of the cached item with key KEY under the subcache<br>SUBCACHE. This clears in fact the subcache SUBCACHE for a cached item with key<br>KEY. CACHE-VAR has to be a symbol for which an assoc cache has been defined<br>with `defecb-multicache"!"',
           prototype : '(defun ecb-multicache-clear-value (cache-var key subcache)',
           parameter : 'cache-var key subcache',
@@ -3946,7 +3946,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-get-subcache',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return that cons-cell which is associated with KEY in the cache of<br>CACHE-VAR and which has the symbol SUBCACHE as its car. The cdr of this<br>cons-cell is the currently stored SUBCACHE-value for KEY. If KEY is not cached<br>then nil is returned."',
           prototype : '(defun ecb-multicache-get-subcache (cache-var key subcache)',
           parameter : 'cache-var key subcache',
@@ -3954,7 +3954,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-get-value',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the currently associated value for KEY in the subcache SUBCACHE of<br>the cache of CACHE-VAR. CACHE-VAR has to be a symbol for which an assoc cache<br>has been defined with `defecb-multicache"!<br><br>Be aware that the semantic of nil is not unique because nil can have the<br>following meanings:<br>- There is no cached item with KEY at all<br>- There is an item with KEY in the cache but there is no assigned value for<br>  SUBCACHE.<br>- nil has been set as value for KEY and SUBCACHE (via<br>  `ecb-multicache-put-value" or `ecb-multicache-apply-to-value") - but this<br>  is not recommended, see `ecb-multicache-apply-to-value"."',
           prototype : '(defun ecb-multicache-get-value (cache-var key subcache)',
           parameter : 'cache-var key subcache',
@@ -3962,7 +3962,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-get-values',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return an assoc-list with the subcaches listed in SUBCACHE-LIST. If<br>SUBCACHE-LIST is nil then all currently registered subcaches of CACHE-VAR are<br>returned. The result is an assoc-list where each element is a cons-cell:<br>- car: subcache-symbol.<br>- cdr: The currenty cached value for the subcache in the car.<br><br>So apply `assoc" and `cdr" to the result of this function.to get the value of<br>a certain subcache.<br><br>This function is useful when the values of more than one subcache for a key are<br>needed at the same time, i.e. with one cache-lookup."',
           prototype : '(defun ecb-multicache-get-values (cache-var key &optional subcache-list)',
           parameter : 'cache-var key &optional subcache-list',
@@ -3970,7 +3970,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-mapsubcache',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Iterate over all item of the cache of CACHE-VAR and call the function<br>MAPFCN for each item for the subcache SUBCACHE. MAPFCN is called with two<br>arguments, the key and the SUBCACHE-value of the currently processed<br>cache-item. The SUBCACHE-value of this cache-item will be set to the<br>return-value of MAPFCN. So if MAPFCN is not intended to change the<br>SUBCACHE-value it should return the value of its second argument! CACHE-VAR<br>has to be a symbol for which an assoc cache has been defined with<br>`defecb-multicache"!"',
           prototype : '(defun ecb-multicache-mapsubcache (cache-var subcache mapfcn)',
           parameter : 'cache-var subcache mapfcn',
@@ -3978,7 +3978,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-p',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return not nil if the value of CACHE-VAR is a cache defined with<br>`defecb-multicache"."',
           prototype : '(defun ecb-multicache-p (cache-var)',
           parameter : 'cache-var',
@@ -3986,7 +3986,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-print-subcache',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Print the contents of SUBCACHE of the cache of CACHE-VAR in another window<br>in a special buffer. This is mostly for debugging the cache-contents.<br>CACHE-VAR has to be a symbol for which an assoc cache has been defined with<br>`defecb-multicache"!<br><br>The output has the following form:<br><br>Key: <the key of a cached element><br>     Value: <the associated value in the subcache SUBCACHE><br>Key: <the key of a cached element><br>     Value: <the associated value in the subcache SUBCACHE><br>...<br>Key: <the key of a cached element><br>     Value: <the associated value in the subcache SUBCACHE><br><br>If NO-NIL-VALUE is not nil then Keys with a SUBCACHE-value nil will be<br>excluded from the output."',
           prototype : '(defun ecb-multicache-print-subcache (cache-var subcache &optional no-nil-value)',
           parameter : 'cache-var subcache &optional no-nil-value',
@@ -3994,7 +3994,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-put-value',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Put VALUE as SUBCACHE-value of the cached item with key KEY. If there is<br>already a value for this subcache and key then it will be replaced with VALUE.<br>CACHE-VAR has to be a symbol for which an assoc cache has been defined with<br>`defecb-multicache"!<br><br>Return VALUE.<br><br>It is recommended not to put nil as value - see<br>`ecb-multicache-apply-to-value" for an explanation. If the SUBCACHE for KEY<br>should be cleared use `ecb-multicache-clear-value"."',
           prototype : '(defun ecb-multicache-put-value (cache-var key subcache value)',
           parameter : 'cache-var key subcache value',
@@ -4002,7 +4002,7 @@ const functions =
         },
         {
           function : 'ecb-multicache-remove',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Remove the cache item with key KEY from the cache of CACHE-VAR. CACHE-VAR<br>has to be a symbol for which an assoc cache has been defined with<br>`defecb-multicache"!"',
           prototype : '(defun ecb-multicache-remove (cache-var key)',
           parameter : 'cache-var key',
@@ -4010,7 +4010,7 @@ const functions =
         },
         {
           function : 'ecb-multiframe-activate-hook',
-          filename : 'ecb/ecb-multiframe.el',
+          filename : 'ecb-multiframe.el',
           docstring : '  "Hook to run to initialize multiframe support"',
           prototype : '(defun ecb-multiframe-activate-hook()',
           parameter : '',
@@ -4018,7 +4018,7 @@ const functions =
         },
         {
           function : 'ecb-multiframe-make-frame-hookframe',
-          filename : 'ecb/ecb-multiframe.el',
+          filename : 'ecb-multiframe.el',
           docstring : '  "Create a hook so that we can enable the default variables within new frames."',
           prototype : '(defun ecb-multiframe-make-frame-hook(frame)',
           parameter : '',
@@ -4026,7 +4026,7 @@ const functions =
         },
         {
           function : 'ecb-multiframe-setup-buffer-namevariable',
-          filename : 'ecb/ecb-multiframe.el',
+          filename : 'ecb-multiframe.el',
           docstring : '  "Given a variable name such as "ecb-methods-buffer-name and a format such as<br>"*ECB Methods <%s>*" we will register a new buffer mapping with the current<br>frame.  When complete return the new buffer name."',
           prototype : '(defun ecb-multiframe-setup-buffer-name(variable buffer-format-name)',
           parameter : 'buffer-format-name',
@@ -4034,37 +4034,37 @@ const functions =
         },
         {
           function : 'ecb-nav-add-item',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : 'item',
           lispcode : '(defun ecb-nav-add-item (item)<br>  (let ((node (ecb-dlist-node-new item)))<br>    (ecb-set-next node (ecb-get-next ecb-nav-current-node))<br>    (ecb-set-next ecb-nav-current-node node)<br>    (setq ecb-nav-current-node node)))'
         },
         {
           function : 'ecb-nav-dump-history',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : '',
           lispcode : '(defun ecb-nav-dump-history ()<br>  (interactive)<br>  (ecb-nav-remove-invalid-nodes)<br>  (ecb-nav-dump-history--internal ecb-nav-first-node))'
         },
         {
           function : 'ecb-nav-dump-history--internal',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : 'node',
           lispcode : '(defun ecb-nav-dump-history--internal (node)<br>  (when node<br>    (insert (ecb-nav-to-string (ecb-get-data node)) <apo>\n<apo>)<br>    (ecb-nav-dump-history--internal (ecb-get-next node))))'
         },
         {
           function : 'ecb-nav-file-history-item-new',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : '',
           lispcode : '(defun ecb-nav-file-history-item-new ()<br>  (let* ((file (ecb-buffer-file-name))<br>         (ind-buffer-name (and file<br>                               (buffer-base-buffer)<br>                               (buffer-name)))<br>         (item (ecb-nav-file-history-item (buffer-name)<br>                                          :file file<br>                                          :indirect-buffer-name ind-buffer-name)))<br>    (ecb-nav-set-pos item (point))<br>    (ecb-nav-set-window-start item<br>                              (window-start (get-buffer-window (current-buffer))))<br>    item))'
         },
         {
           function : 'ecb-nav-goto--internal',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : 'node',
           lispcode : '(defun ecb-nav-goto--internal (node)<br>  (if (or (not node) (eq ecb-nav-first-node node))<br>      (message <apo>No more valid history items!<apo>)<br>    ;; before doing something we have to clear the history from now invalid<br>    ;; nodes means removing nodes which does not point into a live buffer<br>    (ecb-nav-remove-invalid-nodes)<br>    (ecb-nav-save-current)<br>    (setq ecb-nav-current-node node)'
         },
         {
           function : 'ecb-nav-goto-next',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           docstring : '  "Go forward in the navigation history list."',
           prototype : '(defun ecb-nav-goto-next ()',
           parameter : '',
@@ -4072,7 +4072,7 @@ const functions =
         },
         {
           function : 'ecb-nav-goto-previous',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           docstring : '  "Go back in the navigation history list."',
           prototype : '(defun ecb-nav-goto-previous ()',
           parameter : '',
@@ -4080,37 +4080,37 @@ const functions =
         },
         {
           function : 'ecb-nav-initialize',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : '',
           lispcode : '(defun ecb-nav-initialize ()<br>  (setq ecb-nav-first-node<br>        (ecb-dlist-node-new (ecb-nav-history-item :pos <apo>First item<apo>)))<br>  (setq ecb-nav-current-node ecb-nav-first-node))<br>'
         },
         {
           function : 'ecb-nav-jump-to-file',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : 'file',
           lispcode : '(defun ecb-nav-jump-to-file (file)<br>  (ecb-nav-save-current)<br>  (find-file file)<br>  (ecb-nav-add-item (ecb-nav-file-history-item file)))'
         },
         {
           function : 'ecb-nav-jump-to-tag',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : 'file tag &optional narrow',
           lispcode : '(defun ecb-nav-jump-to-tag (file tag &optional narrow)<br>  (ecb-nav-save-current)<br>  (find-file file)<br>  (ecb-nav-add-item (ecb-nav-tag-history-item tag narrow)))'
         },
         {
           function : 'ecb-nav-remove-current-node',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : '',
           lispcode : '(defun ecb-nav-remove-current-node ()<br>  (ecb-nav-remove-node ecb-nav-current-node))'
         },
         {
           function : 'ecb-nav-remove-invalid-nodes',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : '',
           lispcode : '(defun ecb-nav-remove-invalid-nodes ()<br>  (let ((node ecb-nav-first-node)<br>        (next-node nil))<br>    (while node<br>      (setq next-node (ecb-get-next node))<br>      (if (not (ecb-nav-is-valid (ecb-get-data node)))<br>          (ecb-nav-remove-node node))<br>      (setq node next-node))))'
         },
         {
           function : 'ecb-nav-remove-node',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           docstring : '  "Remove NODE and set `ecb-nav-first-node" and `ecb-nav-current-node" if<br>necessary."',
           prototype : '(defun ecb-nav-remove-node (node)',
           parameter : 'node',
@@ -4118,19 +4118,19 @@ const functions =
         },
         {
           function : 'ecb-nav-save-current',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : '',
           lispcode : '(defun ecb-nav-save-current ()<br>  (while (not (ecb-nav-save (ecb-get-data ecb-nav-current-node)))<br>    (ecb-nav-remove-current-node)))'
         },
         {
           function : 'ecb-nav-tag-history-item-new',
-          filename : 'ecb/ecb-navigate.el',
+          filename : 'ecb-navigate.el',
           parameter : 'tag-name tag-buffer tag-start tag-end &optional narrow',
           lispcode : '(defun ecb-nav-tag-history-item-new (tag-name tag-buffer tag-start<br>                                                  tag-end &optional narrow)<br>  (ecb-nav-tag-history-item tag-name<br>                              :tag-buffer tag-buffer<br>                              :tag-start tag-start<br>                              :tag-end tag-end<br>                              :tag-name tag-name<br>                              :narrow narrow))'
         },
         {
           function : 'ecb-new-child',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return a node with type = TYPE, data = DATA and name = NAME. Tries to find<br>a node with matching TYPE and DATA in OLD-CHILDREN. If found no new node is<br>created but only the fields of this node will be updated. Otherwise a new node<br>is created."',
           prototype : '(defun ecb-new-child (old-children name type data    &optional not-expandable shrink-name)',
           parameter : 'old-children name type data &optional not-expandable shrink-name',
@@ -4138,7 +4138,7 @@ const functions =
         },
         {
           function : 'ecb-next-listelem',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return that element of LIST which follows directly ELEM when ELEM is an<br>element of LIST. If ELEM is the last element of LIST then return the first<br>element of LIST. If ELEM is not an element of LIST nil is returned. Elements<br>are compared with `equal".<br><br>If NTH-NEXT is an integer then the NTH-NEXT element of LIST in the meaning<br>described above is returned, i.e. the algorithm above is applied NTH-NEXT<br>times. Example: Suppose LIST = "(a b c d), ELEM is "c and NTH-NEXT = 3 then<br>"b is returned - same result for NTH-NEXT = 7, 11... It works also for<br>negative integers, so when NTH-NEXT is -1 in the example above then "b is<br>returned."',
           prototype : '(defun ecb-next-listelem (list elem &optional nth-next)',
           parameter : 'list elem &optional nth-next',
@@ -4146,7 +4146,7 @@ const functions =
         },
         {
           function : 'ecb-next-tag-parent-node',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Go upward in the parent-hierarchy of NODE and return next node holding a tag."',
           prototype : '(defun ecb-next-tag-parent-node (node)',
           parameter : 'node',
@@ -4154,7 +4154,7 @@ const functions =
         },
         {
           function : 'ecb-nolog-message',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Works exactly like `message" but does not log the message"',
           prototype : '(defun ecb-nolog-message (&rest args)',
           parameter : '&rest args',
@@ -4162,13 +4162,13 @@ const functions =
         },
         {
           function : 'ecb-normalize-expand-spec',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'spec',
           lispcode : '(defun ecb-normalize-expand-spec (spec)<br>  (if (equal <tick>all spec)<br>      <tick>all<br>    (mapcar (function (lambda (elem)<br>                        (intern<br>                         (downcase (ecb-string-make-singular<br>                                    (symbol-name elem))))))<br>            spec)))<br>'
         },
         {
           function : 'ecb-normalize-number',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Normalize VALUE in the following manner and return:<br>* VALUE > -1.0 and < +1.0 and REF-VALUE a number: `floor" of VALUE * REF-VALUE<br>* all other cases: `floor" of VALUE"',
           prototype : '(defun ecb-normalize-number (value &optional ref-value)',
           parameter : 'value &optional ref-value',
@@ -4176,7 +4176,7 @@ const functions =
         },
         {
           function : 'ecb-normed-source-paths',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return a normalized list of all source-paths.<br><br>This is a list created from all elements of `ecb-source-path" and all<br>source-paths created by `ecb-source-path-functions".<br><br>Each element is a cons whereas car is the normed and expanded pathname (done by<br>`ecb-fix-filename") and cdr is either the alias defined for this path (see<br>`ecb-source-path") or - if there is no alias defined - the path itself (in<br>this case car and cdr are equal).<br><br>If NO-DUPLICATES is not nil then all duplicates in the paths-list are removed.<br>An element is a duplicate if the car (i.e. the normed and expaneded path)<br>matches exactly the car of another element."',
           prototype : '(defun ecb-normed-source-paths (&optional no-duplicates)',
           parameter : '&optional no-duplicates',
@@ -4184,13 +4184,13 @@ const functions =
         },
         {
           function : 'ecb-not-compatible-or-renamed-options-detected',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : '',
           lispcode : '(defun ecb-not-compatible-or-renamed-options-detected ()<br>  (or ecb-not-compatible-options ecb-renamed-options))'
         },
         {
           function : 'ecb-offer-choices',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Prints PROMPT and returns a string which must be one of CHOICES.<br>CHOICES is a list of strings whereas the first choice is the default. All<br>choices are immediately displayed as if completion does it so a selection can<br>be made either with the mouse or with the keyboard."',
           prototype : '(defun ecb-offer-choices (prompt choices)',
           parameter : 'prompt choices',
@@ -4198,7 +4198,7 @@ const functions =
         },
         {
           function : 'ecb-option-compatible-p',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Return not nil only if the type of the value of OPTION is compatible with<br>its current defcustom-definition."',
           prototype : '(defun ecb-option-compatible-p (option)',
           parameter : 'option',
@@ -4206,7 +4206,7 @@ const functions =
         },
         {
           function : 'ecb-option-get-value',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the value of a customizable ECB-option OPTION with TYPE, where TYPE<br>can either be "standard-value (the default-value of the defcustom) or<br>"saved-value (the value stored persistent by the user via customize) or<br>"customized-value (the value set but not saved in the customize buffer).<br>If TYPE is nil then the most recent set value is returned, means it<br>tries the customized-value, then the saved-value and then the standard-value<br>in exactly this sequence."',
           prototype : '(defun ecb-option-get-value (option &optional type)',
           parameter : 'option &optional type',
@@ -4214,7 +4214,7 @@ const functions =
         },
         {
           function : 'ecb-option-set-default',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Save the ECB-option OPTION with current default value."',
           prototype : '(defun ecb-option-set-default (option)',
           parameter : 'option',
@@ -4222,7 +4222,7 @@ const functions =
         },
         {
           function : 'ecb-option-upgrade',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Upgrade the old ECB-option OLD-OPTION if the following conditions are ALL<br>true:<br>1. OLD-OPTION is the key of an element of `ecb-upgradable-option-alist"<br>2. "saved-value of OLD-OPTION is not nil<br>3. Either<br>   + the new-option from `ecb-upgradable-option-alist" has the same name<br>     as OLD-OPTION and<br>   + the type of the value of OLD-OPTION is not compatible with the current<br>     type of OLD-OPTION (this prevents from doing an upgrade twice!)<br>   or<br>   + OLD-OPTION is not a valid option in current ECB and<br>   + The related new-option `ecb-upgradable-option-alist" is not already<br>     customized, i.e. the "saved-value of new-option is nil.<br><br>If all conditions are true then the value of OLD-OPTION is transformed by the<br>transforming-function of the related element of `ecb-upgradable-option-alist"<br>to the correct new type and then the related new option is saved with this new<br>value.<br><br>Return nil if no upgrade is necessary because at least one of the conditions<br>above is not true. Returns the transformed value of OLD-OPTION or<br>"ecb-no-upgrade-conversion in form of a list, to distinguish a transformed<br>value nil from the nil-result which indicates that no upgrade was necessary<br>(see above). This means the "real" new value is the car of this<br>result-list!"',
           prototype : '(defun ecb-option-upgrade (old-option)',
           parameter : 'old-option',
@@ -4230,7 +4230,7 @@ const functions =
         },
         {
           function : 'ecb-options-version=ecb-version-p',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Return not nil if the saved value of `ecb-options-version" is equal to<br>`ecb-version"."',
           prototype : '(defun ecb-options-version=ecb-version-p ()',
           parameter : '',
@@ -4238,7 +4238,7 @@ const functions =
         },
         {
           function : 'ecb-package-version-list2str',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Complementary function to `ecb-package-version-str2list"."',
           prototype : '(defun ecb-package-version-list2str (ver)',
           parameter : 'ver',
@@ -4246,7 +4246,7 @@ const functions =
         },
         {
           function : 'ecb-package-version-list<',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Return non-nil if VER1 is less than VER2."',
           prototype : '(defun ecb-package-version-list< (ver1 ver2)',
           parameter : 'ver1 ver2',
@@ -4254,7 +4254,7 @@ const functions =
         },
         {
           function : 'ecb-package-version-str2list',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Convert the version-str VER-STR to the internal version-list format with<br>the following elements of the version-list:<br>1. Major-version<br>2. Minor-version<br>3. 0 = alpha, 1 = beta, 2 = pre, 3 = nothing (e.g. "1.4"), 4 = . (e.g. "1.4.3"<br>4. Subversion after the alpha, beta, pre or .<br><br>Return nil if ver-str has not the required syntax:<br><major>.<minor>[.|pre|beta|alpha][<sub-stable/pre/beta/alpha-version>]"',
           prototype : '(defun ecb-package-version-str2list (ver-str)',
           parameter : 'ver-str',
@@ -4262,7 +4262,7 @@ const functions =
         },
         {
           function : 'ecb-package-version-string<',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Return non nil if VER-STR1 is logically less then VER-STR2."',
           prototype : '(defun ecb-package-version-string< (ver1-str ver2-str)',
           parameter : 'ver1-str ver2-str',
@@ -4270,7 +4270,7 @@ const functions =
         },
         {
           function : 'ecb-partial-reparse-debug',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Run ARGS through `format" and write it to the *Messages*-buffer.<br>Does nothing if `ecb-partial-reparse-debug" is nil."',
           prototype : '(defun ecb-partial-reparse-debug (&rest args)',
           parameter : '&rest args',
@@ -4278,7 +4278,7 @@ const functions =
         },
         {
           function : 'ecb-path-selected-source',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Get the value of the internal variable `ecb-path-selected-source".<br>If optional arg TYPE is the symbol "file then the filename-part<br>is returned as string, if it is the symbol "buffername then the<br>stored buffername is returned if there is any and and if it is the<br>symbol "buffer then the buffer-object of the stored buffername is<br>returned if there is any or nil.<br><br>In all other cases of TYPE always that value is returned<br>`ecb-path-selected-source" has been set by most recent<br>`ecb-path-selected-source-set"."',
           prototype : '(defun ecb-path-selected-source (&optional type)',
           parameter : '&optional type',
@@ -4286,7 +4286,7 @@ const functions =
         },
         {
           function : 'ecb-path-selected-source-set',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Set `ecb-path-selected-source" to FILENAME and BUFFER.<br>Returns in the new value. FILENAME and BUFFER must not be nil.<br>For a description of FILENAME and BUFFER see `ecb-source-make"."',
           prototype : '(defun ecb-path-selected-source-set (filename buffer)',
           parameter : 'filename buffer',
@@ -4294,7 +4294,7 @@ const functions =
         },
         {
           function : 'ecb-point-in-compile-window',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil iff point is in the compile-window of ECB"',
           prototype : '(defun ecb-point-in-compile-window ()',
           parameter : '',
@@ -4302,7 +4302,7 @@ const functions =
         },
         {
           function : 'ecb-point-in-dedicated-special-buffer',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if point is in any of the special dedicated buffers which<br>are registrated via the macro `defecb-window-dedicator-to-ecb-buffer" (see<br>`ecb-dedicated-special-buffers") and if the current buffer is displayed in the<br>currently selected window."',
           prototype : '(defun ecb-point-in-dedicated-special-buffer ()',
           parameter : '',
@@ -4310,7 +4310,7 @@ const functions =
         },
         {
           function : 'ecb-point-in-ecb-tree-buffer',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if point is in any of the standard tree-buffers (see<br>function `ecb-ecb-buffer-registry-name-list") of ECB and if the<br>current buffer is displayed in the currently selected window."',
           prototype : '(defun ecb-point-in-ecb-tree-buffer ()',
           parameter : '',
@@ -4318,7 +4318,7 @@ const functions =
         },
         {
           function : 'ecb-point-in-ecb-window-number',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return nil if point stays not in an special ecb-window otherwise return 1<br>if point is in the left/topmost ecb-window or 2 if in the next ecb-window and<br>so on. Return the number of the ecb-windows (if point is in an ecb-window) in<br>the order `walk-windows" would go through the ecb-windows. If WINDOWS-LIST<br>is not nil then it must be a current list of ecb-windows (got by<br>`ecb-canonical-ecb-windows-list"). If WINDOWS-LIST is nil then a new<br>ecb-window-list is computed via `ecb-canonical-ecb-windows-list"."',
           prototype : '(defun ecb-point-in-ecb-window-number (&optional windows-list)',
           parameter : '&optional windows-list',
@@ -4326,7 +4326,7 @@ const functions =
         },
         {
           function : 'ecb-point-in-edit-window-number',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return nil if point stays not in an edit-window otherwise return 1 if point<br>is in the left/topmost edit-window or 2 if in the next edit-window and so on.<br>Return the number of the edit-window (if point is in an edit-window) in the<br>order `walk-windows" would go through the edit-windows. If EDIT-WINDOWS-LIST<br>is not nil then it must be a current list of edit-windows (got by<br>`ecb-canonical-edit-windows-list"). If EDIT-WINDOWS-LIST is nil then a new<br>edit-window-list is computed via `ecb-canonical-edit-windows-list"."',
           prototype : '(defun ecb-point-in-edit-window-number (&optional edit-windows-list)',
           parameter : '&optional edit-windows-list',
@@ -4334,7 +4334,7 @@ const functions =
         },
         {
           function : 'ecb-position',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the position of first occurence of CL-ITEM in CL-SEQ.<br>Comparison is done with `equal" unless CL-TEST-FCN is not nil: In<br>this case TEST-FCN will be used to compare CL-ITEM with the elements<br>of CL-SEQ.<br>Return the 0-based index of the matching item, or nil if not found."',
           prototype : '(defun ecb-position (cl-item cl-seq &optional cl-test-fcn cl-start cl-end cl-from-end)',
           parameter : 'cl-item cl-seq &optional cl-test-fcn cl-start cl-end cl-from-end',
@@ -4342,7 +4342,7 @@ const functions =
         },
         {
           function : 'ecb-post-process-taglist',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "If for current major-mode post-process functions are found in<br>`ecb-post-process-semantic-taglist" then these functions are called with<br>TAGLIST otherwise TAGLIST is returned.<br>This function MUST be called with the source-buffer as current buffer!"',
           prototype : '(defun ecb-post-process-taglist (taglist)',
           parameter : 'taglist',
@@ -4350,7 +4350,7 @@ const functions =
         },
         {
           function : 'ecb-problem-report-list-all-variables',
-          filename : 'ecb/ecb-help.el',
+          filename : 'ecb-help.el',
           docstring : '  "List all variables starting with `ecb-" and some other variables which<br>could be interesting for support."',
           prototype : '(defun ecb-problem-report-list-all-variables()',
           parameter : '',
@@ -4358,7 +4358,7 @@ const functions =
         },
         {
           function : 'ecb-problem-report-post-hook',
-          filename : 'ecb/ecb-help.el',
+          filename : 'ecb-help.el',
           docstring : '  "Function run the reporter package done its work. It looks for a message- and<br>a backtrace-buffer and inserts the contents of that."',
           prototype : '(defun ecb-problem-report-post-hook()',
           parameter : '',
@@ -4366,7 +4366,7 @@ const functions =
         },
         {
           function : 'ecb-query-string',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Prints PROMPT and returns a string which must be one of CHOICES.<br>CHOICES is either a list of strings whereas the first choice is the default<br>(which is returned if the user simply types RET) or nil (then only a simple<br>RET quits the query and returns nil). If OTHER-PROMPT is not nil and a string<br>then the choice "other" is added to CHOICES and after selecting this choice<br>the user is prompted with OTHER-PROMPT to insert any arbitrary string."',
           prototype : '(defun ecb-query-string (prompt choices &optional other-prompt)',
           parameter : 'prompt choices &optional other-prompt',
@@ -4374,7 +4374,7 @@ const functions =
         },
         {
           function : 'ecb-read-number',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Ask in the minibuffer for a number with prompt-string PROMPT. Optional<br>INIT-VALUE can be either a number or a string-representation of a number."',
           prototype : '(defun ecb-read-number (prompt &optional init-value)',
           parameter : 'prompt &optional init-value',
@@ -4382,7 +4382,7 @@ const functions =
         },
         {
           function : 'ecb-rebuild-methods-buffer',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Updates the methods buffer with the current source-buffer.<br>This means ECB asks the parsing-engine for tags for the current<br>source-buffer and rebuilds its methods-buffer with the tag-set<br>returned by the parsing-engine (semantic for semantic-sources<br>and imenu rsp. etags for non-semantic-sources). For<br>semantic-sources this command ignores the<br>`semantic-idle-scheduler-mode" and therefore also all settings in<br>`semantic-idle-scheduler-max-buffer-size" so be aware that this<br>command will also parse huge files!<br><br>If called with a prefix-arg (ie. if optional arg CLEAR-CACHE is not nil) the<br>complete previous parser-information is deleted before, means no<br>semantic-cache is used! This argument takes only effect for semantic-sources.<br><br>Point must stay in an edit-window otherwise nothing is done. This method is<br>merely needed in the following situations:<br><br>+ To force parsing huge files with slow parsers when such files are excluded<br>  from parsing via `semantic-idle-scheduler-max-buffer-size" - see above.<br><br>+ If an elisp-file is parsed which contains in the middle a defun X where the<br>  closing ) is missing then semantic parses only until this defun X is reached<br>  and you will get an incomplete ECB-method buffer. In such a case you must<br>  complete the defun X and then call this function to completely reparse the<br>  elisp-file and rebuild the ECB method buffer!<br><br>+ For not semantic supported buffers which can be parsed by imenu or etags<br>  (see `ecb-process-non-semantic-files") because for these buffers there is<br>  no built-in auto-rebuild mechanism. For these buffers this command calls<br>  `ecb-rebuild-methods-buffer-for-non-semantic".<br><br>For non-semantic-sources supported by etags the option<br>`ecb-auto-save-before-etags-methods-rebuild" is checked before rescanning the<br>source-buffer and rebuilding the methods-buffer.<br><br>If point is in one of the ecb-windows or in the compile-window then this<br>command rebuids the methods-buffer with the contents of the source-buffer the<br>last selected edit-window."',
           prototype : '(defun ecb-rebuild-methods-buffer (&optional clear-cache)',
           parameter : '&optional clear-cache',
@@ -4390,7 +4390,7 @@ const functions =
         },
         {
           function : 'ecb-rebuild-methods-buffer-for-non-semantic',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Rebuild the ECB-method-buffer for current source-file of the edit-window.<br>This function does nothing if point stays not in an edit-window of the<br>ECB-frame or if current source-file is supported by semantic!<br><br>Before rebuilding the Methods-buffer the hook<br>`ecb-rebuild-non-semantic-methods-before-hook" is called. The Method-buffer is<br>only rebuild if either the hook contains no function (the default) or if no<br>function of this hook returns nil! See `run-hook-with-args-until-failure" for<br>description how these function are pressed.<br><br>The option `ecb-auto-save-before-etags-methods-rebuild" is checked before<br>rescanning the source-buffer and rebuilding the methods-buffer.<br><br>This function is called by the command `ecb-rebuild-methods-buffer"."',
           prototype : '(defun ecb-rebuild-methods-buffer-for-non-semantic ()',
           parameter : '',
@@ -4398,7 +4398,7 @@ const functions =
         },
         {
           function : 'ecb-rebuild-methods-buffer-for-semantic',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Rebuild the ECB-method-buffer for current source-file of the edit-window.<br>This function does nothing if point stays not in an edit-window of the<br>ECB-frame or if current source-file is not supported by semantic!<br><br>If optional arg CLEAR-CACHE is not nil the semantic-cache is cleared before<br>reparsing."',
           prototype : '(defun ecb-rebuild-methods-buffer-for-semantic (&optional clear-cache)',
           parameter : '&optional clear-cache',
@@ -4406,7 +4406,7 @@ const functions =
         },
         {
           function : 'ecb-rebuild-methods-buffer-fully',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Rebuilds the methods buffer with current content of the source-buffer.<br>This can cause a full reparse! No idle-parsing but immediate parsing because<br>the tags are fetched by `ecb--semantic-fetch-tags" for semantic-sources!<br><br>If called with a prefix-arg (ie. if optional arg CLEAR-CACHE is not nil) the<br>complete previous parser-information is deleted before parsing, means no<br>semantic-cache is used! This argument takes only effect for semantic-sources.<br><br>Point must stay in an edit-window otherwise nothing is done."',
           prototype : '(defun ecb-rebuild-methods-buffer-fully (&optional clear-cache)',
           parameter : '&optional clear-cache',
@@ -4414,7 +4414,7 @@ const functions =
         },
         {
           function : 'ecb-rebuild-methods-buffer-with-tagcache',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Rebuilds the ECB-method buffer after toplevel-parsing by semantic. This<br>function is added to the hook `semantic-after-toplevel-cache-change-hook".<br><br>If NO-UPDATE-SEMANTIC is not nil then the tags of the ECB-methods-buffer are<br>not updated with UPDATED-CACHE but the method-buffer is rebuild with these<br>tags ECB has already cached in it `ecb-tag-tree-cache". Only relevant for<br>semantic-parsed sources!<br><br>If FORCE-NIL-CACHE is not nil then the method-buffer is even rebuild if<br>UPDATED-CACHE is nil. Normally a nil cache is ignored if it belongs to a<br>buffer witch is setup for semantic-parsing; only nil caches for non-semantic<br>buffers (like plain text-buffers) are used for updating the method-buffers.<br>With FORCE-NIL-CACHE the method-buffer is updated with a nil cache too, i.e.<br>it is cleared.<br><br>IF NON-SEMANTIC-REBUILD is not nil then current non-semantic-source is forced<br>to be rescanned/reparsed and therefore the Method-buffer will be rebuild too."',
           prototype : '(defun ecb-rebuild-methods-buffer-with-tagcache (updated-cache                                                 &optional no-update-semantic                                                 force-nil-cache                                                 non-semantic-rebuild)',
           parameter : 'updated-cache &optional no-update-semantic force-nil-cache non-semantic-rebuild',
@@ -4422,7 +4422,7 @@ const functions =
         },
         {
           function : 'ecb-redraw-layout',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Redraw the ECB screen.<br><br>Do not call this command from elisp-program but only interactively!<br><br>Called without a prefix-argument the state of the ECB-frame-layout will<br>preserved. This means:<br>- The state of compile-window (hidden or visible) will be preserved but if<br>  visible then the height will be as specified in `ecb-compile-window-height".<br>- The state of the ECB-windows will be preserved (hidden or visible) but if<br>  visible then the sizes will be as specified in the layout (and with the<br>  options `ecb-windows-width" and `ecb-windows-height") or as stored with<br>  `ecb-store-window-sizes".<br><br>If called with ONE prefix-argument ([C-u]) then the layout will be drawn<br>with all ECB-windows and also with a visible compile-window (when<br>`ecb-compile-window-height" is not nil). The splitting-state of the edit-area<br>will be preserved.<br><br>If called with TWO prefix-arguments (i.e. hitting [C-u] twice: [C-u]<br>[C-u]) then an emergency-redraw will be performed. This means the same as if<br>called with one prefix-argument (s.a.) but the splitting-state of the<br>edit-area will NOT be preserved but all edit-windows besides the current one<br>will be deleted. Use this only if there are some anomalies after standard<br>redraws!<br><br>If the variable `ecb-redraw-layout-quickly" is not nil then the redraw is done<br>by the `ecb-redraw-layout-quickly" function, otherwise by<br>`ecb-redraw-layout-full".<br><br>Please note: It"s strongly recommended to use the quick redraw only if you have<br>really slow machines where a full redraw takes several seconds because the<br>quick redraw is not really safe and has some annoying drawbacks! On normal<br>machines the full redraw should be done in << 1s so there should be no need<br>for the quick version!"',
           prototype : '(defun ecb-redraw-layout (&optional arg)',
           parameter : '&optional arg',
@@ -4430,7 +4430,7 @@ const functions =
         },
         {
           function : 'ecb-redraw-layout-full',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Redraw the ECB screen according to the layout set in `ecb-layout-name". After<br>this function the edit-window is selected which was current<br>before redrawing. If NO-BUFFER-SYNC is not nil then the<br>ecb-buffers will not be synchronized. If ECB-WINDOWS-CREATOR is<br>not nil then it will be used to draw the layout instead of the<br>standard layout. If WINDOW-CONFIGURATION-DATA is not nil it must<br>be an object returned by `ecb-window-configuration-data" and will<br>be used for restoring the layout. If set NO-ECB-WINDOWS must be<br>of the same type as `ecb-windows-hidden-state" - see the<br>docstring of this variable; if not set it is interpreted as<br>"none. If EMERGENCY is not nil then all other args will be<br>ignored and the layout will be redrawn like defined in the<br>current layout and the edit-area will be unsplitted and will just<br>contain the buffer before the emergency-redraw."',
           prototype : '(defun ecb-redraw-layout-full (&optional no-buffer-sync ecb-windows-creator                                         window-configuration-data                                         no-ecb-windows emergency)',
           parameter : '&optional no-buffer-sync ecb-windows-creator window-configuration-data no-ecb-windows emergency',
@@ -4438,7 +4438,7 @@ const functions =
         },
         {
           function : 'ecb-redraw-layout-preserving-compwin-state',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Redraw current layout with all ECB-windows visible."',
           prototype : '(defun ecb-redraw-layout-preserving-compwin-state ()',
           parameter : '',
@@ -4446,7 +4446,7 @@ const functions =
         },
         {
           function : 'ecb-redraw-layout-quickly',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Redraw the layout quickly using the cached window configuration<br>`ecb-activated-window-configuration"."',
           prototype : '(defun ecb-redraw-layout-quickly ()',
           parameter : '',
@@ -4454,13 +4454,13 @@ const functions =
         },
         {
           function : 'ecb-register-autocontrol/sync-function',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           parameter : 'fcn-symbol buffer-name-symbol',
           lispcode : '(defun ecb-register-autocontrol/sync-function (fcn-symbol buffer-name-symbol)<br>  (add-to-list <tick>ecb-autocontrol/sync-fcn-register (cons fcn-symbol buffer-name-symbol)))'
         },
         {
           function : 'ecb-remote-path',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Test if PATH is a remote path and dissect it into components if yes.<br>Returns a list (FULL-HOST-USER-PART HOST REAL-PATH), or nil if PATH is not a<br>remote path. FULL-HOST-USER-PART is that component from beginning of PATH to<br>the :-separator which separates user- and host-parts from the real path, i.e.<br>it always ends with a colon! HOST is the remote HOST and REAL-PATH is that<br>component after that :-separator. Supports tramp, ange-ftp and efs."',
           prototype : '(defun ecb-remote-path (path)',
           parameter : 'path',
@@ -4468,7 +4468,7 @@ const functions =
         },
         {
           function : 'ecb-remote-path-cache-add',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Add the value of REMOTE-PATH for PATH to the REMOTE-PATH-cache."',
           prototype : '(defun ecb-remote-path-cache-add (path remote-path)',
           parameter : 'path remote-path',
@@ -4476,7 +4476,7 @@ const functions =
         },
         {
           function : 'ecb-remote-path-cache-dump',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Dump the whole REMOTE-PATH-cache. If NO-NIL-VALUE is not nil then these<br>cache-entries are not dumped. This command is not intended for end-users of<br>ECB."',
           prototype : '(defun ecb-remote-path-cache-dump (&optional no-nil-value)',
           parameter : '&optional no-nil-value',
@@ -4484,7 +4484,7 @@ const functions =
         },
         {
           function : 'ecb-remote-path-cache-get',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return the cached value for PATH from the REMOTE-PATH-cache."',
           prototype : '(defun ecb-remote-path-cache-get (path)',
           parameter : 'path',
@@ -4492,13 +4492,13 @@ const functions =
         },
         {
           function : 'ecb-remove-assoc',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           parameter : 'key list',
           lispcode : '(defun ecb-remove-assoc (key list)<br>  (delete nil<br>          (mapcar (function (lambda (elem)<br>                              (if (equal (car elem) key)<br>                                  nil<br>                                elem)))<br>                  list)))<br>'
         },
         {
           function : 'ecb-remove-dir-from-caches',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Remove DIR from the caches SUBDIR, EMPTY-DIR and SOURCES."',
           prototype : '(defun ecb-remove-dir-from-caches (dir)',
           parameter : 'dir',
@@ -4506,7 +4506,7 @@ const functions =
         },
         {
           function : 'ecb-remove-elt',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Remove N-th element from SEQ. SEQ can be any sequence. SEQ will be<br>changed because this is desctructive function. SEQ is returned."',
           prototype : '(defun ecb-remove-elt (seq n)',
           parameter : 'seq n',
@@ -4514,7 +4514,7 @@ const functions =
         },
         {
           function : 'ecb-replace-all-occurences',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Replace in SEQ all occurences of OLD-ELEM with NEW-ELEM. Comparison is<br>done by `equal". This is desctructive function. SEQ is returned."',
           prototype : '(defun ecb-replace-all-occurences (seq old-elem new-elem)',
           parameter : 'seq old-elem new-elem',
@@ -4522,7 +4522,7 @@ const functions =
         },
         {
           function : 'ecb-replace-first-occurence',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Replace in SEQ the first occurence of OLD-ELEM with NEW-ELEM. Comparison is<br>done by `equal". This is desctructive function. SEQ is returned."',
           prototype : '(defun ecb-replace-first-occurence (seq old-elem new-elem)',
           parameter : 'seq old-elem new-elem',
@@ -4530,7 +4530,7 @@ const functions =
         },
         {
           function : 'ecb-reset-compile-window-specified-height-config',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Set the ecb-window-configuration of<br>`ecb-compile-window-specified-height-config" if it is a still valid<br>ecb-window-configuration. If this had success return t otherwise nil."',
           prototype : '(defun ecb-reset-compile-window-specified-height-config ()',
           parameter : '',
@@ -4538,7 +4538,7 @@ const functions =
         },
         {
           function : 'ecb-reset-history-filter',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Reset the `ecb-history-filter" so all file-buffers are displayed."',
           prototype : '(defun ecb-reset-history-filter ()',
           parameter : '',
@@ -4546,7 +4546,7 @@ const functions =
         },
         {
           function : 'ecb-restore-default-window-sizes',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Resets the sizes of the ECB windows to their default values."',
           prototype : '(defun ecb-restore-default-window-sizes ()',
           parameter : '',
@@ -4554,13 +4554,13 @@ const functions =
         },
         {
           function : 'ecb-restore-edit-area',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : '',
           lispcode : '(defun ecb-restore-edit-area ()<br>  (dolist (elem ecb-edit-area-creators)<br>    (let ((edit-win-list (ecb-canonical-edit-windows-list)))<br>      (select-window (nth (car elem) edit-win-list))<br>      (funcall (cdr elem)))))'
         },
         {
           function : 'ecb-restore-window-sizes',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Sets the sizes of the ECB windows to their stored values."',
           prototype : '(defun ecb-restore-window-sizes ()',
           parameter : '',
@@ -4568,7 +4568,7 @@ const functions =
         },
         {
           function : 'ecb-right-trim',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return a string stripped of all trailing whitespaces of STR."',
           prototype : '(defun ecb-right-trim (str)',
           parameter : 'str',
@@ -4576,7 +4576,7 @@ const functions =
         },
         {
           function : 'ecb-ring-elements',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return a list of the lements of RING."',
           prototype : '(defun ecb-ring-elements (ring)',
           parameter : 'ring',
@@ -4584,7 +4584,7 @@ const functions =
         },
         {
           function : 'ecb-rotate',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Rotate SEQ so START-ELEM is the new first element of SEQ. SEQ is an<br>arbitrary sequence. Example: (ecb-rotate "(a b c d e f) "c) results in (c d<br>e f a b). If START-ELEM is not contained in SEQ then nil is returned."',
           prototype : '(defun ecb-rotate (seq start-elem)',
           parameter : 'seq start-elem',
@@ -4592,13 +4592,13 @@ const functions =
         },
         {
           function : 'ecb-save-without-auto-update-methods',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : '',
           lispcode : '(defun ecb-save-without-auto-update-methods ()<br>  (let ((ecb-auto-update-methods-after-save nil))<br>    (save-buffer)))<br>'
         },
         {
           function : 'ecb-scroll-window',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Scrolls window of current buffer. The window will start at WINDOW-START and<br>point will stay on POINT."',
           prototype : '(defun ecb-scroll-window (point window-start)',
           parameter : 'point window-start',
@@ -4606,7 +4606,7 @@ const functions =
         },
         {
           function : 'ecb-search-tag-by-semantic-analyzer',
-          filename : 'ecb/ecb-semantic.el',
+          filename : 'ecb-semantic.el',
           docstring : '  "Calculate scope at point and search for a tag-definition with TAG-NAME.<br><br>If TAG-CLASS is not nil then only tags with this tag-class are searched.<br><br>Return either a positioned semantic-tag for the found<br>tag-definition or nil if nothing is found. This mechanism uses<br>the semantic-analyzer. Therefore it will work at its best if all<br>needed customizations for the semantic analyzer have been done.<br>(See the manual of the semantic analyzer for how to customizing<br>it)."',
           prototype : '(defun ecb-search-tag-by-semantic-analyzer (tag-name &optional tag-class)',
           parameter : 'tag-name &optional tag-class',
@@ -4614,7 +4614,7 @@ const functions =
         },
         {
           function : 'ecb-search-tag-by-semanticdb',
-          filename : 'ecb/ecb-semantic.el',
+          filename : 'ecb-semantic.el',
           docstring : '  "Uses semanticdb to search for the definition of tag with TAG-NAME and TAG-CLASS.<br>Return exactly one semantic tag for the definition of TAG-NAME.<br>If more than one definition have been found then the user has to<br>make a choice on file-basis.<br>If TAG-CLASS is nil then a tag regardless of its class is returned as long<br>as it matches with TAG-NAME.<br><br>The returned tag will contain the filename as its :file-attribute."',
           prototype : '(defun ecb-search-tag-by-semanticdb (tag-name &optional tag-class)',
           parameter : 'tag-name &optional tag-class',
@@ -4622,7 +4622,7 @@ const functions =
         },
         {
           function : 'ecb-search-type-tag-by-semantic-analyzer',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Calculate scope at point and search for a type with name of TAG.<br><br>Return either a positioned semantic-tag for the found<br>type-definition or nil if nothing is found. This mechanism uses<br>the semantic-analyzer. Therefore it will work at its best if all<br>needed customizations for the semantic analyzer have been done.<br>(See the manual of the semantic analyzer for how to customizing<br>it).<br><br>This function is fully fitting the needs of the option<br>`ecb-find-external-tag-functions"."',
           prototype : '(defun ecb-search-type-tag-by-semantic-analyzer (tag)',
           parameter : 'tag',
@@ -4630,7 +4630,7 @@ const functions =
         },
         {
           function : 'ecb-search-type-tag-by-semanticdb',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Uses semanticdb for searching a type with name of TAG.<br><br>Return either a positioned semantic-tag for the found<br>type-definition or nil if nothing is found. This mechanism uses<br>the semantic-analyzer. Therefore it will work at its best if all<br>needed customizations for the semantic analyzer have been done.<br>(See the manual of the semantic analyzer for how to customizing<br>it).<br><br>This function is fully fitting the needs of the option<br>`ecb-find-external-tag-functions"."',
           prototype : '(defun ecb-search-type-tag-by-semanticdb (tag)',
           parameter : 'tag',
@@ -4638,7 +4638,7 @@ const functions =
         },
         {
           function : 'ecb-seconds-to-time',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Convert SECONDS (a floating point number) to an Emacs time structure."',
           prototype : '(defun ecb-seconds-to-time (seconds)',
           parameter : 'seconds',
@@ -4646,7 +4646,7 @@ const functions =
         },
         {
           function : 'ecb-select-ecb-frame',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Selects the `ecb-frame" if ECB is activated - otherwise reports an error."',
           prototype : '(defun ecb-select-ecb-frame ()',
           parameter : '',
@@ -4654,7 +4654,7 @@ const functions =
         },
         {
           function : 'ecb-select-edit-window',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Moves point into the edit-window. If optional EDIT-WINDOW-NUMBER<br>is an integer then move point into the EDIT-WINDOW-NUMBER-nth edit-window<br>(beginning from 1). If EDIT-WINDOW-NUMBER is not nil but not an integer or an<br>integer < 0 or > number of current available edit-windows then move point to<br>the second edit-window if there is more than 1. If EDIT-WINDOW-NUMBER is nil<br>then select the edit-window according to the value of the option<br>`ecb-mouse-click-destination". If point already stays in the right edit-window<br>nothing is done."',
           prototype : '(defun ecb-select-edit-window (&optional edit-window-number)',
           parameter : '&optional edit-window-number',
@@ -4662,7 +4662,7 @@ const functions =
         },
         {
           function : 'ecb-select-source',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Updates the directories, sources and history buffers to match the filename<br>given. If FORCE is not nil then the update of the directories buffer is done<br>even if current directory is equal to `ecb-path-selected-directory"."',
           prototype : '(defun ecb-select-source (&optional force)',
           parameter : '&optional force',
@@ -4670,7 +4670,7 @@ const functions =
         },
         {
           function : 'ecb-semantic-active-for-file',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return not nil if FILENAME is already displayed in a buffer and if semantic<br>is active for this buffer."',
           prototype : '(defun ecb-semantic-active-for-file (filename)',
           parameter : 'filename',
@@ -4678,7 +4678,7 @@ const functions =
         },
         {
           function : 'ecb-semantic-assert-valid-tag',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Assert that TAG is a valid tag. If not valid then `ecb-enter-debugger"<br>is called. If NO-REPARSE is not nil then the buffer is not autom. reparsed. It<br>returns nil if the assertion fails otherwise not nil. So the caller can even<br>check the result if `ecb-debug-mode" is nil in which case the function<br>`ecb-enter-debugger" is a no-op."',
           prototype : '(defun ecb-semantic-assert-valid-tag (tag &optional no-reparse)',
           parameter : 'tag &optional no-reparse',
@@ -4686,31 +4686,31 @@ const functions =
         },
         {
           function : 'ecb-semantic-current-nonterminal',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : '',
           lispcode : '(defun ecb-semantic-current-nonterminal ()<br>  (condition-case nil<br>      (ecb--semantic-current-tag)<br>    (error (message <apo>ecb--semantic-current-tag has problems --> reparsed is performed!<apo>)<br>           (when (ecb-point-in-edit-window-number)<br>             (ecb--semantic-clear-toplevel-cache)<br>             (ecb-update-methods-buffer--internal)<br>             (ecb--semantic-current-tag)))))<br>'
         },
         {
           function : 'ecb-semantic-tag-buffer',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'tag',
           lispcode : '(defun ecb-semantic-tag-buffer (tag)<br>  ;; if ecb-debug-mode is not nil then the TAG is valid if we pass the<br>  ;; assert. If ecb-debug-mode is nil then we call simply the semantic'
         },
         {
           function : 'ecb-semantic-tag-end',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'tag',
           lispcode : '(defun ecb-semantic-tag-end (tag)<br>  ;; if ecb-debug-mode is not nil then the TAG is valid if we pass the<br>  ;; assert. If ecb-debug-mode is nil then we call simply the semantic'
         },
         {
           function : 'ecb-semantic-tag-start',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'tag',
           lispcode : '(defun ecb-semantic-tag-start (tag)<br>  ;; if ecb-debug-mode is not nil then the TAG is valid if we pass the<br>  ;; assert. If ecb-debug-mode is nil then we call simply the semantic<br>  ;; function and see what happens.'
         },
         {
           function : 'ecb-semanticdb-find-result-nth-with-file',
-          filename : 'ecb/ecb-semantic.el',
+          filename : 'ecb-semantic.el',
           docstring : '  "In RESULT, return the Nth search result.<br>This is a 0 based search result, with the first match being element 0. Returns<br>a cons cell with car is the searched and found tag and the cdr is the<br>associated full filename of this tag. If the search result is not associated<br>with a file, then the cdr of the result-cons is nil."',
           prototype : '(defun ecb-semanticdb-find-result-nth-with-file (result n)',
           parameter : 'result n',
@@ -4718,7 +4718,7 @@ const functions =
         },
         {
           function : 'ecb-set-compile-window-height',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Set the height of the compile-window according to<br>`ecb-enlarged-compilation-window-max-height" and the value of<br>`temp-buffer-resize-mode" (GNU Emacs)."',
           prototype : '(defun ecb-set-compile-window-height ()',
           parameter : '',
@@ -4726,7 +4726,7 @@ const functions =
         },
         {
           function : 'ecb-set-current-tag-table',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Set the current tag-table of the current source-buffer to TABLE. Return<br>TABLE."',
           prototype : '(defun ecb-set-current-tag-table (table)',
           parameter : 'table',
@@ -4734,7 +4734,7 @@ const functions =
         },
         {
           function : 'ecb-set-difference',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Combine LIST1 and LIST2 using a set-difference operation.<br>The result list contains all items that appear in LIST1 but not LIST2.<br>This is a non-destructive function; it makes a copy of the data if necessary<br>to avoid corrupting the original LIST1 and LIST2.<br>If TEST-FCN is not nil then it must be a function which is used to check if an<br>item of LIST1 is an element of LIST2. If TEST-FCN is nil then `memq" is used."',
           prototype : '(defun ecb-set-difference (list1 list2 &optional test-fcn)',
           parameter : 'list1 list2 &optional test-fcn',
@@ -4742,7 +4742,7 @@ const functions =
         },
         {
           function : 'ecb-set-ecb-window-sizes',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Set the sizes of visible ecb-windows to WINDOW-SIZES.<br>WINDOW-SIZES is a list where each element is a cons where the car<br>is either the buffer-name of an ecb-buffer or the variable-symbol<br>which holds the buffer-name of an ecb-buffer (e.g. the symbol<br>`ecb-history-buffer-name"). The cdr is a cons where car is the<br>width and the cdr is the height of the window. Width and height can either be<br>fractions of current frame sizes or fixed values.<br><br>The sizes are even changed if the windows-sizes are fixed, see the<br>option `window-size-fixed" (only available for GNU Emacs)."',
           prototype : '(defun ecb-set-ecb-window-sizes (window-sizes)',
           parameter : 'window-sizes',
@@ -4750,7 +4750,7 @@ const functions =
         },
         {
           function : 'ecb-set-elt',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Set VAL as new N-th element of SEQ. SEQ can be any sequence. SEQ will be<br>changed because this is desctructive function. SEQ is returned."',
           prototype : '(defun ecb-set-elt (seq n val)',
           parameter : 'seq n val',
@@ -4758,13 +4758,13 @@ const functions =
         },
         {
           function : 'ecb-set-minor-mode-text',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : '',
           lispcode : '(defun ecb-set-minor-mode-text ()<br>  (setq ecb-minor-mode-text<br>        (if (ecb-windows-all-hidden)<br>            (or (ecb-option-get-value <tick>ecb-minor-mode-text <tick>saved-value)<br>                (ecb-option-get-value <tick>ecb-minor-mode-text <tick>standard-value))<br>          <apo><apo>)))'
         },
         {
           function : 'ecb-set-selected-directory',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Set the contents of the ECB-directories and -sources buffer correct for the<br>value of PATH. If PATH is equal to the value of `ecb-path-selected-directory"<br>then nothing is done unless first optional argument FORCE is not nil."',
           prototype : '(defun ecb-set-selected-directory (path &optional force)',
           parameter : 'path &optional force',
@@ -4772,7 +4772,7 @@ const functions =
         },
         {
           function : 'ecb-set-selected-source',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Updates all the ECB buffers and loads the SOURCE. The source is also<br>displayed unless NO-EDIT-BUFFER-SELECTION is set to non nil. In such case the<br>source is only loaded invisible in the background, all semantic-parsing and<br>ECB-Buffer-updating is done but the content of the main-edit window is not<br>changed. For the allowed values of OTHER-EDIT-WINDOW see<br>`ecb-combine-ecb-button/edit-win-nr".<br><br>SOURCE is either a string, then it is a filename or a cons, then the car is<br>the filename and the cdr is the buffer-name, whereas the latter one can be an<br>indirect-buffer."',
           prototype : '(defun ecb-set-selected-source (source other-edit-window                                       no-edit-buffer-selection)',
           parameter : 'source other-edit-window no-edit-buffer-selection',
@@ -4780,7 +4780,7 @@ const functions =
         },
         {
           function : 'ecb-set-window-configuration',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Sets the window-configuration of ECB-WINDOW-CONFIG. The additional<br>informations needed by ECB will be set by the adviced version of<br>`set-window-configuration"."',
           prototype : '(defun ecb-set-window-configuration (ecb-window-config)',
           parameter : 'ecb-window-config',
@@ -4788,7 +4788,7 @@ const functions =
         },
         {
           function : 'ecb-set-window-size',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Enlarge/shrink WINDOW to SIZE where SIZE is a cons with new width as car<br>and new height as cdr. New width and height can be floating-point-numbers.<br>Optional third argument REF-SIZE is a cons too where car is the referencial<br>width and the cdr is the referencial height when the car and cdr of SIZE are<br>floating-point-numbers. Default referencial width rsp. height are<br>`frame-width" rsp. `frame-height" of the `ecb-frame"."',
           prototype : '(defun ecb-set-window-size (window size &optional ref-size)',
           parameter : 'window size &optional ref-size',
@@ -4796,7 +4796,7 @@ const functions =
         },
         {
           function : 'ecb-set-window-size-fixed',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Set the buffer-local value of `window-size-fixed" in each visible<br>ecb-window to FIX. For Emacs < 22: If `ecb-compile-window-height" is not nil<br>then set always nil!"',
           prototype : '(defun ecb-set-window-size-fixed (fix)',
           parameter : 'fix',
@@ -4804,7 +4804,7 @@ const functions =
         },
         {
           function : 'ecb-set-windows-dedicated-state',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "For every buffer in BUF-LIST set its windows dedicated-state to STATE if<br>visible in the `ecb-frame"."',
           prototype : '(defun ecb-set-windows-dedicated-state (buf-list state)',
           parameter : 'buf-list state',
@@ -4812,7 +4812,7 @@ const functions =
         },
         {
           function : 'ecb-show-any-node-info-by-mouse-moving-p',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Return not nil if for at least one tree-buffer showing node info only by<br>moving the mouse over a node is activated. See<br>`ecb-directories-show-node-info" etc...."',
           prototype : '(defun ecb-show-any-node-info-by-mouse-moving-p ()',
           parameter : '',
@@ -4820,7 +4820,7 @@ const functions =
         },
         {
           function : 'ecb-show-ecb-windows',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Make the ECB windows visible."',
           prototype : '(defun ecb-show-ecb-windows ()',
           parameter : '',
@@ -4828,7 +4828,7 @@ const functions =
         },
         {
           function : 'ecb-show-help',
-          filename : 'ecb/ecb-help.el',
+          filename : 'ecb-help.el',
           docstring : '  "Shows the online help of ECB in Info or HTML-format.<br>The format depends on the setting in `ecb-show-help-format". If called with<br>prefix argument, i.e. if FORMAT is not nil then the user is prompted to choose<br>the format of the help (Info or Html).<br><br>If an error about not finding the needed help-file occurs please take a look<br>at the options `ecb-help-info-start-file" and `ecb-help-html-start-file"!<br><br>Note: If you got ECB as a standard XEmacs-package maybe the<br>HTML-online-documentation is not included."',
           prototype : '(defun ecb-show-help (&optional format)',
           parameter : '&optional format',
@@ -4836,7 +4836,7 @@ const functions =
         },
         {
           function : 'ecb-show-layout-help',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Select a layout-name and shows the documentation of the layout-function.<br>At least for the built-in layouts the documentation contains a picture of the<br>outline of the chosen layout."',
           prototype : '(defun ecb-show-layout-help ()',
           parameter : '',
@@ -4844,7 +4844,7 @@ const functions =
         },
         {
           function : 'ecb-show-minibuffer-info',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Checks if any info about the current node in the ECB-window WINDOW should<br>be displayed. WHEN-SPEC must have the same format as the car of<br>`ecb-directories-show-node-info"."',
           prototype : '(defun ecb-show-minibuffer-info (node window when-spec)',
           parameter : 'node window when-spec',
@@ -4852,7 +4852,7 @@ const functions =
         },
         {
           function : 'ecb-show-sources-in-directories-buffer-p',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return not nil if in current layout sources are shown in the<br>directories-buffer."',
           prototype : '(defun ecb-show-sources-in-directories-buffer-p ()',
           parameter : '',
@@ -4860,7 +4860,7 @@ const functions =
         },
         {
           function : 'ecb-show-tip-of-the-day',
-          filename : 'ecb/ecb-tod.el',
+          filename : 'ecb-tod.el',
           docstring : '  "Show tip of the day if `ecb-tip-of-the-day" is not nil."',
           prototype : '(defun ecb-show-tip-of-the-day ()',
           parameter : '',
@@ -4868,7 +4868,7 @@ const functions =
         },
         {
           function : 'ecb-some',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return true if PREDICATE is true of any element of SEQ or SEQs.<br>If so, return the true (non-nil) value returned by PREDICATE."',
           prototype : '(defun ecb-some (cl-pred cl-seq &rest cl-rest)',
           parameter : 'cl-pred cl-seq &rest cl-rest',
@@ -4876,13 +4876,13 @@ const functions =
         },
         {
           function : 'ecb-sort-tags',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'sort-method tags',
           lispcode : '(defun ecb-sort-tags (sort-method tags)<br>  (if sort-method<br>      (let ((tags-by-name<br>	     (sort tags (function (lambda (a b)<br>				      (ecb-string< (ecb--semantic-tag-name a)<br>                                                   (ecb--semantic-tag-name b)))))))<br>	(if (eq <tick>access sort-method)<br>	    (sort tags-by-name<br>		  (function<br>		   (lambda (a b)<br>		     (< (ecb-access-order (ecb--semantic-tag-protection a))<br>			(ecb-access-order (ecb--semantic-tag-protection b))))))<br>	  tags-by-name))<br>    tags))<br>'
         },
         {
           function : 'ecb-source-get-buffer',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Return a living buffer-object for SOURCE.<br>SOURCE is either a string, then it is a filename or a cons, then the car is<br>the filename and the cdr is the buffer-name, whereas the latter one can be the<br>name of an indirect-buffer.<br><br>If SOURCE contains a living buffer then this buffer is returned. Otherwise a<br>buffer for the filename-part of SOURCE is created and returned. For an<br>existing ans readable file this means the file is loaded into a buffer.<br><br>Note: The buffer is just returned but not displayed."',
           prototype : '(defun ecb-source-get-buffer (source)',
           parameter : 'source',
@@ -4890,7 +4890,7 @@ const functions =
         },
         {
           function : 'ecb-source-get-buffername',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "SOURCE is either a string, then it is a filename or a cons, then the car is<br>the filename and the cdr is the buffer-name, whereas the latter one can be the<br>name of an indirect-buffer."',
           prototype : '(defun ecb-source-get-buffername (source)',
           parameter : 'source',
@@ -4898,7 +4898,7 @@ const functions =
         },
         {
           function : 'ecb-source-get-filename',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "SOURCE is either a string, then it is a filename or a cons, then the car is<br>the filename and the cdr is the buffer-name, whereas the latter one can be the<br>name of an indirect-buffer."',
           prototype : '(defun ecb-source-get-filename (source)',
           parameter : 'source',
@@ -4906,13 +4906,13 @@ const functions =
         },
         {
           function : 'ecb-source-item-clicked',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : 'node ecb-button edit-window-nr shift-mode meta-mode',
           lispcode : '(defun ecb-source-item-clicked (node ecb-button edit-window-nr shift-mode meta-mode)<br>  ;; if we are in a maximized sources-window and if a methods-buffer is<br>  ;; contained in current layout then we have to redraw the full layout first<br>  ;; so the contents of the clicked source-file can be displayed in the<br>  ;; methods-buffer.<br><br>  ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: see comment in<br>  ;; ecb-directory-or-source-clicked<br>  (when (and (ecb-buffer-is-maximized-p (buffer-name))<br>             (ecb-buffer-is-ecb-buffer-of-current-layout-p<br>              ecb-methods-buffer-name))<br>    (if (ecb-member-of-symbol/value-list<br>         (buffer-name)<br>         ecb-maximize-next-after-maximized-select)<br>        (progn<br>          (ecb-maximize-ecb-buffer ecb-methods-buffer-name)'
         },
         {
           function : 'ecb-source-make',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Build a source-object from FILENAME and BUFFER.<br>If optional arg BUFFER is nil then the just FILENAME is returned.<br>If BUFFER is not nil then it can be either a buffer-object or a buffer-name.<br>A cons is returned where car is FILENAME and cdr is the buffername of BUFFER."',
           prototype : '(defun ecb-source-make (filename &optional buffer)',
           parameter : 'filename &optional buffer',
@@ -4920,7 +4920,7 @@ const functions =
         },
         {
           function : 'ecb-sources-cache-add-filtered',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Add the filtered sources-cache CACHE-ELEM-FILTERED for DIR to the cache. If<br>there is already a filtered cache-entry then replace it. CACHE-ELEM-FILTERED<br>has to be a list as returned by `ecb-sources-cache-get-filtered"."',
           prototype : '(defun ecb-sources-cache-add-filtered (dir cache-elem-filtered)',
           parameter : 'dir cache-elem-filtered',
@@ -4928,7 +4928,7 @@ const functions =
         },
         {
           function : 'ecb-sources-cache-add-full',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Add the full sources-cache CACHE-ELEM-FULL for DIR to the cache. If there<br>is already a full cache-entry then replace it. CACHE-ELEM-FULL has to be a<br>list as returned by `ecb-sources-cache-get-full"."',
           prototype : '(defun ecb-sources-cache-add-full (dir cache-elem-full)',
           parameter : 'dir cache-elem-full',
@@ -4936,7 +4936,7 @@ const functions =
         },
         {
           function : 'ecb-sources-cache-clear',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Clear the whole SOURCES-cache."',
           prototype : '(defun ecb-sources-cache-clear ()',
           parameter : '',
@@ -4944,7 +4944,7 @@ const functions =
         },
         {
           function : 'ecb-sources-cache-dump',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Dump the whole SOURCES-cache. If NO-NIL-VALUE is not nil then these<br>cache-entries are not dumped. This command is not intended for end-users of<br>ECB."',
           prototype : '(defun ecb-sources-cache-dump (&optional no-nil-value)',
           parameter : '&optional no-nil-value',
@@ -4952,7 +4952,7 @@ const functions =
         },
         {
           function : 'ecb-sources-cache-get-filtered',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return the filtered value of a cached-directory DIR, means the<br>4-element-list (tree-buffer-root, tree-buffer-displayed-nodes,<br>sources-buffer-string, filter-regexp). If no cache-entry for DIR is available<br>then nil is returned."',
           prototype : '(defun ecb-sources-cache-get-filtered (dir)',
           parameter : 'dir',
@@ -4960,7 +4960,7 @@ const functions =
         },
         {
           function : 'ecb-sources-cache-get-full',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return the full value of a cached-directory DIR, means the 3-element-list<br>(tree-buffer-root, tree-buffer-displayed-nodes, sources-buffer-string). If no<br>cache-entry for DIR is available then nil is returned."',
           prototype : '(defun ecb-sources-cache-get-full (dir)',
           parameter : 'dir',
@@ -4968,7 +4968,7 @@ const functions =
         },
         {
           function : 'ecb-sources-cache-remove',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Remove the cache-entry for DIR from the cache."',
           prototype : '(defun ecb-sources-cache-remove (dir)',
           parameter : 'dir',
@@ -4976,7 +4976,7 @@ const functions =
         },
         {
           function : 'ecb-sources-filter',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Apply a filter to the sources-buffer to reduce the number of entries.<br>So you get a better overlooking. There are three choices:<br>- Filter by extension: Just insert the extension you want the Sources-buffer<br>  being filtered. Insert the extension without leading dot!<br>- Filter by regexp: Insert the filter as regular expression.<br>- No filter: This means to display an entry for every file in the current<br>  selected directory (all except these filter already filtered out by<br>  `ecb-source-file-regexps" and `ecb-sources-exclude-cvsignore").<br>Such a filter is only applied to the current selected directory, i.e. each<br>directory has its own filtered sources-buffer."',
           prototype : '(defun ecb-sources-filter ()',
           parameter : '',
@@ -4984,7 +4984,7 @@ const functions =
         },
         {
           function : 'ecb-sources-filter-by-ext',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Filter the sources by extension EXT-STR."',
           prototype : '(defun ecb-sources-filter-by-ext (ext-str)',
           parameter : 'ext-str',
@@ -4992,7 +4992,7 @@ const functions =
         },
         {
           function : 'ecb-sources-filter-by-regexp',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Filter history entries by REGEXP. If the first optional argument REGEXP is<br>nil then it asks for a regexp. If second argument FILTER-DISPLAY is not nil<br>then it is displayed in the modeline of the history-buffer for current<br>regexp-filter. Otherwise the regexp itself."',
           prototype : '(defun ecb-sources-filter-by-regexp (&optional regexp filter-display)',
           parameter : '&optional regexp filter-display',
@@ -5000,7 +5000,7 @@ const functions =
         },
         {
           function : 'ecb-sources-filter-modeline-prefix',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Compute a mode-line prefix for the Sources-buffer so the current filter<br>applied to the sources is displayed. This function is only for using by<br>the option `ecb-mode-line-prefixes"."',
           prototype : '(defun ecb-sources-filter-modeline-prefix (buffer-name sel-dir sel-source)',
           parameter : 'buffer-name sel-dir sel-source',
@@ -5008,7 +5008,7 @@ const functions =
         },
         {
           function : 'ecb-sources-menu-creator',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Creates the popup-menus for the sources-buffer."',
           prototype : '(defun ecb-sources-menu-creator (tree-buffer-name node)',
           parameter : 'tree-buffer-name node',
@@ -5016,7 +5016,7 @@ const functions =
         },
         {
           function : 'ecb-speedbar-activate',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           docstring : '  "Make sure the speedbar is running. WARNING: This could be dependent on the<br>current speedbar implementation but normally it should work with recent<br>speedbar versions >= 0.14beta1. But be aware: If the speedbar impl changes in<br>future this could break."',
           prototype : '(defun ecb-speedbar-activate()',
           parameter : '',
@@ -5024,7 +5024,7 @@ const functions =
         },
         {
           function : 'ecb-speedbar-active-p',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           docstring : '  "Return not nil if speedbar is active and integrated in the `ecb-frame"."',
           prototype : '(defun ecb-speedbar-active-p ()',
           parameter : '',
@@ -5032,13 +5032,13 @@ const functions =
         },
         {
           function : 'ecb-speedbar-buffer-selected',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           parameter : '',
           lispcode : '(defun ecb-speedbar-buffer-selected ()<br>  (equal (current-buffer) (ecb-buffer-obj ecb-speedbar-buffer-name)))'
         },
         {
           function : 'ecb-speedbar-decorate-tag',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           docstring : '  "Set given face to tag"s text & return decorated text"',
           prototype : '(defun ecb-speedbar-decorate-tag (tag face)',
           parameter : 'tag face',
@@ -5046,13 +5046,13 @@ const functions =
         },
         {
           function : 'ecb-speedbar-dframe-select-attached-window',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           parameter : '',
           lispcode : '(defun ecb-speedbar-dframe-select-attached-window ()<br>  (when (and ecb-last-edit-window-with-point<br>             ecb-last-source-buffer<br>             (window-live-p ecb-last-edit-window-with-point)<br>             (equal (window-buffer ecb-last-edit-window-with-point)<br>                    ecb-last-source-buffer))<br>    (select-window ecb-last-edit-window-with-point)<br>    (set-buffer ecb-last-source-buffer)<br>;;     nil'
         },
         {
           function : 'ecb-speedbar-sb-tag-p',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           docstring : '  "Return not nil if TAG is a semantic-tag generated from a speedbar tag."',
           prototype : '(defun ecb-speedbar-sb-tag-p (tag)',
           parameter : 'tag',
@@ -5060,13 +5060,13 @@ const functions =
         },
         {
           function : 'ecb-speedbar-select-speedbar-window',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           parameter : '',
           lispcode : '(defun ecb-speedbar-select-speedbar-window ()<br>  (ignore-errors<br>    (and (window-live-p (get-buffer-window ecb-speedbar-buffer-name))<br>         (select-window (get-buffer-window ecb-speedbar-buffer-name)))))'
         },
         {
           function : 'ecb-speedbar-update-contents',
-          filename : 'ecb/ecb-speedbar.el',
+          filename : 'ecb-speedbar.el',
           docstring : '  "Encapsulate updating the speedbar."',
           prototype : '(defun ecb-speedbar-update-contents ()',
           parameter : '',
@@ -5074,7 +5074,7 @@ const functions =
         },
         {
           function : 'ecb-split-hor',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Splits the current-window horizontally and returns the absolute amount in<br>columns. If AMOUNT is greater than -1.0 and lower than +1.0 then the value is<br>multiplied with the current window-width (frame-width if USE-FRAME is not nil)."',
           prototype : '(defun ecb-split-hor (amount &optional dont-switch-window use-frame)',
           parameter : 'amount &optional dont-switch-window use-frame',
@@ -5082,13 +5082,13 @@ const functions =
         },
         {
           function : 'ecb-split-hor-abs',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : 'amount &optional dont-switch-window',
           lispcode : '(defun ecb-split-hor-abs (amount &optional dont-switch-window)<br>  (split-window-horizontally amount)<br>  (if (not dont-switch-window)<br>      (select-window (next-window))))'
         },
         {
           function : 'ecb-split-ver',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Splits the current-window and returns the absolute amount in lines. If<br>AMOUNT is greater than -1.0 and lower than +1.0 then the value is multiplied<br>with the current window-height (frame-height if USE-FRAME is not nil)."',
           prototype : '(defun ecb-split-ver (amount &optional dont-switch-window use-frame)',
           parameter : 'amount &optional dont-switch-window use-frame',
@@ -5096,13 +5096,13 @@ const functions =
         },
         {
           function : 'ecb-split-ver-abs',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : 'amount &optional dont-switch-window',
           lispcode : '(defun ecb-split-ver-abs (amount &optional dont-switch-window)<br>  (split-window-vertically amount)<br>  (if (not dont-switch-window)<br>      (select-window (next-window))))<br><br>;;======= The new layout mechanism========================================<br>'
         },
         {
           function : 'ecb-start-of-tag-doc',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "If TAG has an outside documentation located direct before TAG then<br>return the start of the documentation. Otherwise return nil"',
           prototype : '(defun ecb-start-of-tag-doc (tag)',
           parameter : 'tag',
@@ -5110,7 +5110,7 @@ const functions =
         },
         {
           function : 'ecb-stealth-tasks-after-directories-update',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "After update hook for the directories-buffer. Runs directly after<br>performing a `tree-buffer-update" for this buffer."',
           prototype : '(defun ecb-stealth-tasks-after-directories-update ()',
           parameter : '',
@@ -5118,7 +5118,7 @@ const functions =
         },
         {
           function : 'ecb-stealth-tasks-after-history-update',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "After update hook for the history-buffer. Runs directly after<br>performing a `tree-buffer-update" for this buffer."',
           prototype : '(defun ecb-stealth-tasks-after-history-update ()',
           parameter : '',
@@ -5126,7 +5126,7 @@ const functions =
         },
         {
           function : 'ecb-stealth-tasks-after-sources-update',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "After update hook for the sources-buffer. Runs directly after<br>performing a `tree-buffer-update" for this buffer."',
           prototype : '(defun ecb-stealth-tasks-after-sources-update ()',
           parameter : '',
@@ -5134,13 +5134,13 @@ const functions =
         },
         {
           function : 'ecb-stealthy-function-list-add',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           parameter : 'fcn',
           lispcode : '(defun ecb-stealthy-function-list-add (fcn)<br>  (add-to-list <tick>ecb-stealthy-function-list fcn))'
         },
         {
           function : 'ecb-stealthy-function-p',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Return not nil if FCN is a stealthy function defined with<br>`defecb-stealthy"."',
           prototype : '(defun ecb-stealthy-function-p (fcn)',
           parameter : 'fcn',
@@ -5148,13 +5148,13 @@ const functions =
         },
         {
           function : 'ecb-stealthy-function-state-alist-add',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           parameter : 'fcn',
           lispcode : '(defun ecb-stealthy-function-state-alist-add (fcn)<br>  (add-to-list <tick>ecb-stealthy-function-state-alist<br>               (cons fcn <tick>done)))'
         },
         {
           function : 'ecb-stealthy-function-state-get',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Getter for `ecb-stealthy-function-state-alist". Return state for the<br>stealthy function FCN."',
           prototype : '(defun ecb-stealthy-function-state-get (fcn)',
           parameter : 'fcn',
@@ -5162,7 +5162,7 @@ const functions =
         },
         {
           function : 'ecb-stealthy-function-state-init',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Reset the state of stealthy functions. If first optional arg FCN is a<br>stealthy function then only the state of this function is reset - otherwise<br>all stealthy functions of `ecb-stealthy-function-list" are reset. If second<br>optional arg STATE is nil then the state will be reset to the special state<br>"restart - otherwise to the value STATE."',
           prototype : '(defun ecb-stealthy-function-state-init (&optional fcn state)',
           parameter : '&optional fcn state',
@@ -5170,7 +5170,7 @@ const functions =
         },
         {
           function : 'ecb-stealthy-function-state-set',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Setter for `ecb-stealthy-function-state-alist". Set STATE for the<br>stealthy function FCN. Return STATE."',
           prototype : '(defun ecb-stealthy-function-state-set (fcn state)',
           parameter : 'fcn state',
@@ -5178,7 +5178,7 @@ const functions =
         },
         {
           function : 'ecb-stealthy-read-only-check--internal',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Check for all sourcefile-nodes either in the directories- or the<br>sources-buffer if the associated file is writable or not. This function does<br>the real job and is is only for use by a stealthy function defined with<br>`defecb-stealthy"! STATE is the initial state-value the stealthy-function has<br>when called. Return the new state-value."',
           prototype : '(defun ecb-stealthy-read-only-check--internal (state)',
           parameter : 'state',
@@ -5186,7 +5186,7 @@ const functions =
         },
         {
           function : 'ecb-stealthy-vc-check--dir/history',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Check for all sourcefile-nodes either in the directories- or the<br>history-buffer the VC-state. This function does the real job and is is only<br>for use by a stealthy function defined with `defecb-stealthy"! STATE is the<br>initial state-value the stealthy-function has when called. Return the new<br>state-value."',
           prototype : '(defun ecb-stealthy-vc-check--dir/history (state)',
           parameter : 'state',
@@ -5194,7 +5194,7 @@ const functions =
         },
         {
           function : 'ecb-stealthy-vc-check--sources',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Check for all sourcefile-nodes in sources-buffer the VC-state. This<br>function does the real job and is is only for use by a stealthy function<br>defined with `defecb-stealthy"! STATE is the initial state-value the<br>stealthy-function has when called. Return the new state-value."',
           prototype : '(defun ecb-stealthy-vc-check--sources (state)',
           parameter : 'state',
@@ -5202,19 +5202,19 @@ const functions =
         },
         {
           function : 'ecb-stop-all-autocontrol/sync-functions',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           parameter : '',
           lispcode : '(defun ecb-stop-all-autocontrol/sync-functions ()<br>  (dolist (fcn-elem ecb-autocontrol/sync-fcn-register)<br>    (ecb-stop-autocontrol/sync-function (car fcn-elem))))'
         },
         {
           function : 'ecb-stop-autocontrol/sync-function',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           parameter : 'fcn-symbol',
           lispcode : '(defun ecb-stop-autocontrol/sync-function (fcn-symbol)<br>  (let* ((timer-elem (assoc fcn-symbol ecb-idle-timer-alist))<br>         (timer (cdr timer-elem)))<br>    (when timer-elem<br>      (ecb-cancel-timer timer)<br>      (setq ecb-idle-timer-alist (delq timer-elem ecb-idle-timer-alist)))<br>    (remove-hook <tick>post-command-hook fcn-symbol)<br>    (remove-hook <tick>pre-command-hook fcn-symbol)<br>    (setq ecb-post-command-hooks (delq fcn-symbol ecb-post-command-hooks))<br>    (setq ecb-pre-command-hooks (delq fcn-symbol ecb-pre-command-hooks))))<br>'
         },
         {
           function : 'ecb-store-compile-window-specified-height-config',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Store the current ecb-window-configuration in<br>`ecb-compile-window-specified-height-config" but do this only if a<br>compile-window is visible and if this compile-window has height<br>`ecb-compile-window-height-lines"! Otherwise set this variable to nil."',
           prototype : '(defun ecb-store-compile-window-specified-height-config ()',
           parameter : '',
@@ -5222,13 +5222,13 @@ const functions =
         },
         {
           function : 'ecb-store-current-options-version',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : '',
           lispcode : '(defun ecb-store-current-options-version ()<br>  (when (not (ecb-options-version=ecb-version-p))<br>    (setq ecb-old-ecb-version (ecb-option-get-value <tick>ecb-options-version<br>                                                    <tick>saved-value))<br>    (ecb-customize-save-variable <tick>ecb-options-version ecb-version)))<br>'
         },
         {
           function : 'ecb-store-window-sizes',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Stores the sizes of the ECB windows for the current layout.<br>The size of the ECB windows will be set to their stored values when<br>`ecb-redraw-layout" or `ecb-restore-window-sizes" is called. To reset the<br>window sizes to their default values call `ecb-restore-default-window-sizes".<br>Please read also the documentation of `ecb-layout-window-sizes"!<br><br>The windows sizes are stored per default as fractions of current frame-width<br>and -height of the ecb-frame, so the stored values will "work" for other<br>frame sizes too. If a permanent compile-window is visible then ECB will tell<br>you that window-sizes should be stored with hidden compile-window and ask you<br>if you want proceed; if you proceed then the window-heights will be stored as<br>fractions of current (frame-height minus current visible<br>compile-window-height) so you should ensure that the current compile-window<br>has its standard-height as specified in `ecb-compile-window-height"!. If FIX<br>is not nil (means called with a prefix argument) then always the fixed values<br>of current width and height are stored!"',
           prototype : '(defun ecb-store-window-sizes (&optional fix)',
           parameter : '&optional fix',
@@ -5236,13 +5236,13 @@ const functions =
         },
         {
           function : 'ecb-string-make-singular',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'string',
           lispcode : '(defun ecb-string-make-singular (string)<br>  (if (equal (aref string (1- (length string))) ?s)<br>      (substring string 0 (1- (length string)))<br>    string))<br>'
         },
         {
           function : 'ecb-submit-problem-report',
-          filename : 'ecb/ecb-help.el',
+          filename : 'ecb-help.el',
           docstring : '  "Submit a problem report for the ECB to the ECB mailing-list.<br>This command generates in the edit-window a problem-report which contains<br>already the current values of all ECB options, the current backtrace-buffer if<br>there is any and the current message-buffer. You will be asked for a<br>problem-report subject and then you must insert a description of the problem.<br>Please describe the problem as detailed as possible!<br><br>*IMPORTANT*: Cause of extra appearance of SPAM in the mailing-lists,<br>SourceForge has changed its policy: Now it is only possible to post to the<br>mailing-list for users who have subscribed this mailing-list. So please be<br>aware you will not be able to send comments, bug reports and improvement<br>suggestions before you have subscribed the ECB-mailing-list. See the section<br>"Mailing-list" at the ECB-website at http://ecb.sourceforge.net how to do<br>this."',
           prototype : '(defun ecb-submit-problem-report()',
           parameter : '',
@@ -5250,7 +5250,7 @@ const functions =
         },
         {
           function : 'ecb-subseq',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the subsequence of SEQ from START to END.<br>If END is omitted, it defaults to the length of the sequence.<br>If START or END is negative, it counts from the end."',
           prototype : '(defun ecb-subseq (seq start &optional end)',
           parameter : 'seq start &optional end',
@@ -5258,7 +5258,7 @@ const functions =
         },
         {
           function : 'ecb-subtract-time',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Subtract two internal times and return the result as internal time."',
           prototype : '(defun ecb-subtract-time (t1 t2)',
           parameter : 't1 t2',
@@ -5266,7 +5266,7 @@ const functions =
         },
         {
           function : 'ecb-symboldef-find-definition',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Inserts the definition of symbol with name SYMBOL-NAME.<br>Fill the upper-half of the special ecb-window with text preceding the<br>symbol-definition in the definition-file. First tries to find the definition<br>with semanticdb and then - if no success - with current etags-file."',
           prototype : '(defun ecb-symboldef-find-definition (symbol-name edit-buffer)',
           parameter : 'symbol-name edit-buffer',
@@ -5274,7 +5274,7 @@ const functions =
         },
         {
           function : 'ecb-symboldef-find-lisp-doc',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Insert the lisp-documentation of symbol with name SYMBOL-NAME."',
           prototype : '(defun ecb-symboldef-find-lisp-doc (symbol-name edit-buffer)',
           parameter : 'symbol-name edit-buffer',
@@ -5282,7 +5282,7 @@ const functions =
         },
         {
           function : 'ecb-symboldef-find-null',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Empty symbol-definition find function.<br>Only prints mode and info but does not find any symbol-definition."',
           prototype : '(defun ecb-symboldef-find-null (symbol-name edit-buffer)',
           parameter : 'symbol-name edit-buffer',
@@ -5290,7 +5290,7 @@ const functions =
         },
         {
           function : 'ecb-symboldef-find-tag-by-etags',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Try to find the definition of SYMBOL-NAME via etags.<br>Returns nil if not found otherwise a list (tag-buffer tag-begin tag-end)<br>whereas tag-end is currently always nil."',
           prototype : '(defun ecb-symboldef-find-tag-by-etags (symbol-name edit-buffer)',
           parameter : 'symbol-name edit-buffer',
@@ -5298,7 +5298,7 @@ const functions =
         },
         {
           function : 'ecb-symboldef-find-tag-by-semanticdb',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Function to find a semantic-tag by SYMBOL-NAME.<br>Returns nil if not found otherwise a list (tag-buffer tag-begin tag-end)"',
           prototype : '(defun ecb-symboldef-find-tag-by-semanticdb (symbol-name edit-buffer)',
           parameter : 'symbol-name edit-buffer',
@@ -5306,7 +5306,7 @@ const functions =
         },
         {
           function : 'ecb-symboldef-get-doc-for-fsymbol',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Returns the full output of `describe-function" as string without any<br>sideeffect to the help-system of Emacs.<br>FSYMBOL is the symbol for which the doc-string should be returned and<br>EDIT-BUFFER is that buffer FSYMBOL is used."',
           prototype : '(defun ecb-symboldef-get-doc-for-fsymbol (fsymbol edit-buffer)',
           parameter : 'fsymbol edit-buffer',
@@ -5314,7 +5314,7 @@ const functions =
         },
         {
           function : 'ecb-symboldef-get-doc-for-vsymbol',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Returns the full output of `describe-variable" as string without any<br>sideeffect to the help-system of Emacs.<br>VSYMBOL is the symbol for which the doc-string should be returned and<br>EDIT-BUFFER is that buffer VSYMBOL is used."',
           prototype : '(defun ecb-symboldef-get-doc-for-vsymbol (vsymbol edit-buffer)',
           parameter : 'vsymbol edit-buffer',
@@ -5322,7 +5322,7 @@ const functions =
         },
         {
           function : 'ecb-symboldef-get-find-function',
-          filename : 'ecb/ecb-symboldef.el',
+          filename : 'ecb-symboldef.el',
           docstring : '  "Returns the symbol find function to use according to major-mode"',
           prototype : '(defun ecb-symboldef-get-find-function ()',
           parameter : '',
@@ -5330,7 +5330,7 @@ const functions =
         },
         {
           function : 'ecb-tag-generate-node-name',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Generate an suitable node name. Add needed image-icons if possible and<br>necessary. For the arguments TEXT-NAME, FIRST-CHARS and ICON-NAME see<br>`ecb-generate-node-name"."',
           prototype : '(defun ecb-tag-generate-node-name (text-name first-chars icon-name)',
           parameter : 'text-name first-chars icon-name',
@@ -5338,7 +5338,7 @@ const functions =
         },
         {
           function : 'ecb-tag-visit-display-doc-start',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Display the beginning of the documentation of TAG if defined outside.<br>This means move the window-start of current edit-window so the whole<br>documentation is visible. But points still stays onto the tag-start!<br>This is useful especially for languages like Java where the documentation<br>resides direct before the TAG in Javadoc format.<br>If the documentation is located within TAG then nothing is done.<br><br>If this function is set in `ecb-tag-visit-post-actions" then it"s strongly<br>recommended not to add `ecb-tag-visit-recenter" or<br>`ecb-tag-visit-recenter-top" after this this function!<br><br>This action is not recommended for sources of type TeX, texinfo etc. So you<br>should not add this action to the "default element of<br>`ecb-tag-visit-post-actions"!<br><br>Returns current point."',
           prototype : '(defun ecb-tag-visit-display-doc-start (tag)',
           parameter : 'tag',
@@ -5346,13 +5346,13 @@ const functions =
         },
         {
           function : 'ecb-tag-visit-function-member-p',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : 'fnc',
           lispcode : '(defun ecb-tag-visit-function-member-p (fnc)<br>  (or (member fnc (cdr (assoc <tick>default ecb-tag-visit-post-actions)))<br>      (member fnc (cdr (assoc major-mode ecb-tag-visit-post-actions)))))'
         },
         {
           function : 'ecb-tag-visit-highlight-tag-header',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Highlights line where `ecb-tag-visit-smart-tag-start" puts point for<br>TAG. Returns current point"',
           prototype : '(defun ecb-tag-visit-highlight-tag-header (tag)',
           parameter : 'tag',
@@ -5360,7 +5360,7 @@ const functions =
         },
         {
           function : 'ecb-tag-visit-narrow-tag',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Narrow the source buffer to TAG.<br>If an outside located documentation belongs to TAG and if this documentation<br>is located direct before TAG (e.g. Javadoc in Java) then this documentation<br>is included in the narrow.<br><br>Returns current point."',
           prototype : '(defun ecb-tag-visit-narrow-tag (tag)',
           parameter : 'tag',
@@ -5368,7 +5368,7 @@ const functions =
         },
         {
           function : 'ecb-tag-visit-recenter',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Recenter the source-buffer, so current line is in the middle of the window.<br>If this function is added to `ecb-tag-visit-post-actions" then it"s<br>recommended to add this function add the end of the action list for "default<br>or a `major-mode" and not to add the function `ecb-tag-visit-recenter-top"<br>too!<br><br>Returns current point."',
           prototype : '(defun ecb-tag-visit-recenter (tag)',
           parameter : 'tag',
@@ -5376,7 +5376,7 @@ const functions =
         },
         {
           function : 'ecb-tag-visit-recenter-top',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Recenter the source-buffer, so current line is in the middle of the window.<br>If this function is added to `ecb-tag-visit-post-actions" then it"s<br>recommended to add this function add the end of the action list for "default<br>or a `major-mode" and not to add the function `ecb-tag-visit-recenter" too!<br><br>Returns current point."',
           prototype : '(defun ecb-tag-visit-recenter-top (tag)',
           parameter : 'tag',
@@ -5384,7 +5384,7 @@ const functions =
         },
         {
           function : 'ecb-tag-visit-smart-tag-start',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Go to the real tag-name of TAG in a somehow smart way.<br>This is especially needed for languages like c++ where a often used style is<br>like:<br>    void<br>    ClassX::methodM(arg1...)<br>    {<br>      ...<br>    }<br>Here we want to jump to the line "ClassX::..." and not to line "void".<br><br>Returns point."',
           prototype : '(defun ecb-tag-visit-smart-tag-start (tag)',
           parameter : 'tag',
@@ -5392,19 +5392,19 @@ const functions =
         },
         {
           function : 'ecb-temp-buffer-show-function',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           parameter : 'buf',
           lispcode : '(defun ecb-temp-buffer-show-function (buf)<br>  ;; cause of running the hooks in <backtick>temp-buffer-show-hook<tick> we must use<br>  ;; save-selected-window (s.b.). But maybe <backtick>display-buffer<tick> calls<br>  ;; <backtick>ecb-toggle-compile-window<tick> which completely destroy all windows and<br>  ;; redraw the layout. This conflicts with the save-selected-window.<br>  ;; Therefore we toggle the compile-window before the save-selected-window!<br>  (when (ecb-compilation-buffer-p buf)<br>    (ecb-layout-debug-error <apo>ecb-temp-buffer-show-function: comp-buffer: %s<apo><br>                            buf)<br>    (when (and (equal (selected-frame) ecb-frame)<br>               (equal <tick>hidden (ecb-compile-window-state))<br>               ;; calling this from minibuffer (e.g. completions)<br>               ;; seems to cause problems<br>               (not (equal (minibuffer-window ecb-frame) (selected-window))))<br>      (ecb-layout-debug-error <apo>ecb-temp-buffer-show-function: comp-win will toggled<apo>)<br>      (ecb-toggle-compile-window 1)))<br>  (save-selected-window<br>    (save-excursion<br>      ;; this call to <backtick>display-buffer<tick> runs the adviced version of ECB which<br>      ;; always handles all the compile-window stuff if buf is a<br>      ;; compile-buffer in the sense of <backtick>ecb-compilation-buffer-p<tick>.<br>      (let ((win (display-buffer buf)))<br>        (ecb-layout-debug-error <apo>ecb-temp-buffer-show-function: win: %s, buf: %s,dedi:%s<apo><br>                                win buf (window-dedicated-p win))<br>        (select-window win)'
         },
         {
           function : 'ecb-test-fit-window-to-buffer',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           parameter : '',
           lispcode : '(defun ecb-test-fit-window-to-buffer ()<br>  (interactive)<br>  (ecb-fit-window-to-buffer<br>   (selected-window)<br>   (if (functionp temp-buffer-max-height)<br>       (funcall temp-buffer-max-height (current-buffer))<br>     temp-buffer-max-height)))'
         },
         {
           function : 'ecb-test-throw-on-input',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Test that throw on input will work."',
           prototype : '(defun ecb-test-throw-on-input ()',
           parameter : '',
@@ -5412,13 +5412,13 @@ const functions =
         },
         {
           function : 'ecb-test-with-original-advice-set',
-          filename : 'ecb/ecb-advice-test.el',
+          filename : 'ecb-advice-test.el',
           parameter : '',
           lispcode : '(defun ecb-test-with-original-advice-set ()<br>  (interactive)<br>  (let ((ecb-advices-debug-error t))<br>    (unwind-protect<br>        (progn<br>          (message <apo>!!! BEGIN ecb-test-with-original-advice-set !!!!<apo>)<br>          (ecb-enable-advices <tick>ecb-advice-test-set)<br>          (ecb-disable-advices <tick>ecb-always-disabled-advices)<br>          (ecb-advice-test-defun-1)<br>          (ecb-advice-test-defun-2)<br>          (ecb-advice-test-defun-3)<br>          (ecb-advice-test-defun-4)<br>          (ecb-with-original-adviced-function-set <tick>ecb-advice-test-set<br>            (ecb-advice-test-defun-1)<br>            (message <apo>LOC-0.1 ecb-test-with-original-advice-set<apo>)<br>            (ecb-with-ecb-advice <tick>ecb-advice-test-defun-3 <tick>around<br>              (ecb-advice-test-defun-1)<br>              (ecb-advice-test-defun-2)<br>              (ecb-advice-test-defun-3)<br>              (ecb-advice-test-defun-4)<br>              (ecb-with-ecb-advice <tick>ecb-advice-test-defun-3 <tick>around<br>                (ecb-advice-test-defun-3)<br>                (ecb-advice-test-defun-4)<br>                (ecb-with-ecb-advice <tick>ecb-advice-test-defun-3 <tick>after<br>                  (ecb-advice-test-defun-3)<br>                  (ecb-advice-test-defun-4)<br>                  (ecb-with-ecb-advice <tick>ecb-advice-test-defun-4 <tick>around<br>                    (ecb-advice-test-defun-3)<br>                    (ecb-advice-test-defun-4))<br>                  (message <apo>LOC-0.2 ecb-test-with-original-advice-set<apo>)<br>                  (ecb-advice-test-defun-3)<br>                  (ecb-advice-test-defun-4))<br>                (message <apo>LOC-0.3 ecb-test-with-original-advice-set<apo>)<br>                (ecb-advice-test-defun-3)<br>                (ecb-advice-test-defun-4))<br>              (message <apo>LOC-0.4 ecb-test-with-original-advice-set<apo>)<br>              (ecb-advice-test-defun-3)<br>              (ecb-advice-test-defun-4))<br>            (ecb-advice-test-defun-2)<br>            (ecb-advice-test-defun-3)<br>            (ecb-advice-test-defun-4)<br>            (message <apo>LOC-1 ecb-test-with-original-advice-set<apo>)<br>            (ecb-with-original-adviced-function-set <tick>ecb-advice-test-set<br>              (ecb-advice-test-defun-1)<br>              (ecb-advice-test-defun-2))<br>            (message <apo>LOC-2 ecb-test-with-original-advice-set<apo>)<br>            (ecb-advice-test-defun-1)<br>            (ecb-advice-test-defun-2)            <br>            (message <apo>LOC-3 ecb-test-with-original-advice-set<apo>)<br>            (ecb-with-original-adviced-function-set <tick>ecb-advice-test-set<br>              (ecb-advice-test-defun-1)<br>              (ecb-advice-test-defun-2)<br>              (message <apo>LOC-4 ecb-test-with-original-advice-set<apo>)<br>              (ecb-with-original-adviced-function-set <tick>ecb-advice-test-set<br>                (ecb-advice-test-defun-1)<br>                (ecb-advice-test-defun-2)))            <br>            (message <apo>LOC-5 ecb-test-with-original-advice-set<apo>)<br>            )<br>          (ecb-advice-test-defun-1)<br>          (ecb-advice-test-defun-2)<br>          (message <apo>LOC-6 ecb-test-with-original-advice-set<apo>))<br>      (ecb-disable-advices <tick>ecb-advice-test-set)<br>      (ecb-advice-test-defun-1)<br>      (ecb-advice-test-defun-2)<br>      (ecb-advice-test-defun-3)<br>      (ecb-advice-test-defun-4)<br>      (message <apo>!!! END ecb-test-with-original-advice-set !!!!<apo>))))<br><br><br>;; expected output:'
         },
         {
           function : 'ecb-time-diff',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the difference between time T1 and T2 in seconds (can be a<br>floating-point number). If optional arg ROUNDED is not nil the result is a<br>rounded integer."',
           prototype : '(defun ecb-time-diff (t1 t2 &optional rounded)',
           parameter : 't1 t2 &optional rounded',
@@ -5426,7 +5426,7 @@ const functions =
         },
         {
           function : 'ecb-time-less-p',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Say whether time T1 is less than time T2."',
           prototype : '(defun ecb-time-less-p (t1 t2)',
           parameter : 't1 t2',
@@ -5434,7 +5434,7 @@ const functions =
         },
         {
           function : 'ecb-time-to-seconds',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Convert TIME to a floating point number."',
           prototype : '(defun ecb-time-to-seconds (time)',
           parameter : 'time',
@@ -5442,13 +5442,13 @@ const functions =
         },
         {
           function : 'ecb-tod-move-cursor',
-          filename : 'ecb/ecb-tod.el',
+          filename : 'ecb-tod.el',
           parameter : 'cursor',
           lispcode : '(defun ecb-tod-move-cursor (cursor)<br>  (with-temp-file (expand-file-name ecb-tip-of-the-day-file)<br>    (erase-buffer)<br>    (insert (format <apo>(defvar ecb-tod-cursor 0)\n(setq ecb-tod-cursor %d)<apo><br>                    (if (< (1+ cursor) (length ecb-tod-tip-list))<br>                        (1+ cursor)<br>                      0)))))'
         },
         {
           function : 'ecb-toggle-auto-expand-tag-tree',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Toggle auto expanding of the ECB-methods-buffer.<br>With prefix argument ARG, switch on if positive, otherwise switch off. If the<br>effect is that auto-expanding is switched off then the current value of<br>`ecb-auto-expand-tag-tree" is saved so it can be used for the next switch on<br>by this command."',
           prototype : '(defun ecb-toggle-auto-expand-tag-tree (&optional arg)',
           parameter : '&optional arg',
@@ -5456,7 +5456,7 @@ const functions =
         },
         {
           function : 'ecb-toggle-compile-window',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Toggle the visibility of the compile-window of ECB.<br>With prefix argument ARG, make visible if positive, otherwise invisible. The<br>height of the compile-window is always the current value of<br>`ecb-compile-window-height"! If called and `ecb-compile-window-height" is nil<br>then ECB asks for the height of the compile-window, sets this height as new<br>value of `ecb-compile-window-height" and displays the compile-window (so if<br>you have called this command by mistake and you do not want a compile-window<br>you have to quit with `C-g")."',
           prototype : '(defun ecb-toggle-compile-window (&optional arg)',
           parameter : '&optional arg',
@@ -5464,7 +5464,7 @@ const functions =
         },
         {
           function : 'ecb-toggle-compile-window-height',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Toggle whether the `ecb-compile-window" is enlarged or not.<br>If ARG > 0 then shrink or enlarge the the compile-window according to the<br>value of `ecb-enlarged-compilation-window-max-height". But never shrink below<br>the value of `ecb-compile-window-height". If ARG <= 0 then shrink<br>`ecb-compile-window" to `ecb-compile-window-height" and if ARG is nil then<br>toggle the enlarge-state. Returns the new height of the compile-window or nil<br>if no compile-window is visible."',
           prototype : '(defun ecb-toggle-compile-window-height (&optional arg)',
           parameter : '&optional arg',
@@ -5472,7 +5472,7 @@ const functions =
         },
         {
           function : 'ecb-toggle-do-not-leave-window-after-select',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Toggles if a node-selection in a tree-buffer leaves the tree-window.<br>See also the option `ecb-tree-do-not-leave-window-after-select"."',
           prototype : '(defun ecb-toggle-do-not-leave-window-after-select ()',
           parameter : '',
@@ -5480,7 +5480,7 @@ const functions =
         },
         {
           function : 'ecb-toggle-ecb-windows',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Toggle visibility of the ECB-windows.<br>With prefix argument ARG, make visible if positive, otherwise invisible.<br>This has nothing to do with (de)activating ECB but only affects the<br>visibility of the ECB windows. ECB minor mode remains active!"',
           prototype : '(defun ecb-toggle-ecb-windows (&optional arg)',
           parameter : '&optional arg',
@@ -5488,7 +5488,7 @@ const functions =
         },
         {
           function : 'ecb-toggle-ecb-windows-new',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Toggle visibility of the ECB-windows.<br>For layout-type left-right the toggle sequence depends on the<br>value of the option `ecb-left-right-layout-hide-sequence". For<br>all other layout types toggling follows the intuitive way. With<br>prefix argument ARG you will be asked which ecb-windows to hide<br>if the current layout is of type left-right.<br><br>This has nothing to do with (de)activating ECB but only affects the<br>visibility of the ECB windows. ECB minor mode remains active!"',
           prototype : '(defun ecb-toggle-ecb-windows-new (&optional arg)',
           parameter : '&optional arg',
@@ -5496,7 +5496,7 @@ const functions =
         },
         {
           function : 'ecb-toggle-layout',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Toggles between the layouts defined in `ecb-toggle-layout-sequence".<br>See also option `ecb-show-sources-in-directories-buffer".<br><br>If optional argument LAST-ONE is not nil (e.g. called with a prefix-arg) then<br>always the last selected layout was choosen regardless of the setting in<br>`ecb-toggle-layout-sequence". The last selected layout is always that layout<br>which was current direct before the most recent layout-switch. So now a user<br>can switch to another layout via `ecb-change-layout" and always come back to<br>his previous layout via [C-u] `ecb-toggle-layout"."',
           prototype : '(defun ecb-toggle-layout (&optional last-one)',
           parameter : '&optional last-one',
@@ -5504,7 +5504,7 @@ const functions =
         },
         {
           function : 'ecb-toggle-maximize-ecb-window',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Toggle maximizing the special ecb-window of ECB-BUFFER-NAME.<br>If there is a maximizied ecb-window then it will be "minimized", i.e. all<br>ecb-windows of current layout will be displayed. If there is no ecb-window<br>maximized then that of ECB-BUFFER-NAME will be maximized. If ECB-BUFFER-NAME<br>is nil then the current buffer-name is used. Nothing will be done if the<br>caller tries to maximize a non-ecb-window."',
           prototype : '(defun ecb-toggle-maximize-ecb-window (&optional ecb-buffer-name)',
           parameter : '&optional ecb-buffer-name',
@@ -5512,7 +5512,7 @@ const functions =
         },
         {
           function : 'ecb-toggle-maximize-ecb-window-with-mouse',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Mouse-wrapper for `ecb-toggle-maximize-ecb-window"."',
           prototype : '(defun ecb-toggle-maximize-ecb-window-with-mouse ()',
           parameter : '',
@@ -5520,7 +5520,7 @@ const functions =
         },
         {
           function : 'ecb-toggle-scroll-other-window-scrolls-compile',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Toggle the state of `ecb-scroll-other-window-scrolls-compile-window".<br>With prefix argument ARG, set it to t, otherwise to nil. For all details about<br>the scroll-behavior of `scroll-other-window" see the advice documentation of<br>`other-window-for-scrolling"."',
           prototype : '(defun ecb-toggle-scroll-other-window-scrolls-compile (&optional arg)',
           parameter : '&optional arg',
@@ -5528,19 +5528,19 @@ const functions =
         },
         {
           function : 'ecb-tree-buffer-callbacks-add',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           parameter : 'type buffer-name-symbol callback',
           lispcode : '(defun ecb-tree-buffer-callbacks-add (type buffer-name-symbol callback)<br>  (unless (member type <tick>(select expand))<br>    (error <apo>ECB %s tries to add tree-buffer-callback of unknown type %s<apo><br>           ecb-version type))<br>  ;; TODO: Klaus Berndl <klaus.berndl@sdm.de>: maybe we should add a check if<br>  ;; the buffer-name-symbol is already registered with defecb-tree-buffer-creator<br>  (let ((type-elem (ecb-find-assoc type ecb-tree-buffer-callbacks)))<br>    (unless (ecb-find-assoc buffer-name-symbol type-elem)<br>      (setcdr type-elem (cons (cons buffer-name-symbol callback)'
         },
         {
           function : 'ecb-tree-buffer-callbacks-alist-of-type',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           parameter : 'type',
           lispcode : '(defun ecb-tree-buffer-callbacks-alist-of-type (type)<br>  (unless (member type <tick>(select expand))<br>    (error <apo>ECB %s tries to get tree-buffer-callback of unknown type %s<apo><br>           ecb-version type))<br>  (cdr (assoc type ecb-tree-buffer-callbacks)))<br>'
         },
         {
           function : 'ecb-tree-buffer-creators-init',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Initialize `ecb-tree-buffer-creators".<br>Removes all creators and set it to nil."',
           prototype : '(defun ecb-tree-buffer-creators-init ()',
           parameter : '',
@@ -5548,7 +5548,7 @@ const functions =
         },
         {
           function : 'ecb-tree-buffer-creators-register',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Register the creator-function FN for the tree-buffer NAME-SYMBOL."',
           prototype : '(defun ecb-tree-buffer-creators-register (name-symbol fn)',
           parameter : 'name-symbol fn',
@@ -5556,7 +5556,7 @@ const functions =
         },
         {
           function : 'ecb-tree-buffer-creators-run',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "Run all currently registered creator-functions."',
           prototype : '(defun ecb-tree-buffer-creators-run ()',
           parameter : '',
@@ -5564,7 +5564,7 @@ const functions =
         },
         {
           function : 'ecb-tree-buffer-node-collapsed-callback',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "This is the callback-function ecb.el gives to every tree-buffer to call<br>when a node has been collapsed."',
           prototype : '(defun ecb-tree-buffer-node-collapsed-callback (node                                                mouse-button                                                shift-pressed                                                control-pressed                                                meta-pressed                                                tree-buffer-name)',
           parameter : 'node mouse-button shift-pressed control-pressed meta-pressed tree-buffer-name',
@@ -5572,7 +5572,7 @@ const functions =
         },
         {
           function : 'ecb-tree-buffer-node-expand-callback',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "This is the callback-function ecb.el gives to every tree-buffer to call<br>when a node should be expanded. This function does nothing if the click<br>combination is invalid (see `ecb-interpret-mouse-click")."',
           prototype : '(defun ecb-tree-buffer-node-expand-callback (node					     mouse-button					     shift-pressed					     control-pressed                                             meta-pressed					     tree-buffer-name)',
           parameter : 'node mouse-button shift-pressed control-pressed meta-pressed tree-buffer-name',
@@ -5580,7 +5580,7 @@ const functions =
         },
         {
           function : 'ecb-tree-buffer-node-select-callback',
-          filename : 'ecb/ecb-common-browser.el',
+          filename : 'ecb-common-browser.el',
           docstring : '  "This is the callback-function ecb.el gives to every tree-buffer to call<br>when a node has been selected. This function does nothing if the click<br>combination is invalid (see `ecb-interpret-mouse-click"."',
           prototype : '(defun ecb-tree-buffer-node-select-callback (node					     mouse-button					     shift-pressed					     control-pressed                                             meta-pressed					     tree-buffer-name)',
           parameter : 'node mouse-button shift-pressed control-pressed meta-pressed tree-buffer-name',
@@ -5588,7 +5588,7 @@ const functions =
         },
         {
           function : 'ecb-tree-node-add-files',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "For every file in FILES add a child-node to NODE."',
           prototype : '(defun ecb-tree-node-add-files  (node path files type include-extension old-children &optional not-expandable)',
           parameter : 'node path files type include-extension old-children &optional not-expandable',
@@ -5596,7 +5596,7 @@ const functions =
         },
         {
           function : 'ecb-trim',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Applies `ecb-right-trim" and `ecb-left-trim" to STR."',
           prototype : '(defun ecb-trim (str)',
           parameter : 'str',
@@ -5604,7 +5604,7 @@ const functions =
         },
         {
           function : 'ecb-try-highlight-tag',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "First we try to expand only the absolute needed parts of the tree-buffer to<br>highlight the tag HIGHLIGHT-TAG - this means we recursively go upstairs the<br>ladder of types the current tag belongs to. If this has still no success then<br>we return nil otherwise true (the HIGHLIGHT-TAG is highlighted).<br><br>If called from program: HIGHLIGHT-TAG is the tag to highlight, CURR-TAG has to<br>be equal to HIGHLIGHT-TAG and TABLE must be the current tag-table of the<br>current buffer."',
           prototype : '(defun ecb-try-highlight-tag (highlight-tag curr-tag table)',
           parameter : 'highlight-tag curr-tag table',
@@ -5612,7 +5612,7 @@ const functions =
         },
         {
           function : 'ecb-type-tag-expansion',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Return the default expansion-state of TYPE-SPECIFIER for current major-mode<br>as specified in `ecb-type-tag-expansion""',
           prototype : '(defun ecb-type-tag-expansion (type-specifier)',
           parameter : 'type-specifier',
@@ -5620,7 +5620,7 @@ const functions =
         },
         {
           function : 'ecb-undo-maximize-ecb-buffer',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Undo the maximizing of an ecb-buffer.<br>If optional arg PRESERVE-SELECTED-WINDOW is not nil then the currently<br>selected window does not change. Otherwise after displaying all ecb-windows the<br>current edit-window is selected."',
           prototype : '(defun ecb-undo-maximize-ecb-buffer (&optional preserve-selected-window)',
           parameter : '&optional preserve-selected-window',
@@ -5628,13 +5628,13 @@ const functions =
         },
         {
           function : 'ecb-unhighlight-tag-header',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           parameter : '',
           lispcode : '(defun ecb-unhighlight-tag-header ()<br>  (let ((key (ecb-event-to-key last-input-event)))<br>    (when (not (or (and (equal key <tick>mouse-release)<br>                        (not ecb-unhighlight-hook-called))<br>                   (equal key <tick>mouse-movement)))<br>      (ecb-overlay-delete ecb-method-overlay)<br>      (remove-hook <tick>pre-command-hook <tick>ecb-unhighlight-tag-header)))<br>  (setq ecb-unhighlight-hook-called t))<br>'
         },
         {
           function : 'ecb-update-after-partial-reparse',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Updates the method buffer and all internal ECB-caches after a partial<br>semantic-reparse. This function is added to the hook<br>`semantic-after-partial-cache-change-hook".<br><br>If `ecb-partial-reparse-always-full-fetch" is not nil then always a full fetch<br>for tags is performed; this is just a fallback if there are problems with the<br>partial reparse and update-mechanism."',
           prototype : '(defun ecb-update-after-partial-reparse (updated-tags)',
           parameter : 'updated-tags',
@@ -5642,7 +5642,7 @@ const functions =
         },
         {
           function : 'ecb-update-autoloads',
-          filename : 'ecb/ecb-autogen.el',
+          filename : 'ecb-autogen.el',
           docstring : '  "Update ecb autoloads from sources.<br>Autoloads file name is defined in variable `ecb-autogen-file"."',
           prototype : '(defun ecb-update-autoloads ()',
           parameter : '',
@@ -5650,7 +5650,7 @@ const functions =
         },
         {
           function : 'ecb-update-directories-buffer',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Updates the ECB directories buffer."',
           prototype : '(defun ecb-update-directories-buffer ()',
           parameter : '',
@@ -5658,7 +5658,7 @@ const functions =
         },
         {
           function : 'ecb-update-directory-node',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Updates the directory node NODE and add all subnodes if any."',
           prototype : '(defun ecb-update-directory-node (node)',
           parameter : 'node',
@@ -5666,7 +5666,7 @@ const functions =
         },
         {
           function : 'ecb-update-methods-after-saving',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Updates the methods-buffer after saving if this option is turned on and if<br>current-buffer is saved."',
           prototype : '(defun ecb-update-methods-after-saving ()',
           parameter : '',
@@ -5674,7 +5674,7 @@ const functions =
         },
         {
           function : 'ecb-update-methods-buffer--internal',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Updates the methods buffer with the current buffer. The only thing what<br>must be done is to start the toplevel parsing of semantic, because the rest is<br>done by `ecb-rebuild-methods-buffer-with-tagcache" because this function is in<br>the `semantic-after-toplevel-cache-change-hook".<br>If optional argument SCROLL-TO-TOP is non nil then the method-buffer is<br>displayed with window-start and point at beginning of buffer.<br><br>If second optional argument REBUILD-NON-SEMANTIC is not nil then non-semantic<br>sources are forced to be rescanned and reparsed by<br>`ecb-rebuild-methods-buffer-with-tagcache". The function<br>`ecb-rebuild-methods-buffer-for-non-semantic" is the only one settings this<br>argument to not nil!<br><br>If third optional arg FULL-SEMANTIC is not nil then for semantic-sources an<br>immediate parse-run is triggered - not an idle one! Has no effect for<br>non-semantic-sources.<br><br>If fourth optional argument INVISIBLE-SOURCEBUFFER-ALLOWED is not NIL then we<br>drive `ecb-rebuild-methods-buffer-with-tagcache" so it does not prevent<br>rebuilding a not visible source-buffer."',
           prototype : '(defun ecb-update-methods-buffer--internal (&optional scroll-to-top                                                      rebuild-non-semantic                                                      full-semantic                                                      invisible-sourcebuffer-allowed)',
           parameter : '&optional scroll-to-top rebuild-non-semantic full-semantic invisible-sourcebuffer-allowed',
@@ -5682,7 +5682,7 @@ const functions =
         },
         {
           function : 'ecb-update-sources-buffer',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Updates the sources-buffer with all sources contained in<br>`ecb-path-selected-directory" - the contents are either newly computed or come<br>from the `ecb-sources-cache". DIR-BEFORE-UPDATE is the directory which was<br>selected before this update."',
           prototype : '(defun ecb-update-sources-buffer (dir-before-update)',
           parameter : 'dir-before-update',
@@ -5690,7 +5690,7 @@ const functions =
         },
         {
           function : 'ecb-update-tag-node',
-          filename : 'ecb/ecb-method-browser.el',
+          filename : 'ecb-method-browser.el',
           docstring : '  "Updates a node containing a tag.<br>This function MUST be called with the source-buffer as current buffer!"',
           prototype : '(defun ecb-update-tag-node (tag node &optional parent-tag no-bucketize)',
           parameter : 'tag node &optional parent-tag no-bucketize',
@@ -5698,79 +5698,79 @@ const functions =
         },
         {
           function : 'ecb-upgrade-alway-operate-in-edit-window',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-alway-operate-in-edit-window (old-val)<br>  (let ((l (copy-tree old-val)))<br>    (setq l (delete <tick>switch-to-buffer-other-window l))<br>    l))'
         },
         {
           function : 'ecb-upgrade-auto-expand-tag-tree-collapse-other',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-auto-expand-tag-tree-collapse-other (old-val)<br>  (if old-val<br>      <tick>only-if-on-tag<br>    nil))'
         },
         {
           function : 'ecb-upgrade-cache-directory-contents',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-cache-directory-contents (old-val)<br>  (mapcar (function (lambda (elem)<br>                      (cons (nth 0 elem) (nth 1 elem))))<br>          old-val))'
         },
         {
           function : 'ecb-upgrade-compile-window-temporally-enlarge',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-compile-window-temporally-enlarge (old-val)<br>  (cl-case old-val<br>    ((t after-compilation) <tick>after-display)<br>    ((nil) nil)<br>    ((after-selection both) old-val)<br>    (otherwise <tick>ecb-no-upgrade-conversion)))'
         },
         {
           function : 'ecb-upgrade-directories-menu-ext',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-directories-menu-ext (old-val)<br>  (append (ecb-upgrade-menu-extension old-val)<br>          (ecb-option-get-value <tick>ecb-directories-menu-user-extension<br>                                <tick>standard-value)))'
         },
         {
           function : 'ecb-upgrade-exclude-parents-regexp',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-exclude-parents-regexp (old-val)<br>  (if old-val (list old-val)))'
         },
         {
           function : 'ecb-upgrade-excluded-directories-regexp',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-excluded-directories-regexp (old-val)<br>  (list old-val))'
         },
         {
           function : 'ecb-upgrade-history-menu-ext',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-history-menu-ext (old-val)<br>  (append (ecb-upgrade-menu-extension old-val)<br>          (ecb-option-get-value <tick>ecb-history-menu-user-extension<br>                                <tick>standard-value)))'
         },
         {
           function : 'ecb-upgrade-layout-nr',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-layout-nr (old-val)<br>  (let ((name (ecb-upgrade-layout-nr2name old-val)))<br>    (if (stringp name)<br>        name<br>      <tick>ecb-no-upgrade-conversion)))'
         },
         {
           function : 'ecb-upgrade-layout-nr2name',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'number',
           lispcode : '(defun ecb-upgrade-layout-nr2name (number)<br>  (let ((number-name-alist <tick>((nil . <apo>left8<apo>)<br>                             (0 . <apo>left1<apo>)<br>                             (1 . <apo>left2<apo>)<br>                             (2 . <apo>left3<apo>)<br>                             (3 . <apo>left4<apo>)<br>                             (4 . <apo>left5<apo>)<br>                             (5 . <apo>right1<apo>)<br>                             (6 . <apo>left6<apo>)<br>                             (7 . <apo>top1<apo>)<br>                             (8 . <apo>left7<apo>)<br>                             (9 . <apo>left8<apo>)<br>                             (10 . <apo>top2<apo>)<br>                             (11 . <apo>left9<apo>)<br>                             (12 . <apo>left10<apo>)<br>                             (13 . <apo>left11<apo>)<br>                             (14 . <apo>left12<apo>)<br>                             (15 . <apo>left13<apo>)<br>                             (16 . <apo>left14<apo>)<br>                             (17 . <apo>left15<apo>)<br>                             (18 . <apo>leftright1<apo>)<br>                             (19 . <apo>leftright2<apo>)<br>                             (20 . <apo>speedbar1<apo>))))<br>    (cdr (assoc number number-name-alist))))'
         },
         {
           function : 'ecb-upgrade-layout-window-sizes',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-layout-window-sizes (old-val)<br>  (ecb-option-get-value <tick>ecb-layout-window-sizes <tick>standard-value))'
         },
         {
           function : 'ecb-upgrade-major-modes-activate',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-major-modes-activate (old-val)<br>  (if (not (listp old-val))<br>      old-val<br>    (let ((l (copy-tree old-val)))<br>      (dolist (elem l)<br>        (if (and (consp elem)<br>                 (integerp (cdr elem)))<br>            (setcdr elem (ecb-upgrade-layout-nr2name (cdr elem)))))<br>      l)))'
         },
         {
           function : 'ecb-upgrade-make-copy-of-custom-file',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Make a backup of the file returned by `ecb-custom-file" in the same directory."',
           prototype : '(defun ecb-upgrade-make-copy-of-custom-file ()',
           parameter : '',
@@ -5778,31 +5778,31 @@ const functions =
         },
         {
           function : 'ecb-upgrade-menu-extension',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-list',
           lispcode : '(defun ecb-upgrade-menu-extension (old-list)<br>  (mapcar (function (lambda (i)<br>                      (reverse i)))<br>          old-list))'
         },
         {
           function : 'ecb-upgrade-methods-menu-ext',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-methods-menu-ext (old-val)<br>  (append (ecb-upgrade-menu-extension old-val)<br>          (ecb-option-get-value <tick>ecb-methods-menu-user-extension<br>                                <tick>standard-value)))'
         },
         {
           function : 'ecb-upgrade-mode-line-data',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-mode-line-data (old-val)<br>  (list (cons <tick>ecb-directories-buffer-name<br>              (if (equal (nth 0 old-val) <tick>selected)<br>                  <tick>sel-dir<br>                (nth 0 old-val)))<br>        (cons <tick>ecb-sources-buffer-name<br>              (if (equal (nth 1 old-val) <tick>selected)<br>                  <tick>sel-dir<br>                (nth 1 old-val)))<br>        (cons <tick>ecb-methods-buffer-name<br>              (if (equal (nth 2 old-val) <tick>selected)<br>                  <tick>sel-source<br>                (nth 2 old-val)))<br>        (cons <tick>ecb-history-buffer-name<br>              (nth 3 old-val))))'
         },
         {
           function : 'ecb-upgrade-mode-line-prefixes',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-mode-line-prefixes (old-val)<br>  (list (cons <tick>ecb-directories-buffer-name<br>              (nth 0 old-val))<br>        (cons <tick>ecb-sources-buffer-name<br>              (nth 1 old-val))<br>        (cons <tick>ecb-methods-buffer-name<br>              (nth 2 old-val))<br>        (cons <tick>ecb-history-buffer-name<br>              (nth 3 old-val))))'
         },
         {
           function : 'ecb-upgrade-not-compatible-options',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Upgrade all not anymore compatible options of `ecb-not-compatible-options".<br>If such an option is contained in `ecb-upgradable-option-alist" then try to<br>perform a special upgrade with `ecb-option-upgrade". If no special upgrade is<br>done then the option is reset to the default-value of current ECB-version."',
           prototype : '(defun ecb-upgrade-not-compatible-options ()',
           parameter : '',
@@ -5810,7 +5810,7 @@ const functions =
         },
         {
           function : 'ecb-upgrade-options',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Check for all ECB-options if the current value is compatible to the type.<br>If not upgrade it to the new type or reset it to the default-value of current<br>ECB. Try also to upgrade renamed options. Displays all upgraded or reset<br>options with their old (before the upgrade/reset) and new values."',
           prototype : '(defun ecb-upgrade-options ()',
           parameter : '',
@@ -5818,31 +5818,31 @@ const functions =
         },
         {
           function : 'ecb-upgrade-other-window-jump-behavior',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-other-window-jump-behavior (old-val)<br>  (if (equal old-val <tick>all)<br>      <tick>all<br>    (ecb-option-get-value <tick>ecb-other-window-behavior<br>                          <tick>standard-value)))'
         },
         {
           function : 'ecb-upgrade-post-process-semantic-taglist',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-post-process-semantic-taglist (old-val)<br>  (let ((l (copy-tree old-val)))<br>    (dolist (elem l)<br>      (if (cdr elem)<br>          (setcdr elem (list (cdr elem)))))<br>    l))'
         },
         {
           function : 'ecb-upgrade-post-process-semantic-tokenlist',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-post-process-semantic-tokenlist (old-val)<br>  (let ((val-copy (copy-tree old-val))<br>        (mapping-list<br>         <tick>((ecb-group-function-tokens-with-parents . ecb-group-function-tags-with-parents))))<br>    (mapc (function (lambda (e)<br>                      (if (assoc (cdr e) mapping-list)<br>                          (setcdr e (cdr (assoc (cdr e) mapping-list))))))<br>          val-copy)<br>    val-copy))'
         },
         {
           function : 'ecb-upgrade-prescan-directories-for-emptyness',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-prescan-directories-for-emptyness (old-val)<br>  (if old-val <tick>unless-remote nil))'
         },
         {
           function : 'ecb-upgrade-renamed-options',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           docstring : '  "Upgrade all renamed options of `ecb-upgradable-option-alist" and store<br>every option in `ecb-renamed-options" if at least an upgrade was tried (see<br>`ecb-option-upgrade").<br><br>Note: This function upgrades only the renamed but not the incompatible options<br>(i.e. only the type but not the name of the option has changed) of<br>`ecb-upgradable-option-alist" because the latter ones will be upgraded by<br>`ecb-upgrade-not-compatible-options"!"',
           prototype : '(defun ecb-upgrade-renamed-options ()',
           parameter : '',
@@ -5850,109 +5850,109 @@ const functions =
         },
         {
           function : 'ecb-upgrade-show-tags',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-show-tags (old-val)<br>  (ecb-option-get-value <tick>ecb-show-tags<br>                        <tick>standard-value))'
         },
         {
           function : 'ecb-upgrade-sort-history-items',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-sort-history-items (old-val)<br>  (if old-val ecb-sources-sort-method))'
         },
         {
           function : 'ecb-upgrade-source-file-regexps',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-source-file-regexps (old-val)<br>  (let ((l (copy-tree old-val)))<br>    (dolist (elem l)<br>      (setcdr elem (list (list (cadr elem)) (list (caddr elem)))))<br>    l))'
         },
         {
           function : 'ecb-upgrade-sources-menu-ext',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-sources-menu-ext (old-val)<br>  (append (ecb-upgrade-menu-extension old-val)<br>          (ecb-option-get-value <tick>ecb-sources-menu-user-extension<br>                                <tick>standard-value)))'
         },
         {
           function : 'ecb-upgrade-sources-perform-read-only-check',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-sources-perform-read-only-check (old-val)<br>  (if old-val <tick>unless-remote nil))'
         },
         {
           function : 'ecb-upgrade-split-edit-window',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-split-edit-window (old-val)<br>  (if (equal old-val t)<br>      <tick>before-activation<br>    old-val))'
         },
         {
           function : 'ecb-upgrade-toggle-layout-sequence',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-toggle-layout-sequence (old-val)<br>  (mapcar (function (lambda (elem)<br>                      (ecb-upgrade-layout-nr2name elem)))<br>          old-val))'
         },
         {
           function : 'ecb-upgrade-token-display-function',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-token-display-function (old-val)<br>  (let ((l (copy-tree old-val))<br>        (mapping-list<br>         <tick>((semantic-name-nonterminal                  . ecb--semantic-format-tag-name)<br>           (semantic-abbreviate-nonterminal            . ecb--semantic-format-tag-abbreviate)<br>           (semantic-summarize-nonterminal             . ecb--semantic-format-tag-summarize)<br>           (semantic-prototype-nonterminal             . ecb--semantic-format-tag-prototype)<br>           (semantic-concise-prototype-nonterminal     . ecb--semantic-format-tag-concise-prototype)<br>           (semantic-uml-abbreviate-nonterminal        . ecb--semantic-format-tag-uml-abbreviate)<br>           (semantic-uml-prototype-nonterminal         . ecb--semantic-format-tag-uml-prototype)<br>           (semantic-uml-concise-prototype-nonterminal . ecb--semantic-format-tag-uml-concise-prototype)<br>           (semantic-prin1-nonterminal                 . ecb--semantic-format-tag-prin1)<br>           (ecb-name-nonterminal                  . ecb-format-tag-name)<br>           (ecb-abbreviate-nonterminal            . ecb-format-tag-abbreviate)<br>           (ecb-summarize-nonterminal             . ecb-format-tag-summarize)<br>           (ecb-prototype-nonterminal             . ecb-format-tag-prototype)<br>           (ecb-concise-prototype-nonterminal     . ecb-format-tag-concise-prototype)<br>           (ecb-uml-abbreviate-nonterminal        . ecb-format-tag-uml-abbreviate)<br>           (ecb-uml-prototype-nonterminal         . ecb-format-tag-uml-prototype)<br>           (ecb-uml-concise-prototype-nonterminal . ecb-format-tag-uml-concise-prototype)<br>           (ecb-prin1-nonterminal                 . ecb-format-tag-prin1))))<br>    (mapc (function (lambda (e)<br>                      (if (assoc (cdr e) mapping-list)<br>                          (setcdr e (cdr (assoc (cdr e) mapping-list))))))<br>          l)<br>    l))<br>'
         },
         {
           function : 'ecb-upgrade-token-header-face',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-token-header-face (old-val)<br>  (if (equal old-val <tick>ecb-token-header-face)<br>      <tick>ecb-tag-header-face<br>    old-val))'
         },
         {
           function : 'ecb-upgrade-token-visit-post-actions',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-token-visit-post-actions (old-val)<br>  (let ((val-copy (copy-tree old-val))<br>        (mapping-list<br>         <tick>((ecb-token-visit-highlight-token-header . ecb-tag-visit-highlight-tag-header)<br>           (ecb-token-visit-smart-token-start . ecb-tag-visit-smart-tag-start)<br>           (ecb-token-visit-recenter . ecb-tag-visit-recenter)<br>           (ecb-token-visit-recenter-top . ecb-tag-visit-recenter-top)<br>           (ecb-token-visit-goto-doc-start . ecb-tag-visit-goto-doc-start)<br>           (ecb-token-visit-narrow-token . ecb-tag-visit-narrow-tag))))<br>    (mapc (function (lambda (e)<br>                      (dotimes (i (length (cdr e)))<br>                        (if (assoc (nth i (cdr e)) mapping-list)<br>                            (ecb-set-elt (cdr e) i<br>                                         (cdr (assoc (nth i (cdr e))<br>                                                     mapping-list)))))))<br>          val-copy)<br>    val-copy))'
         },
         {
           function : 'ecb-upgrade-tree-RET-selects-edit-window',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-tree-RET-selects-edit-window (old-val)<br>  (delq nil (mapcar (lambda (b)<br>                      (and (not (ecb-member-of-symbol/value-list<br>                                 (symbol-value b)<br>                                 old-val))<br>                           b))<br>                    <tick>(ecb-directories-buffer-name<br>                      ecb-sources-buffer-name<br>                      ecb-methods-buffer-name<br>                      ecb-history-buffer-name<br>                      ecb-analyse-buffer-name))))<br><br>'
         },
         {
           function : 'ecb-upgrade-tree-image-icons-directories',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-tree-image-icons-directories (old-val)<br>  (let ((l (copy-tree old-val)))<br>    (cons (nth 0 l)<br>          (delq nil (list (if (nth 1 l)<br>                              (cons <tick>ecb-directories-buffer-name<br>                                    (nth 1 l)))<br>                          (if (nth 2 l)<br>                              (cons <tick>ecb-sources-buffer-name<br>                                    (nth 2 l)))<br>                          (if (nth 3 l)<br>                              (cons <tick>ecb-methods-buffer-name<br>                                    (nth 3 l)))<br>                          (if (nth 4 l)<br>                              (cons <tick>ecb-history-buffer-name<br>                                    (nth 4 l))))))))'
         },
         {
           function : 'ecb-upgrade-truncate-lines',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-truncate-lines (old-val)<br>  (cond ((equal t old-val)<br>         <tick>(ecb-directories-buffer-name<br>           ecb-sources-buffer-name<br>           ecb-methods-buffer-name<br>           ecb-history-buffer-name))<br>        ((equal nil old-val)<br>         nil)<br>        ((listp old-val)<br>         (let ((new-list nil))<br>           (if (nth 0 old-val)<br>               (setq new-list (cons <tick>ecb-directories-buffer-name new-list)))<br>           (if (nth 1 old-val)<br>               (setq new-list (cons <tick>ecb-sources-buffer-name new-list)))<br>           (if (nth 2 old-val)<br>               (setq new-list (cons <tick>ecb-methods-buffer-name new-list)))<br>           (if (nth 3 old-val)<br>               (setq new-list (cons <tick>ecb-history-buffer-name new-list)))<br>           new-list))<br>        (t<br>         <tick>(ecb-directories-buffer-name<br>           ecb-sources-buffer-name<br>           ecb-methods-buffer-name<br>           ecb-history-buffer-name))))'
         },
         {
           function : 'ecb-upgrade-type-token-display',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-type-token-display (old-val)<br>  (let ((val-copy (copy-tree old-val))<br>        (mapping-list<br>         <tick>((ecb-type-token-class-face . ecb-type-tag-class-face)<br>           (ecb-type-token-interface-face . ecb-type-tag-interface-face)<br>           (ecb-type-token-struct-face . ecb-type-tag-struct-face)<br>           (ecb-type-token-typedef-face . ecb-type-tag-typedef-face)<br>           (ecb-type-token-enum-face . ecb-type-tag-enum-face)<br>           (ecb-type-token-group-face . ecb-type-tag-group-face))))<br>    (mapc (function (lambda (e)<br>                      (dolist (l (cdr e))<br>                        (if (assoc (nth 2 l) mapping-list)<br>                            (ecb-set-elt l 2<br>                                         (cdr (assoc (nth 2 l) mapping-list)))))))<br>          val-copy)<br>    val-copy))'
         },
         {
           function : 'ecb-upgrade-use-speedbar-for-directories',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-use-speedbar-for-directories (old-val)<br>  (if old-val<br>      <tick>dir))'
         },
         {
           function : 'ecb-upgrade-vc-enable-support',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-vc-enable-support (old-val)<br>  (if old-val <tick>unless-remote nil))'
         },
         {
           function : 'ecb-upgrade-window-sync',
-          filename : 'ecb/ecb-upgrade.el',
+          filename : 'ecb-upgrade.el',
           parameter : 'old-val',
           lispcode : '(defun ecb-upgrade-window-sync (old-val)<br>  (if (equal old-val t)<br>      (ecb-option-get-value <tick>ecb-window-sync <tick>standard-value)<br>    nil))'
         },
         {
           function : 'ecb-values-of-symbol/value-list',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return a list of values build from the members of LIST.<br>The result-list is a list which is build from LIST by using the<br>symbol-value if a list-member is a symbol and otherwise the<br>list-member itself.<br><br>If ELEM-ACCESSOR is a function then it is used to get that part of an elem<br>of LIST for which the rule above should be applied."',
           prototype : '(defun ecb-values-of-symbol/value-list (list &optional elem-accessor)',
           parameter : 'list &optional elem-accessor',
@@ -5960,7 +5960,7 @@ const functions =
         },
         {
           function : 'ecb-vc-after-revert-hook',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Ensures that the ECB-cache is reset and the entry for the currently<br>reverted file-buffer is cleared."',
           prototype : '(defun ecb-vc-after-revert-hook ()',
           parameter : '',
@@ -5968,19 +5968,19 @@ const functions =
         },
         {
           function : 'ecb-vc-cache-add-dir',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : 'dir backend',
           lispcode : '(defun ecb-vc-cache-add-dir (dir backend)<br>  (ecb-multicache-put-value <tick>ecb-filename-cache dir <tick>VC backend)<br>  backend)'
         },
         {
           function : 'ecb-vc-cache-add-file',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : 'file state checked-buffer-names',
           lispcode : '(defun ecb-vc-cache-add-file (file state checked-buffer-names)<br>  (ecb-multicache-put-value <tick>ecb-filename-cache file <tick>VC<br>                            (list state<br>                                  (ecb-subseq (current-time) 0 2)<br>                                  checked-buffer-names))<br>  state)'
         },
         {
           function : 'ecb-vc-cache-clear',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Clear the whole VC-cache."',
           prototype : '(defun ecb-vc-cache-clear ()',
           parameter : '',
@@ -5988,7 +5988,7 @@ const functions =
         },
         {
           function : 'ecb-vc-cache-dump',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Dump the whole VC-cache. If NO-NIL-VALUE is not nil then these<br>cache-entries are not dumped. This command is not intended for end-users of<br>ECB."',
           prototype : '(defun ecb-vc-cache-dump (&optional no-nil-value)',
           parameter : '&optional no-nil-value',
@@ -5996,13 +5996,13 @@ const functions =
         },
         {
           function : 'ecb-vc-cache-get',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           parameter : 'file',
           lispcode : '(defun ecb-vc-cache-get (file)<br>  (ecb-multicache-get-value <tick>ecb-filename-cache file <tick>VC))'
         },
         {
           function : 'ecb-vc-cache-remove',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Remove FILE from the VC-cache."',
           prototype : '(defun ecb-vc-cache-remove (file)',
           parameter : 'file',
@@ -6010,7 +6010,7 @@ const functions =
         },
         {
           function : 'ecb-vc-cache-remove-files-of-dir',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Remove all files contained in DIR from the VC-cache."',
           prototype : '(defun ecb-vc-cache-remove-files-of-dir (dir)',
           parameter : 'dir',
@@ -6018,7 +6018,7 @@ const functions =
         },
         {
           function : 'ecb-vc-check-CC-state',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Checks the VC-state of FILE when under Control of Clearcase.<br>Returns the following different state-values: "unknown, "up-to-date, "edited<br>and "unlocked-changes."',
           prototype : '(defun ecb-vc-check-CC-state (file)',
           parameter : 'file',
@@ -6026,7 +6026,7 @@ const functions =
         },
         {
           function : 'ecb-vc-check-state',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Check if the VC-state for FILE must be rechecked, i.e. if it is out of<br>date. If it is still valid and also already checked for TREE-BUFFER-NAME then<br>return the symbol "unchanged (if still valid but only not checked for<br>TREE-BUFFER-NAME then return the state and store the fact that it has been<br>check now also for this buffer). Otherwise check the new state for FILE with<br>VC-STATE-FCN, store it in the cache only for TREE-BUFFER-NAME and return the<br>new state."',
           prototype : '(defun ecb-vc-check-state (file tree-buffer-name vc-state-fcn)',
           parameter : 'file tree-buffer-name vc-state-fcn',
@@ -6034,7 +6034,7 @@ const functions =
         },
         {
           function : 'ecb-vc-checkin-hook',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Ensures that the ECB-cache is reset and the entry for the most recent<br>checkedin file is cleared. Uses `ecb-checkedin-file" as last checked-in file."',
           prototype : '(defun ecb-vc-checkin-hook ()',
           parameter : '',
@@ -6042,7 +6042,7 @@ const functions =
         },
         {
           function : 'ecb-vc-dir-managed-by-BZR',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return "BZR if DIRECTORY is managed by Bazaar. nil if not."',
           prototype : '(defun ecb-vc-dir-managed-by-BZR (directory)',
           parameter : 'directory',
@@ -6050,7 +6050,7 @@ const functions =
         },
         {
           function : 'ecb-vc-dir-managed-by-CC',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return "CC if DIRECTORY is managed by ClearCase. nil if not."',
           prototype : '(defun ecb-vc-dir-managed-by-CC (directory)',
           parameter : 'directory',
@@ -6058,7 +6058,7 @@ const functions =
         },
         {
           function : 'ecb-vc-dir-managed-by-CVS',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return "CVS if DIRECTORY is managed by CVS. nil if not."',
           prototype : '(defun ecb-vc-dir-managed-by-CVS (directory)',
           parameter : 'directory',
@@ -6066,7 +6066,7 @@ const functions =
         },
         {
           function : 'ecb-vc-dir-managed-by-GIT',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return "GIT if DIRECTORY is managed by Git. nil if not.<br>Because with Git only the top-most directory of a source-tree has a subdir<br>.git this function tries recursively upwards if there is a .git-subdir."',
           prototype : '(defun ecb-vc-dir-managed-by-GIT (directory)',
           parameter : 'directory',
@@ -6074,7 +6074,7 @@ const functions =
         },
         {
           function : 'ecb-vc-dir-managed-by-HG',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return "HG if DIRECTORY is managed by Mercurial. nil if not.<br>Because with Mercurial only the top-most directory of a source-tree has a subdir<br>.hg this function tries recursively upwards if there is a .hg-subdir."',
           prototype : '(defun ecb-vc-dir-managed-by-HG (directory)',
           parameter : 'directory',
@@ -6082,7 +6082,7 @@ const functions =
         },
         {
           function : 'ecb-vc-dir-managed-by-RCS',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return "RCS if DIRECTORY is managed by RCS. nil if not."',
           prototype : '(defun ecb-vc-dir-managed-by-RCS (directory)',
           parameter : 'directory',
@@ -6090,7 +6090,7 @@ const functions =
         },
         {
           function : 'ecb-vc-dir-managed-by-SCCS',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return "SCCS if DIRECTORY is managed by SCCS. nil if not."',
           prototype : '(defun ecb-vc-dir-managed-by-SCCS (directory)',
           parameter : 'directory',
@@ -6098,7 +6098,7 @@ const functions =
         },
         {
           function : 'ecb-vc-dir-managed-by-SVN',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Return "SVN if DIRECTORY is managed by SVN. nil if not."',
           prototype : '(defun ecb-vc-dir-managed-by-SVN (directory)',
           parameter : 'directory',
@@ -6106,7 +6106,7 @@ const functions =
         },
         {
           function : 'ecb-vc-enable-internals',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Enable or disable (if ARG < 0) all settings needed by the VC-support."',
           prototype : '(defun ecb-vc-enable-internals (arg)',
           parameter : 'arg',
@@ -6114,7 +6114,7 @@ const functions =
         },
         {
           function : 'ecb-vc-generate-node-name',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Generate a node-name with an appropriate icon in the front of NAME<br>depending on STATE. If Emacs supports image-display then an image-icon wll be<br>used otherwise an ascii-icon. The text-property "ecb-vc-ascii-icon-length is<br>added to the full length of the returned node-name. It contains as value the<br>length of the ascii-icon (incl. one trailing space) which is added in front<br>of NAME."',
           prototype : '(defun ecb-vc-generate-node-name (name state)',
           parameter : 'name state',
@@ -6122,7 +6122,7 @@ const functions =
         },
         {
           function : 'ecb-vc-get-state-fcn-for-dir',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Get that function which should be used for checking the VC-state for files<br>contained in DIRECTORY. Get it either from the VC-cache or call the car of<br>each element of `ecb-vc-supported-backends" and return the cdr of the first<br>elem where the car returns not nil. If Directory is not managed by a<br>version-control system then return nil. Store the result in the VC-cache for<br>speeding up things next time. Ange-ftp- or efs-directories will never be<br>checked for VC-states!"',
           prototype : '(defun ecb-vc-get-state-fcn-for-dir (directory)',
           parameter : 'directory',
@@ -6130,7 +6130,7 @@ const functions =
         },
         {
           function : 'ecb-vc-reset-vc-stealthy-checks',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Resets all stealthy VC-checks."',
           prototype : '(defun ecb-vc-reset-vc-stealthy-checks ()',
           parameter : '',
@@ -6138,7 +6138,7 @@ const functions =
         },
         {
           function : 'ecb-vc-state',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Same as `vc-state" but it clears the internal caches of the VC-package for<br>FILE before calling `vc-state". Finally calls `vc-state" and returns that<br>value. This function should work for all backends supported by vc.<br><br>Note: `vc-state" probably uses the heuristic-state function of the backend<br>which is much faster but can be sometimes inaccurate. If always the accurate<br>state is needed `vc-recompute-state" has to be used - see<br>`ecb-vc-recompute-state"."',
           prototype : '(defun ecb-vc-state (file)',
           parameter : 'file',
@@ -6146,7 +6146,7 @@ const functions =
         },
         {
           function : 'ecb-vc-update-sources-cache',
-          filename : 'ecb/ecb-file-browser.el',
+          filename : 'ecb-file-browser.el',
           docstring : '  "Update the SOURCES cache for DIR with the current-content of the<br>sources-buffer if DIR has currently either a filtered or full cache entry in<br>the SOURCES-cache."',
           prototype : '(defun ecb-vc-update-sources-cache (dir)',
           parameter : 'dir',
@@ -6154,7 +6154,7 @@ const functions =
         },
         {
           function : 'ecb-warning',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Displays a warning."',
           prototype : '(defun ecb-warning (&rest args)',
           parameter : '&rest args',
@@ -6162,7 +6162,7 @@ const functions =
         },
         {
           function : 'ecb-where-is-point',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return a cons-cell with the exact location of point in the ecb-frame.<br>The car is one of "ecb (point in a special ecb-window), "edit<br>(point in an edit-window of the edit-area), "compile (point in<br>the compile window), "minibuf (the minibuffer is the selected<br>window) or "other-dedicated (point is in a dedicated window<br>which is not one of the special ecb-windows - some packages like<br>ediff could use dedicated windows for their own needs). The cdr<br>is the number of the window in the related window-list in<br>canonical order (means top-left-most window in the related<br>window-list has number 1 and so on...). In case of "other-dedicated the cdr is<br>the number of the window in the full window-list of the ecb-frame (without<br>minibuffer-window).<br><br>If the compile-window or the minibuffer is the selected window then the window<br>number is always 1.<br><br>If the ecb-frame is not the selected frame then nil is returned.<br>This means the result is undefined.<br><br>If WIN-LIST is nil then a new window-list is computed via<br>`ecb-canonical-windows-list".<br><br>Examples:<br><br>If point stays in the second special-window list, then ("ecb . 2) is<br>returned, even in layouts of type "right".<br><br>If there are 3 edit windows and point stays in the third one, then (edit . 3)<br>is returned, even in layouts of type "left".<br><br>If the compile-window or the minibuffer is the selected window then<br>("compile . 1) rsp. (minibuf . 1) is returned."',
           prototype : '(defun ecb-where-is-point (&optional win-list)',
           parameter : '&optional win-list',
@@ -6170,7 +6170,7 @@ const functions =
         },
         {
           function : 'ecb-window-config-cache-add',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Add ECB-WINDOW-CONFIG to the `ecb-window-config-cache"-ring. The new config<br>will be added as the newest (last) item. If the cache is full (see<br>`ecb-window-config-cache-size"), dump the oldest item to make room."',
           prototype : '(defun ecb-window-config-cache-add (ecb-window-config)',
           parameter : 'ecb-window-config',
@@ -6178,7 +6178,7 @@ const functions =
         },
         {
           function : 'ecb-window-config-cache-clear',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Clear the cache."',
           prototype : '(defun ecb-window-config-cache-clear ()',
           parameter : '',
@@ -6186,7 +6186,7 @@ const functions =
         },
         {
           function : 'ecb-window-config-cache-get',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Get the cache-element for the EMACS-WINDOW-CONFIG which is<br>window-configuration-object like returned by `current-window-configuration".<br>If the cache does not contain such an element then nil is returned."',
           prototype : '(defun ecb-window-config-cache-get (emacs-window-config)',
           parameter : 'emacs-window-config',
@@ -6194,7 +6194,7 @@ const functions =
         },
         {
           function : 'ecb-window-config-cache-get-latest',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Get the newest (last) cache-item."',
           prototype : '(defun ecb-window-config-cache-get-latest ()',
           parameter : '',
@@ -6202,7 +6202,7 @@ const functions =
         },
         {
           function : 'ecb-window-config-cache-init',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Initialize the cache as a ring of size `ecb-window-config-cache-size" if<br>not already initialized."',
           prototype : '(defun ecb-window-config-cache-init ()',
           parameter : '',
@@ -6210,7 +6210,7 @@ const functions =
         },
         {
           function : 'ecb-window-configuration-data',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return current window configuration of the ecb-frame as a list with the<br>following structure:<br>1. The number of the edit-window if point is one of the edit-windows, nil<br>   otherwise<br>2. current point if one of the edit-windows is selected, nil otherwise.<br>3. Data of all edit-windows in form of a list: Everey listelement is a list<br>   again with first subelement is the buffer of an edit-window, second<br>   subelement is the `window-start" of this window, third is the<br>   `window-point" and fourth subelement is the result of `ecb-get-window-size"<br>   for this window. This data-list has the same ordering as<br>   `ecb-canonical-edit-windows-list".<br>4. Data of the compile window or nil (if there is no compile-window visible):<br>   List with first elem is the buffer of the compile-window, second elem is<br>   current point of the compile-buffer if the compile-window is selected<br>   (otherwise nil) and third elem is the current height of the<br>   compile-window.<br>5. The window sizes of the ecb-windows as returned by<br>   `ecb-get-ecb-window-sizes""',
           prototype : '(defun ecb-window-configuration-data ()',
           parameter : '',
@@ -6218,7 +6218,7 @@ const functions =
         },
         {
           function : 'ecb-window-configuration-invalidp',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return non nil when WINDOW-CONFIG is probably not valid anymore.<br>WINDOW-CONFIG must be got from the adviced version of<br>`current-window-configuration"."',
           prototype : '(defun ecb-window-configuration-invalidp (window-config)',
           parameter : 'window-config',
@@ -6226,7 +6226,7 @@ const functions =
         },
         {
           function : 'ecb-window-in-window-list-number',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return the number of WINDOW in the window-list WIN-LIST.<br>The left-top-most window of the frame has number 1. The other windows have<br>the same ordering as `other-window" would walk through the frame.<br><br>If WINDOW is nil then the currently selected window is used."',
           prototype : '(defun ecb-window-in-window-list-number (win-list &optional window)',
           parameter : 'win-list &optional window',
@@ -6234,7 +6234,7 @@ const functions =
         },
         {
           function : 'ecb-window-live-p',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return not nil if buffer BUFFER-OR-NAME is displayed in an active window."',
           prototype : '(defun ecb-window-live-p (buffer-or-name)',
           parameter : 'buffer-or-name',
@@ -6242,7 +6242,7 @@ const functions =
         },
         {
           function : 'ecb-window-safely-shrinkable-p',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Non-nil if the WINDOW can be shrunk without shrinking other windows.<br>If WINDOW is nil or omitted, it defaults to the currently selected window."',
           prototype : '(defun ecb-window-safely-shrinkable-p (&optional window)',
           parameter : '&optional window',
@@ -6250,7 +6250,7 @@ const functions =
         },
         {
           function : 'ecb-window-select',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Select that window which displays in the `ecb-frame" the buffer<br>BUFFER-OR-NAME which can be either a buffer-object or a buffer-name. Return<br>the window-object. If that buffer is not displayed in the `ecb-frame" then<br>nothing happens and nil is returned."',
           prototype : '(defun ecb-window-select (buffer-or-name)',
           parameter : 'buffer-or-name',
@@ -6258,7 +6258,7 @@ const functions =
         },
         {
           function : 'ecb-window-sync',
-          filename : 'ecb/ecb.el',
+          filename : 'ecb.el',
           docstring : '  "Synchronizes all special ECB-buffers with current buffer.<br>Depending on the contents of current buffer this command performs different<br>synchronizing tasks but only if ECB is active and point stays in an<br>edit-window.<br><br>- If current buffer is a file-buffer (or an indirect-buffer with a<br>  file-buffer as base-buffer) then all special ECB-buffers are<br>  synchronized with current buffer.<br><br>- If current buffer is a dired-buffer then the directory- and<br>  the sources-tree-buffer are synchronized if visible<br><br>In addition to this all the synchronizing hooks (e.g.<br>`ecb-basic-buffer-sync-hook") run if the related ecb-buffers are visible in an<br>ecb-window."',
           prototype : '(defun ecb-window-sync ()',
           parameter : '',
@@ -6266,7 +6266,7 @@ const functions =
         },
         {
           function : 'ecb-windows-all-displayed',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if all ecb-windows are displayed.<br>If HIDDEN-STATE is not nil then it must be of the same type as<br>`ecb-windows-hidden-state". If nil then the value of<br>`ecb-windows-hidden-state" is used. This function has a<br>"binary" semantic: a return value of not nil means that all<br>ecb-windows of current layout are displayed and a return value of<br>nil means that either no or only some but not all ecb-windows are<br>displayed."',
           prototype : '(defun ecb-windows-all-displayed (&optional hidden-state)',
           parameter : '&optional hidden-state',
@@ -6274,7 +6274,7 @@ const functions =
         },
         {
           function : 'ecb-windows-all-hidden',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return not nil if all ecb-windows are hidden.<br>If HIDDEN-STATE is not nil then it must be of the same type as<br>`ecb-windows-hidden-state". If nil then the value of<br>`ecb-windows-hidden-state" is used.<br>This function has a "binary" semantic: a return value of nil<br>means that some or all ecb-windows of current layout are displayed and a<br>return value of not nil means that all ecb-windows are hidden."',
           prototype : '(defun ecb-windows-all-hidden (&optional hidden-state)',
           parameter : '&optional hidden-state',
@@ -6282,7 +6282,7 @@ const functions =
         },
         {
           function : 'ecb-windows-hidden-state-list',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return the hidden-state of the ecb-windows as list.<br>If HIDDEN-STATE is not nil then it must be of the same type as<br>`ecb-windows-hidden-state". If nil then the value of<br>`ecb-windows-hidden-state" is used.<br><br>The return value is either nil if all ecb-windows are displayed<br>(i.e. no ecb-windows are hidden) or a list which sides of the<br>ecb-frame are hidden. This list contains an appropriate set of<br>symbols of "left-side, "right-side or "top-side."',
           prototype : '(defun ecb-windows-hidden-state-list (&optional hidden-state)',
           parameter : '&optional hidden-state',
@@ -6290,7 +6290,7 @@ const functions =
         },
         {
           function : 'ecb-windows-toggled-hidden-state',
-          filename : 'ecb/ecb-layout.el',
+          filename : 'ecb-layout.el',
           docstring : '  "Return the current hidden-state toggled.<br>If HIDDEN-STATE is not nil then it must be of the same type as<br>`ecb-windows-hidden-state". If nil then the value of<br>`ecb-windows-hidden-state" is used.<br><br>For all layout-types except left-right this is "none when current state is<br>"all and vice versa.<br><br>For the layout-type left-right this depends on the value of the option<br>"ecb-left-right-layout-hide-sequence": It is the successor of the<br>current-state in that list. If current-state is the last element in that list<br>the toggled state is the first element of that list."',
           prototype : '(defun ecb-windows-toggled-hidden-state (&optional hidden-state)',
           parameter : '&optional hidden-state',
@@ -6298,7 +6298,7 @@ const functions =
         },
         {
           function : 'ecb-winman-escreen-disable-support',
-          filename : 'ecb/ecb-winman-support.el',
+          filename : 'ecb-winman-support.el',
           docstring : '  "Disable the escreen-support of ECB."',
           prototype : '(defun ecb-winman-escreen-disable-support ()',
           parameter : '',
@@ -6306,7 +6306,7 @@ const functions =
         },
         {
           function : 'ecb-winman-escreen-enable-support',
-          filename : 'ecb/ecb-winman-support.el',
+          filename : 'ecb-winman-support.el',
           docstring : '  "Load the escreen-library and enable the ECB-support for it.<br>This does not install or activate escreen! For this you have still to call<br>`escreen-install"! For further documentation about escreen see the file<br>escreen.el!"',
           prototype : '(defun ecb-winman-escreen-enable-support ()',
           parameter : '',
@@ -6314,7 +6314,7 @@ const functions =
         },
         {
           function : 'ecb-winman-escreen-goto-escreen-hook',
-          filename : 'ecb/ecb-winman-support.el',
+          filename : 'ecb-winman-support.el',
           docstring : '  "Activate ECB if we go to the escreen with number `ecb-escreen-number"."',
           prototype : '(defun ecb-winman-escreen-goto-escreen-hook ()',
           parameter : '',
@@ -6322,7 +6322,7 @@ const functions =
         },
         {
           function : 'ecb-winman-winring-disable-support',
-          filename : 'ecb/ecb-winman-support.el',
+          filename : 'ecb-winman-support.el',
           docstring : '  "Disable the winring-support of ECB."',
           prototype : '(defun ecb-winman-winring-disable-support ()',
           parameter : '',
@@ -6330,7 +6330,7 @@ const functions =
         },
         {
           function : 'ecb-winman-winring-enable-support',
-          filename : 'ecb/ecb-winman-support.el',
+          filename : 'ecb-winman-support.el',
           docstring : '  "Load the winring-library and enable the ECB-support for it.<br>This does not install or activate winring! For this you have still to call<br>`winring-initialize"! For further documentation about winring see the file<br>winring.el!"',
           prototype : '(defun ecb-winman-winring-enable-support ()',
           parameter : '',
@@ -6338,7 +6338,7 @@ const functions =
         },
         {
           function : 'ecb-working-celeron-display',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Return a string displaying a celeron as things happen.<br>LENGTH is the amount of display that has been used.  NUMBER<br>is t to display the done string, or the number to display."',
           prototype : '(defun ecb-working-celeron-display (length number)',
           parameter : 'length number',
@@ -6346,7 +6346,7 @@ const functions =
         },
         {
           function : 'ecb-working-dynamic-status',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "show the status. If NUMBER is nil, then increment a local NUMBER from 0<br>with each call. If it is a number or float, use it as the raw percentile."',
           prototype : '(defun ecb-working-dynamic-status (&optional number)',
           parameter : '&optional number',
@@ -6354,7 +6354,7 @@ const functions =
         },
         {
           function : 'ecb-working-frame-animation-display',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Manage a simple frame-based animation for working functions.<br>LENGTH is the number of characters left.  NUMBER is a passed in<br>number (which happens to be ignored.).  While coders pass t into<br>NUMBER, functions using this should convert NUMBER into a vector<br>describing how to render the done message.<br>Argument FRAMES are the frames used in the animation."',
           prototype : '(defun ecb-working-frame-animation-display (length number frames)',
           parameter : 'length number frames',
@@ -6362,7 +6362,7 @@ const functions =
         },
         {
           function : 'ecb-working-status-call-process',
-          filename : 'ecb/ecb-util.el',
+          filename : 'ecb-util.el',
           docstring : '  "Display working messages while running a process.<br>TIMEOUT is how fast to display the messages.<br>MESSAGE is the message to show, and DONESTR is the string to add when done.<br>CALLPROCESSARGS are the same style of args as passed to `call-process".<br>The are: PROGRAM, INFILE, BUFFER, DISPLAY, and ARGS.<br>Since it actually calls `start-process", not all features will work.<br>It returns the exit-status of the called PROGRAM."',
           prototype : '(defun ecb-working-status-call-process  (timeout message donestr program &optional infile buffer display &rest args)',
           parameter : 'timeout message donestr program &optional infile buffer display &rest args',
@@ -6370,7 +6370,7 @@ const functions =
         },
         {
           function : 'silentcomp-is-compiling',
-          filename : 'ecb/silentcomp.el',
+          filename : 'silentcomp.el',
           docstring : '  "Return non-nil if eval"ed during compilation.  Don"t use outside<br>`eval-when-compile"."',
           prototype : '(defun silentcomp-is-compiling ()',
           parameter : '',
@@ -6378,13 +6378,13 @@ const functions =
         },
         {
           function : 'silentcomp-restore-environment',
-          filename : 'ecb/silentcomp.el',
+          filename : 'silentcomp.el',
           parameter : '',
           lispcode : '(defun silentcomp-restore-environment ()<br>  ;; Eval<tick>ed during compilation to restore variables, functions etc<br>  ;; declared with <backtick>silentcomp-defvar<tick> et al.<br>  (if (not load-in-progress)<br>      (let (p)<br>	(setq p silentcomp-unbound-variables)<br>	(while p<br>	  (let ((var (car p)))<br>	    (if (and (boundp var)<br>		     (eq (intern (concat <apo>silentcomp-ignore-var:<apo><br>					 (symbol-name var)))<br>			 var))<br>		(makunbound var)))<br>	  (setq p (cdr p)))<br>	(setq p silentcomp-original-functions)<br>	(while p<br>	  (let ((fun (car (car p)))<br>		(def (car (cdr (cdr (car p))))))<br>	    (if (and (fboundp fun)<br>		     (eq (intern (concat <apo>silentcomp-ignore-fun:<apo><br>					 (symbol-name fun)))<br>			 (symbol-function fun)))<br>		(if (eq def <tick>unbound)<br>		    (fmakunbound fun)<br>		  (fset fun def))))'
         },
         {
           function : 'tree-buffer-add-image-icon-maybe',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Add IMAGE-ICON to STR between START (incl.) and START+LEN (excl.). If<br>IMAGE-ICON is not nil (which must be an image-object in the sense of<br>Emacs) then add this image to STR otherwise do nothing. Normally<br>IMAGE-ICON should be either nil or an image-object returned by<br>`tree-buffer-find-image". Always return STR. If IMAGE-ICON is nil or<br>`tree-buffer-real-style" returns not "image then START and LEN are ignored!<br>If an image is added then two text-properties are added to the full length of<br>STR: "tree-buffer-image-start which holds START as value and<br>"tree-buffer-image-length which holds LEN as value."',
           prototype : '(defun tree-buffer-add-image-icon-maybe (start len str image-icon)',
           parameter : 'start len str image-icon',
@@ -6392,7 +6392,7 @@ const functions =
         },
         {
           function : 'tree-buffer-add-node',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Insert NODE in current tree-buffer at point.<br>The indentation is the concatenation of INDENT-STR-FIRST-SEGS and<br>INDENT-STR-LAST-SEG. If LAST-CHILDREN is not nil then NODE is the last<br>children of its parent-node; this means it must be displayed with an<br>end-guide."',
           prototype : '(defun tree-buffer-add-node (node indent-str-first-segs indent-str-last-seg                                  &optional last-children)',
           parameter : 'node indent-str-first-segs indent-str-last-seg &optional last-children',
@@ -6400,7 +6400,7 @@ const functions =
         },
         {
           function : 'tree-buffer-arrow-pressed',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Perform smart arrow-key navigation/movement."',
           prototype : '(defun tree-buffer-arrow-pressed ()',
           parameter : '',
@@ -6408,7 +6408,7 @@ const functions =
         },
         {
           function : 'tree-buffer-build-tree-buffer-display',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Rebuild the variable `tree-buffer-displayed-nodes" from the current<br>children of `tree-buffer-root". This also builds the display of current<br>tree-buffer from scratch. This functions expects the current tree-buffer to be<br>empty!"',
           prototype : '(defun tree-buffer-build-tree-buffer-display ()',
           parameter : '',
@@ -6416,7 +6416,7 @@ const functions =
         },
         {
           function : 'tree-buffer-clear-tree',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Clear current tree-buffer, i.e. remove all children of the root-node"',
           prototype : '(defun tree-buffer-clear-tree ()',
           parameter : '',
@@ -6424,7 +6424,7 @@ const functions =
         },
         {
           function : 'tree-buffer-copy-list',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return a copy of a LIST, which may be a dotted list.<br>The elements of the list are not copied, just the list structure itself."',
           prototype : '(defun tree-buffer-copy-list (list)',
           parameter : 'list',
@@ -6432,7 +6432,7 @@ const functions =
         },
         {
           function : 'tree-buffer-count-subnodes-to-display',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Returns the number of ALL subnodes of NODE which will currently be displayed<br>if NODE is expanded, means the number of all the children of NODE (if NODE is<br>expanded) plus recursive the number of the children of each expanded child.<br>Example:<br>[-] NODE<br>    [+] child 1<br>    [-] child 2<br>        [+] child 2.1<br>        [-] child 2.2<br>            [+] child 2.2.1<br>            [+] child 2.2.2<br>        [+] child 2.3<br>    [-] child 3<br>        [+] child 3.1<br>    [+] child 4<br>The result for NODE here is 10"',
           prototype : '(defun tree-buffer-count-subnodes-to-display (node)',
           parameter : 'node',
@@ -6440,7 +6440,7 @@ const functions =
         },
         {
           function : 'tree-buffer-create-menu',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Creates a popup menu from the list MENU-ITEMS.<br>MENU-ITEMS is a list of elements of the following type: Each element defines a<br>new menu-entry and is either:<br><br>a) Menu-command: A list containing two sub-elements, whereas the first is the<br>   function (a function symbol) being called if the menu-entry is selected<br>   and the second is the name of the menu-entry.<br>b) Separator: A one-element-list and the element is the string "---": Then a<br>   non-selectable menu-separator is displayed.<br>c) Submenu: A list where the first element is the title of the submenu<br>   displayed in the main-menu and all other elements are either menu-commands<br>   (see a) or separators (see b) or another submenu (see c). This allows<br>   deep nested menu-submenu-structures!<br><br>If optional arg NODE-COMMANDS-P is not nil then the function of a<br>menu-commands will be called with a tree-node argument. Otherwise the<br>menu-commands will be called with no argument.<br><br>If NODE-COMMANDS-P is not nil then the function of a menu-command must follow<br>the following guidelines: Such a function must be defined with the macro<br>`tree-buffer-defpopup-command"! This macro defines a new popup-command whereas<br>the newly defined command gets one argument NODE. See the docstring of<br>`tree-buffer-defpopup-command" for further details.<br><br>Example for the definition of such a popupmenu-command:<br><br>(tree-buffer-defpopup-command ecb-my-special-dir-popup-function<br>  "Prints the name of the directory of the node under point."<br>  (let ((node-data=dir (tree-node->data node)))<br>     (message "Dir under node: %s" node-data=dir)))"',
           prototype : '(defun tree-buffer-create-menu (menu-items &optional node-commands-p)',
           parameter : 'menu-items &optional node-commands-p',
@@ -6448,7 +6448,7 @@ const functions =
         },
         {
           function : 'tree-buffer-create-menu-emacs',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Create an Emacs-menu for MENU-DEF with name MENU-NAME.<br>MENU-DEF must have the same format as the first argument of<br>`tree-buffer-create-menu"."',
           prototype : '(defun tree-buffer-create-menu-emacs (menu-def menu-name)',
           parameter : 'menu-def menu-name',
@@ -6456,7 +6456,7 @@ const functions =
         },
         {
           function : 'tree-buffer-create-menu-xemacs',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Create a XEmacs-menu for MENU-DEF.<br>If optional arg NODE-COMMANDS-P is not nil then the menu-commands will be<br>called with the current node at point. Otherwise the menu-commands will be<br>called with no argument. MENU-DEF must have the same format as the first<br>argument of `tree-buffer-create-menu"."',
           prototype : '(defun tree-buffer-create-menu-xemacs (menu-def &optional node-commands-p)',
           parameter : 'menu-def &optional node-commands-p',
@@ -6464,7 +6464,7 @@ const functions =
         },
         {
           function : 'tree-buffer-create-menus',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Creates a popup menus from an assoc list with menus.<br>MENUS is an assoc list containing cons-cells of the form:<br>The car is a node-type (see slot TYPE of a tree-node) and the cdr is a menu<br>in the sense of `tree-buffer-create-menu", i.e. the cdr is a list of<br>menu-items expected as argument by `tree-buffer-create-menu".<br><br>For a description of NODE-COMMAND-P see `tree-buffer-create-menu"."',
           prototype : '(defun tree-buffer-create-menus (menus &optional node-commands-p)',
           parameter : 'menus &optional node-commands-p',
@@ -6472,7 +6472,7 @@ const functions =
         },
         {
           function : 'tree-buffer-create-mouse-key',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Create a mouse-key which can be bound to a command via `define-key".<br>BUTTON is the number of the mouse-button which can be 1, 2 or 3. TRIGGER<br>determines when the command is triggered, values can be "button-press and<br>"button-release. The third optional modifier can be one of the symbols "shift,<br>"control or "meta. The fourth optional argument KEY-QUALIFIER is only used by<br>GUN Emacs and can be an additional key-qualifier symbol like "mode-line or<br>"header-line."',
           prototype : '(defun tree-buffer-create-mouse-key (button trigger &optional modifier key-qualifier)',
           parameter : 'button trigger &optional modifier key-qualifier',
@@ -6480,7 +6480,7 @@ const functions =
         },
         {
           function : 'tree-buffer-debug-error',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Run ARGS through `format" and write it to the *Messages*-buffer.<br>Do nothing if `tree-buffer-debug-mode" is nil!"',
           prototype : '(defun tree-buffer-debug-error (&rest args)',
           parameter : '&rest args',
@@ -6488,7 +6488,7 @@ const functions =
         },
         {
           function : 'tree-buffer-destroy',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Destroy the tree-buffer with name TREE-BUFFER-NAME. Does nothing if either<br>tree-buffer-name is not alive or if it is not a tree-buffer created with<br>`tree-buffer-create"."',
           prototype : '(defun tree-buffer-destroy (tree-buffer-name)',
           parameter : 'tree-buffer-name',
@@ -6496,7 +6496,7 @@ const functions =
         },
         {
           function : 'tree-buffer-display-in-general-face',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Apply the face in slot GENERAL-FACE of `tree-buffer-spec" of current<br>tree-buffer to current tree-buffer."',
           prototype : '(defun tree-buffer-display-in-general-face ()',
           parameter : '',
@@ -6504,7 +6504,7 @@ const functions =
         },
         {
           function : 'tree-buffer-displayed-node-linenr',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return the line-number of NODE in current tree-buffer.<br>Nodes are compared by `eq"."',
           prototype : '(defun tree-buffer-displayed-node-linenr (node)',
           parameter : 'node',
@@ -6512,7 +6512,7 @@ const functions =
         },
         {
           function : 'tree-buffer-displayed-node-nr',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return the number of NODE in the node-sequence of current tree-buffer.<br>Nodes are compared by `eq"! Number is counted from 0 whereas the topmost<br>displayed node ha number 0."',
           prototype : '(defun tree-buffer-displayed-node-nr (node)',
           parameter : 'node',
@@ -6520,7 +6520,7 @@ const functions =
         },
         {
           function : 'tree-buffer-displayed-nodes-replace-node',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Replace NODE with NEW-NODE in `tree-buffer-displayed-nodes".<br>Return the updated list."',
           prototype : '(defun tree-buffer-displayed-nodes-replace-node (node new-node)',
           parameter : 'node new-node',
@@ -6528,7 +6528,7 @@ const functions =
         },
         {
           function : 'tree-buffer-empty-p',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return not nil if current tree-buffer is empty."',
           prototype : '(defun tree-buffer-empty-p ()',
           parameter : '',
@@ -6536,31 +6536,31 @@ const functions =
         },
         {
           function : 'tree-buffer-event-buffer',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           parameter : 'event',
           lispcode : '(defun tree-buffer-event-buffer (event)<br>  (window-buffer (tree-buffer-event-window event)))'
         },
         {
           function : 'tree-buffer-event-point',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           parameter : 'event',
           lispcode : '(defun tree-buffer-event-point (event)<br>  (posn-point (event-start event)))'
         },
         {
           function : 'tree-buffer-event-to-key',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           parameter : 'event',
           lispcode : '(defun tree-buffer-event-to-key (event)<br>  (let ((type (event-basic-type event)))<br>    (cl-case type<br>      ((mouse-1 mouse-2 mouse-3) <tick>mouse-release)<br>      ((down-mouse-1 down-mouse-2 down-mouse-3) <tick>mouse-press)<br>      (otherwise (event-basic-type event)))))<br><br>;; overlay/extend stuff<br><br>  (defalias <tick>tree-buffer-make-overlay   <tick>make-overlay)<br>  (defalias <tick>tree-buffer-overlay-put    <tick>overlay-put)<br>  (defalias <tick>tree-buffer-overlay-move   <tick>move-overlay)<br>  (defalias <tick>tree-buffer-overlay-delete <tick>delete-overlay)<br>  (defalias <tick>tree-buffer-overlay-kill   <tick>delete-overlay)<br><br>;; timer stuff<br><br>  (defalias <tick>tree-buffer-run-with-idle-timer <tick>run-with-idle-timer)<br>  (defalias <tick>tree-buffer-cancel-timer <tick>cancel-timer)'
         },
         {
           function : 'tree-buffer-event-window',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           parameter : 'event',
           lispcode : '(defun tree-buffer-event-window (event)<br>  (posn-window (event-start event)))'
         },
         {
           function : 'tree-buffer-expand-node',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Expand the NODE up to an expand-level of LEVEL.<br><br>LEVEL specifies precisely which level of nodes should be expanded. LEVEL means<br>the indentation-level of the NODE itself and its (recursive) subnodes<br>relative to the NODE itself.<br><br>A LEVEL value X means that all (sub)nodes with an indentation-level <= X<br>relative to NODE are expanded and all other are collapsed. A negative LEVEL<br>value means that NODE is collapsed.<br><br>Examples:<br><br>- LEVEL = 0: If NODE is the root-node then this means expand only all nodes<br>  with no indentation at all. If NODE is any other node then this means expand<br>  only the NODE itself because it is the only node which has indentation 0 to<br>  itself. All deeper indented nodes will be collapsed.<br><br>- LEVEL = 1: If NODE is the root-node then this means expand all nodes with no<br>  indentation at all and all subnodes of these nodes - all deeper indented<br>  nodes will be collapsed. If NODE is any other node then this means expand<br>  the NODE itself and all of its direct subnodes - because only the direct<br>  subnodes of NODE have indentation-level 1 relativ to NODE.<br><br>This function expands beginning from NODE the NODE itself and all subnodes of<br>NODE with level <= LEVEL, so the subnodes of these nodes get visible and<br>collapses all their (recursive) subnodes with indentation-level > LEVEL.<br><br>If a node has to be expanded then first the function in SLOT NODE-EXPANDED-FN<br>of `tree-buffer-spec" of current tree-buffer (see `tree-buffer-create") is<br>called with the argument-values [node 0 nil nil (buffer-name)].<br><br>This function gets two optional function-arguments which are called to test if<br>a node should be excluded from expanding or collapsing; both functions are<br>called with two arguments, where the first one is the expandable/collapsable<br>node and the second one is the current level of indentation of this node<br>relativ to the startnode NODE: EXPAND-PRED-FN is called if a node has to be<br>expanded and must return nil if this node should not be expanded even if its<br>indentation level is <= LEVEL and COLLAPSE-PRED-FN is called analogous for a<br>node which has to be collapsed and must return nil if the node should not be<br>collapsed even if its indentation level is > then LEVEL.<br><br>Examples:<br>- LEVEL = -1 collapses the NODE.<br>- LEVEL = 0 expands only the NODE itself because it is the only node which can<br>  have no indentation relativ to itself.<br>- LEVEL = 2 expands the NODE itself, its children and its grandchildren -<br>  these are the nodes which are either not indented (the NODE itself) or<br>  indented once (the children) or twice (the grandchildren)."',
           prototype : '(defun tree-buffer-expand-node (node level                                     &optional expand-pred-fn collapse-pred-fn)',
           parameter : 'node level &optional expand-pred-fn collapse-pred-fn',
@@ -6568,7 +6568,7 @@ const functions =
         },
         {
           function : 'tree-buffer-expand-node-internal',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Expand NODE if CURRENT-LEVEL (the indentation-level of NODE) <= LEVEL or<br>collapses NODE if CURRENT-LEVEL > LEVEL. Do this recursive for subnodes of<br>NODE with incremented CURRENT-LEVEL. For EXPAND-PRED-FN and COLLAPSE-PRED-FN<br>see `tree-buffer-expand-node". This function is not for external usage; use<br>`tree-buffer-expand-node" instead."',
           prototype : '(defun tree-buffer-expand-node-internal (node current-level level                                              expand-pred-fn collapse-pred-fn)',
           parameter : 'node current-level level expand-pred-fn collapse-pred-fn',
@@ -6576,7 +6576,7 @@ const functions =
         },
         {
           function : 'tree-buffer-find-common-substring',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return common substring beginning with SUBS in each element of LIS. If<br>ONLY-PREFIX is not nil then only common prefix is returned."',
           prototype : '(defun tree-buffer-find-common-substring (lis subs &optional only-prefix)',
           parameter : 'lis subs &optional only-prefix',
@@ -6584,7 +6584,7 @@ const functions =
         },
         {
           function : 'tree-buffer-find-displayed-node-by-data/name',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Find the first displayed node in current tree-buffer having data NODA-DATA.<br>When START-NODE is nil then all currently visible nodes are searched beginning<br>with the first one otherwise START-NODE is the startpoint for the search.<br><br>If NODE-NAME is not nil then it must be A STRING and only a node<br>is found which has the same node-NAME.<br><br>If the search has success then the found node is returend."',
           prototype : '(defun tree-buffer-find-displayed-node-by-data/name (node-data &optional                                                               node-name start-node)',
           parameter : 'node-data &optional node-name start-node',
@@ -6592,7 +6592,7 @@ const functions =
         },
         {
           function : 'tree-buffer-find-image',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return an image-object for the TREE-IMAGE-NAME. The needed image-file with<br>name "<prefix><TREE-IMAGE-NAME>.<a supported image-file-extension>" is first<br>searched in the dir of slot ADDITIONAL-IMAGES-DIR of `tree-buffer-spec" (if<br>not nil) and then - if there is no image found for this name - in the dir of<br>slot DEFAULT-IMAGES-DIR of `tree-buffer-spec". <prefix> is the value of the<br>slot IMAGE-FILE-PREFIX of `tree-buffer-spec". All found and created<br>image-objectes will be cached so every image is only created once! Returns the<br>image-object for TREE-IMAGE-NAME."',
           prototype : '(defun tree-buffer-find-image (tree-image-name)',
           parameter : 'tree-image-name',
@@ -6600,7 +6600,7 @@ const functions =
         },
         {
           function : 'tree-buffer-first',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return the first elem of the sequence SEQ."',
           prototype : '(defun tree-buffer-first (seq)',
           parameter : 'seq',
@@ -6608,7 +6608,7 @@ const functions =
         },
         {
           function : 'tree-buffer-gen-guide-strings',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Returns a list with four elements - the correct guide-strings for current<br>tree-buffer: (guide-str-handle guide-str-no-handle guide-end-str no-guide-str)"',
           prototype : '(defun tree-buffer-gen-guide-strings ()',
           parameter : '',
@@ -6616,7 +6616,7 @@ const functions =
         },
         {
           function : 'tree-buffer-gen-searchpattern-indent-prefix',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '                       "|")<br>            ")"',
           prototype : '(defun tree-buffer-gen-searchpattern-indent-prefix (&optional count)  (let ((guide-strings (tree-buffer-gen-guide-strings)))    (concat "^\\("            (mapconcat (function (lambda (e)                                   (format "\\(%s\\)" e)))                       (list (nth 1 guide-strings)                             (nth 3 guide-strings)                             (nth 0 guide-strings)                             (nth 2 guide-strings))',
           parameter : '&optional count',
@@ -6624,7 +6624,7 @@ const functions =
         },
         {
           function : 'tree-buffer-get-event-column',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return the clicked column on a char-base."',
           prototype : '(defun tree-buffer-get-event-column (e &optional include-fringe-scrollbar)',
           parameter : 'e &optional include-fringe-scrollbar',
@@ -6632,7 +6632,7 @@ const functions =
         },
         {
           function : 'tree-buffer-get-node-at-point',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Returns the node at point P. If p is nil the current point is used."',
           prototype : '(defun tree-buffer-get-node-at-point (&optional p)',
           parameter : '&optional p',
@@ -6640,13 +6640,13 @@ const functions =
         },
         {
           function : 'tree-buffer-get-node-facer',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           parameter : 'node',
           lispcode : '(defun tree-buffer-get-node-facer (node)<br>  (let ((facer (cdr (assoc (tree-node->type node)<br>                           (tree-buffer-spec->type-facer tree-buffer-spec)))))<br>    (if facer<br>        facer<br>      nil)))'
         },
         {
           function : 'tree-buffer-get-node-name-end-point',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Returns the buffer point where the name of the NODE ends."',
           prototype : '(defun tree-buffer-get-node-name-end-point (node)',
           parameter : 'node',
@@ -6654,7 +6654,7 @@ const functions =
         },
         {
           function : 'tree-buffer-get-node-name-start-column',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Returns the buffer column where the name of the node starts."',
           prototype : '(defun tree-buffer-get-node-name-start-column (node)',
           parameter : 'node',
@@ -6662,7 +6662,7 @@ const functions =
         },
         {
           function : 'tree-buffer-get-node-name-start-point',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Returns the buffer point where the name of the NODE starts."',
           prototype : '(defun tree-buffer-get-node-name-start-point (node)',
           parameter : 'node',
@@ -6670,7 +6670,7 @@ const functions =
         },
         {
           function : 'tree-buffer-get-root',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return the root-node of current tree-buffer."',
           prototype : '(defun tree-buffer-get-root ()',
           parameter : '',
@@ -6678,7 +6678,7 @@ const functions =
         },
         {
           function : 'tree-buffer-goto-line',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Goto LINE, counting from line 1 at beginning of buffer.<br><br>This function doesn"t set the mark."',
           prototype : '(defun tree-buffer-goto-line (line)',
           parameter : 'line',
@@ -6686,7 +6686,7 @@ const functions =
         },
         {
           function : 'tree-buffer-goto-sticky-node',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Go in current tree-buffer to that node which should be sticky.<br>Returns the line-number of the sticky node."',
           prototype : '(defun tree-buffer-goto-sticky-node ()',
           parameter : '',
@@ -6694,7 +6694,7 @@ const functions =
         },
         {
           function : 'tree-buffer-help-echo-fn',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "This function is the value of the `help-echo" property of each<br>tree-node. This is only used with GNU Emacs >= 21!"',
           prototype : '(defun tree-buffer-help-echo-fn (win obj pos)',
           parameter : 'win obj pos',
@@ -6702,7 +6702,7 @@ const functions =
         },
         {
           function : 'tree-buffer-highlight-node-by-data/name',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Highlights in current tree-buffer the node which has as data NODE-DATA. If<br>START-NODE is nil or equal to the root-node then all nodes of current<br>tree-buffer are searched from beginning until the node with data NODE-DATA has<br>been found otherwise the search starts with START-NODE. If DONT-MAKE-VISIBLE<br>is true then no tree-buffer recentering has been done to make this node<br>visible.<br><br>If optional argument NODE-NAME is not nil then it must be string<br>and a node will only be highlighted if not only NODE-DATA matches<br>but also NODE-NAME.<br><br>If either NODE-DATA is nil or if the node belonging to NODE-DATA<br>(and NODE-NAME, if set) can not be found because it is invisible<br>(probably because its parent-node is not expanded) then no<br>highlighting takes place but the existing highlighting is removed<br>and nil is returned. Otherwise the node is highlighted and not<br>nil is returned."',
           prototype : '(defun tree-buffer-highlight-node-by-data/name (node-data &optional node-name start-node                                                          dont-make-visible)',
           parameter : 'node-data &optional node-name start-node dont-make-visible',
@@ -6710,7 +6710,7 @@ const functions =
         },
         {
           function : 'tree-buffer-highlighted-node-matches-data/name-p',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "return not nil iff currently highlighted node matches passed data and name.<br><br>Currently highlighted node is stored in `tree-buffer-highlighted-node"."',
           prototype : '(defun tree-buffer-highlighted-node-matches-data/name-p (data name)',
           parameter : 'data name',
@@ -6718,13 +6718,13 @@ const functions =
         },
         {
           function : 'tree-buffer-hscroll',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           parameter : 'amount',
           lispcode : '(defun tree-buffer-hscroll (amount)<br>  (ignore-errors<br>    (let ((current-prefix-arg amount))<br>      (call-interactively <tick>scroll-left))))'
         },
         {
           function : 'tree-buffer-images-can-be-used',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Not nil if images can be used with current Emacs setup."',
           prototype : '(defun tree-buffer-images-can-be-used ()',
           parameter : '',
@@ -6732,7 +6732,7 @@ const functions =
         },
         {
           function : 'tree-buffer-incremental-node-search',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Incremental search for a node in current tree-buffer.<br>Each display-able key (e.g. all keys normally bound to `self-insert-command")<br>is appended to the current search-pattern. The tree-buffer tries to jump to<br>the current search-pattern. If no match is found then nothing is done. Some<br>special keys:<br>- [backspace] and [delete]: Delete the last character from the search-pattern.<br>- [home]: Delete the complete search-pattern<br>- [end]: Expand either to a complete node if current search-pattern is<br>         already unique or expands to the greatest common prefix of the nodes.<br>         If there are at least two nodes with the same greatest common-prefix<br>         than every hit of [end] jumps to the next node with this common<br>         prefix.<br><br>The current search-pattern is shown in the echo area.<br>After selecting a node with RET the search-pattern is cleared out.<br><br>Do NOT call this function directly. It works only if called from the binding<br>mentioned above!"',
           prototype : '(defun tree-buffer-incremental-node-search ()',
           parameter : '',
@@ -6740,7 +6740,7 @@ const functions =
         },
         {
           function : 'tree-buffer-insert-node-display',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Insert NODE into the tree-buffer with all necessary buttons before or after<br>the name of the NODE. This function computes also the name how the NODE has to<br>be displayed and returns this name. If optional arg NO-NEWLINE is not nil then<br>no final newline is displayed after inserting the node. Otherwise always a<br>newline is inserted after the node."',
           prototype : '(defun tree-buffer-insert-node-display (node &optional no-newline)',
           parameter : 'node &optional no-newline',
@@ -6748,7 +6748,7 @@ const functions =
         },
         {
           function : 'tree-buffer-insert-text',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Insert TEXT at point and faces it with FACER. FACER can be a face then the<br>text gets this face or it can be a function-symbol which is called to face the<br>inserted TEXT. Such a function gets two arguments: Point where TEXT has been<br>inserted and the TEXT itself"',
           prototype : '(defun tree-buffer-insert-text (text &optional facer help-echo mouse-highlight)',
           parameter : 'text &optional facer help-echo mouse-highlight',
@@ -6756,7 +6756,7 @@ const functions =
         },
         {
           function : 'tree-buffer-last',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return the last elem of the sequence SEQ."',
           prototype : '(defun tree-buffer-last (seq)',
           parameter : 'seq',
@@ -6764,7 +6764,7 @@ const functions =
         },
         {
           function : 'tree-buffer-member',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Find the first occurrence of ITEM in LIST.<br>Return the sublist of LIST whose car is ITEM. Comparison is done with `equal"<br>unless TEST-FCN is not nil: In this case TEST-FCN will be used to compare ITEM<br>with the elements of LIST. If TEST-FCN is `eq" then `memq" is called for<br>optimization."',
           prototype : '(defun tree-buffer-member (item list &optional test-fcn)',
           parameter : 'item list &optional test-fcn',
@@ -6772,7 +6772,7 @@ const functions =
         },
         {
           function : 'tree-buffer-merge-face',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Merge FACE either to a buffer-part or to TEXT.<br>In both cases START and END define the region which should be<br>faced. The FACE is merged, i.e. the values of all face-attributes<br>of FACE take effect and the values of all face-attributes of the<br>buffer-part or TEXT which are not set by FACE are preserved.<br><br>If always returns TEXT (if not nil then modified with FACE)."',
           prototype : '(defun tree-buffer-merge-face (face start end &optional text)',
           parameter : 'face start end &optional text',
@@ -6780,7 +6780,7 @@ const functions =
         },
         {
           function : 'tree-buffer-mouse-hscroll',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Read a mouse event E from the mode line and scroll horizontally.<br>If the mouse is being clicked on the far left, or far right of the<br>mode-line.  This is only useful for non-XEmacs"',
           prototype : '(defun tree-buffer-mouse-hscroll (e)',
           parameter : 'e',
@@ -6788,7 +6788,7 @@ const functions =
         },
         {
           function : 'tree-buffer-node-data-equal-p',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Calls the function stored in slot NODE-DATA-EQUAL-FN of `tree-buffer-spec"<br>to test NODE-DATA-1 and NODE-DATA-2 for equality."',
           prototype : '(defun tree-buffer-node-data-equal-p (node-data-1 node-data-2)',
           parameter : 'node-data-1 node-data-2',
@@ -6796,7 +6796,7 @@ const functions =
         },
         {
           function : 'tree-buffer-node-display-name',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Computes that string which is used to display the name of NODE. The<br>display-name will be set in the slot DISPLAYED-NAME of NODE and also<br>returned."',
           prototype : '(defun tree-buffer-node-display-name (node)',
           parameter : 'node',
@@ -6804,7 +6804,7 @@ const functions =
         },
         {
           function : 'tree-buffer-nolog-message',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Works exactly like `message" but does not log the message"',
           prototype : '(defun tree-buffer-nolog-message (&rest args)',
           parameter : '&rest args',
@@ -6812,7 +6812,7 @@ const functions =
         },
         {
           function : 'tree-buffer-point-at-expand-symbol-p',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return not nil if point P is located at the expand-symbol of NODE."',
           prototype : '(defun tree-buffer-point-at-expand-symbol-p (node p)',
           parameter : 'node p',
@@ -6820,7 +6820,7 @@ const functions =
         },
         {
           function : 'tree-buffer-point-at-node-name-p',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return not nil if point P is located at the displayed-name of NODE."',
           prototype : '(defun tree-buffer-point-at-node-name-p (node p)',
           parameter : 'node p',
@@ -6828,7 +6828,7 @@ const functions =
         },
         {
           function : 'tree-buffer-popup-menu',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Popup a a context menu.<br>EVENT is the event which has triggered the menu-popup.<br>For Emacs it is an event as needed by `x-popup-menu".<br>MENU-TITLE is the string which should be displayed as menu-title.<br>If optional arg NODE is a tree-node then the selected menu-command will be<br>called with that node as argument.<br>If NODE is nil then the selected menu-command will be called with no<br>argument otherwise with NODE as the only argument."',
           prototype : '(defun tree-buffer-popup-menu (event menu menu-title &optional node)',
           parameter : 'event menu menu-title &optional node',
@@ -6836,7 +6836,7 @@ const functions =
         },
         {
           function : 'tree-buffer-pos-hor-visible-p',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return non nil if POS is horizontal visible in WINDOW otherwise nil."',
           prototype : '(defun tree-buffer-pos-hor-visible-p (pos window)',
           parameter : 'pos window',
@@ -6844,7 +6844,7 @@ const functions =
         },
         {
           function : 'tree-buffer-position',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return the position of ELEM within SEQ counting from 0. Comparison is done<br>with `equal" unless TEST-FCN is not nil: In this case TEST-FCN will be used to<br>compare ITEM with the elements of SEQ."',
           prototype : '(defun tree-buffer-position (seq elem &optional test-fcn)',
           parameter : 'seq elem &optional test-fcn',
@@ -6852,7 +6852,7 @@ const functions =
         },
         {
           function : 'tree-buffer-real-style',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return the currently used style of the tree-buffer. If X)Emacs allows<br>displaying images then this is simply the value of the slot STYLE of<br>`tree-buffer-spec". Otherwise the style "image is replaced by "ascii-guides.<br>If the optional arg STYLE is not nil then this is used instead of the slot<br>STYLE of `tree-buffer-spec". Allowed values of STYLE are nil, "image,<br>"ascii-guides, ascii-no-guides."',
           prototype : '(defun tree-buffer-real-style (&optional style)',
           parameter : '&optional style',
@@ -6860,7 +6860,7 @@ const functions =
         },
         {
           function : 'tree-buffer-recenter',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "If NODE is not visible then first recenter the window WINDOW so NODE is<br>best visible, means NODE is displayed in the middle of the window if possible.<br>If NODE is expanded then recenter the WINDOW so as much as possible subnodes<br>of NODE will be visible. If NODE is not expandable then WINDOW is always<br>displayed without empty-lines at the end, means WINDOW is always best filled."',
           prototype : '(defun tree-buffer-recenter (node window)',
           parameter : 'node window',
@@ -6868,7 +6868,7 @@ const functions =
         },
         {
           function : 'tree-buffer-remove-elt',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Remove N-th element from SEQ. SEQ can be any sequence. SEQ will be<br>changed because this is desctructive function. SEQ is returned."',
           prototype : '(defun tree-buffer-remove-elt (seq n)',
           parameter : 'seq n',
@@ -6876,7 +6876,7 @@ const functions =
         },
         {
           function : 'tree-buffer-remove-highlight',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Unhighlight the currently highlighted tree-node."',
           prototype : '(defun tree-buffer-remove-highlight ()',
           parameter : '',
@@ -6884,7 +6884,7 @@ const functions =
         },
         {
           function : 'tree-buffer-remove-node',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Remove NODE from current tree-buffer. If NODE is nil then the node at<br>current point will be removed. If NODE equal the node returned by<br>`tree-buffer-get-root" then nothing will be done. If first optional arg<br>REDISLAY is not nil then NODE will be also completely removed from the<br>tree-display otherwise only from the internal tree-structure. If second<br>optional arg EMPTY-PARENT-TYPES is not nil and a list of node-types (see<br>`tree-buffer-create") and if the node-type of the parent of NODE is contained<br>in EMPTY-PARENT-TYPES and if NODE is the only children of its parent then its<br>parent is recursively removed too."',
           prototype : '(defun tree-buffer-remove-node (node &optional redisplay empty-parent-types)',
           parameter : 'node &optional redisplay empty-parent-types',
@@ -6892,7 +6892,7 @@ const functions =
         },
         {
           function : 'tree-buffer-run-after-update-hook',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Run all functions of slot AFTER-UPDATE-HOOK of `tree-buffer-spec"."',
           prototype : '(defun tree-buffer-run-after-update-hook ()',
           parameter : '',
@@ -6900,7 +6900,7 @@ const functions =
         },
         {
           function : 'tree-buffer-scroll-window',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Scrolls current tree-buffer. The window will start at WINDOW-START and<br>point will stay on POINT."',
           prototype : '(defun tree-buffer-scroll-window (point window-start)',
           parameter : 'point window-start',
@@ -6908,7 +6908,7 @@ const functions =
         },
         {
           function : 'tree-buffer-search-displayed-node-list',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Call SEARCH-FCN for each currently visible node in current tree-buffer.<br>Return the first node for which SEARCH-FCN returns not nil."',
           prototype : '(defun tree-buffer-search-displayed-node-list (search-fcn)',
           parameter : 'search-fcn',
@@ -6916,7 +6916,7 @@ const functions =
         },
         {
           function : 'tree-buffer-select',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "If the callback-function in slot IS-CLICK-VALID-FN of `tree-buffer-spec"<br>returns nil then nothing is done. Otherwise: If either the MOUSE-BUTTON is 0<br>or point is as the node-name then the callback-function in slot<br>NODE-SELECTED-FN is called with the needed arguments (see<br>`tree-buffer-create"). If point is at the expand/collape-button depending of<br>the expansion-state either the callback in slot NODE-EXPANDED-FN or<br>NODE-COLLAPSED-FN is called (for parameters see again `tree-buffer-create").<br>None of these callbacks must modify the slot EXPANDED of the passed node<br>because this is done automatically by this function.<br>ADDITIONAL-KEY-LIST is either nil or a list of additonal keys pressed. If not<br>nil only the symbols "shift, "control and "meta are recognized."',
           prototype : '(defun tree-buffer-select (mouse-button additional-key-list)',
           parameter : 'mouse-button additional-key-list',
@@ -6924,7 +6924,7 @@ const functions =
         },
         {
           function : 'tree-buffer-set-elt',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Set VAL as new N-th element of SEQ. SEQ can be any sequence. SEQ will be<br>changed because this is desctructive function. SEQ is returned."',
           prototype : '(defun tree-buffer-set-elt (seq n val)',
           parameter : 'seq n val',
@@ -6932,7 +6932,7 @@ const functions =
         },
         {
           function : 'tree-buffer-set-root',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Set the root-node of current tree-buffer to ROOT.<br>ROOT must be either that root-node automatically created by<br>`tree-buffer-create" or a node returned by `tree-node-new-root"!"',
           prototype : '(defun tree-buffer-set-root (root)',
           parameter : 'root',
@@ -6940,7 +6940,7 @@ const functions =
         },
         {
           function : 'tree-buffer-show-modeline-menu',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Display a popup-menu for the modeline of current tree-buffer.<br>For an description of EVENT see `tree-buffer-popup-menu"."',
           prototype : '(defun tree-buffer-show-modeline-menu (event)',
           parameter : 'event',
@@ -6948,7 +6948,7 @@ const functions =
         },
         {
           function : 'tree-buffer-show-node-menu',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Display a popup-menu for the node at point.<br>For an description of EVENT see `tree-buffer-popup-menu"."',
           prototype : '(defun tree-buffer-show-node-menu (event)',
           parameter : 'event',
@@ -6956,7 +6956,7 @@ const functions =
         },
         {
           function : 'tree-buffer-show-node-menu-keyboard',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Activate the popup-menu of current tree-buffer via keyboard. If called with<br>a prefix-arg then the library tmm.el is used for displaying the popup-menu -<br>ignored with XEmacs."',
           prototype : '(defun tree-buffer-show-node-menu-keyboard (&optional use-tmm)',
           parameter : '&optional use-tmm',
@@ -6964,7 +6964,7 @@ const functions =
         },
         {
           function : 'tree-buffer-sticky-default-indent-string',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '		       "   "',
           prototype : '(defun tree-buffer-sticky-default-indent-string ()  (if window-system      (concat       (condition-case nil	   ;; Test scroll bar location	   (let ((charwidth (tree-buffer-frame-char-width))		 (scrollpos (frame-parameter (selected-frame)					     "vertical-scroll-bars))		 )	     (if (or (eq scrollpos "left)		     ;; Now wait a minute.  If you turn scroll-bar-mode		     ;; on, then off, the new value is t, not left.		     ;; Will this mess up older emacs where the default		     ;; was on the right?  I don"t think so since they don"t		     ;; support a header line.		     (eq scrollpos t))		 (let ((w (when (boundp "scroll-bar-width)			    (symbol-value "scroll-bar-width))))				   (if (not w)		       (setq w (frame-parameter (selected-frame)						"scroll-bar-width)))		   ;; in 21.2, the frame parameter is sometimes empty		   ;; so we need to get the value here.		   (if (not w)		       (setq w (+ (get "scroll-bar-width "x-frame-parameter)				  ;; In 21.4, or perhaps 22.1 the x-frame				  ;; parameter is different from the frame				  ;; parameter by only 1 pixel.				  1)))		   (if (not w)',
           parameter : '',
@@ -6972,7 +6972,7 @@ const functions =
         },
         {
           function : 'tree-buffer-stickynode-fetch-stickyline',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Make the parent-node at the top of the current tree-window sticky."',
           prototype : '(defun tree-buffer-stickynode-fetch-stickyline ()',
           parameter : '',
@@ -6980,7 +6980,7 @@ const functions =
         },
         {
           function : 'tree-buffer-stickynode-header-line-format',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "The header line format used by sticky func mode."',
           prototype : '(defun tree-buffer-stickynode-header-line-format ()',
           parameter : '',
@@ -6988,7 +6988,7 @@ const functions =
         },
         {
           function : 'tree-buffer-tab-pressed',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Perform the defined action after a TAB-hit."',
           prototype : '(defun tree-buffer-tab-pressed ()',
           parameter : '',
@@ -6996,7 +6996,7 @@ const functions =
         },
         {
           function : 'tree-buffer-update',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Updates the current tree-buffer. The buffer will be completely rebuild with<br>it"s current nodes. Window-start and point will be preserved. If NODE is not<br>nil and a valid and expanded node with at least one child then the display of<br>this node is optimized so the node itself and as much as possible of it"s<br>children (and also recursive the children of a child if it"s already<br>expanded, see `tree-buffer-count-subnodes-to-display") are visible in current<br>tree-buffer. If CONTENT is not nil then it must be a cons-cell where the car<br>is the whole string of the tree-buffer and the cdr is the value of<br>`tree-buffer-displayed-nodes". Then the content of the tree-buffer will not be<br>rebuild by reinserting all nodes from the tree-node-structure but just by<br>inserting the car of CONTENT in the tree-buffer and setting<br>`tree-buffer-displayed-nodes" to cdr of CONTENT."',
           prototype : '(defun tree-buffer-update (&optional node content)',
           parameter : '&optional node content',
@@ -7004,7 +7004,7 @@ const functions =
         },
         {
           function : 'tree-buffer-update-node',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "This function updates the NODE with the new datas NAME, SHRINK-NAME, TYPE,<br>DATA and EXPANDABLE. If NODE is nil then the node at current point will be<br>updated. Each of the arguments NAME, SHRINK-NAME, TYPE, DATA and EXPANDABLE<br>can have the special value "use-old-value; this means that attribute of NODE<br>will not be updated. If first optional arg REDISLAY is not nil then NODE will<br>be completely redisplayed according to its new data. Nil for REDISLAY makes<br>sense for example if the caller wants to update a bunch of nodes but wants to<br>update the display itself first at the end of all node-updates (for<br>efficiency). In that case the caller has to ensure that `tree-buffer-update"<br>is called after updating all needed nodes."',
           prototype : '(defun tree-buffer-update-node (node name shrink-name type data expandable                                     &optional redisplay)',
           parameter : 'node name shrink-name type data expandable &optional redisplay',
@@ -7012,7 +7012,7 @@ const functions =
         },
         {
           function : 'tree-node-add-children',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Add new CHILDREN to the already existing children of NODE.<br>If the optional arg AT_BEGINNING is not nil then the new CHILDREN will be<br>added to the beginning of the existing children of NODE otherwise to the end<br>(default). CHILDREN must be either a single tree-node object or a list of<br>tree-nodes."',
           prototype : '(defun tree-node-add-children (node children &optional at-beginning)',
           parameter : 'node children &optional at-beginning',
@@ -7020,7 +7020,7 @@ const functions =
         },
         {
           function : 'tree-node-find-child-by-data/name',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Finds the first child with the given CHILD-DATA.<br>CHILD-DATA will be compared with the data of each children of NODE by calling<br>`tree-buffer-node-data-equal-p".<br>If CHILD-NAME is set then also the name of the child will be compared with<br>CHILD-NAME and must match."',
           prototype : '(defun tree-node-find-child-by-data/name (node child-data &optional child-name)',
           parameter : 'node child-data &optional child-name',
@@ -7028,7 +7028,7 @@ const functions =
         },
         {
           function : 'tree-node-find-child-by-name',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return the first child of NODE with name CHILD-NAME."',
           prototype : '(defun tree-node-find-child-by-name (node child-name)',
           parameter : 'node child-name',
@@ -7036,13 +7036,13 @@ const functions =
         },
         {
           function : 'tree-node-id-init',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           parameter : '',
           lispcode : '(defun tree-node-id-init ()<br>  (setq tree-node-id tree-node-id-init-value))'
         },
         {
           function : 'tree-node-indent-level',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Return indentation-level of NODE.<br>Top-level nodes (children of the root-node) have level 0."',
           prototype : '(defun tree-node-indent-level (node)',
           parameter : 'node',
@@ -7050,7 +7050,7 @@ const functions =
         },
         {
           function : 'tree-node-map-subtree',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Apply MAP-FCN to full subtree of START-NODE and make a list of the results.<br>MAP-FCN is a function which gets a node of this subtree as argument.<br><br>Full subtree means the START-NODE itself and all its children and<br>all the grandchildren and so on; to each of these nodes MAP-FCN<br>is applied. If START-NODE is the root-node of current tree-buffer<br>then the START-NODE itself is not passed to MAP-FCN.<br><br>Often it is recommendable to apply a `delq" nil to the result<br>when the MAP-FCN does only perform for certain nodes, i.e. return<br>not nil only for certain nodes.<br><br>The subtree is walked by a depth-first-walk."',
           prototype : '(defun tree-node-map-subtree (start-node map-fcn)',
           parameter : 'start-node map-fcn',
@@ -7058,7 +7058,7 @@ const functions =
         },
         {
           function : 'tree-node-new',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Create a new tree-node which can be displayed in a tree-buffer.<br>A tree-node can have the following slots:<br><br>  NAME: The name of the node. Regardless how the node is displayed; see<br>  SHRINK-NAME and DISPLAYED-NAME.<br><br>  TYPE: The type of the node; must currently be an interger!<br><br>  DATA: The data of the node; can be arbitrary lisp-structures.<br><br>  EXPANDED: If not nil then the node is currently expanded, means its children<br>  are visible.<br><br>  PARENT: The parent tree-node.<br><br>  SHRINK-NAME: Decides if the NAME can be shortened when displayed in a<br>  narrow tree buffer window. The following values are valid:<br>  - beginning: The NAME is truncated at the beginning so the end is always<br>    visible. The shrinking can be specified in more detail with<br>    SHRINK-NAME-SPEC (s.b.)<br>  - end: The NAME is truncated at the end. If the tree-node is EXPANDABLE the<br>    name is truncated so that the expand symbol is visible.<br>  - nil: The NAME is never truncated. In this case DISPLAYED-NAME is equal to<br>    NAME.<br><br>  SHRINK-NAME-SPEC: nil or a 3 element-list which defines exactly<br>  how to shrink the node-name from beginning. The first element<br>  is a 0-based starting position in the NAME where shrinking<br>  should start if the name has to be shrinked from beginning<br>  (see SHRINK-NAME) - if nil then 0 is used, i.e. shrinking<br>  starts at beginning of NAME. The second element is a string<br>  which is used as token to indicate the shrinking (e.g.<br>  "-->") - if nil then "..." is used. The third element is<br>  the number of chars of the node-name which should remain as<br>  visible (counted from the end of node-name) - if nil then 5 is<br>  used. This slot is ignored if SHRINK-NAME is "end or nil.<br><br>  CHILDREN: List of children tree-nodes.<br><br>  EXPANDABLE: If not nil then the node is expandable means has children.<br><br>  INDENTSTR: Containes the full indentation-string for the node. So a single<br>  node can easily be redrawn.<br><br>  DISPLAYED-NAME: Contains the current displayed name of the node. The<br>  displayed name can be different from the NAME according to the value of<br>  SHRINK-NAME.<br><br>For all parameters except NOT-EXPANDABLE the description is available in the<br>slot-list above. If the first optional argument NOT-EXPANDABLE is set to not<br>nil then the slot EXPANDABLE will be set to nil; otherwise to t.<br><br>See Info node `(ecb)tree-buffer" for all details of using tree-nodes."',
           prototype : '(defun tree-node-new (name type data &optional not-expandable parent                           shrink-name shrink-name-spec)',
           parameter : 'name type data &optional not-expandable parent shrink-name shrink-name-spec',
@@ -7066,7 +7066,7 @@ const functions =
         },
         {
           function : 'tree-node-new-root',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Creates a new root node.<br>The root node has always NAME="root", TYPE=-1 and DATA=nil. The root node<br>will not be displayed. Only the root-node is allowed to have as TYPE -1!"',
           prototype : '(defun tree-node-new-root ()',
           parameter : '',
@@ -7074,7 +7074,7 @@ const functions =
         },
         {
           function : 'tree-node-remove-child-by-data/name',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Removes the first child with the given CHILD-DATA.<br>Returns the removed child. CHILD-DATA will be compared with the data of each<br>children of NODE by calling `tree-buffer-node-data-equal-p".<br>If CHILD-NAME is set then also the name of the child will be compared with<br>CHILD-NAME and must match."',
           prototype : '(defun tree-node-remove-child-by-data/name (node child-data &optional child-name)',
           parameter : 'node child-data &optional child-name',
@@ -7082,7 +7082,7 @@ const functions =
         },
         {
           function : 'tree-node-search-subtree-by-data',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Search the full subtree of START-NODE for the first (sub-)node with DATA.<br>The "full subtree" means the START-NODE itself, its children, their grandchildren<br>etc. The search is done by a depth-first-search. Data-comparison is performed<br>with `tree-buffer-node-data-equal-p"."',
           prototype : '(defun tree-node-search-subtree-by-data (start-node data)',
           parameter : 'start-node data',
@@ -7090,7 +7090,7 @@ const functions =
         },
         {
           function : 'tree-node-search-subtree-by-id',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Search the full subtree of START-NODE for the first (sub-)node with NODE-ID.<br>The "full subtree" means the START-NODE itself, its children, their grandchildren<br>etc. The search is done by a depth-first-search."',
           prototype : '(defun tree-node-search-subtree-by-id (start-node node-id)',
           parameter : 'start-node node-id',
@@ -7098,7 +7098,7 @@ const functions =
         },
         {
           function : 'tree-node-update',
-          filename : 'ecb/tree-buffer.el',
+          filename : 'tree-buffer.el',
           docstring : '  "Update NODE with setable datas.<br>Each of the arguments NAME, SHRINK-NAME, TYPE, DATA and EXPANDABLE can have<br>the special value "use-old-value; this means that this attribute/slot of NODE<br>will not be updated."',
           prototype : '(defun tree-node-update (node name type data expandable shrink-name)',
           parameter : 'node name type data expandable shrink-name',
