@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./css/LispDoc.css">
+<link rel="stylesheet" type="text/css" href="./css/github.css">
+<title>
+Documentation of the ecb Lisp Code
+</title>
+
+</head>
+<body>
+
+<h1>Emacs Code Browser (ecb)</h1>
+
+<p>The lisp code explorer for ecb</p>
+
+<!-- Navbar -->
+<div id="id-navbar-top" class="navbar-top">
+
+<ul id="id-navbar-ul">
+  <li id="id-functions">Functions</li>
+  <li id="id-macros">Macros</li>
+  <li id="id-classes">Classes</li>
+  <li id="id-methods">Methods</li>
+  <li id="id-variables">Variables</li>
+  <li id="id-constants">Constants</li>
+  <li id="id-groups">Groups</li>
+  <li id="id-substs">Substs</li>
+  <li id="id-structs">Structs</li>
+</ul>
+
+</div>
+
+<!-- Container side bar -->
+<div class="container">
+
+<!-- File Menu -->
+<div class="file-menu">
+
+<label id="id-file-label">File names</label>
+
+<ul id="id-filenames">
+  <li id="files">Files</li>
+</ul>
+
+</div>
+
+<!-- Define Menu -->
+<div class="def-menu">
+
+<label id="id-def-label">Define List</label>
+
+<ul id="id-def-list">
+  <li id="files">Files</li>
+</ul>
+
+</div>
+
+<!-- Details of Defines -->
+<div class="details">
+
+  <p>Define Name : <span class="detail-span" id="id-def"   > </span></p>
+  <p>Prototype   : <span class="detail-span" id="id-proto" > </span></p>
+  <p>Doc String  : <br><span class="detail-span" id="id-doc" > </span></p>
+  <p>Parameter   : <span class="detail-span" id="id-par"   > </span></p>
+  <p>References  : <span class="detail-span" id="id-ref"   > </span></p>
+  <p>Referred by : <span class="detail-span" id="id-refby" > </span></p>
+
+  <input id="id-chk-lisp" type="checkbox" name="lispcode">
+  <label for="lispcode"> Show lisp code </label><br>
+
+  <pre id="id-lisp"><code id="id-code" class="lisp"> -- defun -- </code></pre>
+
+</div>
+
+<!-- Container side bar -->
+</div>
+
+<script src="data/FilesData.js"></script>
+<script src="data/Functions.js"></script>
+<script src="data/Macros.js"></script>
+<script src="data/Classes.js"></script>
+<script src="data/Methods.js"></script>
+<script src="data/Variables.js"></script>
+<script src="data/Constants.js"></script>
+<script src="data/Groups.js"></script>
+<script src="data/Substs.js"></script>
+<script src="data/Structs.js"></script>
+
+<script type="text/javascript" src="scripts/JsUtils.js"></script>
+<script type="text/javascript" src="scripts/LispDoc.js"></script>
+<script type="text/javascript" src="scripts/LispHighlight.js"></script>
+
+</body>
+</html>
