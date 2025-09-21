@@ -137,11 +137,11 @@ mailing list @*@email{ecb-list@@lists.sourceforge.net} via the URL @*
 @end iftex
 
 @ifhtml
-The latest version of ECB can always be found at 
+The latest version of ECB can always be found at
 @uref{http://ecb.sourceforge.net}
 
 To send bug reports, or participate in discussions about ECB, use the
-mailing list @email{ecb-list@@lists.sourceforge.net} via 
+mailing list @email{ecb-list@@lists.sourceforge.net} via
 @uref{http://lists.sourceforge.net/lists/listinfo/ecb-list}
 @end ifhtml
 
@@ -240,7 +240,7 @@ Usage of ECB
 * Temp- and compile-buffers::   Displaying temp- and compilation-buffers
 * The other window::            How the ``other window'' is determined
 * The Methods window::          Using and customizing the Methods-window
-* Filtering the tree-buffers::  Applying filters to the ECB-tree-buffers 
+* Filtering the tree-buffers::  Applying filters to the ECB-tree-buffers
 * The ECB-layout::              Changing, customizing, redrawing, creating
 * Hiding the ECB windows::      Hiding/Showing the ECB-windows
 * Maximizing the ECB windows::  Maximizing the ECB-windows
@@ -489,33 +489,33 @@ described in the next section (@pxref{Standard ECB-Installation}).
 @c requirements as described in @ref{Standard ECB-Installation} then go on and
 @c proceed with that (you will see, it's easy). You will get a much more powerful
 @c ECB and also CEDET/semantic.
-@c  
+@c
 @c If you are desperate to use the package-management-system of ECB for
 @c installing ECB, then here is a short guide (for details about the
 @c package-manager of XEmacs see the related info-manual):
-@c  
+@c
 @c @strong{Caution}: If ECB is already installed and you just want
 @c upgrading to a newer version then it is recommended to deactivate ECB
 @c before proceeding with the steps below!
-@c  
+@c
 @c @enumerate
 @c @item Choose a download-site
-@c  
+@c
 @c This can be done via the menu ``Tools --> Packages --> Add Download
 @c Site'': Choose one of the listed sites. Or you can customize the
 @c option @code{package-get-remote} by hand and save it for future
 @c sessions.
-@c  
+@c
 @c @item Activate the packages list
-@c  
+@c
 @c This can be done either by the menu ``Tools --> Packages --> List and
 @c Install'' or via the command @code{pui-list-packages}. After that a
 @c special packages-buffer is displayed where you can interactively
 @c install or upgrade packages. At the end of this buffer there is a
 @c short description how to use this buffer.
-@c  
+@c
 @c @item Install ECB and all required packages
-@c  
+@c
 @c Mark the package named ``ecb'' for install. Do this also for the
 @c required packages ``semantic'', ``eieio'' and ``speedbar''. The
 @c package ``mail-lib'' is needed for easy submitting of problem-reports
@@ -525,22 +525,22 @@ described in the next section (@pxref{Standard ECB-Installation}).
 @c packages buffer. But this installs a lot of packages more (e.g. the
 @c Newsreader Gnus) which are really not essential for ECB. Therefore it
 @c is recommended to mark the required packages by hand.}.
-@c  
+@c
 @c After marking all needed packages for installation hit @kbd{x} to
 @c install them.
-@c  
+@c
 @c If you have already installed ECB and you want just upgrading to the
 @c latest available version then proceed as described above - same if you
 @c want to upgrade one of the required packages.
-@c  
+@c
 @c @item Start ECB
-@c  
+@c
 @c Now you can immediately start ECB via the command @code{ecb-activate};
 @c there is no need to restart XEmacs! As an alternative you can first
 @c read the online-help via @code{ecb-show-help}.
-@c  
+@c
 @c @end enumerate
-@c  
+@c
 @c If you do not like the package-manager of XEmacs but you want
 @c installing ECB ``by hand'' direct from the ECB-website then you have
 @c to follow the instructions in @ref{Standard ECB-Installation}.
@@ -1050,7 +1050,8 @@ for.
 
 @table @asis
 
-@item All ECB-windows of ECB (@pxref{ECB-windows})
+@item All ECB-windows of ECB
+(@pxref{ECB-windows})
 Gives an introduction into the concept of ECB-windows of ECB, what
 they are, which different types exist, how they look, how they can be
 used and last but not least what they do in detail, i.e. explains
@@ -1552,7 +1553,7 @@ overlook over the source without changing the buffer in the edit-window.
 Clicking on the source file with the secondary mouse button or
 C-RETURN (@pxref{Usage of ECB}) will open the source file in
 another edit window - which one depends on the setting in
-@code{ecb-mouse-click-destination}. 
+@code{ecb-mouse-click-destination}.
 
 @item
 Right clicking on a source file (mouse-button 3) will open a popup menu where
@@ -1685,7 +1686,7 @@ edit-window.
 Clicking on a buffername-node with the secondary mouse button or
 C-RETURN (@pxref{Usage of ECB}) will open the buffer in
 another edit window - which one depends on the setting in
-@code{ecb-mouse-click-destination}. 
+@code{ecb-mouse-click-destination}.
 
 @item
 Right clicking on a buffername-node (mouse-button 3) will open a popup menu
@@ -2044,7 +2045,7 @@ Emacs Code Browser.
 * Temp- and compile-buffers::   Displaying temp- and compilation-buffers
 * The other window::            How the ``other window'' is determined
 * The Methods window::          Using and customizing the Methods-window
-* Filtering the tree-buffers::  Applying filters to the ECB-tree-buffers 
+* Filtering the tree-buffers::  Applying filters to the ECB-tree-buffers
 * The ECB-layout::              Changing, customizing, redrawing, creating
 * Hiding the ECB windows::      Hiding/Showing the ECB-windows
 * Maximizing the ECB windows::  Maximizing the ECB-windows
@@ -3571,7 +3572,7 @@ class ParentClass
 @{
 protected:
   int p;
-@};  
+@};
 @end group
 @end example
 
@@ -4008,7 +4009,7 @@ see @ref{Creating a new ECB-layout}); just customize the option
 -------------------------------------------------------
 @end group
 @end example
-   
+
 @item Layout ``left2''
 @example
 @group
@@ -4148,13 +4149,13 @@ see @ref{Creating a new ECB-layout}); just customize the option
 @example
 @group
 -------------------------------------------------------
-|  Sources     |                                      | 
+|  Sources     |                                      |
 |--------------|                                      |
 |              |                                      |
 |              |                                      |
 |              |                                      |
 |  Methods     |                 Edit                 |
-|              |                                      | 
+|              |                                      |
 |              |                                      |
 |              |                                      |
 |--------------|                                      |
@@ -4968,7 +4969,7 @@ automatically the maximized directories-window will be ``minimized''
 layout contains a sources-buffer and no sources are shown in the
 directories-window - see @code{ecb-show-sources-in-directories-buffer}.
 So the source-files can be displayed in the sources-window.
-    
+
 Maximized sources- or history-window: When selecting a source-file in
 one of these buffers then first automatically the maximized window
 will be ``minimized'' (i.e. all ecb-windows of current layout are
@@ -5300,7 +5301,7 @@ then you will be prompted in the minibuffer with:
 
 @example
 Clear from history: [all, not-existing-buffers, existing-buffers]
-@end example 
+@end example
 
 You can choose one of the options enclosed in brackets with
 TAB-completion; hitting RET direct after the prompt chooses auto. the
@@ -5671,7 +5672,7 @@ only the current type and all its members (e.g. attributes and
 methods). If ECB can not identify the current type in the
 source-buffer or in the methods-window then nothing will be done.
 
-@item Filter by a filter-function:   
+@item Filter by a filter-function:
 Such a function gets two arguments: a tag and the source-buffer of
 this tag. If the tag should be displayed (i.e. not being filtered out)
 then the function has to return not nil otherwise nil.
@@ -7282,7 +7283,7 @@ remote-source-paths which means paths in the sense of tramp, ange-ftp
 or efs. For these directories actualizing the sources- and/or
 directories- buffer of ECB (if displayed in current layout!) can slow
 down dramatically so a caching increases speed a lot.
- 
+
 The value of this option is a list where each element is a cons-cell
 and looks like:
 
@@ -8451,7 +8452,7 @@ docstring of these functions to see what they do. Example:
 of @code{ecb--semantic-format-function-alist}. Therefore the
 alias-function for this element is named
 @code{ecb--semantic-format-tag-name}.
-  
+
 @item
 For every cdr in @code{ecb--semantic-format-function-alist} with name
 ``semantic-XYZ'' a function with name ``ecb-XYC'' is predefined. The
@@ -9978,7 +9979,7 @@ With @code{edit-window} the compile-window looks like:
    -------------------------------------------------------
 @end group
 @end example
-   
+
 This option takes only effect if @code{ecb-compile-window-height} is
 not nil!
 @end defopt
@@ -12103,7 +12104,7 @@ directory. Here is a function which could be added to
 @group
 (defun ecb-dir-popup-jde-build (node)
   "Build project in directory."
-  (let ((project-file 
+  (let ((project-file
 	 (expand-file-name jde-ant-buildfile (tree-node-get-data node))))
     (jde-ant-build project-file "build")))
 @end group
@@ -12111,7 +12112,7 @@ directory. Here is a function which could be added to
 
 Of course you can add entries to the option
 @code{ecb-methods-menu-user-extension} and
-@code{ecb-methods-menu-user-extension} too. 
+@code{ecb-methods-menu-user-extension} too.
 
 @end itemize
 
@@ -12355,7 +12356,7 @@ Without special support by ECB these window-managers would not work in
 combination with ECB!
 
 ECB currently supports the following managers:
- 
+
 @itemize @bullet
 @item winring.el:
 Written by Barry A. Warsaw @email{bwarsaw@@python.org}, available at
@@ -12670,7 +12671,7 @@ Here is an example of a tree-buffer:
          `-----------------[expand/collapse-symbol]
 @end group
 @end example
-     
+
 In most cases an action is triggered when clicking with the mouse onto
 a tree-node@footnote{Of course using the keyboard is also possible,
 see @ref{Tree-buffer keybindings}.} (e.g. clicking onto
@@ -13095,7 +13096,7 @@ Here is an example for such a menu-creator-callback:
                         '(ecb-analyse-show-tag-info "Show tag info"))
                     (if tag-with-pos-p
                         '(ecb-analyse-jump-to-tag "Jump to tag"))))))
-    
+
 (defun ecb-analyse-menu-creator (tree-buffer-name node)
   "Creates the popup-menus for the analyse-buffer."
   (let ((nodetype (tree-node->type node)))
@@ -13140,11 +13141,11 @@ be ``Tree-buffer modeline-menu''.
 If not nil then with GNU Emacs >= 21 the tree-buffer displays in its
 header-line the unvisible parent-node if there is any. sticky-parent-fn is
 used to get this parent node.
-                 
+
 @item @var{sticky-indent-string}
 String used for indendation of the sticky node in the header-line so it
 matches the tree-display.
-                      
+
 @item @var{sticky-parent-fn}
 Function used to get that parent node which should be sticky. This function
 gets as argument a node and should either return nil (if there is not suitable
@@ -13232,11 +13233,11 @@ There are three different styles available: Image-style (value
 @code{image}): Very nice and modern because image-icons are used to display
 the tree-buffer. For this style the arguments @var{TREE-INDENT} and
 @var{EXPAND-SYMBOL-BEFORE-P} have no effect.
-            
+
 Ascii-style with guide-lines (value @code{ascii-guides}) and
 ascii-style without guidelines (value @code{ascii-no-guides}. See
 @ref{Tree-buffer styles} for details about the tree-styles.
-            
+
 Both ascii-styles are affected by the args @var{TREE-INDENT} and
 @var{EXPAND-SYMBOL-BEFORE-P}.
 
@@ -13293,7 +13294,7 @@ The tree-buffer is the current buffer."
         '(button2up)
         'ecb-toggle-maximize-ecb-window-with-mouse)
     (local-set-key [mode-line mouse-2]
-                   'ecb-toggle-maximize-ecb-window-with-mouse))) 
+                   'ecb-toggle-maximize-ecb-window-with-mouse)))
 @end group
 @end example
 
@@ -13463,7 +13464,7 @@ with @code{tree-node-add-children} - see next section.
 
 @subsubsection Accessing the slots of a tree-node
 
-The section above shows which slots a tree-node have. 
+The section above shows which slots a tree-node have.
 
 A slot with name XXX is getable with the following piece of code:
 
@@ -14034,7 +14035,7 @@ Here is an example for a new layout programmed with
   ;; left window (= the ECB-tree-window-column)
 
   ;; Here is the creation code for the new layout
-  
+
   ;; 1. Defining the current window/buffer as ECB-methods buffer
   (ecb-set-methods-buffer)
   ;; 2. Splitting the ECB-tree-windows-column in two windows
@@ -14182,7 +14183,7 @@ Two helper functions for displaying infos in a special buffer:
   (ecb-with-readonly-buffer buffer
     (erase-buffer)
     (insert (format "Bufferinfo for %s:\n\n" filename))
-    ;; insert with the function `file-attributes' some 
+    ;; insert with the function `file-attributes' some
     ;; informations about FILENAME.
     ))
 
@@ -14288,7 +14289,7 @@ it will be called autom. by the internal synchronizing mechanism of ECB."
 
   ;; The macro `defecb-autocontrol/sync-function' does a lot for our
   ;; conveniance:
-  
+
   ;; 1) here we can be sure that the buffer with name
   ;; `ecb-examples-bufferinfo-buffer-name' is displayed in a window of
   ;; `ecb-frame' because the macro `defecb-autocontrol/sync-function'
@@ -14304,7 +14305,7 @@ it will be called autom. by the internal synchronizing mechanism of ECB."
 
   ;; 3) The generated function has one optional argument FORCE which can be used
   ;; in the code below.
-  
+
   ;; 4) The macro `defecb-autocontrol/sync-function' makes this synchronizing
   ;;    function interactive
 
@@ -14318,7 +14319,7 @@ it will be called autom. by the internal synchronizing mechanism of ECB."
     ;; file-buffer), therefore we use `ecb-buffer-file-name' (see the docstring
     ;; of this function)
     (let ((filename (ecb-buffer-file-name (current-buffer))))
-    
+
       (if (and filename (ecb-buffer-or-file-readable-p filename))
 
           ;; synchronizing for real filesource-buffers or indirect buffers of
@@ -14333,7 +14334,7 @@ it will be called autom. by the internal synchronizing mechanism of ECB."
               (setq ecb-examples-bufferinfo-last-file-buffer (current-buffer))
               ;; we display the file-infos for current source-buffer
               (ecb-examples-print-file-attributes visible-buffer filename))
-        
+
         ;; what should we do for non file buffers like help-buffers etc...
         (setq ecb-examples-bufferinfo-last-file-buffer nil)
         (ecb-examples-print-non-filebuffer visible-buffer
@@ -14371,7 +14372,7 @@ synchronizing function managed by ECB:
 
 The only thing we need is to tell ECB when this function should run - for this
 we have already defined the first two options in our example (s.a.).
-ECB offers to functions for 
+ECB offers to functions for
 
 @itemize
 @item @code{ecb-activate-ecb-autocontrol-function}: Activate/start synchronizing
@@ -14400,7 +14401,7 @@ window dedicated for this buffer. Makes the buffer read-only."
   ;; layout deactivating/activating ECB)
   (ecb-activate-ecb-autocontrol-function ecb-examples-bufferinfo-buffer-sync-delay
                                          'ecb-examples-bufferinfo-buffer-sync)
-  
+
   (switch-to-buffer (get-buffer-create ecb-examples-bufferinfo-buffer-name))
   (setq buffer-read-only t))
 @end group
@@ -14446,17 +14447,17 @@ special local key-map for the middle-mouse-button and two buttons
                     ecb-examples-action-buffer-name))
 
       ;; we setup a local key-map and bind middle-mouse-button
-      ;; see ecb-examples.el for the full code        
+      ;; see ecb-examples.el for the full code
 
       ;; insert the action buttons [prior] and [next] and
       ;; make it read-only
-      
+
       (ecb-with-readonly-buffer (current-buffer)
         (erase-buffer)
         (ecb-examples-insert-text-in-action-buffer "[prior]")
         ;; analogous for the [next] button
         )
-      
+
       (current-buffer))))
 @end group
 @end lisp
@@ -14523,13 +14524,13 @@ type top with name ``example-layout1'':
 @lisp
 @group
 (ecb-layout-define "example-layout1" top
-  
+
   ;; dedicating the bufferinfo window to the bufferinfo-buffer
   (ecb-examples-set-bufferinfo-buffer)
 
   ;; creating the action-window
   (ecb-split-hor 0.75)
-  
+
   ;; dedicate the action window to the action-buffer
   (ecb-examples-set-action-buffer)
 
@@ -14591,7 +14592,7 @@ preactivation-state is saved and will be restored by
           "The ECB-frame must be selected!")
   (assert (not (ecb-string= ecb-layout-name "example-layout1")) nil
           "The examples-layout1 is already active!")
-  
+
   ;; saving the state
   (ecb-examples-preactivation-state 'save)
 
@@ -14630,9 +14631,9 @@ as before activation."
 
   ;; we stop here the synchronization.
   (ecb-stop-autocontrol/sync-function 'ecb-examples-bufferinfo-buffer-sync)
-  
+
   (ecb-examples-preactivation-state 'restore)
-  
+
   (ecb-layout-switch ecb-layout-name))
 @end group
 @end lisp
@@ -15589,7 +15590,7 @@ You can change it with the options @code{ecb-mode-line-prefixes},
 
 @item
 Can the tree-buffers being selected faster than with the
-standard-keybindings of ECB? 
+standard-keybindings of ECB?
 @tab @tab
 Yes, see option @code{ecb-mode-line-display-window-number}.
 
@@ -15814,7 +15815,7 @@ ECB seems to be blocked a long time.
 @tab @tab
 Maybe you use cygwin-XEmacs. Then either the empty-dir-check (see
 option @code{ecb-prescan-directories-for-emptyness}) or the VC-support
-(see @code{ecb-vc-enable-support}) can block ECB. 
+(see @code{ecb-vc-enable-support}) can block ECB.
 @ifinfo
 @*
 @end ifinfo
@@ -15828,7 +15829,7 @@ tree-windows.
 @tab @tab
 Maybe the root repository for the current directory is a
 remote-repository. This can result in a long lasting check-time per
-file. 
+file.
 @ifinfo
 @*
 @end ifinfo
