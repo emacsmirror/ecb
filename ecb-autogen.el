@@ -74,51 +74,6 @@
 (defvar ecb-autogen-subdirs nil
   "Sub-directories to scan for autoloads.")
 
-(defun ecb-autogen-update-header ()
-  "Update header of the auto-generated autoloads file.
-Run as `write-contents-hooks'."
-  (when (ecb-string= generated-autoload-file (buffer-file-name))
-    (let ((tag (format ";;; %s ---" (file-name-nondirectory
-                                     (buffer-file-name)))))
-      (message "Updating header...")
-      (goto-char (point-min))
-      (cond
-       ;; Replace existing header line
-       ((re-search-forward (concat "^" (regexp-quote tag)) nil t)
-        (beginning-of-line)
-        (kill-line 1)
-        )
-       ;; Insert header before first ^L encountered (XEmacs)
-       ((re-search-forward "^" nil t)
-        (beginning-of-line)
-        ))
-      (insert tag " " ecb-autogen-header)
-      (newline)
-      (message "Updating header...done")
-      nil ;; Say not already written.
-      )))
-
-;; We code this so clumsy to silence the bytecompiler of GNU Emacs >= 21.4 not
-;; to complain about obsoleteness of `write-contents-hooks'.
-(defun ecb-batch-update-autoloads ()
-  (let ((old-val (symbol-value (if (boundp 'write-contents-functions)
-                                   'write-contents-functions
-                                 'write-contents-hooks))))
-    (unwind-protect
-        (progn
-          (set (if (boundp 'write-contents-functions)
-                   'write-contents-functions
-                 'write-contents-hooks)
-               '(ecb-autogen-update-header))
-          (loaddefs-generate-batch)
-          ; (batch-update-autoloads)
-          ; (update-autoloads-from-directories my-lisp-dir)
-          )
-      (set (if (boundp 'write-contents-functions)
-               'write-contents-functions
-             'write-contents-hooks)
-           old-val))))
-
 (defun ecb-update-autoloads ()
   "Update ecb autoloads from sources.
 Autoloads file name is defined in variable `ecb-autogen-file'."
@@ -126,31 +81,8 @@ Autoloads file name is defined in variable `ecb-autogen-file'."
 
   (if (file-exists-p (expand-file-name ecb-autogen-file))
       (delete-file (expand-file-name ecb-autogen-file)))
+    (loaddefs-generate "." ecb-autogen-file))
 
-  (with-temp-file (expand-file-name ecb-autogen-file)
-    (insert ""))
-
-  (let* ((default-directory (file-name-directory (locate-library "ecb")))
-         (generated-autoload-file (expand-file-name ecb-autogen-file))
-         ;; needed for XEmacs to ensure that always a feature 'ecb-autoloads
-         ;; is provided and not a feature like 'ecb-1.91.2-autoloads (XEmacs
-         ;; uses the installation-directory of ECB as feature prefix if
-         ;; autoload-package-name is not provided.
-         (autoload-package-name "ecb")
-         (subdirs (mapcar 'expand-file-name ecb-autogen-subdirs))
-         (command-line-args-left (cons default-directory subdirs))
-         )
-    (ecb-batch-update-autoloads))
-
-  ;; for GNU Emacs we must do this:
-  (with-current-buffer (find-file-noselect (expand-file-name ecb-autogen-file))
-    (goto-char (point-min))
-    (when (not (re-search-forward (format "^(provide '%s)"
-                                          ecb-autoload-feature) nil t))
-      (goto-char (point-max))
-      (insert (format "\n(provide '%s)\n" ecb-autoload-feature))
-      (save-buffer)
-      (kill-buffer (current-buffer)))))
 
 (silentcomp-provide 'ecb-autogen)
 
