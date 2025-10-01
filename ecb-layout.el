@@ -2479,7 +2479,7 @@ If called for other frames it works like the original version."
                            ;; (because all other windows are temporally
                            ;; dedicated) use exactly this window and there
                            ;; is no need to split it
-                           )
+                           ad-do-it)
                        ;; making the edit-window(s) not dedicated
                        (mapc (function (lambda (w)
                                          (set-window-dedicated-p w nil)))
