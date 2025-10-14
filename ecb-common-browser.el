@@ -73,7 +73,7 @@ bucket-node is computed by ECB but you can define a prefix, a suffix and a
 special face for the bucket-node
 
 The default are empty prefix/suffix-strings and 'ecb-bucket-node-face'. But
-an alternative can be for example '\(\"[\" \"]\" nil) which means no special
+an alternative can be for example '(\"[\" \"]\" nil) which means no special
 face and a display like \"[+] [<bucket-name>]\"."
   :group 'ecb-tree-buffer
   :set (function (lambda (symbol value)
@@ -96,13 +96,13 @@ This option takes effect in all layouts which contain either a directory
 window, a sources window or a method window.
 
 This option can have four valid values:
-- nil: Do not use speedbar \(default)
+- nil: Do not use speedbar (default)
 - dir: Use speedbar instead of the standard directories-buffer
 - source: Use speedbar instead of the standard sources-buffer
 - method: Use speedbar instead of the standard methods-buffer
 
 Note: For directories and sources a similar effect and usability is available
-by setting this option to nil \(or 'method) and setting
+by setting this option to nil (or 'method) and setting
 `ecb-show-sources-in-directories-buffer' to not nil, because this combination
 displays also directories and sources in one window.
 
@@ -130,14 +130,14 @@ variable directly, it is only for internal uses!")
 
 (defcustom ecb-tree-do-not-leave-window-after-select nil
   "*Tree-buffers which stay selected after a key- or mouse-selection.
-If a buffer \(either its name or the variable-symbol which holds the name) is
+If a buffer (either its name or the variable-symbol which holds the name) is
 contained in this list then selecting a tree-node either by RET or by a
 mouse-click doesn't leave that tree-buffer after the node-selection but
-performes only the appropriate action \(opening a new source, selecting a
+performes only the appropriate action (opening a new source, selecting a
 method etc.) but point stays in the tree-buffer. In tree-buffers not contained
 in this option normaly a node-selection selects as \"last\" action the right
 edit-window or maximizes the next senseful tree-buffer in case of a currently
-maximized tree-buffer \(see `ecb-maximize-next-after-maximized-select').
+maximized tree-buffer (see `ecb-maximize-next-after-maximized-select').
 
 The buffer-name can either be defined as plain string or with a symbol which
 contains the buffer-name as value. The latter one is recommended for the
@@ -148,7 +148,7 @@ A special remark for the `ecb-directories-buffer-name': Of course here the
 value of this option is only relevant if the name of the current layout is
 contained in `ecb-show-sources-in-directories-buffer' or if the value of
 `ecb-show-sources-in-directories-buffer' is 'always and the clicked ot hitted
-node represents a sourcefile \(otherwise this would not make any sense)!
+node represents a sourcefile (otherwise this would not make any sense)!
 
 The setting in this option is only the default for each tree-buffer. With the
 command `ecb-toggle-do-not-leave-window-after-select' the behavior of a
@@ -175,24 +175,24 @@ ECB again to take effect."
   "*Show the expand symbol before the items in a tree.
 When the expand-symbol is located before the items then the tree looks like:
 
-\[-] ECB
-    \[+] code-save
-    \[-] ecb-images
-        \[-] directories
+[-] ECB
+    [+] code-save
+    [-] ecb-images
+        [-] directories
 
 When located after then the tree looks like:
 
-ECB \[-]
-  code-save \[+]
-  ecb-images \[-]
-    directories \[-]
+ECB [-]
+  code-save [+]
+  ecb-images [-]
+    directories [-]
 
 The after-example above use a value of 2 for `ecb-tree-indent' whereas the
 before-example uses a value of 4.
 
 It is recommended to display the expand-symbol before because otherwise it
 could be that with a deep nested item-structure with and/or with long
-item-names \(e.g. a deep directory-structure with some long
+item-names (e.g. a deep directory-structure with some long
 subdirectory-names) the expand-symbol is not visible in the tree-buffer and
 the tree-buffer has to be horizontal scrolled to expand an item."
   :group 'ecb-tree-buffer
@@ -205,48 +205,48 @@ the tree-buffer has to be horizontal scrolled to expand an item."
   "*The style of the tree-buffers.
 There are three different styles available:
 
-Image-style \(value 'image):
+Image-style (value 'image):
 Very nice and modern - just try it. For this style the options
 `ecb-tree-indent' and `ecb-tree-expand-symbol-before' have no effect!
 The value 'image means use image-style if images can be displayed with current
-Emacs-setup \(otherwise auto. 'ascii-style is used).
+Emacs-setup (otherwise auto. 'ascii-style is used).
 Note: GNU Emacs <= 21.3.X for Windows does not support image-display so ECB
 uses always 'ascii-guides even when here 'image is set!
 
-Ascii-style with guide-lines \(value 'ascii-guides):
-\[-] ECB
- |  \[+] code-save
- `- \[-] ecb-images
-     |  \[-] directories
-     |   |  \[-] height-15
+Ascii-style with guide-lines (value 'ascii-guides):
+[-] ECB
+ |  [+] code-save
+ `- [-] ecb-images
+     |  [-] directories
+     |   |  [-] height-15
      |   |   |  * close.xpm
      |   |   |  * empty.xpm
      |   |   |  * leaf.xpm
      |   |   `- * open.xpm
-     |   |  \[+] height-17
-     |   |  \[+] height-19
-     |   `- \[+] height-21
-     |  \[x] history
-     |  \[x] methods
-     `- \[x] sources
+     |   |  [+] height-17
+     |   |  [+] height-19
+     |   `- [+] height-21
+     |  [x] history
+     |  [x] methods
+     `- [x] sources
 
-Ascii-style without guide-lines \(value 'ascii-no-guides) - this is the style
+Ascii-style without guide-lines (value 'ascii-no-guides) - this is the style
 used by ECB <= 1.96:
-\[-] ECB
-    \[+] code-save
-    \[-] ecb-images
-        \[-] directories
-            \[-] height-15
+[-] ECB
+    [+] code-save
+    [-] ecb-images
+        [-] directories
+            [-] height-15
                 * close.xpm
                 * empty.xpm
                 * leaf.xpm
                 * open.xpm
-            \[+] height-17
-            \[+] height-19
-            \[+] height-21
-        \[x] history
-        \[x] methods
-        \[x] sources
+            [+] height-17
+            [+] height-19
+            [+] height-21
+        [x] history
+        [x] methods
+        [x] sources
 
 With both ascii-styles the tree-layout can be affected with the options
 `ecb-tree-indent' and `ecb-tree-expand-symbol-before'."
@@ -280,10 +280,10 @@ name of the tree-buffer for which a special image-path should be used. The
 buffer-name can either be defined as plain string or with a symbol which
 contains the buffer-name as value. The latter one is recommended for the
 builtin ECB-tree-buffers because then simply the related option-symbol can be
-used \(e.g. the symbol `ecb-directories-buffer-name'). The cdr is the the
+used (e.g. the symbol `ecb-directories-buffer-name'). The cdr is the the
 full-path of an additional image-directorie which is searched first for images
 needed for the related tree-buffer. If the image can not be found in this
-directory then the default-directory \(see above) is searched. If the
+directory then the default-directory (see above) is searched. If the
 image can't even be found there the related ascii-symbol is used - which is
 defined in `tree-buffer-tree-image-names'. If a tree-buffer is not contained
 in this list then there is no additional special image-directory for it.
@@ -292,7 +292,7 @@ ECB comes with predefined images in several different heights - so for the
 most senseful font-heights of a tree-buffer a fitting image-size should be
 available. The images reside either in the subdirectory \"ecb-images\" of the
 ECB-installation or - if ECB is installed as regular XEmacs-package - in the
-ECB-etc data-directory \(the directory returned by \(locate-data-directory
+ECB-etc data-directory (the directory returned by (locate-data-directory
 \"ecb\")."
   :group 'ecb-tree-buffer
   :type '(cons (directory :tag "Full default image-path")
@@ -309,7 +309,7 @@ ECB-etc data-directory \(the directory returned by \(locate-data-directory
                                      ecb-history-buffer-name
                                      ecb-analyse-buffer-name)
   "*Truncate lines in ECB buffers.
-If a buffer \(either its name or the variable-symbol which holds the name) is
+If a buffer (either its name or the variable-symbol which holds the name) is
 contained in this list then line-truncation is switched on for this buffer
 otherwise it is off.
 
@@ -339,11 +339,11 @@ quite impossible to scroll smoothly right and left. The functions
 mouse-buttons.
 
 If this option is a positive integer S then in all ECB-tree-buffers the keys
-\[M-mouse-1] and \[M-mouse-3] are bound to scrolling left rsp. right with
+[M-mouse-1] and [M-mouse-3] are bound to scrolling left rsp. right with
 scroll-step S - clicking with mouse-1 or mouse-2 onto the edge of the modeline
-has the same effect, i.e. if you click with mouse-1 onto the left \(rsp.
-right) edge of the modeline you will scroll left \(rsp. right). Additionally
-\[C-M-mouse-1] and \[C-M-mouse-3] are bound to scrolling left rsp. right with
+has the same effect, i.e. if you click with mouse-1 onto the left (rsp.
+right) edge of the modeline you will scroll left (rsp. right). Additionally
+[C-M-mouse-1] and [C-M-mouse-3] are bound to scrolling left rsp. right with
 scroll-step `window-width' - 2. Default is a scroll-step of 5. If the value is
 nil then no keys for horizontal scrolling are bound."
   :group 'ecb-tree-buffer
@@ -415,7 +415,7 @@ must deactivate and activate ECB again to take effect."
 If not nil then the left- and right-arrow keys work in the ECB tree-window in
 the following smart way if onto an expandable node:
 + Left-arrow: If node is expanded then it will be collapsed otherwise point
-  jumps to the next \"higher\" node in the hierarchical tree \(higher means
+  jumps to the next \"higher\" node in the hierarchical tree (higher means
   the next higher tree-level or - if no higher level available - the next
   higher node on the same level).
 + Right-arrow: If node is not expanded then it will be expanded.
@@ -453,24 +453,24 @@ A click with the primary button causes the main effect in each ECB-buffer:
   option `ecb-mouse-click-destination'.
 
 A click with the primary mouse-button while the SHIFT-key is pressed called
-the POWER-click and does the following \(depending on the ECB-buffer where the
+the POWER-click and does the following (depending on the ECB-buffer where the
 POWER-click occurs):
-+ Directory-buffer: Refreshing the directory-contents-cache \(see
++ Directory-buffer: Refreshing the directory-contents-cache (see
   `ecb-cache-directory-contents').
 + Sources- and History-buffer: Only displaying the source-contents in the
   method-buffer but not displaying the source-file in the edit-window.
-+ Methods-buffer: Narrowing to the clicked method/variable/ect... \(see
++ Methods-buffer: Narrowing to the clicked method/variable/ect... (see
   `ecb-tag-visit-post-actions'). This works only for sources supported by
   semantic!
 
 In addition always the whole node-name is displayed in the minibuffer after a
-POWER-click \(for this see `ecb-directories-show-node-info' etc...).
+POWER-click (for this see `ecb-directories-show-node-info' etc...).
 
-The secondary mouse-button is for opening \(jumping to) the file in another
-edit-window \(see the documentation `ecb-mouse-click-destination').
+The secondary mouse-button is for opening (jumping to) the file in another
+edit-window (see the documentation `ecb-mouse-click-destination').
 
 The following combinations are possible:
-- primary: mouse-2, secondary: C-mouse-2 \(means mouse-2 while CTRL-key is
+- primary: mouse-2, secondary: C-mouse-2 (means mouse-2 while CTRL-key is
   pressed). This is the default setting.
 - primary: mouse-1, secondary: C-mouse-1
 - primary: mouse-1, secondary: mouse-2
@@ -493,8 +493,8 @@ ECB again to take effect!"
 (defcustom ecb-tree-mouse-action-trigger 'button-release
   "*When the tree-buffer mouse-action should be triggered.
 This option determines the moment a mouse-action in a tree-buffer is
-triggered. This can be either direct after pressing a mouse-button \(value
-'button-press) or not until releasing the mouse-button \(value:
+triggered. This can be either direct after pressing a mouse-button (value
+'button-press) or not until releasing the mouse-button (value:
 'button-release).
 
 If you change this during ECB is activated you must deactivate and activate
@@ -505,9 +505,9 @@ ECB again to take effect!"
 
 (defcustom ecb-mouse-click-destination 'last-point
   "*Destination of a mouse-button click.
-Defines in which edit-window \(if splitted) ECB does the \"right\" action
-\(opening a source, jumping to a method/variable etc.) after clicking with a
-mouse-button \(see `ecb-primary-secondary-mouse-buttons') onto a node. There
+Defines in which edit-window (if splitted) ECB does the \"right\" action
+(opening a source, jumping to a method/variable etc.) after clicking with a
+mouse-button (see `ecb-primary-secondary-mouse-buttons') onto a node. There
 are two possible choices:
 - left-top: Does the \"right\" action always in the left/topmost edit-window.
 - last-point: Does the \"right\" action always in that edit-window which had
@@ -515,11 +515,11 @@ are two possible choices:
 This is if the user has clicked either with the primary mouse-button or
 has activated a popup-menu in the tree-buffer.
 
-A click with the secondary mouse-button \(see again
+A click with the secondary mouse-button (see again
 `ecb-primary-secondary-mouse-buttons') does the \"right\" action always in
 another edit-window related to the setting in this option: If there are two
 edit-windows then the \"other\" edit-window is used and for more than 2
-edit-windows the \"next\" edit-window is used \(whereas the next edit-window
+edit-windows the \"next\" edit-window is used (whereas the next edit-window
 of the last edit-window is the first edit-window).
 
 If the edit-window is not splitted this setting has no effect.
@@ -612,7 +612,7 @@ Point must stay in the same edit-window as before evaluating the hook.
 
 Important note: If the option `ecb-basic-buffer-sync' is not nil
 the function `ecb-basic-buffer-sync' is running either every time
-Emacs is idle or even after every command \(see
+Emacs is idle or even after every command (see
 `ecb-basic-buffer-sync-delay'). So these hooks can be really
 called very often! Therefore each function of this hook
 should/must check in an efficient way at beginning if its task
@@ -660,7 +660,7 @@ DO NOT CHANGE THIS!")
 
 (defun ecb-advices-debug-error (advice class action &rest args)
   "Run ARGS through `format' and write it to the *Messages*-buffer.
-ADVICE is the adviced-function-symbol, CLASS is the advice-class \(after,
+ADVICE is the adviced-function-symbol, CLASS is the advice-class (after,
 around or before) and ACTION is one of the symbols 'calling, 'enabling,
 'disabling or 'reporting.
 
@@ -689,7 +689,7 @@ of `ecb-adviced-function-sets' if there is already a suitable advice-set.
 IMPORTANT: Each advice in ECB must be defined by `defecb-advice' and must
 belong to an advice-set previously defined by `defecb-advice-set'!
 
-All advice-sets of ECB will be automatically\(!) disabled at load-time of the
+All advice-sets of ECB will be automatically(!) disabled at load-time of the
 ecb-library and at deactivation-time of ECB. But: Enabling of a certain
 advice-set must be done appropriately.
 
@@ -698,14 +698,14 @@ at deactivation-time of ECB! Calling `ecb-disable-advices' for an advice set
 defined with permanent is t will take no effect unless the optional argument
 FORCE-PERMANENT of this function is set to not nil.
 PERMANENT can also be a function which will be called by `ecb-disable-advices'
-for this advice set \(the function gets one argument: the symbol of the
+for this advice set (the function gets one argument: the symbol of the
 advice-set) and have to return not nil if the advice-set should not be disable
 by `ecb-disable-advices' unless the FORCE-PERMANENT of this function is set to
 not nil.
 
 Example:
 
-\(defecb-advice-set ecb-always-disabled-advices
+(defecb-advice-set ecb-always-disabled-advices
   \"These advices are always disabled.\")"
   `(eval-and-compile
      (add-to-list 'ecb-adviced-function-sets (cons (quote ,advice-set), nil))
@@ -718,7 +718,7 @@ Example:
 
 (defmacro defecb-advice (adviced-function advice-class advice-set advice-docstring &rest body)
   "Defines an advice for ADVICED-FUNCTION with ADVICE-CLASS for ADVICE-SET.
-ADVICED-FUNCTION must be an advicable object \(e.g. a function, a subr
+ADVICED-FUNCTION must be an advicable object (e.g. a function, a subr
 etc...). ADVICE-CLASS must be one of around, after or before. ADVICE-SET must
 ba an advice-set previously defined by `defecb-advice-set'. ADVICE-DOCSTRING
 ist the docstring for the advice. BODY is the program-code for the advice as
@@ -728,13 +728,13 @@ Do not quote ADVICED-FUNCTION, ADVICE-CLASS and ADVICE-SET.
 
 Example:
 
-\(defecb-advice delete-frame around ecb-layout-basic-adviced-functions
+(defecb-advice delete-frame around ecb-layout-basic-adviced-functions
   \"If FRAME is equal to the ECB frame then...\"
-  \(let \(\(frame \(or \(ad-get-arg 0) \(selected-frame))))
-    \(if \(and ecb-minor-mode
-             \(equal frame ecb-frame))
-        \(when \(ecb-confirm \"Attempt to delete the ECB-frame....Proceed? \")
-	  \(ecb-deactivate-internal)
+  (let ((frame (or (ad-get-arg 0) (selected-frame))))
+    (if (and ecb-minor-mode
+             (equal frame ecb-frame))
+        (when (ecb-confirm \"Attempt to delete the ECB-frame....Proceed? \")
+	  (ecb-deactivate-internal)
 	  ad-do-it)
       ad-do-it)))"
   `(progn
@@ -840,7 +840,7 @@ Returns the value of BODY.
 
 Example where this macro is used for `walk-windows' within another advice:
 
-\(ecb-with-ecb-advice 'walk-windows 'around
+(ecb-with-ecb-advice 'walk-windows 'around
    ad-do-it)"
   (let ((outmost-caller-p (make-symbol "outmost-caller-p")))
     ;; we have to check if we are the outmost-caller of this macro for this
@@ -880,7 +880,7 @@ Example where this macro is used for `walk-windows' within another advice:
 
 (defmacro ecb-with-original-adviced-function-set (adviced-function-set-var &rest body)
   "Evaluates BODY with all adviced functions of ADVICED-FUNCTION-SET-VAR
-being disabled \(means with their original definition). Restores always \(even
+being disabled (means with their original definition). Restores always (even
 if an error occurs during evaluating BODY) the previous state of the adviced
 functions, means it depends if the call to this macro is the outermost call:
 Only if it is the outermost-call the advices of the used advice-set will be
@@ -893,8 +893,8 @@ occurs.
 
 Example:
 
-\(ecb-with-original-adviced-function-set 'ecb-layout-basic-adviced-functions
-   \(do-something..))"
+(ecb-with-original-adviced-function-set 'ecb-layout-basic-adviced-functions
+   (do-something..))"
   (let ((outmost-caller-p (make-symbol "outmost-caller-p")))
     `(let ((,outmost-caller-p
             (unless (equal (cdr (assq ,adviced-function-set-var ecb-adviced-function-sets))
@@ -992,7 +992,7 @@ Note: The buffer is just returned but not displayed."
 
 It is a cons where the cdr is a buffer-object of the current selected source
 The name of this file is the car of the cons:
-\(<filename> . <indirect-buffer-object>).
+(<filename> . <indirect-buffer-object>).
 
 This variable is only set by `ecb-path-selected-source-set' and evaluated by
 the function `ecb-path-selected-source'.
@@ -1031,7 +1031,7 @@ In all other cases of TYPE always that value is returned
 (defvar ecb-tree-buffer-creators nil
   "The tree-buffer creators of ECB.
 An alist where each element is a cons where the car is a symbol which contains
-the name of a tree-buffer \(e.g. `ecb-sources-buffer-name') and the cdr is the
+the name of a tree-buffer (e.g. `ecb-sources-buffer-name') and the cdr is the
 associated function-symbol which creates the tree-buffer with that name.")
 
 (defun ecb-tree-buffer-creators-init ()
@@ -1056,11 +1056,11 @@ Removes all creators and set it to nil."
   "Define a creator-function CREATOR for a tree-buffer which name is hold in
 the symbol TREE-BUFFER-NAME-SYMBOL. Do not quote CREATOR and
 TREE-BUFFER-NAME-SYMBOL. DOCSTRING is the docstring for CREATOR. BODY is all
-the program-code of CREATOR \(must contain a call to `tree-buffer-create'). It
+the program-code of CREATOR (must contain a call to `tree-buffer-create'). It
 makes sense that BODY returns the created tree-buffer.
 
 When creating a tree-buffer with this macro then this tree-buffer will be
-automatically created \(i.e. its creator-function defined with this macro will
+automatically created (i.e. its creator-function defined with this macro will
 be called) when activating ECB and the tree-buffer will automatically
 registered at ECB. This means that some features of ECB will work
 automatically out of the box with this tree-buffer.
@@ -1097,7 +1097,7 @@ list with the following contents:
 1. elem: The buffer-name of the registered ecb-buffer
 2. elem: The symbol which holds this buffer-name
 3. elem: An indicator if the registered ecb-buffer is of type tree-buffer
-   \(i.e. this tree-buffer is created with `defecb-tree-buffer-creator'). Not
+   (i.e. this tree-buffer is created with `defecb-tree-buffer-creator'). Not
    nil in case of a tree-buffer otherwise nil
 4. elem: A function which displays that buffer in current window
    when called and makes this window dedicated to this buffer. This is the
@@ -1156,10 +1156,10 @@ See `defecb-window-dedicator-to-ecb-buffer' for more details and an example.")
 (defvar ecb-tree-buffer-callbacks '((expand . nil) (select . nil))
   "All callback-functions for the tree-buffers of ECB.
 This list contains two items of the form:
-\(<callback-type> .\(<buffer-callback-alist>))
+(<callback-type> .(<buffer-callback-alist>))
 where <callback-type> is 'select and 'expand and
 <buffer-callback-alist> is an alist where each item is a cons
-like \(<buffer-name-symbol> . <callback-symbol>)."
+like (<buffer-name-symbol> . <callback-symbol>)."
   )
 
 
@@ -1199,7 +1199,7 @@ the latter one for clicking onto a node.
 CALLBACK is defined as a function with at least five arguments:
 NODE, ECB-BUTTON, EDIT-WINDOW-NR, SHIFT-MODE and META-MODE.
 CALLBACK must handle clicking onto NODE in the tree-buffer for
-which the callback is defined. ECB-BUTTON can be 1, 2 or 3 \(=
+which the callback is defined. ECB-BUTTON can be 1, 2 or 3 (=
 mouse-buttons). If 3 then EDIT-WINDOW-NR contains the number of
 the edit-window the NODE should be displayed or whatever should
 be done with NODE. For 1 and 2 the value of EDIT-WINDOW-NR is
@@ -1283,32 +1283,32 @@ Currently there are the following subcaches managed within this cache:
 
   Cache for every directory all subdirs and files. This is a cache with
      key:   <directory>
-     value: \(<file-list> . <subdirs-list>)
+     value: (<file-list> . <subdirs-list>)
 
   EMPTY-DIR-P:
 
   Cache for every directory if it is empty or not. This is a cache with
      key:   <directory>
-     value: \(\[nil|t] . <checked-with-show-sources>)
+     value: ([nil|t] . <checked-with-show-sources>)
 
   SOURCES:
 
   Cache for the contents of the buffer `ecb-sources-buffer-name'. This is a
   cache with
      key:   <directory>
-     value: \(<full-content> . <filtered-content>)
-  whereas <full-content> is a 3-elem list \(tree-buffer-root <copy of
-  tree-buffer-displayed-nodes> buffer-string) for a full \(i.e. all files)
-  cache and <filtered-content> is a 4-elem list \(tree-buffer-root <copy of
+     value: (<full-content> . <filtered-content>)
+  whereas <full-content> is a 3-elem list (tree-buffer-root <copy of
+  tree-buffer-displayed-nodes> buffer-string) for a full (i.e. all files)
+  cache and <filtered-content> is a 4-elem list (tree-buffer-root <copy of
   tree-buffer-displayed-nodes> sources-buffer-string <filter>) for a filtered
-  cache where <filter> is a cons-cell \(<filter-regexp> . <filter-display>).
+  cache where <filter> is a cons-cell (<filter-regexp> . <filter-display>).
 
   VC:
 
   Cache necessary informations for the version-control-support. This is a
   cache for filenames and directories. In case of a file with
      key: <filename> of a sourcefile
-     value: \(<state> <check-timestamp> <checked-buffers>)
+     value: (<state> <check-timestamp> <checked-buffers>)
   whereas <state> is the that VC-state the file had at time <check-timestamp>.
   <checked-buffers> is a list of tree-buffer-names for which <state> was
   checked.
@@ -1320,7 +1320,7 @@ Currently there are the following subcaches managed within this cache:
 
   FIXED-FILENAMES:
 
-  Cache for fixed filenames which can speedup handling-remote-paths \(like
+  Cache for fixed filenames which can speedup handling-remote-paths (like
   tramp-paths)
      key: The concatenation of the args PATH and FILENAME of `ecb-fix-filename'.
      value: The result of `ecb-fix-filename' for these args.
@@ -1335,8 +1335,8 @@ Currently there are the following subcaches managed within this cache:
   HOST-ACCESSIBLE:
 
   Cache if a host is accessible or not.
-     key: a host \(e.g. ecb.sourceforge.net)
-     value: \(<timestamp> . <value>) whereas <timestamp> is the cache time of
+     key: a host (e.g. ecb.sourceforge.net)
+     value: (<timestamp> . <value>) whereas <timestamp> is the cache time of
      <value> and <value> is either 'NOT-ACCESSIBLE if host is not accessible
      or t if accessible.
 ")
@@ -1365,12 +1365,12 @@ Currently there are the following subcaches managed within this cache:
 (defvar ecb-autotrace-autocontrol/sync-functions nil
   "Allow autotracing the internal autocontrol/synchronisations of ECB.
 All functions defined with `defecb-autocontrol/sync-function' can
-be autotraced. The value of this variable is either nil \(then no
-autotracing will be performed) or t \(then all functions defined with
+be autotraced. The value of this variable is either nil (then no
+autotracing will be performed) or t (then all functions defined with
 `defecb-autocontrol/sync-function' will be traced) or a list of
-function-symbols \(then exactly these functions will be traced).
+function-symbols (then exactly these functions will be traced).
 
-Auto-tracing means that each\(!) time the function runs \(either
+Auto-tracing means that each(!) time the function runs (either
 by idle-timer or within pre- or post-command-hook) a trace-message on
 function-entry and a trace-message on function exit is writen.")
 
@@ -1450,9 +1450,9 @@ buffer-name of a special ECB-buffer or nil.")
   "Adds function FUNC to `ecb-idle-timer-alist' and activates an idle-timer
 with idle-time VALUE if VALUE is a number. If nil or 'post the
 FUNC is added to `post-command-hook' and `ecb-post-command-hooks'
-and removed from the idle-list \(if it has been contained). If
+and removed from the idle-list (if it has been contained). If
 'pre the FUNC is added to `pre-command-hook' and
-`ecb-pre-command-hooks' and removed from the idle-list \(if it
+`ecb-pre-command-hooks' and removed from the idle-list (if it
 has been contained)."
   (unless (assoc func ecb-autocontrol/sync-fcn-register)
     (error "ECB %s: Try to activate unregistered %s as autocontrol/sync-function"
@@ -1490,10 +1490,10 @@ used for synchronizing it with the edit-area. In the latter case
 BODY is encapsulated with the macros a)
 `ecb-when-point-in-edit-window-ecb-windows-visible' and b)
 `ecb-do-if-buffer-visible-in-ecb-frame' so BODY runs only if a)
-point stays in an edit-window \(ie. the currently selected window
+point stays in an edit-window (ie. the currently selected window
 is an edit-window) and the ecb-windows of current layout are
 not hidden and b) the buffer of BUFFER-NAME-SYMBOL is displayed in a
-window of the ECB-frame \(for details see the documentation of
+window of the ECB-frame (for details see the documentation of
 this macro).
 
 Please note: If BUFFER-NAME-SYMBOL is nil then BODY is not
@@ -1517,7 +1517,7 @@ exactly true when either:
   are true for `ecb-basic-buffer-sync'.
 
 If call-interactive-p is not nil then FCN will be defined as an interactice
-command, i.e. it will contain the clause \(interactive \"P\").
+command, i.e. it will contain the clause (interactive \"P\").
 
 The defined function is automatically prepared for tracing its calls when
 `ecb-autotrace-autocontrol/sync-functions' is either set to t or the symbol of FCN
@@ -1528,11 +1528,11 @@ Do not quote FCN, BUFFER-NAME-SYMBOL and BUFFER-SYNC-OPTION-SYMBOL!
 
 Example:
 
-\(defecb-autocontrol/sync-function ecb-sync-a-buffer ecb-a-special-buffer-name
+(defecb-autocontrol/sync-function ecb-sync-a-buffer ecb-a-special-buffer-name
    ecb-a-special-buffer-sync nil
   \"Synchronize the buffer of ECB-A-SPECIAL-BUFFER-NAME with...\"
-  \(let \(\(x nil))
-    \(if force
+  (let ((x nil))
+    (if force
         ;; do something
       ;; do something else
       )
@@ -1595,7 +1595,7 @@ hold in the variable `ecb-a-special-buffer-name'.
 
 (defecb-autocontrol/sync-function ecb-monitor-autocontrol-functions nil nil nil
   "Checks if all necessary ECB-hooks are contained in `post-command-hook' rsp.
-`pre-command-hook'. If one of them has been removed by Emacs \(Emacs resets
+`pre-command-hook'. If one of them has been removed by Emacs (Emacs resets
 these hooks to nil if any of the contained functions fails!) then this
 function reads them to these hooks."
   ;; post-command-hook
@@ -1676,7 +1676,7 @@ cache-entries are not dumped. This command is not intended for end-users of ECB.
 
 (defun ecb-fix-filename (path &optional filename substitute-env-vars)
   "Normalizes path- and filenames for ECB. If FILENAME is not nil its pure
-filename \(i.e. without directory part) will be concatenated to PATH. The
+filename (i.e. without directory part) will be concatenated to PATH. The
 result will never end with the directory-separator! If SUBSTITUTE-ENV-VARS is
 not nil then in both PATH and FILENAME env-var substitution is done. If the
 `system-type' is 'cygwin32 then the path is converted to win32-path-style!"
@@ -1732,7 +1732,7 @@ If optional arg IGNORE-PREFIX-SUFFIX is not nil then
 these settings of `ecb-bucket-node-display' are ignored. If IGNORE-BUCKET-FACE
 it t then the face of `ecb-bucket-node-display' is completely ignored, if it
 is 'only-name then the face of `ecb-bucket-node-display' is only ignored for
-NAME but not for a prefix or suffix of `ecb-bucket-node-display' \(if any)."
+NAME but not for a prefix or suffix of `ecb-bucket-node-display' (if any)."
   (let ((formated-prefix (unless ignore-prefix-suffix
                            (if (eq ignore-bucket-face t)
                                (nth 0 ecb-bucket-node-display)
@@ -1800,7 +1800,7 @@ The tree-buffer is the current buffer."
 					     tree-buffer-name)
   "This is the callback-function ecb.el gives to every tree-buffer to call
 when a node has been selected. This function does nothing if the click
-combination is invalid \(see `ecb-interpret-mouse-click'."
+combination is invalid (see `ecb-interpret-mouse-click'."
   (let* ((ecb-button-list (ecb-interpret-mouse-click mouse-button
 						     shift-pressed
 						     control-pressed
@@ -1881,7 +1881,7 @@ when a node has been collapsed."
 					     tree-buffer-name)
   "This is the callback-function ecb.el gives to every tree-buffer to call
 when a node should be expanded. This function does nothing if the click
-combination is invalid \(see `ecb-interpret-mouse-click')."
+combination is invalid (see `ecb-interpret-mouse-click')."
   (let* ((ecb-button-list (ecb-interpret-mouse-click mouse-button
 						     shift-pressed
 						     control-pressed
@@ -1910,18 +1910,18 @@ combination is invalid \(see `ecb-interpret-mouse-click')."
                                   control-pressed
                                   meta-pressed
                                   tree-buffer-name)
-  "Converts the physically pressed MOUSE-BUTTON \(1 = mouse-1, 2 = mouse-2, 0 =
+  "Converts the physically pressed MOUSE-BUTTON (1 = mouse-1, 2 = mouse-2, 0 =
 no mouse-button but the keys RET or TAB) to ECB-mouse-buttons: either primary
 or secondary mouse-button depending on the value of CONTROL-PRESSED and the
 setting in `ecb-primary-secondary-mouse-buttons'. Returns a list
-'\(<ECB-button> <shift-mode> <meta-mode> <device>) where <ECB-button> is
-either 1 \(= primary) or 2 \(= secondary) and <shift-mode> and <meta-mode> are
+'(<ECB-button> <shift-mode> <meta-mode> <device>) where <ECB-button> is
+either 1 (= primary) or 2 (= secondary) and <shift-mode> and <meta-mode> are
 non nil if SHIFT-PRESSED rsp. META-PRESSED is non nil. <device> is either
 'mouse or 'keyboard dependent if the uses has used the mouse rsp. the keyboard
 in the tree-buffer. For an invalid and not accepted click combination nil is
 returned.
 
-Note: If MOUSE-BUTTON is 0 \(means no mouse-button but a key like RET or TAB
+Note: If MOUSE-BUTTON is 0 (means no mouse-button but a key like RET or TAB
 was hitted) then CONTROL-PRESSED is interpreted as ECB-button 2.
 
 Currently the fourth argument TREE-BUFFER-NAME is not used here."
@@ -2012,7 +2012,7 @@ can use and modify `state'. After evaluating BODY `state' will be
 automatically saved so its available at the runtime of this stealthy function.
 BODY will only be evaluated if `state' is not 'done. BODY should be designed
 to be interruptable by the user, so its recommended to use for this
-`ecb-exit-on-input' ans `ecb-throw-on-input' \(see example in
+`ecb-exit-on-input' ans `ecb-throw-on-input' (see example in
 `ecb-test-throw-on-input'). If BODY completes then BODY has to set `state' to
 the special value 'done! If BODY has been interrupted then `state' can have an
 arbitrary value which will be autom. stored and at next runtime of the
@@ -2021,7 +2021,7 @@ stealthy function NAME `state' will be initialized with this stored value. If
 stealthy function should start from scratch because an eventually stored state
 is not longer valid. If the stealthy function sets `state' to 'done then this
 function will first being called after the state for this function has been
-reset to something else than 'done \(mostly to 'restart)\; such a reset of the
+reset to something else than 'done (mostly to 'restart)\; such a reset of the
 state for a stealthy function can be done by any code and must be done via
 `ecb-stealthy-function-state-init'!"
   `(progn
@@ -2045,7 +2045,7 @@ state for a stealthy function can be done by any code and must be done via
 (defecb-autocontrol/sync-function ecb-stealthy-updates nil nil nil
   "Run all functions in the stealthy function list.
 Each function returns 'done if it completes successfully, or something else if
-interrupted by the user \(i.e. the function has been interrupted by the
+interrupted by the user (i.e. the function has been interrupted by the
 user). If a function is interrupted then `ecb-stealthy-function-list' is
 rotated so the interrupted function is the first element so the next stealthy
 run starts with this interrupted function."
@@ -2071,7 +2071,7 @@ run starts with this interrupted function."
 (defun ecb-generate-node-name (text-name first-chars icon-name name-of-buffer)
   "Generate a new name from TEXT-NAME by adding an appropriate image according
 to ICON-NAME to the first FIRST-CHARS of TEXT-NAME. If FIRST-CHARS is < 0 then
-a string with length abs\(FIRST-CHARS) is created, the image is applied to
+a string with length abs(FIRST-CHARS) is created, the image is applied to
 this new string and this \"image\"-string is added to the front of TEXT-NAME.
 If no image can be found for ICON-NAME then the original TEXT-NAME is
 returned. NAME-OF-BUFFER is the name of the tree-buffer where the resulting
