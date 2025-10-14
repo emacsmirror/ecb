@@ -95,16 +95,16 @@
 
 ;; overlay/extend stuff
 
-  (defalias 'tree-buffer-make-overlay   'make-overlay)
-  (defalias 'tree-buffer-overlay-put    'overlay-put)
-  (defalias 'tree-buffer-overlay-move   'move-overlay)
-  (defalias 'tree-buffer-overlay-delete 'delete-overlay)
-  (defalias 'tree-buffer-overlay-kill   'delete-overlay)
+(defalias 'tree-buffer-make-overlay   'make-overlay)
+(defalias 'tree-buffer-overlay-put    'overlay-put)
+(defalias 'tree-buffer-overlay-move   'move-overlay)
+(defalias 'tree-buffer-overlay-delete 'delete-overlay)
+(defalias 'tree-buffer-overlay-kill   'delete-overlay)
 
 ;; timer stuff
 
-  (defalias 'tree-buffer-run-with-idle-timer 'run-with-idle-timer)
-  (defalias 'tree-buffer-cancel-timer 'cancel-timer)
+(defalias 'tree-buffer-run-with-idle-timer 'run-with-idle-timer)
+(defalias 'tree-buffer-cancel-timer 'cancel-timer)
 
 
 ;; basic utilities
@@ -2279,15 +2279,15 @@ a prefix-arg then the library tmm.el is used for displaying the popup-menu -
 ignored with XEmacs."
   (interactive "P")
   (if use-tmm
-      (unless (not (equal (selected-frame) tree-buffer-frame))
-        (when (tree-buffer-spec->menu-creator tree-buffer-spec)
-          (let ((node (tree-buffer-get-node-at-point)))
-            (when (and node (locate-library "tmm"))
-              (let ((menu (cdr (assoc (tree-node->type node)
-                                      (tree-buffer-create-menus
-                                       (funcall (tree-buffer-spec->menu-creator
-                                                 tree-buffer-spec)
-                                                (buffer-name) node))))))
+    (unless (not (equal (selected-frame) tree-buffer-frame))
+      (when (tree-buffer-spec->menu-creator tree-buffer-spec)
+        (let ((node (tree-buffer-get-node-at-point)))
+          (when (and node (locate-library "tmm"))
+            (let ((menu (cdr (assoc (tree-node->type node)
+                                    (tree-buffer-create-menus
+                                     (funcall (tree-buffer-spec->menu-creator
+                                               tree-buffer-spec)
+                                              (buffer-name) node))))))
                 (tmm-prompt menu))))))
 
     (let ((curr-frame-ypos (* (/ (frame-pixel-height) (frame-height))
@@ -2528,14 +2528,6 @@ Example for the usage of this macro:
     ;; and perhaps not even a header line to worry about.
     ""))
 
-
-(defconst tree-buffer-stickynode-header-line-format-old
-   '(:eval (list  ;; Magic bit I found on emacswiki.
-            (propertize " "
-                        'display
-                        '((space :align-to 0)))
-   	    (tree-buffer-stickynode-fetch-stickyline)))
-  "The header line format used by sticky func mode.")
 
 (defun tree-buffer-stickynode-header-line-format ()
   "The header line format used by sticky func mode."
@@ -3192,6 +3184,12 @@ AFTER-UPDATE-HOOK: A function or a list of functions (with no arguments)
     (define-key tree-buffer-key-map [triple-mouse-3] nop)
 
     ;; modeline bindings....here we use hard coded button-press too - s.a.
+    (define-key tree-buffer-key-map
+      (tree-buffer-create-mouse-key 3 'button-press nil 'mode-line)
+      (function (lambda (e)
+                  (interactive "e")
+                  (tree-buffer-mouse-set-point e)
+                  (tree-buffer-show-modeline-menu e))))
 
     ;; scrolling horiz.
     (when hor-scroll-step
